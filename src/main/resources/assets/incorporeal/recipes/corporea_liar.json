@@ -1,0 +1,27 @@
+{
+	"result": {
+		"item": "incorporeal:corporea_liar"
+	},
+	"pattern": [
+		" S ",
+		"NBN",
+		" E "
+	],
+	"type": "forge:ore_shaped",
+	"key": {
+		"E": {
+			"item": "botania:foresteye"
+		},
+		"B": {
+			"item": "botania:biomestonea",
+			"data": 5
+		},
+		"N": {
+			"item": "minecraft:ender_eye"
+		},
+		"S": {
+			"item": "botania:corporeaspark",
+			"data": 0
+		}
+	}
+}

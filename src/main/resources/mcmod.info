@@ -1,0 +1,16 @@
+[
+{
+  "modid": "incorporeal",
+  "name": "Incorporeal",
+  "description": "Botania addon. More tools for large-scale corporea systems.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["quaternary"],
+  "credits": "Thank mr vazker doot doot",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
