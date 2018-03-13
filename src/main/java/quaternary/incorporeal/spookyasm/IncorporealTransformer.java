@@ -1,18 +1,19 @@
 package quaternary.incorporeal.spookyasm;
 
-import com.google.common.collect.ImmutableList;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.objectweb.asm.*;
 import org.objectweb.asm.tree.*;
 import quaternary.incorporeal.Incorporeal;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class IncorporealTransformer implements IClassTransformer, Opcodes {
 	
-	String internalMethodHandlerName = "vazkii.botania.common.core.handler.InternalMethodHandler";
+	static String internalMethodHandlerName = "vazkii.botania.common.core.handler.InternalMethodHandler";
 	
-	List<String> patches = ImmutableList.of(internalMethodHandlerName);
+	//these arrays are quite fast
+	static List<String> patches = Arrays.asList(internalMethodHandlerName);
 	
 	@Override
 	public byte[] transform(String name, String transformedName, byte[] basicClass) {
