@@ -4,6 +4,8 @@ item.incorporeal.corporea_liar.name=Corporea Prevaricator
 item.incorporeal.corporea_ticket.name=Corporea Ticket (Blank)
 item.incorporeal.filled_corporea_ticket.name=Corporea Ticket (%sx %s)
 
+tile.botania:flower.sanvocalia.name=Sanvocalia
+
 #Lexicon!!!
 
 botania.entry.corporea_liar=Corporea Prevaricator
