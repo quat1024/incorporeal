@@ -15,7 +15,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import quaternary.incorporeal.etc.CorporeaHelper2;
 import quaternary.incorporeal.item.ItemCorporeaTicket;
+import quaternary.incorporeal.lexicon.IncorporealLexiData;
 import vazkii.botania.api.corporea.*;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.subtile.RadiusDescriptor;
 import vazkii.botania.api.subtile.SubTileFunctional;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaIndex;
@@ -24,7 +27,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 //A horrible pun based off of the real life Sanvitalia flower
-public class SubTileSanvocalia extends SubTileFunctional {
+public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable {
+	public static final String NAME = "sanvocalia";
+	public static final String NAME_CHIBI = "sanvocalia_chibi";
 	
 	@GameRegistry.ObjectHolder("incorporeal:corporea_ticket")
 	public static final Item CORPOREA_TICKET = Items.AIR;
@@ -37,6 +42,8 @@ public class SubTileSanvocalia extends SubTileFunctional {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
+		
+		if(mana <= 20) return;
 		
 		World w = supertile.getWorld();
 		BlockPos pos = supertile.getPos();
@@ -54,31 +61,49 @@ public class SubTileSanvocalia extends SubTileFunctional {
 		//Definitely cache nearby indices and stuff, this is expensive
 		List<TileCorporeaIndex> nearbyIndices = getNearbyIndicesReflect(w, pos);
 		if(nearbyIndices.isEmpty()) {
-			//Post the message to chat.
+			//No indexes nearby? Post the message to chat
 			//This is a nod to when players accidentally type corporea requests into chat, lol
 			TextComponentTranslation txt = new TextComponentTranslation("chat.type.text", "Sanvocalia", CorporeaHelper2.requestToString(ticketsRequest));
 			for(EntityPlayerMP player : w.getMinecraftServer().getPlayerList().getPlayers()) {
 				player.sendMessage(txt);
 			}
-			ticket.setDead();
-			return;
+		} else {
+			Collections.shuffle(nearbyIndices);
+			TileCorporeaIndex index = nearbyIndices.get(0);
+			
+			ICorporeaSpark spork = index.getSpark();
+			CorporeaHelper2.spawnRequest(w, ticketsRequest, spork, index.getPos());
 		}
-		
-		Collections.shuffle(nearbyIndices);
-		TileCorporeaIndex index = nearbyIndices.get(0);
-		
-		ICorporeaSpark spork = index.getSpark();
-		CorporeaHelper2.spawnRequest(w, ticketsRequest, spork, index.getPos());
+		mana -= 20;		
 		ticket.setDead();
 	}
 	
 	public int getRange() {
-		return 2;
+		return 3;
+	}
+	
+	public static class Mini extends SubTileSanvocalia {
+		public Mini() {}
+		
+		@Override
+		public int getRange() {
+			return 1;
+		}
 	}
 	
 	@Override
 	public RadiusDescriptor getRadius() {
 		return new RadiusDescriptor.Square(supertile.getPos(), getRange());
+	}
+	
+	@Override
+	public int getMaxMana() {
+		return 200;
+	}
+	
+	@Override
+	public int getColor() {
+		return 0xed9625;
 	}
 	
 	public static List<TileCorporeaIndex> getNearbyIndicesReflect(World w, BlockPos pos) {
@@ -89,5 +114,10 @@ public class SubTileSanvocalia extends SubTileFunctional {
 			
 			return Math.abs(pos.getX() - tile.getPos().getX()) <= 2 && Math.abs(pos.getZ() - tile.getPos().getZ()) <= 2 && tile.getPos().getY() == pos.getY();
 		}).collect(Collectors.toList());
+	}
+	
+	@Override
+	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
+		return IncorporealLexiData.sanvocaliaEntry;
 	}
 }

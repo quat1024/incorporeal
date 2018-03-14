@@ -34,7 +34,4 @@ public class IncorporealPlugin implements IFMLLoadingPlugin {
 	public String getAccessTransformerClass() {
 		return null;
 	}
-	/*public IncorporealPlugin() {
-		super(InternalMethodHandlerTransformer.class);
-	}*/
 }

@@ -40,6 +40,6 @@ public class BlockCorporeaSolidifier extends Block implements ILexiconable {
 	
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
-		return IncorporealLexiData.corporeaTickets;
+		return IncorporealLexiData.corporeaTicketsEntry;
 	}
 }

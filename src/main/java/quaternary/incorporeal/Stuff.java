@@ -19,7 +19,6 @@ public class Stuff {
 		
 		BLOCKS.add(new BlockCorporeaLiar());
 		BLOCKS.add(new BlockCorporeaSolidifier());
-		BLOCKS.add(new BlockCorporeaLiquifier());
 		BLOCKS.add(new BlockCorporeaSparkTinkerer());
 		
 		ITEMS = new ArrayList<>();

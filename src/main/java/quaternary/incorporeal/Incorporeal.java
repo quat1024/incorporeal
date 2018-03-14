@@ -2,6 +2,7 @@ package quaternary.incorporeal;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -12,14 +13,20 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import quaternary.incorporeal.etc.IncorporealRecipes;
 import quaternary.incorporeal.lexicon.IncorporealLexiData;
 import quaternary.incorporeal.tile.*;
 import quaternary.incorporeal.tile.flower.SubTileSanvocalia;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.BotaniaAPIClient;
+import vazkii.botania.api.subtile.signature.BasicSignature;
+import vazkii.botania.api.subtile.signature.SubTileSignature;
+import vazkii.botania.common.crafting.ModPetalRecipes;
+import vazkii.botania.common.item.ModItems;
+import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
+import vazkii.botania.common.lib.LibOreDict;
 
 @Mod(modid = Incorporeal.MODID, name = Incorporeal.NAME, version = Incorporeal.VERSION, dependencies = Incorporeal.DEPENDENCIES)
-
 public class Incorporeal {
 	public static final String MODID = "incorporeal";
 	public static final String NAME = "Incorporeal";
@@ -28,13 +35,14 @@ public class Incorporeal {
 	
 	public static final Logger LOGGER = LogManager.getLogger(NAME);
 	
+	@Mod.EventHandler
+	public static void init(FMLInitializationEvent e) {
+		IncorporealRecipes.init();
+		IncorporealLexiData.init();
+	}
+	
 	@Mod.EventBusSubscriber(modid = Incorporeal.MODID)
 	public static class CommonEvents {
-		@Mod.EventHandler
-		public static void init(FMLInitializationEvent e) {
-			IncorporealLexiData.init();
-		}
-		
 		@SubscribeEvent
 		public static void blocks(RegistryEvent.Register<Block> e) {
 			IForgeRegistry<Block> reg = e.getRegistry();
@@ -45,11 +53,14 @@ public class Incorporeal {
 			
 			GameRegistry.registerTileEntity(TileCorporeaLiar.class, Incorporeal.MODID + ":liar");
 			GameRegistry.registerTileEntity(TileCorporeaSolidifier.class, Incorporeal.MODID + ":solidifier");
-			GameRegistry.registerTileEntity(TileCorporeaLiquifier.class, Incorporeal.MODID + ":liquifier");
 			GameRegistry.registerTileEntity(TileCorporeaSparkTinkerer.class, Incorporeal.MODID + ":tinkerer");
 			
-			BotaniaAPI.registerSubTile("sanvocalia", SubTileSanvocalia.class);
-			BotaniaAPI.registerMiniSubTile("sanvocalia", SubTileSanvocalia.class, "sanvocaliaChibi");
+			//sanvocalia!
+			BotaniaAPI.registerSubTile(SubTileSanvocalia.NAME, SubTileSanvocalia.class);
+			BotaniaAPI.registerMiniSubTile(SubTileSanvocalia.NAME_CHIBI, SubTileSanvocalia.Mini.class, SubTileSanvocalia.NAME);
+			BotaniaAPI.registerSubTileSignature(SubTileSanvocalia.class, new BasicSignature(SubTileSanvocalia.NAME));
+			BotaniaAPI.registerSubTileSignature(SubTileSanvocalia.Mini.class, new BasicSignature(SubTileSanvocalia.NAME_CHIBI));
+			BotaniaAPI.addSubTileToCreativeMenu(SubTileSanvocalia.NAME);
 		}
 		
 		@SubscribeEvent

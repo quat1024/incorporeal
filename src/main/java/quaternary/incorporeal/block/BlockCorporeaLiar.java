@@ -85,6 +85,6 @@ public class BlockCorporeaLiar extends Block implements ILexiconable {
 	//Lexicon stuff
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
-		return IncorporealLexiData.corporeaLiar;
+		return IncorporealLexiData.corporeaLiarEntry;
 	}
 }
