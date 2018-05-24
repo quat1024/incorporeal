@@ -9,6 +9,7 @@ A Botania addon that adds more toys for your corporea system. Designed for manag
 * Corporea Prevaricator to lie to your system about the contents of a chest
 * Corporea Solidifier and Liquifier to store corporea requests as items
 * A corporea index you can carry around in your hand
+* Item frame tinkerer!
 * Lexica Botania integration
 * 1 coremod boy
 
@@ -19,7 +20,6 @@ A Botania addon that adds more toys for your corporea system. Designed for manag
 
 ### What's planned?
 
-* Item frame tinkerer!
 * Can i get uhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh Boneless block model
 * Reworking the solidifier/liquifier system a little bit
 * I want to think some more about the wildcard corporea interceptor thing

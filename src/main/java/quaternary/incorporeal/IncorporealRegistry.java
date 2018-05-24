@@ -21,6 +21,7 @@ public class IncorporealRegistry {
 		BLOCKS.add(new BlockCorporeaSolidifier());
 		BLOCKS.add(new BlockCorporeaSparkTinkerer());
 		BLOCKS.add(new BlockFrameTinkerer());
+		BLOCKS.add(new BlockCorporeaInhibitor());
 		
 		for(Block b : BLOCKS) {
 			ItemBlock item = new ItemBlock(b);

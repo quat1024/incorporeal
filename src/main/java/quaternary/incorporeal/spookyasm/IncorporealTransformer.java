@@ -5,15 +5,15 @@ import org.objectweb.asm.*;
 import org.objectweb.asm.tree.*;
 import quaternary.incorporeal.Incorporeal;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class IncorporealTransformer implements IClassTransformer, Opcodes {
 	
 	static String internalMethodHandlerName = "vazkii.botania.common.core.handler.InternalMethodHandler";
+	static String entityCorporeaSparkName = "vazkii.botania.common.entity.EntityCorporeaSpark";
 	
 	//these arrays are quite fast
-	static List<String> patches = Arrays.asList(internalMethodHandlerName);
+	static List<String> patches = Arrays.asList(internalMethodHandlerName, entityCorporeaSparkName);
 	
 	@Override
 	public byte[] transform(String name, String transformedName, byte[] basicClass) {
@@ -28,7 +28,12 @@ public class IncorporealTransformer implements IClassTransformer, Opcodes {
 			patchInternalMethodHandler(node);
 		}
 		
-		ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+		if(transformedName.equals(entityCorporeaSparkName)) {
+			Incorporeal.LOGGER.info("Patching the corporea spark entity...");
+			patchEntityCorporeaSpark(node);
+		}
+		
+		ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
 		node.accept(writer);
 		
 		Incorporeal.LOGGER.info("Finished patching !");
@@ -67,6 +72,30 @@ public class IncorporealTransformer implements IClassTransformer, Opcodes {
 				instructions.insertBefore(insertionPoint, new MethodInsnNode(INVOKESTATIC, "quaternary/incorporeal/spookyasm/Hooks", "invWrapHook", "(Lvazkii/botania/api/corporea/InvWithLocation;Lvazkii/botania/api/corporea/ICorporeaSpark;Lvazkii/botania/api/corporea/IWrappedInventory;)Lvazkii/botania/api/corporea/IWrappedInventory;", false));
 				
 				instructions.insertBefore(insertionPoint, new VarInsnNode(ASTORE, 6));
+				
+				return;
+			}
+		}
+	}
+	
+	public void patchEntityCorporeaSpark(ClassNode node) {
+		for(MethodNode method : node.methods) {
+			if(method.name.equals("getNearbySparks")) {
+				InsnList instructions = method.instructions;
+				
+				ListIterator<AbstractInsnNode> inserator = instructions.iterator();
+				while(inserator.hasNext()) {
+					AbstractInsnNode insn = inserator.next();
+					if(insn.getOpcode() != ARETURN) continue;
+					
+					inserator.previous();
+					System.out.println("ASDSADASD");
+					
+					inserator.add(new VarInsnNode(ALOAD, 0));
+					inserator.add(new MethodInsnNode(INVOKESTATIC, "quaternary/incorporeal/spookyasm/Hooks", "nearbyCorporeaSparkHook", "(Ljava/util/List;Lvazkii/botania/common/entity/EntityCorporeaSpark;)Ljava/util/List;", false));
+					
+					return;
+				}
 			}
 		}
 	}
