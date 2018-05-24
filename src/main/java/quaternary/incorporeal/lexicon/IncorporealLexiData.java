@@ -17,6 +17,7 @@ public class IncorporealLexiData {
 	public static LexiconEntry corporeaTicketsEntry;
 	public static LexiconEntry corporeaTinkererEntry;
 	public static LexiconEntry sanvocaliaEntry;
+	public static LexiconEntry frameTinkererEntry;
 	
 	@GameRegistry.ItemStackHolder(value = "incorporeal:corporea_liar")
 	public static final ItemStack LIAR_ICON = ItemStack.EMPTY;
@@ -26,6 +27,9 @@ public class IncorporealLexiData {
 	
 	@GameRegistry.ItemStackHolder(value = "incorporeal:corporea_spark_tinkerer")
 	public static final ItemStack TINKERER_ICON = ItemStack.EMPTY;
+	
+	@GameRegistry.ItemStackHolder(value = "incorporeal:frame_tinkerer")
+	public static final ItemStack FRAME_TINKERER_ICON = ItemStack.EMPTY;
 	
 	public static void init() {
 		ResourceLocation liarRecipe = new ResourceLocation(Incorporeal.MODID, "corporea_liar");
@@ -53,5 +57,9 @@ public class IncorporealLexiData {
 		sanvocaliaEntry.setLexiconPages(new PageText("0"), new PagePetalRecipe<>(".flavor", IncorporealRecipes.sanvocaliaRecipe));
 		sanvocaliaEntry.setKnowledgeType(BotaniaAPI.elvenKnowledge);
 		sanvocaliaEntry.setIcon(ItemBlockSpecialFlower.ofType(SubTileSanvocalia.NAME));
+		
+		frameTinkererEntry = new CompatLexiconEntry("frame_tinkerer", BotaniaAPI.categoryDevices, Incorporeal.NAME);
+		frameTinkererEntry.setLexiconPages(new PageText("0"));
+		frameTinkererEntry.setIcon(FRAME_TINKERER_ICON);
 	}
 }

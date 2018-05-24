@@ -2,7 +2,6 @@ package quaternary.incorporeal;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -18,13 +17,7 @@ import quaternary.incorporeal.lexicon.IncorporealLexiData;
 import quaternary.incorporeal.tile.*;
 import quaternary.incorporeal.tile.flower.SubTileSanvocalia;
 import vazkii.botania.api.BotaniaAPI;
-import vazkii.botania.api.BotaniaAPIClient;
 import vazkii.botania.api.subtile.signature.BasicSignature;
-import vazkii.botania.api.subtile.signature.SubTileSignature;
-import vazkii.botania.common.crafting.ModPetalRecipes;
-import vazkii.botania.common.item.ModItems;
-import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
-import vazkii.botania.common.lib.LibOreDict;
 
 @Mod(modid = Incorporeal.MODID, name = Incorporeal.NAME, version = Incorporeal.VERSION, dependencies = Incorporeal.DEPENDENCIES)
 public class Incorporeal {
@@ -47,13 +40,11 @@ public class Incorporeal {
 		public static void blocks(RegistryEvent.Register<Block> e) {
 			IForgeRegistry<Block> reg = e.getRegistry();
 			
-			for(Block b : Stuff.BLOCKS) {
+			for(Block b : IncorporealRegistry.BLOCKS) {
 				reg.register(b);
 			}
 			
-			GameRegistry.registerTileEntity(TileCorporeaLiar.class, Incorporeal.MODID + ":liar");
-			GameRegistry.registerTileEntity(TileCorporeaSolidifier.class, Incorporeal.MODID + ":solidifier");
-			GameRegistry.registerTileEntity(TileCorporeaSparkTinkerer.class, Incorporeal.MODID + ":tinkerer");
+			IncorporealRegistry.registerTileEntities();
 			
 			//sanvocalia!
 			BotaniaAPI.registerSubTile(SubTileSanvocalia.NAME, SubTileSanvocalia.class);
@@ -67,7 +58,7 @@ public class Incorporeal {
 		public static void items(RegistryEvent.Register<Item> e) {
 			IForgeRegistry<Item> reg = e.getRegistry();
 			
-			for(Item i : Stuff.ITEMS) {
+			for(Item i : IncorporealRegistry.ITEMS) {
 				reg.register(i);
 			}
 		}
