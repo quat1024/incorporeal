@@ -21,12 +21,6 @@ import java.util.List;
 public class TileCorporeaLiar extends TileCorporeaBase implements ICustomWrappedInventory {
 	EnumFacing spoofingDirection;
 	
-	//TODO: remove this next Botania update because it's included in the base now
-	@Override
-	public int getSizeInventory() {
-		return 0;
-	}
-	
 	public TileCorporeaLiar() {
 	}	
 	

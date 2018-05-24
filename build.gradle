@@ -28,11 +28,26 @@ jar {
     }
 }
 
+repositories {
+    maven {
+        url "http://maven.thiakil.com"
+    }
+    
+    maven {
+        url "http://maven.blamejared.com"
+    }
+}
+
+dependencies {
+    deobfCompile "vazkii.botania:Botania:r1.10-355.4"
+    deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
+}
+
 minecraft {
-    version = "1.12.2-14.23.1.2584"
+    version = "1.12.2-14.23.3.2655"
     runDir = "run"
     
-    mappings = "snapshot_20171217"
+    mappings = "snapshot_20180407"
     
     useDepAts = true
 }
