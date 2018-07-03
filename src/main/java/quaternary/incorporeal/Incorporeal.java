@@ -12,7 +12,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.etc.IncorporealRecipes;
+import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.lexicon.IncorporealLexiData;
 import quaternary.incorporeal.tile.*;
 import quaternary.incorporeal.tile.flower.SubTileSanvocalia;
@@ -38,13 +40,8 @@ public class Incorporeal {
 	public static class CommonEvents {
 		@SubscribeEvent
 		public static void blocks(RegistryEvent.Register<Block> e) {
-			IForgeRegistry<Block> reg = e.getRegistry();
-			
-			for(Block b : IncorporealRegistry.BLOCKS) {
-				reg.register(b);
-			}
-			
-			IncorporealRegistry.registerTileEntities();
+			IncorporeticBlocks.registerBlocks(e.getRegistry());
+			IncorporeticTiles.registerTileEntities();
 			
 			//sanvocalia!
 			BotaniaAPI.registerSubTile(SubTileSanvocalia.NAME, SubTileSanvocalia.class);
@@ -56,17 +53,13 @@ public class Incorporeal {
 		
 		@SubscribeEvent
 		public static void items(RegistryEvent.Register<Item> e) {
-			IForgeRegistry<Item> reg = e.getRegistry();
-			
-			for(Item i : IncorporealRegistry.ITEMS) {
-				reg.register(i);
-			}
+			IncorporeticItems.registerItems(e.getRegistry());
 		}
 	}
 	
 	@Mod.EventBusSubscriber(value = Side.CLIENT, modid = Incorporeal.MODID)
 	public static class ClientEvents {
-		@Mod.EventHandler
+		@SubscribeEvent
 		public static void models(ModelRegistryEvent e) {
 			//BotaniaAPIClient.registerSubtileModel("sanvocalia", etc etc)
 		}

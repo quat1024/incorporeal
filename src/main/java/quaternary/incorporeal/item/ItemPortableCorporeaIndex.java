@@ -29,11 +29,6 @@ public class ItemPortableCorporeaIndex extends Item {
 	//Reee
 	static final Map<Pattern, TileCorporeaIndex.IRegexStacker> patterns = ReflectionHelper.getPrivateValue(TileCorporeaIndex.class, null, "patterns");
 	
-	public ItemPortableCorporeaIndex() {
-		setRegistryName(new ResourceLocation(Incorporeal.MODID, "portable_index"));
-		setUnlocalizedName(Incorporeal.MODID + ".portable_index");
-	}
-	
 	//Based on code from Botania's TileCorporeaIndex
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public static void onChat(ServerChatEvent e) {

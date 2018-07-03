@@ -15,12 +15,7 @@ import vazkii.botania.api.corporea.CorporeaRequest;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
 
-public class ItemCorporeaTicket extends Item implements ILexiconable {
-	public ItemCorporeaTicket() {
-		setUnlocalizedName(Incorporeal.MODID + ".corporea_ticket");
-		setRegistryName(Incorporeal.MODID, "corporea_ticket");
-	}
-	
+public class ItemCorporeaTicket extends Item implements ILexiconable {	
 	@GameRegistry.ItemStackHolder(value = "incorporeal:corporea_ticket")
 	public static final ItemStack TICKETSTACK = ItemStack.EMPTY;
 	

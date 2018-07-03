@@ -21,9 +21,6 @@ import javax.annotation.Nullable;
 public class BlockCorporeaSolidifier extends Block implements ILexiconable {
 	public BlockCorporeaSolidifier() {
 		super(Material.IRON, MapColor.PURPLE);
-		
-		setRegistryName(new ResourceLocation(Incorporeal.MODID, "corporea_solidifier"));
-		setUnlocalizedName(Incorporeal.MODID + ".corporea_solidifier");
 	}
 	
 	//Tile entity creation stuff

@@ -12,7 +12,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.lexicon.IncorporealLexiData;
 import quaternary.incorporeal.tile.TileFrameTinkerer;
 import vazkii.botania.api.lexicon.ILexiconable;
@@ -24,9 +23,6 @@ import javax.annotation.Nullable;
 public class BlockFrameTinkerer extends Block implements ILexiconable {
 	public BlockFrameTinkerer() {
 		super(Material.ROCK);
-		
-		setRegistryName(new ResourceLocation(Incorporeal.MODID, "frame_tinkerer"));
-		setUnlocalizedName(Incorporeal.MODID + ".frame_tinkerer");
 		
 		setDefaultState(getDefaultState().withProperty(BotaniaStateProps.POWERED, false));
 	}

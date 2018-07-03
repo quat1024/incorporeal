@@ -14,7 +14,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.lexicon.IncorporealLexiData;
 import quaternary.incorporeal.tile.TileCorporeaSparkTinkerer;
 import vazkii.botania.api.lexicon.ILexiconable;
@@ -27,9 +26,6 @@ import javax.annotation.Nullable;
 public class BlockCorporeaSparkTinkerer extends Block implements ILexiconable {	
 	public BlockCorporeaSparkTinkerer() {
 		super(Material.ROCK, MapColor.PURPLE);
-		
-		setRegistryName(new ResourceLocation(Incorporeal.MODID, "corporea_spark_tinkerer"));
-		setUnlocalizedName(Incorporeal.MODID + ".corporea_spark_tinkerer");
 		
 		setDefaultState(getDefaultState().withProperty(BotaniaStateProps.POWERED, true));
 	}
