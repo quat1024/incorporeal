@@ -3,8 +3,10 @@ package quaternary.incorporeal.spookyasm;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.ICorporeaInhibitor;
 import quaternary.incorporeal.block.BlockCorporeaInhibitor;
@@ -48,41 +50,47 @@ public class Hooks {
 				otherPos = otherInventory.pos.up();
 			}
 			
-			int searchStartX = Math.min(myPos.getX(), otherPos.getX());
-			int searchStartY = Math.min(myPos.getY(), otherPos.getY());
-			int searchStartZ = Math.min(myPos.getZ(), otherPos.getZ());
+			float searchStartX = myPos.getX() + .5f;
+			float searchStartY = myPos.getY() - 0.2f;
+			float searchStartZ = myPos.getZ() + .5f;
 			
-			int searchEndX = Math.max(myPos.getX(), otherPos.getX());
-			int searchEndY = Math.max(myPos.getY(), otherPos.getY());
-			int searchEndZ = Math.max(myPos.getZ(), otherPos.getZ());
-			
-			double dist = MathHelper.pointDistanceSpace(searchStartX, searchStartY, searchStartZ, searchEndX, searchEndY, searchEndZ);
+			float searchEndX = otherPos.getX() + .5f;
+			float searchEndY = otherPos.getY() - 0.2f;
+			float searchEndZ = otherPos.getZ() + .5f;
 			
 			//Shit raycast THE MOVIE
-			double searchStepX = (searchEndX - searchStartX) / dist / 2;
-			double searchStepY = (searchEndY - searchStartY) / dist / 2;
-			double searchStepZ = (searchEndZ - searchStartZ) / dist / 2;
+			final float distanceDivider = 1.5f;
 			
-			double searchX = searchStartX;
-			double searchY = searchStartY;
-			double searchZ = searchStartZ;
+			float dist = MathHelper.pointDistanceSpace(searchStartX, searchStartY, searchStartZ, searchEndX, searchEndY, searchEndZ);
 			
-			Incorporeal.LOGGER.info("ADDA");
-			for(int i=0; i < dist; i++) {
-				Incorporeal.LOGGER.info("Start {} {} {} End {} {} {} Pos {} {} {}", searchStartX, searchStartY, searchStartZ, searchEndX, searchEndY, searchEndZ, searchX, searchY, searchZ);
-				IBlockState state = world.getBlockState(new BlockPos(searchX, searchY, searchZ));
-				Block block = state.getBlock();
-				if(block instanceof ICorporeaInhibitor) {
-					boolean bbbbb = ((ICorporeaInhibitor)block).shouldBlockCorporea(world, state);
-					Incorporeal.LOGGER.info(state + " blocks? " + bbbbb);
-					if(bbbbb) return true;
+			float searchStepX = (searchEndX - searchStartX) / dist / distanceDivider;
+			float searchStepY = (searchEndY - searchStartY) / dist / distanceDivider;
+			float searchStepZ = (searchEndZ - searchStartZ) / dist / distanceDivider;
+			
+			float searchX = searchStartX;
+			float searchY = searchStartY;
+			float searchZ = searchStartZ;
+			
+			BlockPos.MutableBlockPos prevPos = new BlockPos.MutableBlockPos(-1, -1, -1);
+			BlockPos.MutableBlockPos oldPos = new BlockPos.MutableBlockPos(-1, -1, -1);
+			
+			for(int i=0; i < dist * distanceDivider; i++) {
+				prevPos.setPos(searchX, searchY, searchZ);
+				if(!oldPos.equals(prevPos)) {
+					oldPos.setPos(searchX, searchY, searchZ);
+					
+					IBlockState state = world.getBlockState(new BlockPos(searchX, searchY, searchZ));
+					Block block = state.getBlock();
+					if(block instanceof ICorporeaInhibitor) {
+						boolean blocksCorporea = ((ICorporeaInhibitor)block).shouldBlockCorporea(world, state);
+						if(blocksCorporea) return true;
+					}
 				}
 				
 				searchX += searchStepX;
 				searchY += searchStepY;
 				searchZ += searchStepZ;
 			}
-			Incorporeal.LOGGER.info("ASDASDASDASDASDASd");
 			
 			return false;
 		});

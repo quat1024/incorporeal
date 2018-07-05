@@ -24,19 +24,25 @@ public class IncorporeticLexicon {
 	public static LexiconEntry sanvocalia;
 	
 	public static void init() {
+		/////
 		newEntryType = BotaniaAPI.basicKnowledge; //Basic Knowledge entries
+		/////
 		
 		frameTinkerer = buildCraftingEntry(IncorporeticBlocks.FRAME_TINKERER, BotaniaAPI.categoryDevices, 1);
 		
+		/////
 		newEntryType = BotaniaAPI.elvenKnowledge; //Elven Knowledge entries
+		/////
+		
+		corporeaInhibitor = buildCraftingEntry(IncorporeticBlocks.CORPOREA_INHIBITOR, BotaniaAPI.categoryEnder, 1);
+		corporeaInhibitor.setLexiconPages(new PageText("1"));
+		corporeaInhibitor.setLexiconPages(new PageCraftingRecipe(".flavor1", IncorporeticBlocks.CORPOREA_INHIBITOR_REDSTONE.getRegistryName()));
 		
 		corporeaLiar = buildCraftingEntry(IncorporeticBlocks.CORPOREA_LIAR, BotaniaAPI.categoryEnder, 2);
 		
 		corporeaSolidifier = buildCraftingEntry(IncorporeticBlocks.CORPOREA_SOLIDIFIER, BotaniaAPI.categoryEnder, 2);
 		
 		corporeaTinkerer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_SPARK_TINKERER, BotaniaAPI.categoryEnder, 2);
-		
-		corporeaInhibitor = buildCraftingEntry(IncorporeticBlocks.CORPOREA_INHIBITOR, BotaniaAPI.categoryEnder, 1); 
 		
 		sanvocalia = buildFlowerEntry(SubTileSanvocalia.NAME, IncorporeticPetalRecipes.sanvocalia, BotaniaAPI.categoryFunctionalFlowers, 1);
 	}
