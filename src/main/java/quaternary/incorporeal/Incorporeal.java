@@ -11,9 +11,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.block.IncorporeticBlocks;
-import quaternary.incorporeal.etc.PetalRecipes;
+import quaternary.incorporeal.etc.IncorporeticPetalRecipes;
 import quaternary.incorporeal.item.IncorporeticItems;
-import quaternary.incorporeal.lexicon.IncorporeticLexiData;
+import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import quaternary.incorporeal.tile.*;
 import quaternary.incorporeal.tile.flower.SubTileSanvocalia;
 import vazkii.botania.api.BotaniaAPI;
@@ -30,8 +30,8 @@ public class Incorporeal {
 	
 	@Mod.EventHandler
 	public static void init(FMLInitializationEvent e) {
-		PetalRecipes.init();
-		IncorporeticLexiData.init();
+		IncorporeticPetalRecipes.init();
+		IncorporeticLexicon.init();
 	}
 	
 	@Mod.EventBusSubscriber(modid = Incorporeal.MODID)

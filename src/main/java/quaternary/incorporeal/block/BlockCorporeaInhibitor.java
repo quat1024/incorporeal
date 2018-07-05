@@ -3,6 +3,8 @@ package quaternary.incorporeal.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -13,11 +15,14 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.ICorporeaInhibitor;
 import quaternary.incorporeal.etc.DummyWorldEventListener;
+import quaternary.incorporeal.lexicon.IncorporeticLexicon;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.common.entity.EntityCorporeaSpark;
 
 import java.util.List;
 
-public class BlockCorporeaInhibitor extends Block implements ICorporeaInhibitor {
+public class BlockCorporeaInhibitor extends Block implements ICorporeaInhibitor, ILexiconable {
 	public BlockCorporeaInhibitor() {
 		super(Material.ROCK);
 		
@@ -72,5 +77,10 @@ public class BlockCorporeaInhibitor extends Block implements ICorporeaInhibitor 
 			}
 			ReflectionHelper.setPrivateValue(EntityCorporeaSpark.class, spork, true, "firstTick");
 		}
+	}
+	
+	@Override
+	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
+		return IncorporeticLexicon.corporeaInhibitor;
 	}
 }

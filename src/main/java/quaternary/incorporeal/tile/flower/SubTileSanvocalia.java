@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import quaternary.incorporeal.etc.CorporeaHelper2;
 import quaternary.incorporeal.item.ItemCorporeaTicket;
-import quaternary.incorporeal.lexicon.IncorporeticLexiData;
+import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import vazkii.botania.api.corporea.*;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -118,6 +118,6 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 	
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
-		return IncorporeticLexiData.sanvocaliaEntry;
+		return IncorporeticLexicon.sanvocalia;
 	}
 }

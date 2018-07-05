@@ -1,8 +1,12 @@
 item.incorporeal.portable_index.name=Portable Corporea Index
-item.incorporeal.corporea_liar.name=Corporea Prevaricator
 
 item.incorporeal.corporea_ticket.name=Corporea Ticket (Blank)
 item.incorporeal.filled_corporea_ticket.name=Corporea Ticket (%sx %s)
+
+tile.incorporeal.corporea_liar.name=Corporea Prevaricator
+tile.incorporeal.corporea_inhibitor.name=Corporea Inhibitor
+tile.incorporeal.corporea_solidifier.name=Corporea Solidifier
+tile.incorporeal.frame_tinkerer.name=Frame Tinkerer
 
 tile.botania:flower.sanvocalia.name=Sanvocalia
 tile.botania:flower.sanvocalia_chibi.name=Sanvocalia Petite
@@ -14,24 +18,32 @@ tile.botania:flower.sanvocalia_chibi.reference=Teknopathetic
 botania.entry.corporea_liar=Corporea Prevaricator
 botania.tagline.corporea_liar=Lie to your network
 botania.page.corporea_liar0=The &1Corporea Prevaricator&0 allows for one to lie to their very own &4Corporea Network&0.<br>When this block is added to a &4Corporea Network&0 and facing into an inventory, the &1Corporea Prevaricator&0 will present the items in the inventory to the &4Corporea Network&0 as if it was an inventory full of whatever is in any adjacent &1Item Frames&0.
-botania.page.corporea_liar1=Extracting items from the linked inventory works normally. Since the &4Corporea Network&0 believes the inventory to be full of whatever is in the item frames, what is requested may not match what is received.<br>Note that the &1Corporea Spark&0 should go on the &1Corporea Prevaricator&0, and not the linked inventory, for this behavior to work best.
+botania.page.corporea_liar1=Extracting items from the linked inventory works normally. Since the &4Corporea Network&0 believes the inventory to be full of whatever is in the item frames, what is requested may not match what is received.<br>Note that the &1Corporea Prevaricator&0 needs the &1Corporea Spark&0, instead of the linked inventory.
 botania.page.corporea_liar.flavor=&otang pong&r
 
-botania.entry.corporea_ticketing=Corporea Solidifier
-botania.tagline.corporea_ticketing=Treat corporea requests as items
-botania.page.corporea_ticketing0=The &1Corporea Solidifier&0 acts as a replacement for the &1Corporea Retainer&0. When placed next to a &1Corporea Interceptor&0, the &1Corporea Solidifier&0, instead of remembering the interceptor's request, will create a &1Corporea Ticket&0 containing the item and item count of the request.
-botania.page.corporea_ticketing1=Note that the &1Sanvocalia&0 functional flower seems to be particularly interested in the energies these &1Corporea Tickets&0 give off.
-botania.page.corporea_ticketing.flavor=&oUp, up, down, up&r
+botania.entry.corporea_solidifier=Corporea Solidifier
+botania.tagline.corporea_solidifier=Treat corporea requests as items
+botania.page.corporea_solidifier0=The &1Corporea Solidifier&0 acts as a replacement for the &1Corporea Retainer&0. When placed next to a &1Corporea Interceptor&0, the &1Corporea Solidifier&0, instead of remembering the interceptor's request, will create a &1Corporea Ticket&0 containing the item and item count of the request.
+botania.page.corporea_solidifier1=Note that the &1Sanvocalia&0 functional flower seems to be particularly interested in the energies these &1Corporea Tickets&0 give off.
+botania.page.corporea_solidifier.flavor=&oUp, up, down, up&r
 
 botania.entry.sanvocalia=Sanvocalia
 botania.tagline.sanvocalia=Talk to Corporea Indexes
-botania.page.sanvocalia0=The &1Sanvocalia&0 is a flower attuned to corporetic frequencies. When this flower has &1Mana&0 and is near a &1Corporea Index&0, it will whisper the requests written on nearby &1Corporea Tickets&0 to the &1Index&0.<br>Tickets can be created with a &1Corporea Solidifier&0.
+botania.page.sanvocalia0=The &1Sanvocalia&0 is a flower especially attuned to corporetic frequencies. When this flower has &1Mana&0 and is near a &1Corporea Index&0, it will whisper the requests written on nearby &1Corporea Tickets&0 to the &1Index&0.<br>Tickets can be created with a &1Corporea Solidifier&0.
 botania.page.sanvocalia.flavor=&oDo you still remember?&r
 
-botania.entry.corporea_tinkerer=Corporea Spark Tinkerer
-botania.tagline.corporea_tinkerer=Change corporea networks with redstone
-botania.page.corporea_tinkerer0=The &1Corporea Spark Tinkerer&0 works much like a &1Spark Tinkerer&0, but for &1Corporea Spark&0 networks instead of &1Spark Augments&0. When the &1Corporea Spark Tinkerer&0 is placed next to a block with a &1Corporea Spark&0 on it and powered, it will switch colors with a random adjacent &1Corporea Spark&0.
-botania.page.corporea_tinkerer1=The color of the &1Corporea Spark Tinkerer&0 itself can be adjusted by rubbing some &1Floral Powder&0 against it.
-botania.page.corporea_tinkerer.flavor=&oFlip and invert&r
+botania.entry.corporea_spark_tinkerer=Corporea Spark Tinkerer
+botania.tagline.corporea_spark_tinkerer=Change corporea networks with redstone
+botania.page.corporea_spark_tinkerer0=The &1Corporea Spark Tinkerer&0 works much like a &1Spark Tinkerer&0, but for &1Corporea Spark&0 networks, as opposed to &1Spark Augments&0. When the &1Corporea Spark Tinkerer&0 is placed next to a block with a &1Corporea Spark&0 on it, it will switch colors with a random adjacent &1Corporea Spark&0 when given a redstone signal.
+botania.page.corporea_spark_tinkerer1=The color of the &1Corporea Spark Tinkerer&0 itself can be manually adjusted by rubbing some &1Floral Powder&0 against it.
+botania.page.corporea_spark_tinkerer.flavor=&oFlip and invert&r
 
+botania.entry.corporea_inhibitor=Corporea Inhibitor
+botania.tagline.corporea_inhibitor=Block corporea spark connections
+botania.page.corporea_inhibitor0=The &1Corporea Inhibitor&0's peculiar composition seems to repel corporetic frequencies. &1Corporea Sparks&0 are simply unable to form connections that pass through it.
+botania.page.corporea_tinkerer.flavor=&oCompletely unreadable!&r
 
+botania.entry.frame_tinkerer=Frame Tinkerer
+botania.tagline.frame_tinkerer=Swap items in item frames
+botania.page.frame_tinkerer0=The &1Frame Tinkerer&0 is an indispensable tool for any advanced corporeticist. It acts like a &1Spark Tinkerer&0 - drop an item on it, give it a redstone signal, and the item will change places with one in a random nearby &1Item Frame&0.<br>Note that, unlike the &1Spark Tinkerer&0, the &1Frame Tinkerer&0 doesn't have a dedicated location to place items. Just dropping the item on top will suffice.
+botania.page.frame_tinkerer.flavor=&oSymbiotic Hematophage&r
