@@ -13,7 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import quaternary.incorporeal.lexicon.IncorporealLexiData;
+import quaternary.incorporeal.lexicon.IncorporeticLexiData;
 import quaternary.incorporeal.tile.TileCorporeaLiar;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -74,6 +74,6 @@ public class BlockCorporeaLiar extends Block implements ILexiconable {
 	//Lexicon stuff
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
-		return IncorporealLexiData.corporeaLiarEntry;
+		return IncorporeticLexiData.corporeaLiarEntry;
 	}
 }

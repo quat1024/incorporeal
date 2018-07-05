@@ -39,9 +39,14 @@ public class Hooks {
 		if(world.isRemote) return allNearby;
 		
 		allNearby.removeIf(otherSpork -> {
-			InvWithLocation otherInventory = otherSpork.getSparkInventory();
-			if(otherInventory == null) return true;
-			BlockPos otherPos = otherInventory.pos.down();
+			BlockPos otherPos;
+			if(otherSpork instanceof EntityCorporeaSpark) {
+				otherPos = ((EntityCorporeaSpark)otherSpork).getPosition();
+			} else {
+				InvWithLocation otherInventory = otherSpork.getSparkInventory();
+				if(otherInventory == null) return true;
+				otherPos = otherInventory.pos.up();
+			}
 			
 			int searchStartX = Math.min(myPos.getX(), otherPos.getX());
 			int searchStartY = Math.min(myPos.getY(), otherPos.getY());
@@ -54,9 +59,9 @@ public class Hooks {
 			double dist = MathHelper.pointDistanceSpace(searchStartX, searchStartY, searchStartZ, searchEndX, searchEndY, searchEndZ);
 			
 			//Shit raycast THE MOVIE
-			double searchStepX = (searchEndX - searchStartX) / dist;
-			double searchStepY = (searchEndY - searchStartY) / dist;
-			double searchStepZ = (searchEndZ - searchStartZ) / dist;
+			double searchStepX = (searchEndX - searchStartX) / dist / 2;
+			double searchStepY = (searchEndY - searchStartY) / dist / 2;
+			double searchStepZ = (searchEndZ - searchStartZ) / dist / 2;
 			
 			double searchX = searchStartX;
 			double searchY = searchStartY;
@@ -68,7 +73,9 @@ public class Hooks {
 				IBlockState state = world.getBlockState(new BlockPos(searchX, searchY, searchZ));
 				Block block = state.getBlock();
 				if(block instanceof ICorporeaInhibitor) {
-					if(((ICorporeaInhibitor)block).shouldBlockCorporea(world, state)) return true;
+					boolean bbbbb = ((ICorporeaInhibitor)block).shouldBlockCorporea(world, state);
+					Incorporeal.LOGGER.info(state + " blocks? " + bbbbb);
+					if(bbbbb) return true;
 				}
 				
 				searchX += searchStepX;

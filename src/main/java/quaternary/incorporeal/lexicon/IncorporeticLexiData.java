@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.etc.IncorporealRecipes;
+import quaternary.incorporeal.etc.PetalRecipes;
 import quaternary.incorporeal.tile.flower.SubTileSanvocalia;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -12,7 +12,7 @@ import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 import vazkii.botania.common.lexicon.CompatLexiconEntry;
 import vazkii.botania.common.lexicon.page.*;
 
-public class IncorporealLexiData {
+public class IncorporeticLexiData {
 	public static LexiconEntry corporeaLiarEntry;
 	public static LexiconEntry corporeaTicketsEntry;
 	public static LexiconEntry corporeaTinkererEntry;
@@ -54,7 +54,7 @@ public class IncorporealLexiData {
 		corporeaTinkererEntry.setIcon(TINKERER_ICON);
 		
 		sanvocaliaEntry = new CompatLexiconEntry("sanvocalia", BotaniaAPI.categoryFunctionalFlowers, Incorporeal.NAME);
-		sanvocaliaEntry.setLexiconPages(new PageText("0"), new PagePetalRecipe<>(".flavor", IncorporealRecipes.sanvocaliaRecipe));
+		sanvocaliaEntry.setLexiconPages(new PageText("0"), new PagePetalRecipe<>(".flavor", PetalRecipes.sanvocaliaRecipe));
 		sanvocaliaEntry.setKnowledgeType(BotaniaAPI.elvenKnowledge);
 		sanvocaliaEntry.setIcon(ItemBlockSpecialFlower.ofType(SubTileSanvocalia.NAME));
 		

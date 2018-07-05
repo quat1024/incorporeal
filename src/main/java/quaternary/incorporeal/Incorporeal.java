@@ -7,15 +7,13 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.block.IncorporeticBlocks;
-import quaternary.incorporeal.etc.IncorporealRecipes;
+import quaternary.incorporeal.etc.PetalRecipes;
 import quaternary.incorporeal.item.IncorporeticItems;
-import quaternary.incorporeal.lexicon.IncorporealLexiData;
+import quaternary.incorporeal.lexicon.IncorporeticLexiData;
 import quaternary.incorporeal.tile.*;
 import quaternary.incorporeal.tile.flower.SubTileSanvocalia;
 import vazkii.botania.api.BotaniaAPI;
@@ -32,8 +30,8 @@ public class Incorporeal {
 	
 	@Mod.EventHandler
 	public static void init(FMLInitializationEvent e) {
-		IncorporealRecipes.init();
-		IncorporealLexiData.init();
+		PetalRecipes.init();
+		IncorporeticLexiData.init();
 	}
 	
 	@Mod.EventBusSubscriber(modid = Incorporeal.MODID)

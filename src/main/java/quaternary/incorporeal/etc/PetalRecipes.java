@@ -5,7 +5,7 @@ import vazkii.botania.api.recipe.RecipePetals;
 import vazkii.botania.common.crafting.ModPetalRecipes;
 import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 
-public class IncorporealRecipes {
+public class PetalRecipes {
 	public static RecipePetals sanvocaliaRecipe;
 	
 	public static void init() {

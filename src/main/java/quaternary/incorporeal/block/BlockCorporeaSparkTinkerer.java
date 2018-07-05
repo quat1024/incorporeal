@@ -14,7 +14,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import quaternary.incorporeal.lexicon.IncorporealLexiData;
+import quaternary.incorporeal.lexicon.IncorporeticLexiData;
 import quaternary.incorporeal.tile.TileCorporeaSparkTinkerer;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -112,6 +112,6 @@ public class BlockCorporeaSparkTinkerer extends Block implements ILexiconable {
 	//Entry
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
-		return IncorporealLexiData.corporeaTinkererEntry;
+		return IncorporeticLexiData.corporeaTinkererEntry;
 	}
 }

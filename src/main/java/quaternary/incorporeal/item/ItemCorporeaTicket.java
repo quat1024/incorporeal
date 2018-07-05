@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.commons.lang3.text.WordUtils;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.lexicon.IncorporealLexiData;
+import quaternary.incorporeal.lexicon.IncorporeticLexiData;
 import vazkii.botania.api.corporea.CorporeaRequest;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -69,7 +69,7 @@ public class ItemCorporeaTicket extends Item implements ILexiconable {
 	
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
-		return IncorporealLexiData.corporeaTicketsEntry;
+		return IncorporeticLexiData.corporeaTicketsEntry;
 	}
 	
 	public static boolean isRequestable(ItemStack stack) {

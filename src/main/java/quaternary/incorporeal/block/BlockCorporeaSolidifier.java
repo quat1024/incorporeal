@@ -7,11 +7,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.lexicon.IncorporealLexiData;
+import quaternary.incorporeal.lexicon.IncorporeticLexiData;
 import quaternary.incorporeal.tile.TileCorporeaSolidifier;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -37,6 +35,6 @@ public class BlockCorporeaSolidifier extends Block implements ILexiconable {
 	
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
-		return IncorporealLexiData.corporeaTicketsEntry;
+		return IncorporeticLexiData.corporeaTicketsEntry;
 	}
 }
