@@ -11,7 +11,6 @@ import quaternary.incorporeal.Incorporeal;
 public class IncorporeticBlocks {
 	public static class RegistryNames {
 		public static final String CORPOREA_INHIBITOR = "corporea_inhibitor";
-		public static final String CORPOREA_INHIBITOR_REDSTONE = "corporea_inhibitor_redstone";
 		public static final String CORPOREA_LIAR = "corporea_liar";
 		public static final String CORPOREA_SOLIDIFIER = "corporea_solidifier";
 		public static final String CORPOREA_SPARK_TINKERER = "corporea_spark_tinkerer";
@@ -20,9 +19,6 @@ public class IncorporeticBlocks {
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_INHIBITOR)
 	public static final Block CORPOREA_INHIBITOR = Blocks.AIR;
-	
-	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_INHIBITOR_REDSTONE)
-	public static final Block CORPOREA_INHIBITOR_REDSTONE = Blocks.AIR;
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_LIAR)
 	public static final Block CORPOREA_LIAR = Blocks.AIR;
@@ -38,7 +34,6 @@ public class IncorporeticBlocks {
 	
 	public static void registerBlocks(IForgeRegistry<Block> reg) {
 		reg.register(createBlock(new BlockCorporeaInhibitor(), RegistryNames.CORPOREA_INHIBITOR));
-		reg.register(createBlock(new BlockCorporeaInhibitorRedstone(), RegistryNames.CORPOREA_INHIBITOR_REDSTONE));
 		reg.register(createBlock(new BlockCorporeaLiar(), RegistryNames.CORPOREA_LIAR));
 		reg.register(createBlock(new BlockCorporeaSolidifier(), RegistryNames.CORPOREA_SOLIDIFIER));
 		reg.register(createBlock(new BlockCorporeaSparkTinkerer(), RegistryNames.CORPOREA_SPARK_TINKERER));

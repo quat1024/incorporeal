@@ -35,8 +35,6 @@ public class IncorporeticLexicon {
 		/////
 		
 		corporeaInhibitor = buildCraftingEntry(IncorporeticBlocks.CORPOREA_INHIBITOR, BotaniaAPI.categoryEnder, 1);
-		corporeaInhibitor.setLexiconPages(new PageText("1"));
-		corporeaInhibitor.setLexiconPages(new PageCraftingRecipe(".flavor1", IncorporeticBlocks.CORPOREA_INHIBITOR_REDSTONE.getRegistryName()));
 		
 		corporeaLiar = buildCraftingEntry(IncorporeticBlocks.CORPOREA_LIAR, BotaniaAPI.categoryEnder, 2);
 		

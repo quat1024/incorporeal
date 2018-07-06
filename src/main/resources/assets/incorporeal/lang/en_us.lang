@@ -42,8 +42,6 @@ botania.entry.corporea_inhibitor=Corporea Inhibitor
 botania.tagline.corporea_inhibitor=Block corporea spark connections
 botania.page.corporea_inhibitor0=The &1Corporea Inhibitor&0's peculiar composition seems to distort the corporetic field in a curious way. &1Corporea Sparks&0 are simply unable to form connections that pass through it.
 botania.page.corporea_inhibitor.flavor=&oCompletely unreadable!&r
-botania.page.corporea_inhibitor1=Applying &1Redstone&0 to the &1Corporea Inhibitor&0 creates a &1Redstone Corporea Inhibitor&0, which disables the corporetic distortions, until it receives a &1redstone signal&0.
-botania.page.corporea_inhibitor.flavor1=&oVertex Shader&r
 
 botania.entry.frame_tinkerer=Frame Tinkerer
 botania.tagline.frame_tinkerer=Swap items in item frames
