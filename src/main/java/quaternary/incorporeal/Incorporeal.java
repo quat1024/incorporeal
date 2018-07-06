@@ -11,11 +11,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.block.IncorporeticBlocks;
-import quaternary.incorporeal.etc.IncorporeticPetalRecipes;
+import quaternary.incorporeal.flower.IncorporeticPetalRecipes;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import quaternary.incorporeal.tile.*;
-import quaternary.incorporeal.tile.flower.SubTileSanvocalia;
+import quaternary.incorporeal.flower.SubTileSanvocalia;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.subtile.signature.BasicSignature;
 

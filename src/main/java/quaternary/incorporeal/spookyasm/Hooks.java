@@ -3,19 +3,14 @@ package quaternary.incorporeal.spookyasm;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
-import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.ICorporeaInhibitor;
-import quaternary.incorporeal.block.BlockCorporeaInhibitor;
-import quaternary.incorporeal.etc.ICustomWrappedInventory;
+import quaternary.incorporeal.api.ICustomWrappedInventory;
 import vazkii.botania.api.corporea.*;
 import vazkii.botania.common.core.helper.MathHelper;
 import vazkii.botania.common.entity.EntityCorporeaSpark;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Hooks {
@@ -35,6 +30,7 @@ public class Hooks {
 		return wrap;
 	}
 	
+	@SuppressWarnings("unused")
 	public static List<ICorporeaSpark> nearbyCorporeaSparkHook(List<ICorporeaSpark> allNearby, EntityCorporeaSpark me) {
 		BlockPos myPos = me.getPosition();
 		World world = me.world;

@@ -1,4 +1,4 @@
-package quaternary.incorporeal.etc;
+package quaternary.incorporeal.api;
 
 import vazkii.botania.api.corporea.*;
 

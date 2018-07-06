@@ -1,4 +1,4 @@
-package quaternary.incorporeal.tile.flower;
+package quaternary.incorporeal.flower;
 
 import com.google.common.base.Predicate;
 import net.minecraft.entity.item.EntityItem;
@@ -13,7 +13,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import quaternary.incorporeal.etc.CorporeaHelper2;
+import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import quaternary.incorporeal.item.ItemCorporeaTicket;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import vazkii.botania.api.corporea.*;

@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import quaternary.incorporeal.etc.CorporeaHelper2;
+import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import vazkii.botania.common.entity.EntityCorporeaSpark;
 
 import javax.annotation.Nonnull;
@@ -47,11 +47,7 @@ public class TileCorporeaSparkTinkerer extends TileEntity {
 		spork.setNetwork(myNetwork);
 		myNetwork = itsNetwork;
 		
-		//this causes the corporea spark to relink
-		//for some reason just changing the network is not enough...
-		//also this is private...
-		ReflectionHelper.setPrivateValue(EntityCorporeaSpark.class, spork, null, "master");
-		ReflectionHelper.setPrivateValue(EntityCorporeaSpark.class, spork, true, "firstTick");
+		CorporeaHelper2.causeSparkRelink(spork);
 	}
 	
 	public void setNetwork(EnumDyeColor color) {

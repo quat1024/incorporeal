@@ -1,9 +1,10 @@
-package quaternary.incorporeal.etc;
+package quaternary.incorporeal.etc.helper;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import vazkii.botania.api.corporea.*;
 import vazkii.botania.common.entity.EntityCorporeaSpark;
 
@@ -12,6 +13,8 @@ import java.util.List;
 import static vazkii.botania.api.corporea.CorporeaHelper.requestItem;
 
 public class CorporeaHelper2 {
+	private CorporeaHelper2() {}
+	
 	public static EntityCorporeaSpark getSparkEntityForBlock(World world, BlockPos pos) {
 		List<EntityCorporeaSpark> sparks = world.getEntitiesWithinAABB(EntityCorporeaSpark.class, new AxisAlignedBB(pos.up(), pos.add(1, 2, 1)));
 		return sparks.isEmpty() ? null : sparks.get(0);
@@ -60,5 +63,17 @@ public class CorporeaHelper2 {
 		}
 		
 		return count + item + (pluralize ? "s" : "");
+	}
+	
+	//Causes a spark to recheck its connections next time it ticks.
+	//Call when e.g. changing the color of a spark or blocking a connection somehow.
+	public static void causeSparkRelink(EntityCorporeaSpark spork) {
+		try {
+			ReflectionHelper.setPrivateValue(EntityCorporeaSpark.class, spork, null, "master");
+			ReflectionHelper.setPrivateValue(EntityCorporeaSpark.class, spork, true, "firstTick");
+			ReflectionHelper.findMethod(EntityCorporeaSpark.class, "restartNetwork", null).invoke(spork);
+		} catch (Exception oof) {
+			//oof
+		}
 	}
 }

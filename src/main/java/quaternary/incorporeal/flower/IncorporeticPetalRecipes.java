@@ -1,4 +1,4 @@
-package quaternary.incorporeal.etc;
+package quaternary.incorporeal.flower;
 
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.recipe.RecipePetals;

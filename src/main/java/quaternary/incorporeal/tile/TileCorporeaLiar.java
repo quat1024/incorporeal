@@ -9,7 +9,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import quaternary.incorporeal.block.BlockCorporeaLiar;
-import quaternary.incorporeal.etc.ICustomWrappedInventory;
+import quaternary.incorporeal.api.ICustomWrappedInventory;
 import quaternary.incorporeal.etc.LyingWrappedInventory;
 import vazkii.botania.api.corporea.*;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaBase;
