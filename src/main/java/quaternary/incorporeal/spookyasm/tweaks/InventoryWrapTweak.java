@@ -45,7 +45,7 @@ public class InventoryWrapTweak extends AbstractTweak {
 				instructions.insertBefore(insertionPoint, new VarInsnNode(ALOAD, 5));
 				instructions.insertBefore(insertionPoint, new VarInsnNode(ALOAD, 6));
 				
-				instructions.insertBefore(insertionPoint, new MethodInsnNode(INVOKESTATIC, "quaternary/incorporeal/spookyasm/Hooks", "invWrapHook", "(Lvazkii/botania/api/corporea/InvWithLocation;Lvazkii/botania/api/corporea/ICorporeaSpark;Lvazkii/botania/api/corporea/IWrappedInventory;)Lvazkii/botania/api/corporea/IWrappedInventory;", false));
+				instructions.insertBefore(insertionPoint, new MethodInsnNode(INVOKESTATIC, hooksClass, "invWrapHook", "(Lvazkii/botania/api/corporea/InvWithLocation;Lvazkii/botania/api/corporea/ICorporeaSpark;Lvazkii/botania/api/corporea/IWrappedInventory;)Lvazkii/botania/api/corporea/IWrappedInventory;", false));
 				
 				instructions.insertBefore(insertionPoint, new VarInsnNode(ASTORE, 6));
 				

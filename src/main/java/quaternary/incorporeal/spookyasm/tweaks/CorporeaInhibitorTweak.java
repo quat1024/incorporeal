@@ -31,7 +31,7 @@ public class CorporeaInhibitorTweak extends AbstractTweak {
 					inserator.previous();
 					
 					inserator.add(new VarInsnNode(ALOAD, 0));
-					inserator.add(new MethodInsnNode(INVOKESTATIC, "quaternary/incorporeal/spookyasm/Hooks", "nearbyCorporeaSparkHook", "(Ljava/util/List;Lvazkii/botania/common/entity/EntityCorporeaSpark;)Ljava/util/List;", false));
+					inserator.add(new MethodInsnNode(INVOKESTATIC, hooksClass, "nearbyCorporeaSparkHook", "(Ljava/util/List;Lvazkii/botania/common/entity/EntityCorporeaSpark;)Ljava/util/List;", false));
 					
 					return;
 				}

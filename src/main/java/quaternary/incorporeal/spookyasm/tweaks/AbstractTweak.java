@@ -23,4 +23,6 @@ public abstract class AbstractTweak implements Opcodes {
 			patch(node, transformedName);
 		}
 	}
+	
+	protected static final String hooksClass = "quaternary/incorporeal/spookyasm/Hooks";
 }

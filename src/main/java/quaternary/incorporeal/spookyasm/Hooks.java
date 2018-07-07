@@ -5,9 +5,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import quaternary.incorporeal.api.ICorporeaInhibitor;
 import quaternary.incorporeal.api.ICustomWrappedInventory;
 import vazkii.botania.api.corporea.*;
+import vazkii.botania.common.block.tile.corporea.TileCorporeaRetainer;
 import vazkii.botania.common.core.helper.MathHelper;
 import vazkii.botania.common.entity.EntityCorporeaSpark;
 
@@ -92,5 +94,21 @@ public class Hooks {
 		});
 		
 		return allNearby;
+	}
+	
+	private static double LOG_2 = Math.log(2d);
+	
+	public static int retainerComparatorHook(IBlockState state, World world, BlockPos pos) {
+		TileEntity tile = world.getTileEntity(pos);
+		if(tile instanceof TileCorporeaRetainer) {
+			//TODO configuration for this to go to the old behavior.
+			
+			TileCorporeaRetainer retainer = (TileCorporeaRetainer) tile;
+			
+			if(!retainer.hasPendingRequest()) return 0;
+			
+			int count = ReflectionHelper.getPrivateValue(TileCorporeaRetainer.class, retainer, "requestCount");
+			return count == 0 ? 0 : Math.min(15, (int) Math.floor(Math.log(count) / LOG_2) + 1);
+		} else return 0;
 	}
 }
