@@ -2,6 +2,7 @@ item.incorporeal.portable_index.name=Portable Corporea Index
 
 item.incorporeal.corporea_ticket.name=Corporea Ticket (Blank)
 item.incorporeal.filled_corporea_ticket.name=Corporea Ticket (%sx %s)
+item.incorporeal.fractured_space_rod=Rod of the Fractured Space
 
 tile.incorporeal.corporea_liar.name=Corporea Prevaricator
 tile.incorporeal.corporea_inhibitor.name=Corporea Inhibitor
@@ -47,3 +48,10 @@ botania.entry.frame_tinkerer=Frame Tinkerer
 botania.tagline.frame_tinkerer=Swap items in item frames
 botania.page.frame_tinkerer0=The &1Frame Tinkerer&0 is an indispensable tool for any advanced corporeticist. It acts like a &1Spark Tinkerer&0 - drop an item on it, give it a redstone signal, and the item will change places with one in a random nearby &1Item Frame&0.<br>Note that, unlike the &1Spark Tinkerer&0, the &1Frame Tinkerer&0 doesn't have a dedicated location to place items. Just dropping the item on top will suffice.
 botania.page.frame_tinkerer.flavor=&oSymbiotic Hematophage&r
+
+#Blah!!!
+
+incorporeal.etc.savedPos=Crate remembered.
+incorporeal.etc.noPos=Not bound to a crate!
+
+entity.incorporeal.fractured_space_collector.name=Fractured Space (collector)

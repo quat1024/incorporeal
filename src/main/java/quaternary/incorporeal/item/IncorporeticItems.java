@@ -14,6 +14,7 @@ public class IncorporeticItems {
 	public static class RegistryNames {
 		public static final String PORTABLE_INDEX = "portable_index";
 		public static final String CORPOREA_TICKET = "corporea_ticket";
+		public static final String FRACTURED_SPACE_ROD = "fractured_space_rod";
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.PORTABLE_INDEX)
@@ -22,9 +23,13 @@ public class IncorporeticItems {
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_TICKET)
 	public static final Item CORPOREA_TICKET = Items.AIR;
 	
+	@GameRegistry.ObjectHolder(RegistryNames.FRACTURED_SPACE_ROD)
+	public static final Item FRACTURED_SPACE_ROD = Items.AIR;
+	
 	public static void registerItems(IForgeRegistry<Item> reg) {
 		reg.register(createItem(new ItemPortableCorporeaIndex(), RegistryNames.PORTABLE_INDEX));
 		reg.register(createItem(new ItemCorporeaTicket(), RegistryNames.CORPOREA_TICKET));
+		reg.register(createItem(new ItemFracturedSpaceRod(), RegistryNames.FRACTURED_SPACE_ROD));
 		
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_INHIBITOR)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_LIAR)));
