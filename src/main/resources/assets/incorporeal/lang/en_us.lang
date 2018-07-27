@@ -53,5 +53,6 @@ botania.page.frame_tinkerer.flavor=&oSymbiotic Hematophage&r
 
 incorporeal.etc.savedPos=Crate remembered.
 incorporeal.etc.noPos=Not bound to a crate!
+incorporeal.etc.noSoulCore=Your soul is not compatible with this Corporea Network.
 
 entity.incorporeal.fractured_space_collector.name=Fractured Space (collector)

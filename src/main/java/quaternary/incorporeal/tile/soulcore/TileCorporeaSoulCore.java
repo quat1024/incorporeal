@@ -4,11 +4,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import quaternary.incorporeal.etc.DummyItemHandler;
+import quaternary.incorporeal.etc.*;
 
 import javax.annotation.Nullable;
 
-public class TileCorporeaSoulCore extends AbstractTileSoulCore {
+public class TileCorporeaSoulCore extends AbstractTileSoulCore{
 	IItemHandler handler = new DummyItemHandler();
 	
 	//This isn't used for much besides being a dummy inventory you can put corporea sparks on.

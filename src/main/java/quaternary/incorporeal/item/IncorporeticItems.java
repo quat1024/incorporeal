@@ -40,6 +40,7 @@ public class IncorporeticItems {
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_SPARK_TINKERER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.FRAME_TINKERER)));
 		reg.register(createItemBlock(new ItemSoulCore(IncorporeticBlocks.ENDER_SOUL_CORE)));
+		reg.register(createItemBlock(new ItemSoulCore(IncorporeticBlocks.CORPOREA_SOUL_CORE)));
 	}
 	
 	private static <T extends Item> T createItem(T item, String name) {

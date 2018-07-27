@@ -6,6 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.block.soulcore.BlockCorporeaSoulCore;
 import quaternary.incorporeal.block.soulcore.BlockEnderSoulCore;
 
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
@@ -17,6 +18,7 @@ public class IncorporeticBlocks {
 		public static final String CORPOREA_SPARK_TINKERER = "corporea_spark_tinkerer";
 		public static final String FRAME_TINKERER = "frame_tinkerer";
 		public static final String ENDER_SOUL_CORE = "ender_soul_core";
+		public static final String CORPOREA_SOUL_CORE = "corporea_soul_core";
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_INHIBITOR)
@@ -37,6 +39,9 @@ public class IncorporeticBlocks {
 	@GameRegistry.ObjectHolder(RegistryNames.ENDER_SOUL_CORE)
 	public static final BlockEnderSoulCore ENDER_SOUL_CORE = null;
 	
+	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_SOUL_CORE)
+	public static final BlockCorporeaSoulCore CORPOREA_SOUL_CORE = null;
+	
 	public static void registerBlocks(IForgeRegistry<Block> reg) {
 		reg.register(createBlock(new BlockCorporeaInhibitor(), RegistryNames.CORPOREA_INHIBITOR));
 		reg.register(createBlock(new BlockCorporeaLiar(), RegistryNames.CORPOREA_LIAR));
@@ -44,6 +49,7 @@ public class IncorporeticBlocks {
 		reg.register(createBlock(new BlockCorporeaSparkTinkerer(), RegistryNames.CORPOREA_SPARK_TINKERER));
 		reg.register(createBlock(new BlockFrameTinkerer(), RegistryNames.FRAME_TINKERER));
 		reg.register(createBlock(new BlockEnderSoulCore(), RegistryNames.ENDER_SOUL_CORE));
+		reg.register(createBlock(new BlockCorporeaSoulCore(), RegistryNames.CORPOREA_SOUL_CORE));
 	}
 	
 	private static <T extends Block> T createBlock(T block, String name) {

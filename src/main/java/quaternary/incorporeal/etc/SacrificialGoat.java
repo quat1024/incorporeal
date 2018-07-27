@@ -5,6 +5,7 @@ import net.minecraftforge.event.ServerChatEvent;
 /**
  * A dummy class for HackyCorporeaInputHandler to extend. 
  * None of this is reached at runtime.
+ * Don't move without fixing the path in TerribleHorribleNoGoodVeryBadAwfulCorporeaIndexInputHandlerTweak.java
  * */
 public class SacrificialGoat {
 	public void onChatMessage(ServerChatEvent event) {
@@ -12,6 +13,6 @@ public class SacrificialGoat {
 	}
 	
 	public boolean shouldAutoComplete() {
-		return false;
+		throw new RuntimeException("Apparently the ASM patch failed!");
 	}
 }
