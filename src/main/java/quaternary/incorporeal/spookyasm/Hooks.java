@@ -98,6 +98,7 @@ public class Hooks {
 	
 	private static double LOG_2 = Math.log(2d);
 	
+	@SuppressWarnings("unused")
 	public static int retainerComparatorHook(IBlockState state, World world, BlockPos pos) {
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile instanceof TileCorporeaRetainer) {

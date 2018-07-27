@@ -19,6 +19,7 @@ public class IncorporealTransformer implements IClassTransformer, Opcodes {
 		allTweaks.add(new InventoryWrapTweak());
 		allTweaks.add(new CorporeaInhibitorTweak());
 		allTweaks.add(new RetainerComparatorTweak());
+		allTweaks.add(new TerribleHorribleNoGoodVeryBadAwfulCorporeaIndexInputHandlerTweak());
 		
 		for(AbstractTweak tweak : allTweaks) {
 			patches.addAll(tweak.getAffectedClassNames());
