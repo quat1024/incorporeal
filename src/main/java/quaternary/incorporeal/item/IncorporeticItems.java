@@ -26,6 +26,9 @@ public class IncorporeticItems {
 	@GameRegistry.ObjectHolder(RegistryNames.FRACTURED_SPACE_ROD)
 	public static final Item FRACTURED_SPACE_ROD = Items.AIR;
 	
+	//IDEA balks at the idea of injecting values into final fields in incorporeticblocks
+	//That's what objectholder does, though, so make it shut up.
+	@SuppressWarnings("ConstantConditions")
 	public static void registerItems(IForgeRegistry<Item> reg) {
 		reg.register(createItem(new ItemPortableCorporeaIndex(), RegistryNames.PORTABLE_INDEX));
 		reg.register(createItem(new ItemCorporeaTicket(), RegistryNames.CORPOREA_TICKET));
@@ -36,6 +39,7 @@ public class IncorporeticItems {
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_SOLIDIFIER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_SPARK_TINKERER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.FRAME_TINKERER)));
+		reg.register(createItemBlock(new ItemSoulCore(IncorporeticBlocks.ENDER_SOUL_CORE)));
 	}
 	
 	private static <T extends Item> T createItem(T item, String name) {

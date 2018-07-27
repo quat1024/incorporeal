@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public abstract class BlockSoulCoreBase extends Block {
-	public BlockSoulCoreBase() {
+public abstract class AbstractBlockSoulCore extends Block {
+	public AbstractBlockSoulCore() {
 		super(Material.CIRCUITS);
 		setHardness(1f);
 		setSoundType(SoundType.METAL);
