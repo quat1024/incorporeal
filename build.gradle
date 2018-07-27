@@ -50,6 +50,14 @@ minecraft {
     mappings = "snapshot_20180407"
     
     useDepAts = true
+    
+    if(project.hasProperty("mc_uuid")) {
+        clientRunArgs += ["--uuid", project.mc_uuid]
+    }
+    
+    if(project.hasProperty("mc_username")) {
+        clientRunArgs += ["--username", project.mc_username]
+    }
 }
 
 processResources {
