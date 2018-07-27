@@ -10,10 +10,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TileFrameTinkerer extends TileEntity {
-	ItemStack heldStack = ItemStack.EMPTY;
+	private ItemStack heldStack = ItemStack.EMPTY;
 	
 	public TileFrameTinkerer() {}
 	

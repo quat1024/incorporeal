@@ -15,7 +15,10 @@ import vazkii.botania.common.entity.EntityCorporeaSpark;
 
 import java.util.List;
 
-public class Hooks {
+public final class Hooks {
+	private Hooks() {
+	}
+	
 	@SuppressWarnings("unused") //called through asm bullshit
 	public static IWrappedInventory invWrapHook(InvWithLocation inv, ICorporeaSpark spork, IWrappedInventory wrap) {
 		if(wrap == null) {
@@ -96,7 +99,7 @@ public class Hooks {
 		return allNearby;
 	}
 	
-	private static double LOG_2 = Math.log(2d);
+	private static final double LOG_2 = Math.log(2d);
 	
 	@SuppressWarnings("unused")
 	public static int retainerComparatorHook(IBlockState state, World world, BlockPos pos) {

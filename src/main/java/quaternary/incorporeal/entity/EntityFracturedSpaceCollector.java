@@ -15,9 +15,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import vazkii.botania.common.Botania;
-import vazkii.botania.common.block.subtile.functional.SubTileHopperhock;
-import vazkii.botania.common.block.subtile.functional.SubTileSpectranthemum;
-import vazkii.botania.common.block.subtile.generating.SubTileSpectrolus;
 import vazkii.botania.common.block.tile.TileCraftCrate;
 import vazkii.botania.common.block.tile.TileOpenCrate;
 import vazkii.botania.common.core.helper.MathHelper;
@@ -38,10 +35,10 @@ public class EntityFracturedSpaceCollector extends Entity {
 	private BlockPos cratePos = BlockPos.ORIGIN;
 	private static final DataParameter<Integer> DATA_AGE = EntityDataManager.createKey(EntityFracturedSpaceCollector.class, DataSerializers.VARINT);
 	
-	private static double RADIUS = 2;
-	private static int MAX_AGE = 30;
-	private static float AGE_SPECIAL_START = MAX_AGE * 3f/4f;
-	private static int PARTICLE_COUNT = 12;
+	private static final double RADIUS = 2;
+	private static final int MAX_AGE = 30;
+	private static final float AGE_SPECIAL_START = MAX_AGE * 3f/4f;
+	private static final int PARTICLE_COUNT = 12;
 	
 	@Override
 	protected void entityInit() {
@@ -94,7 +91,7 @@ public class EntityFracturedSpaceCollector extends Entity {
 			if(age > AGE_SPECIAL_START) {
 				AxisAlignedBB aabb = new AxisAlignedBB(posX - RADIUS, posY - .5, posZ - RADIUS, posX + RADIUS, posY + .5, posZ + RADIUS);
 				List<EntityItem> nearbyItemEnts = world.getEntitiesWithinAABB(EntityItem.class, aabb, (ent) -> {
-					return MathHelper.pointDistancePlane(ent.posX, ent.posZ, posX, posZ) <= RADIUS;
+					return ent != null && MathHelper.pointDistancePlane(ent.posX, ent.posZ, posX, posZ) <= RADIUS;
 				});
 				
 				//Succ into the wormhole

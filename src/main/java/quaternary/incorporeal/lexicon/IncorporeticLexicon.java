@@ -15,7 +15,10 @@ import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 import vazkii.botania.common.lexicon.CompatLexiconEntry;
 import vazkii.botania.common.lexicon.page.*;
 
-public class IncorporeticLexicon {
+public final class IncorporeticLexicon {
+	private IncorporeticLexicon() {
+	}
+	
 	public static LexiconEntry frameTinkerer;
 	public static LexiconEntry corporeaLiar;
 	public static LexiconEntry corporeaSolidifier;

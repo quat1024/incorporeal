@@ -21,10 +21,6 @@ public class ItemSoulCore extends ItemBlock {
 		super(block);
 	}
 	
-	private AbstractBlockSoulCore getSoulBlock() {
-		return (AbstractBlockSoulCore) block;
-	}
-	
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack heldStack = player.getHeldItem(hand);

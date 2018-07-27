@@ -8,8 +8,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import quaternary.incorporeal.block.BlockCorporeaLiar;
 import quaternary.incorporeal.api.ICustomWrappedInventory;
+import quaternary.incorporeal.block.BlockCorporeaLiar;
 import quaternary.incorporeal.etc.LyingWrappedInventory;
 import vazkii.botania.api.corporea.*;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaBase;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TileCorporeaLiar extends TileCorporeaBase implements ICustomWrappedInventory {
-	EnumFacing spoofingDirection;
+	private EnumFacing spoofingDirection;
 	
 	public TileCorporeaLiar() {
 	}	
@@ -28,7 +28,6 @@ public class TileCorporeaLiar extends TileCorporeaBase implements ICustomWrapped
 		spoofingDirection = whichWay;
 		return this;
 	}
-	
 	
 	private void updateDirection() {
 		spoofingDirection = world.getBlockState(pos).getValue(BlockCorporeaLiar.FACING);
@@ -70,6 +69,7 @@ public class TileCorporeaLiar extends TileCorporeaBase implements ICustomWrapped
 	}
 	
 	@Override
+	@SuppressWarnings("unchecked")
 	public <T> T getCapability(@Nonnull Capability<T> cap, EnumFacing side) {
 		if(cap != CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return null;
 		

@@ -31,7 +31,10 @@ public class BlockCorporeaLiar extends Block implements ILexiconable {
 	
 	@Override
 	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
-		((TileCorporeaLiar)world.getTileEntity(pos)).setDirection(state.getValue(FACING));
+		TileEntity tile = world.getTileEntity(pos);
+		if(tile instanceof TileCorporeaLiar) {
+			((TileCorporeaLiar)tile).setDirection(state.getValue(FACING));
+		}
 	}
 	
 	//Boilerplate!

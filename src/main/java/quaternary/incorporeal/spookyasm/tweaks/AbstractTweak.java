@@ -11,7 +11,7 @@ public abstract class AbstractTweak implements Opcodes {
 	protected abstract List<String> getAffectedClassNamesImpl();
 	protected abstract void patch(ClassNode node, String transformedName);
 	
-	List<String> cache = null;
+	private List<String> cache = null;
 	public List<String> getAffectedClassNames() {
 		if(cache == null) cache = getAffectedClassNamesImpl();
 		return cache;

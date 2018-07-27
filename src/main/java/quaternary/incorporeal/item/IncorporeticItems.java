@@ -10,8 +10,15 @@ import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
-public class IncorporeticItems {
-	public static class RegistryNames {
+@SuppressWarnings("unused")
+public final class IncorporeticItems {
+	private IncorporeticItems() {
+	}
+	
+	public static final class RegistryNames {
+		private RegistryNames() {
+		}
+		
 		public static final String PORTABLE_INDEX = "portable_index";
 		public static final String CORPOREA_TICKET = "corporea_ticket";
 		public static final String FRACTURED_SPACE_ROD = "fractured_space_rod";

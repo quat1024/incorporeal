@@ -9,7 +9,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -81,7 +82,7 @@ public class BlockCorporeaSparkTinkerer extends Block implements ILexiconable {
 	}
 	
 	//Aabbabababb
-	AxisAlignedBB aabb = new AxisAlignedBB(0d, 0d, 0d, 1d, 0.1875d, 1d);
+	private static final AxisAlignedBB aabb = new AxisAlignedBB(0d, 0d, 0d, 1d, 0.1875d, 1d);
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return aabb;

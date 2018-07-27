@@ -8,11 +8,10 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import vazkii.botania.api.corporea.*;
 import vazkii.botania.common.entity.EntityCorporeaSpark;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import static vazkii.botania.api.corporea.CorporeaHelper.requestItem;
-
-public class CorporeaHelper2 {
+public final class CorporeaHelper2 {
 	private CorporeaHelper2() {}
 	
 	public static EntityCorporeaSpark getSparkEntityForBlock(World world, BlockPos pos) {
@@ -72,8 +71,8 @@ public class CorporeaHelper2 {
 			ReflectionHelper.setPrivateValue(EntityCorporeaSpark.class, spork, null, "master");
 			ReflectionHelper.setPrivateValue(EntityCorporeaSpark.class, spork, true, "firstTick");
 			ReflectionHelper.findMethod(EntityCorporeaSpark.class, "restartNetwork", null).invoke(spork);
-		} catch (Exception oof) {
-			//oof
+		} catch(IllegalAccessException | InvocationTargetException oof) {
+			throw new RuntimeException("There was a problem doing hacky reflective access on a spark!", oof);
 		}
 	}
 }

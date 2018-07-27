@@ -5,7 +5,10 @@ import vazkii.botania.api.recipe.RecipePetals;
 import vazkii.botania.common.crafting.ModPetalRecipes;
 import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 
-public class IncorporeticPetalRecipes {
+public final class IncorporeticPetalRecipes {
+	private IncorporeticPetalRecipes() {
+	}
+	
 	public static RecipePetals sanvocalia;
 	
 	public static void init() {

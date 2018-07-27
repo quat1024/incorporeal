@@ -21,6 +21,7 @@ import java.util.*;
  * Don't move this class without fixing the path in TerribleHorribleNoGoodVeryBadAwfulCorporeaIndexInputHandlerTweak.java.
  * */
 @Mod.EventBusSubscriber(modid = Incorporeal.MODID)
+@SuppressWarnings("unused")
 public class HackyCorporeaInputHandler extends SacrificialGoat implements ICorporeaAutoCompleteController {
 	public HackyCorporeaInputHandler() {
 		//The same sideeffecty constructor as the superclass has.
@@ -80,6 +81,8 @@ public class HackyCorporeaInputHandler extends SacrificialGoat implements ICorpo
 	
 	@Override
 	public boolean shouldAutoComplete() {
+		//This will reroute to the regular inputhandler after the patching
+		//I need this so I can still properly implement ICorporeaAutoCompleteController.
 		return super.shouldAutoComplete();
 	}
 }

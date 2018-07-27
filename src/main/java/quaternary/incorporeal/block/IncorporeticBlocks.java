@@ -1,7 +1,6 @@
 package quaternary.incorporeal.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -10,8 +9,15 @@ import quaternary.incorporeal.block.soulcore.BlockCorporeaSoulCore;
 import quaternary.incorporeal.block.soulcore.BlockEnderSoulCore;
 
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
-public class IncorporeticBlocks {
-	public static class RegistryNames {
+@SuppressWarnings("unused")
+public final class IncorporeticBlocks {
+	private IncorporeticBlocks() {
+	}
+	
+	public static final class RegistryNames {
+		private RegistryNames() {
+		}
+		
 		public static final String CORPOREA_INHIBITOR = "corporea_inhibitor";
 		public static final String CORPOREA_LIAR = "corporea_liar";
 		public static final String CORPOREA_SOLIDIFIER = "corporea_solidifier";

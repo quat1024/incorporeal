@@ -26,7 +26,7 @@ public class BlockCorporeaInhibitor extends Block implements ICorporeaInhibitor,
 		super(Material.ROCK);
 	}
 	
-	static WeakHashMap<World, Set<BlockPos>> deferredCheckPositions = new WeakHashMap<>();
+	private static final WeakHashMap<World, Set<BlockPos>> deferredCheckPositions = new WeakHashMap<>();
 	
 	@Override
 	public boolean shouldBlockCorporea(World world, IBlockState state) {

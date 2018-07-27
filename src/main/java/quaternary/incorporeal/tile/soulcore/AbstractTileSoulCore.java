@@ -7,7 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import java.util.UUID;
 
 public abstract class AbstractTileSoulCore extends TileEntity {
-	public UUID ownerUUID;
+	private UUID ownerUUID;
 	
 	public UUID getOwnerUUID() {
 		return ownerUUID;
@@ -19,8 +19,8 @@ public abstract class AbstractTileSoulCore extends TileEntity {
 		markDirty();
 	}
 	
-	public void onOwnerSet() {
-		;
+	protected void onOwnerSet() {
+		
 	}
 	
 	@Override

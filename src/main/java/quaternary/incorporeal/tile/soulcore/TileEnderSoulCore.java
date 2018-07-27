@@ -4,7 +4,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.items.*;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import quaternary.incorporeal.etc.DummyItemHandler;
 
@@ -13,7 +14,7 @@ import javax.annotation.Nullable;
 
 public class TileEnderSoulCore extends AbstractTileSoulCore implements ITickable {
 	private IItemHandler handler;
-	boolean wasOnline = false;
+	private boolean wasOnline = false;
 	
 	@Override
 	public void update() {
@@ -22,7 +23,7 @@ public class TileEnderSoulCore extends AbstractTileSoulCore implements ITickable
 		
 		//TODO: Would be nice if it worked crossdimensionally.
 		for(EntityPlayer playerEnt : world.playerEntities) {
-			if(playerEnt.getUniqueID().equals(ownerUUID)) {
+			if(playerEnt.getUniqueID().equals(getOwnerUUID())) {
 				isOnline = true;
 				owner = playerEnt;
 				break;

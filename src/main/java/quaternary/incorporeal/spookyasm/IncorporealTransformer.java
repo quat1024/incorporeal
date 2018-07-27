@@ -4,10 +4,11 @@ import net.minecraft.launchwrapper.IClassTransformer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.*;
-import org.objectweb.asm.tree.*;
+import org.objectweb.asm.tree.ClassNode;
 import quaternary.incorporeal.spookyasm.tweaks.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class IncorporealTransformer implements IClassTransformer, Opcodes {	
 	public static final Logger LOG = LogManager.getLogger("Incorporeal ASM");

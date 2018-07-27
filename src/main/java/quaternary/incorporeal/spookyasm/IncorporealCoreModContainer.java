@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.eventbus.EventBus;
 import net.minecraftforge.fml.common.*;
 
+@SuppressWarnings("unused")
 public class IncorporealCoreModContainer extends DummyModContainer {
 	public IncorporealCoreModContainer() {
 		super(new ModMetadata());

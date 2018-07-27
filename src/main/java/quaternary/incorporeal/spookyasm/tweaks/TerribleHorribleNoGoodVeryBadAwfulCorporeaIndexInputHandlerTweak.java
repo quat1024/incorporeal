@@ -8,12 +8,14 @@ import java.util.List;
 public class TerribleHorribleNoGoodVeryBadAwfulCorporeaIndexInputHandlerTweak extends AbstractTweak {
 	@Override
 	protected String describe(String transformedName) {
-		if(transformedName.equals(tileClass)) {
-			return "Patching the corporea index input handler factory...";
-		} else if(transformedName.equals(handlerClass)){
-			return "Making it possible to extend the corporea index input handler...";
-		} else {
-			return "Performing an extremely hacky self-patch...";
+		switch(transformedName) {
+			case tileClass:
+				return "Patching the corporea index input handler factory...";
+			case handlerClass:
+				return "Making it possible to extend the corporea index input handler...";
+			case selfPatchClass:
+				return "Performing an extremely hacky self-patch...";
+			default: return "?!";
 		}
 	}
 	
@@ -71,7 +73,6 @@ public class TerribleHorribleNoGoodVeryBadAwfulCorporeaIndexInputHandlerTweak ex
 					method.visibleAnnotations.clear();
 				}
 			}
-			return;
 		} else if(transformedName.equals(selfPatchClass)) {
 			//Make the hacky class extend the regular corporea input handler
 			//I can't do this from regular Java, since it's final and would lead to a compile error!
@@ -91,8 +92,6 @@ public class TerribleHorribleNoGoodVeryBadAwfulCorporeaIndexInputHandlerTweak ex
 					}
 				}
 			}
-			
-			return;
 		}
 	}
 }

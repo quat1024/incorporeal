@@ -14,15 +14,16 @@ import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.flower.IncorporeticPetalRecipes;
+import quaternary.incorporeal.flower.SubTileSanvocalia;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
-import quaternary.incorporeal.tile.*;
-import quaternary.incorporeal.flower.SubTileSanvocalia;
+import quaternary.incorporeal.tile.IncorporeticTiles;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.subtile.signature.BasicSignature;
 
+@SuppressWarnings("ALL")
 @Mod(modid = Incorporeal.MODID, name = Incorporeal.NAME, version = Incorporeal.VERSION, dependencies = Incorporeal.DEPENDENCIES)
-public class Incorporeal {
+public final class Incorporeal {	
 	public static final String MODID = "incorporeal";
 	public static final String NAME = "Incorporeal";
 	public static final String VERSION = "0";
@@ -37,7 +38,10 @@ public class Incorporeal {
 	}
 	
 	@Mod.EventBusSubscriber(modid = Incorporeal.MODID)
-	public static class CommonEvents {
+	public static final class CommonEvents {
+		private CommonEvents() {
+		}
+		
 		@SubscribeEvent
 		public static void blocks(RegistryEvent.Register<Block> e) {
 			IncorporeticBlocks.registerBlocks(e.getRegistry());
@@ -63,10 +67,13 @@ public class Incorporeal {
 	}
 	
 	@Mod.EventBusSubscriber(value = Side.CLIENT, modid = Incorporeal.MODID)
-	public static class ClientEvents {
+	public static final class ClientEvents {
+		private ClientEvents() {
+		}
+		
 		@SubscribeEvent
 		public static void models(ModelRegistryEvent e) {
-			//BotaniaAPIClient.registerSubtileModel("sanvocalia", etc etc)
+			//TODO BotaniaAPIClient.registerSubtileModel("sanvocalia", etc etc)
 		}
 	}
 }

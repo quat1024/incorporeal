@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
 public class DummyItemHandler implements IItemHandler {
 	@Override
 	public int getSlots() {
-		return 0;
+		return 1;
 	}
 	
 	@Nonnull
@@ -35,6 +35,6 @@ public class DummyItemHandler implements IItemHandler {
 	
 	@Override
 	public int getSlotLimit(int slot) {
-		return 0;
+		return 1;
 	}
 }

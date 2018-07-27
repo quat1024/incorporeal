@@ -1,6 +1,5 @@
 package quaternary.incorporeal.flower;
 
-import com.google.common.base.Predicate;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -16,7 +15,8 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import quaternary.incorporeal.item.ItemCorporeaTicket;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
-import vazkii.botania.api.corporea.*;
+import vazkii.botania.api.corporea.CorporeaRequest;
+import vazkii.botania.api.corporea.ICorporeaSpark;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.subtile.RadiusDescriptor;
@@ -24,6 +24,7 @@ import vazkii.botania.api.subtile.SubTileFunctional;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaIndex;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 //A horrible pun based off of the real life Sanvitalia flower
@@ -34,7 +35,7 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 	@GameRegistry.ObjectHolder("incorporeal:corporea_ticket")
 	public static final Item CORPOREA_TICKET = Items.AIR;
 	
-	static final Predicate<EntityItem> ITEM_IS_VALID_TICKET = (entity) -> {
+	public static final Predicate<EntityItem> ITEM_IS_VALID_TICKET = (entity) -> {
 		ItemStack stack = (entity).getItem();
 		return stack.getItem() == CORPOREA_TICKET && ItemCorporeaTicket.isRequestable(stack);
 	};
@@ -51,7 +52,7 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 		if(w.isRemote || redstoneSignal > 0) return;
 		
 		AxisAlignedBB itemDetectionBox = new AxisAlignedBB(pos.add(-getRange(), 0, -getRange()), pos.add(getRange(), 1, getRange()));
-		List<EntityItem> nearbyTickets = w.getEntitiesWithinAABB(EntityItem.class, itemDetectionBox, ITEM_IS_VALID_TICKET);
+		List<EntityItem> nearbyTickets = w.getEntitiesWithinAABB(EntityItem.class, itemDetectionBox, ITEM_IS_VALID_TICKET::test);
 		
 		if(nearbyTickets.isEmpty()) return;
 		
@@ -107,6 +108,7 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 	}
 	
 	public static List<TileCorporeaIndex> getNearbyIndicesReflect(World w, BlockPos pos) {
+		//TODO: Can I just call TileCorporeaIndex$InputHandler.getNearbyIndexes?
 		Set<TileCorporeaIndex> indices = ReflectionHelper.getPrivateValue(TileCorporeaIndex.class, null, "serverIndexes");
 		
 		return indices.stream().filter(tile -> {
