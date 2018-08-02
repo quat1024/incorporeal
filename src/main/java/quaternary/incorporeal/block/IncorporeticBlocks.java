@@ -5,6 +5,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.block.naturaldevices.BlockNaturalDeviceCrop;
+import quaternary.incorporeal.block.naturaldevices.BlockNaturalRepeater;
 import quaternary.incorporeal.block.soulcore.BlockCorporeaSoulCore;
 import quaternary.incorporeal.block.soulcore.BlockEnderSoulCore;
 
@@ -21,9 +23,12 @@ public final class IncorporeticBlocks {
 		public static final String CORPOREA_SOLIDIFIER = "corporea_solidifier";
 		public static final String CORPOREA_SPARK_TINKERER = "corporea_spark_tinkerer";
 		public static final String FRAME_TINKERER = "frame_tinkerer";
+		
 		public static final String ENDER_SOUL_CORE = "ender_soul_core";
 		public static final String CORPOREA_SOUL_CORE = "corporea_soul_core";
+		
 		public static final String REDSTONE_ROOT_CROP = "redstone_root_crop";
+		public static final String NATURAL_REPEATER = "natural_repeater";
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_INHIBITOR)
@@ -50,15 +55,21 @@ public final class IncorporeticBlocks {
 	@GameRegistry.ObjectHolder(RegistryNames.REDSTONE_ROOT_CROP)
 	public static final BlockNaturalDeviceCrop REDSTONE_ROOT_CROP = null;
 	
+	@GameRegistry.ObjectHolder(RegistryNames.NATURAL_REPEATER)
+	public static final BlockNaturalRepeater NATURAL_REPEATER = null;
+	
 	public static void registerBlocks(IForgeRegistry<Block> reg) {
 		reg.register(createBlock(new BlockCorporeaInhibitor(), RegistryNames.CORPOREA_INHIBITOR));
 		reg.register(createBlock(new BlockCorporeaLiar(), RegistryNames.CORPOREA_LIAR));
 		reg.register(createBlock(new BlockCorporeaSolidifier(), RegistryNames.CORPOREA_SOLIDIFIER));
 		reg.register(createBlock(new BlockCorporeaSparkTinkerer(), RegistryNames.CORPOREA_SPARK_TINKERER));
 		reg.register(createBlock(new BlockFrameTinkerer(), RegistryNames.FRAME_TINKERER));
+		
 		reg.register(createBlock(new BlockEnderSoulCore(), RegistryNames.ENDER_SOUL_CORE));
 		reg.register(createBlock(new BlockCorporeaSoulCore(), RegistryNames.CORPOREA_SOUL_CORE));
+		
 		reg.register(createBlock(new BlockNaturalDeviceCrop(), RegistryNames.REDSTONE_ROOT_CROP));
+		reg.register(createBlock(new BlockNaturalRepeater(), RegistryNames.NATURAL_REPEATER));
 	}
 	
 	private static <T extends Block> T createBlock(T block, String name) {

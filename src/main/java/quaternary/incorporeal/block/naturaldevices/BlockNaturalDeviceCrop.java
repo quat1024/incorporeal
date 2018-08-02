@@ -1,4 +1,4 @@
-package quaternary.incorporeal.block;
+package quaternary.incorporeal.block.naturaldevices;
 
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;

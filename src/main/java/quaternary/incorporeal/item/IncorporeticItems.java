@@ -12,12 +12,10 @@ import quaternary.incorporeal.block.IncorporeticBlocks;
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
 @SuppressWarnings("unused")
 public final class IncorporeticItems {
-	private IncorporeticItems() {
-	}
+	private IncorporeticItems() {}
 	
 	public static final class RegistryNames {
-		private RegistryNames() {
-		}
+		private RegistryNames() {}
 		
 		public static final String PORTABLE_INDEX = "portable_index";
 		public static final String CORPOREA_TICKET = "corporea_ticket";
@@ -46,8 +44,11 @@ public final class IncorporeticItems {
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_SOLIDIFIER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_SPARK_TINKERER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.FRAME_TINKERER)));
+		
 		reg.register(createItemBlock(new ItemSoulCore(IncorporeticBlocks.ENDER_SOUL_CORE)));
 		reg.register(createItemBlock(new ItemSoulCore(IncorporeticBlocks.CORPOREA_SOUL_CORE)));
+		
+		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.NATURAL_REPEATER)));
 	}
 	
 	private static <T extends Item> T createItem(T item, String name) {
