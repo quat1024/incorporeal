@@ -1,7 +1,10 @@
 package quaternary.incorporeal;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockHorizontal;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -11,6 +14,7 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import quaternary.incorporeal.api.IncorporealNaturalDeviceRegistry;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.flower.IncorporeticPetalRecipes;
@@ -35,6 +39,16 @@ public final class Incorporeal {
 	public static void init(FMLInitializationEvent e) {
 		IncorporeticPetalRecipes.init();
 		IncorporeticLexicon.init();
+		
+		//TODO find a better home for this?
+		//TODO replace with custom "natural" crops too
+		IncorporealNaturalDeviceRegistry.addNaturalDevice((rand) -> {
+			return Blocks.UNPOWERED_COMPARATOR.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
+		}, 3);
+		
+		IncorporealNaturalDeviceRegistry.addNaturalDevice((rand) -> {
+			return Blocks.UNPOWERED_REPEATER.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
+		}, 5);
 	}
 	
 	@Mod.EventBusSubscriber(modid = Incorporeal.MODID)

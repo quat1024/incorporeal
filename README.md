@@ -13,7 +13,10 @@ This Source Code Form is subject to the terms of the Mozilla Public License, v. 
 * Sanvocalia flower to read those requests off to corporea indexes
 * A corporea index you can carry around in your hand
 * Item frame tinkerer!
-* the Rof of the Fractured Space: teleport items to an Open Crate, from anywhere
+* the Rod of the Fractured Space: teleport items to an Open Crate, from anywhere
+* the Ender Soul Core: it's an ender chest that can be hoppered into, corporea sparked, etc.
+* the Corporea Soul Core: Only people who have a soul core on the network can use corporea indices
+* Plant redstone roots to grow natural redstone circuitry
 
 * Lexica Botania integration
 * 1 coremod boy
@@ -27,11 +30,7 @@ This Source Code Form is subject to the terms of the Mozilla Public License, v. 
 
 * Can i get uhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh Boneless block model
 * I want to think some more about the wildcard corporea interceptor thing
+* Corporea spark augment x d
 * More options for corporea sparks (byebye dropper spark chains)
 * "corporea retainer decrementer"
-* Corporea interceptor/retainer comparator signal
-* Soul Cores
-  * ender
-  * corporetic
-  * ..?
 * MORE COREMODDING

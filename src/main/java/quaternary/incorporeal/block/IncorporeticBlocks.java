@@ -11,12 +11,10 @@ import quaternary.incorporeal.block.soulcore.BlockEnderSoulCore;
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
 @SuppressWarnings("unused")
 public final class IncorporeticBlocks {
-	private IncorporeticBlocks() {
-	}
+	private IncorporeticBlocks() {}
 	
 	public static final class RegistryNames {
-		private RegistryNames() {
-		}
+		private RegistryNames() {}
 		
 		public static final String CORPOREA_INHIBITOR = "corporea_inhibitor";
 		public static final String CORPOREA_LIAR = "corporea_liar";
@@ -25,6 +23,7 @@ public final class IncorporeticBlocks {
 		public static final String FRAME_TINKERER = "frame_tinkerer";
 		public static final String ENDER_SOUL_CORE = "ender_soul_core";
 		public static final String CORPOREA_SOUL_CORE = "corporea_soul_core";
+		public static final String REDSTONE_ROOT_CROP = "redstone_root_crop";
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_INHIBITOR)
@@ -48,6 +47,9 @@ public final class IncorporeticBlocks {
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_SOUL_CORE)
 	public static final BlockCorporeaSoulCore CORPOREA_SOUL_CORE = null;
 	
+	@GameRegistry.ObjectHolder(RegistryNames.REDSTONE_ROOT_CROP)
+	public static final BlockNaturalDeviceCrop REDSTONE_ROOT_CROP = null;
+	
 	public static void registerBlocks(IForgeRegistry<Block> reg) {
 		reg.register(createBlock(new BlockCorporeaInhibitor(), RegistryNames.CORPOREA_INHIBITOR));
 		reg.register(createBlock(new BlockCorporeaLiar(), RegistryNames.CORPOREA_LIAR));
@@ -56,6 +58,7 @@ public final class IncorporeticBlocks {
 		reg.register(createBlock(new BlockFrameTinkerer(), RegistryNames.FRAME_TINKERER));
 		reg.register(createBlock(new BlockEnderSoulCore(), RegistryNames.ENDER_SOUL_CORE));
 		reg.register(createBlock(new BlockCorporeaSoulCore(), RegistryNames.CORPOREA_SOUL_CORE));
+		reg.register(createBlock(new BlockNaturalDeviceCrop(), RegistryNames.REDSTONE_ROOT_CROP));
 	}
 	
 	private static <T extends Block> T createBlock(T block, String name) {
