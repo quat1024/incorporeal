@@ -1,7 +1,6 @@
 package quaternary.incorporeal;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
@@ -17,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.api.IncorporealNaturalDeviceRegistry;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.entity.IncorporeticEntities;
+import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
 import quaternary.incorporeal.flower.IncorporeticPetalRecipes;
 import quaternary.incorporeal.flower.SubTileSanvocalia;
 import quaternary.incorporeal.item.IncorporeticItems;
@@ -24,6 +24,7 @@ import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import quaternary.incorporeal.tile.IncorporeticTiles;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.subtile.signature.BasicSignature;
+import vazkii.botania.common.item.ModItems;
 
 @SuppressWarnings("ALL")
 @Mod(modid = Incorporeal.MODID, name = Incorporeal.NAME, version = Incorporeal.VERSION, dependencies = Incorporeal.DEPENDENCIES)
@@ -40,7 +41,7 @@ public final class Incorporeal {
 		IncorporeticPetalRecipes.init();
 		IncorporeticLexicon.init();
 		
-		//TODO find a better home for this?
+		//TODO find a better home for these?
 		//TODO replace with custom "natural" crops too
 		IncorporealNaturalDeviceRegistry.addNaturalDevice((rand) -> {
 			return Blocks.UNPOWERED_COMPARATOR.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
@@ -49,6 +50,8 @@ public final class Incorporeal {
 		IncorporealNaturalDeviceRegistry.addNaturalDevice((rand) -> {
 			return Blocks.UNPOWERED_REPEATER.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
 		}, 5);
+		
+		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(ModItems.manaResource, new DispenserBehaviorRedstoneRoot());
 	}
 	
 	@Mod.EventBusSubscriber(modid = Incorporeal.MODID)
