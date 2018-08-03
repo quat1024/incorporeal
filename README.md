@@ -17,6 +17,7 @@ This Source Code Form is subject to the terms of the Mozilla Public License, v. 
 * the Ender Soul Core: it's an ender chest that can be hoppered into, corporea sparked, etc.
 * the Corporea Soul Core: Only people who have a soul core on the network can use corporea indices
 * Plant redstone roots to grow natural redstone circuitry
+* (name WIP) Corporea Retainer Decrementer, allowing for richer control of interceptor-retainer pairs
 
 * Lexica Botania integration
 * 1 coremod boy
@@ -29,8 +30,7 @@ This Source Code Form is subject to the terms of the Mozilla Public License, v. 
 ### What's planned?
 
 * Can i get uhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh Boneless block model
-* I want to think some more about the wildcard corporea interceptor thing
 * Corporea spark augment x d
 * More options for corporea sparks (byebye dropper spark chains)
-* "corporea retainer decrementer"
+* Data boxes
 * MORE COREMODDING

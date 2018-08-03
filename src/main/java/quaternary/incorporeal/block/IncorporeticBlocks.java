@@ -22,6 +22,7 @@ public final class IncorporeticBlocks {
 		public static final String CORPOREA_LIAR = "corporea_liar";
 		public static final String CORPOREA_SOLIDIFIER = "corporea_solidifier";
 		public static final String CORPOREA_SPARK_TINKERER = "corporea_spark_tinkerer";
+		public static final String CORPOREA_RETAINER_DECREMENTER = "corporea_retainer_decrementer";
 		public static final String FRAME_TINKERER = "frame_tinkerer";
 		
 		public static final String ENDER_SOUL_CORE = "ender_soul_core";
@@ -43,6 +44,9 @@ public final class IncorporeticBlocks {
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_SPARK_TINKERER)
 	public static final BlockCorporeaSparkTinkerer CORPOREA_SPARK_TINKERER = null;
 	
+	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_RETAINER_DECREMENTER)
+	public static final BlockCorporeaRetainerDecrementer CORPOREA_RETAINER_DECREMENTER = null;
+	
 	@GameRegistry.ObjectHolder(RegistryNames.FRAME_TINKERER)
 	public static final BlockFrameTinkerer FRAME_TINKERER = null;
 	
@@ -63,6 +67,7 @@ public final class IncorporeticBlocks {
 		reg.register(createBlock(new BlockCorporeaLiar(), RegistryNames.CORPOREA_LIAR));
 		reg.register(createBlock(new BlockCorporeaSolidifier(), RegistryNames.CORPOREA_SOLIDIFIER));
 		reg.register(createBlock(new BlockCorporeaSparkTinkerer(), RegistryNames.CORPOREA_SPARK_TINKERER));
+		reg.register(createBlock(new BlockCorporeaRetainerDecrementer(), RegistryNames.CORPOREA_RETAINER_DECREMENTER));
 		reg.register(createBlock(new BlockFrameTinkerer(), RegistryNames.FRAME_TINKERER));
 		
 		reg.register(createBlock(new BlockEnderSoulCore(), RegistryNames.ENDER_SOUL_CORE));
