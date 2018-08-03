@@ -57,8 +57,9 @@ public class BlockCorporeaRetainerDecrementer extends Block {
 							ReflectionHelper.setPrivateValue(TileCorporeaRetainer.class, retainer, retainerCount, "requestCount");
 						} else {
 							ReflectionHelper.setPrivateValue(TileCorporeaRetainer.class, retainer, false, "pendingRequest");
-							world.updateComparatorOutputLevel(pos.offset(horiz), ModBlocks.corporeaRetainer);
 						}
+						
+						world.updateComparatorOutputLevel(pos.offset(horiz), ModBlocks.corporeaRetainer);
 					}
 				}
 			}
