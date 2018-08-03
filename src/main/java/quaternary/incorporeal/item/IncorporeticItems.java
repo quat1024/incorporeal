@@ -17,25 +17,25 @@ public final class IncorporeticItems {
 	public static final class RegistryNames {
 		private RegistryNames() {}
 		
-		public static final String PORTABLE_INDEX = "portable_index";
+		public static final String TICKET_CONJURER = "ticket_conjurer";
 		public static final String CORPOREA_TICKET = "corporea_ticket";
 		public static final String FRACTURED_SPACE_ROD = "fractured_space_rod";
 	}
 	
-	@GameRegistry.ObjectHolder(RegistryNames.PORTABLE_INDEX)
-	public static final Item PORTABLE_INDEX = Items.AIR;
+	@GameRegistry.ObjectHolder(RegistryNames.TICKET_CONJURER)
+	public static final ItemTicketConjurer TICKET_CONJURER = null;
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_TICKET)
-	public static final Item CORPOREA_TICKET = Items.AIR;
+	public static final ItemCorporeaTicket CORPOREA_TICKET = null;
 	
 	@GameRegistry.ObjectHolder(RegistryNames.FRACTURED_SPACE_ROD)
-	public static final Item FRACTURED_SPACE_ROD = Items.AIR;
+	public static final ItemFracturedSpaceRod FRACTURED_SPACE_ROD = null;
 	
 	//IDEA balks at the idea of injecting values into final fields in incorporeticblocks
 	//That's what objectholder does, though, so make it shut up.
 	@SuppressWarnings("ConstantConditions")
 	public static void registerItems(IForgeRegistry<Item> reg) {
-		reg.register(createItem(new ItemPortableCorporeaIndex(), RegistryNames.PORTABLE_INDEX));
+		reg.register(createItem(new ItemTicketConjurer(), RegistryNames.TICKET_CONJURER));
 		reg.register(createItem(new ItemCorporeaTicket(), RegistryNames.CORPOREA_TICKET));
 		reg.register(createItem(new ItemFracturedSpaceRod(), RegistryNames.FRACTURED_SPACE_ROD));
 		
