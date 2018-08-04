@@ -19,25 +19,7 @@ import java.util.regex.Pattern;
 
 @Mod.EventBusSubscriber
 public class ItemTicketConjurer extends Item {
-	static final Map<Pattern, TileCorporeaIndex.IRegexStacker> patterns;
-	static final List<Pair<Pattern, TileCorporeaIndex.IRegexStacker>> patternsHack;
-	
-	static {
-		patterns = ReflectionHelper.getPrivateValue(TileCorporeaIndex.class, null, "patterns");
-		
-		//For some reason it's picking the shortest ones first or smtn
-		//meaning it prefers to parse "5 stone" as "1x '5 stone'" instead of, well, "5x stone"
-		//Use a wacky hack to choose the longest ones first
-		//That's generally going to be the most specific one
-		
-		patternsHack = new ArrayList<>(patterns.size());
-		for(Map.Entry<Pattern, TileCorporeaIndex.IRegexStacker> entry : patterns.entrySet()) {
-			patternsHack.add(Pair.of(entry.getKey(), entry.getValue()));
-		}
-		patternsHack.sort((a, b) -> {
-			return b.getLeft().toString().length() - a.getLeft().toString().length();
-		});
-	}
+	static final Map<Pattern, TileCorporeaIndex.IRegexStacker> patterns = ReflectionHelper.getPrivateValue(TileCorporeaIndex.class, null, "patterns");
 	
 	//Based on code from Botania's TileCorporeaIndex
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -64,15 +46,14 @@ public class ItemTicketConjurer extends Item {
 		int itemCount = 0;
 		boolean foundMatch = false;
 		
-		for(Pair<Pattern, TileCorporeaIndex.IRegexStacker> pair : patternsHack) {
-			Pattern pattern = pair.getLeft();
+		for(Map.Entry<Pattern, TileCorporeaIndex.IRegexStacker> pair : patterns.entrySet()) {
+			Pattern pattern = pair.getKey();
 			Matcher matcher = pattern.matcher(chatMessage);
 			if(matcher.matches()) {
-				TileCorporeaIndex.IRegexStacker stacker = pair.getRight();
+				TileCorporeaIndex.IRegexStacker stacker = pair.getValue();
 				itemCount = stacker.getCount(matcher);
 				itemName = stacker.getName(matcher);
 				foundMatch = true;
-				break;
 			}
 		}
 		
