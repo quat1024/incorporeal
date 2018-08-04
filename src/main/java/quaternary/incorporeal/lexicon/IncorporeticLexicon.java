@@ -8,6 +8,7 @@ import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.flower.IncorporeticPetalRecipes;
 import quaternary.incorporeal.flower.SubTileSanvocalia;
+import quaternary.incorporeal.item.IncorporeticItems;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.lexicon.*;
 import vazkii.botania.api.recipe.RecipePetals;
@@ -19,11 +20,21 @@ public final class IncorporeticLexicon {
 	private IncorporeticLexicon() {
 	}
 	
+	//PRE-ELVEN
 	public static LexiconEntry frameTinkerer;
+	
+	//ELVEN
+	//items
+	public static LexiconEntry fracturedSpace;
+	
+	//corporea blocks
+	public static LexiconEntry corporeaInhibitor;
 	public static LexiconEntry corporeaLiar;
 	public static LexiconEntry corporeaSolidifier;
 	public static LexiconEntry corporeaTinkerer;
-	public static LexiconEntry corporeaInhibitor;
+	public static LexiconEntry corporeaRetainerDecrementer;
+	
+	//etc
 	public static LexiconEntry sanvocalia;
 	
 	public static void init() {
@@ -37,19 +48,19 @@ public final class IncorporeticLexicon {
 		newEntryType = BotaniaAPI.elvenKnowledge; //Elven Knowledge entries
 		/////
 		
+		fracturedSpace = buildCraftingEntry(IncorporeticItems.FRACTURED_SPACE_ROD, BotaniaAPI.categoryTools, 2);
+		
 		corporeaInhibitor = buildCraftingEntry(IncorporeticBlocks.CORPOREA_INHIBITOR, BotaniaAPI.categoryEnder, 1);
-		
 		corporeaLiar = buildCraftingEntry(IncorporeticBlocks.CORPOREA_LIAR, BotaniaAPI.categoryEnder, 2);
-		
 		corporeaSolidifier = buildCraftingEntry(IncorporeticBlocks.CORPOREA_SOLIDIFIER, BotaniaAPI.categoryEnder, 2);
-		
 		corporeaTinkerer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_SPARK_TINKERER, BotaniaAPI.categoryEnder, 2);
+		corporeaRetainerDecrementer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER, BotaniaAPI.categoryEnder, 2);
 		
 		sanvocalia = buildFlowerEntry(SubTileSanvocalia.NAME, IncorporeticPetalRecipes.sanvocalia, BotaniaAPI.categoryFunctionalFlowers, 1);
 	}
 	
 	private static LexiconEntry buildCraftingEntry(IForgeRegistryEntry subject, LexiconCategory category, int pageCount) {
-		String name = subject.getRegistryName().getResourcePath();
+		String name = Incorporeal.MODID + '.' + subject.getRegistryName().getResourcePath();
 		ItemStack icon;
 		
 		if(subject instanceof Block) {

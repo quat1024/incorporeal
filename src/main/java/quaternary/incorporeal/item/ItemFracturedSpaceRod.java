@@ -13,13 +13,16 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import quaternary.incorporeal.entity.EntityFracturedSpaceCollector;
+import quaternary.incorporeal.lexicon.IncorporeticLexicon;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.mana.IManaUsingItem;
 import vazkii.botania.api.state.BotaniaStateProps;
 import vazkii.botania.api.state.enums.CrateVariant;
 import vazkii.botania.common.block.BlockOpenCrate;
 import vazkii.botania.common.core.helper.ItemNBTHelper;
 
-public class ItemFracturedSpaceRod extends Item implements IManaUsingItem {
+public class ItemFracturedSpaceRod extends Item implements IManaUsingItem, ILexiconable {
 	public ItemFracturedSpaceRod() {
 		setMaxStackSize(1);
 	}
@@ -67,5 +70,10 @@ public class ItemFracturedSpaceRod extends Item implements IManaUsingItem {
 	@Override
 	public boolean usesMana(ItemStack stack) {
 		return true;
+	}
+	
+	@Override
+	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
+		return IncorporeticLexicon.fracturedSpace;
 	}
 }
