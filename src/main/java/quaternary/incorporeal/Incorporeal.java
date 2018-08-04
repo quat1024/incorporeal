@@ -1,8 +1,10 @@
 package quaternary.incorporeal;
 
 import net.minecraft.block.*;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -11,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.api.IncorporealNaturalDeviceRegistry;
@@ -35,6 +38,14 @@ public final class Incorporeal {
 	public static final String DEPENDENCIES = "required-after:botania;";
 	
 	public static final Logger LOGGER = LogManager.getLogger(NAME);
+	
+	public static final CreativeTabs TAB = new CreativeTabs(MODID) {
+		@SideOnly(Side.CLIENT)
+		@Override
+		public ItemStack getTabIconItem() {
+			return new ItemStack(IncorporeticItems.CORPOREA_TICKET);
+		}
+	};
 	
 	@Mod.EventHandler
 	public static void init(FMLInitializationEvent e) {

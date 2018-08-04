@@ -55,7 +55,7 @@ public final class IncorporeticItems {
 	private static <T extends Item> T createItem(T item, String name) {
 		item.setRegistryName(new ResourceLocation(Incorporeal.MODID, name));
 		item.setUnlocalizedName(Incorporeal.MODID + "." + name);
-		//TODO creative tab.
+		item.setCreativeTab(Incorporeal.TAB);
 		return item;
 	}
 	

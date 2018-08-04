@@ -80,7 +80,7 @@ public final class IncorporeticBlocks {
 	private static <T extends Block> T createBlock(T block, String name) {
 		block.setRegistryName(new ResourceLocation(Incorporeal.MODID, name));
 		block.setUnlocalizedName(Incorporeal.MODID + "." + name);
-		
+		block.setCreativeTab(Incorporeal.TAB);
 		return block;
 	}
 }
