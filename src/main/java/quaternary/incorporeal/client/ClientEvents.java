@@ -22,8 +22,10 @@ public final class ClientEvents {
 		//TODO item models
 		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.FRAME_TINKERER));
 		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_INHIBITOR));
+		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_SPARK_TINKERER));
 		
 		setIgnoreAllStateMapper(IncorporeticBlocks.FRAME_TINKERER);
+		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_SPARK_TINKERER);
 	}
 	
 	private static void setSimpleModel(Item i) {

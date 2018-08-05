@@ -1,0 +1,8 @@
+{
+	"parent": "botania:block/shapes/three_high_bottom_top",
+	"textures": {
+		"bottom": "incorporeal:block/corporea_spark_tinkerer/bottom",
+		"up": "incorporeal:block/corporea_spark_tinkerer/top",
+		"side": "incorporeal:block/corporea_spark_tinkerer/side"
+	}
+}
