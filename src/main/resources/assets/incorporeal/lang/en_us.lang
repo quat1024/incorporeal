@@ -18,10 +18,14 @@ tile.incorporeal.corporea_soul_core.name=Corporetic Soul Core
 
 tile.incorporeal.natural_repeater.name=Earthen Repeater
 
+#Flowers
 tile.incorporeal.flower.sanvocalia.name=Sanvocalia
 tile.incorporeal.flower.sanvocalia_chibi.name=Sanvocalia Petite
 tile.incorporeal.flower.sanvocalia.flavor=Teknopathetic
 tile.incorporeal.flower.sanvocalia_chibi.flavor=Teknopathetic
+#TODO report this as a bug, SubTileFunctional$renderHUD hardcodes the wrong flower localization key
+tile.botania:flower.sanvocalia.name=Sanvocalia
+tile.botania:flower.sanvocaliaChibi.name=Sanvocalia Petite
 
 ###############################Lexicon!!!
 ########PRE-ELVEN

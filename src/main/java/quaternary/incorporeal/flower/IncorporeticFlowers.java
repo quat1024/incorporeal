@@ -27,6 +27,7 @@ public final class IncorporeticFlowers {
 		}
 		
 		for(String a : moddedFlowers) {
+			//TODO this doesnt actually work lmao.
 			memes.add(ItemBlockFloatingSpecialFlower.ofType(a));
 		}
 		return memes;

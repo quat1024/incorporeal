@@ -37,12 +37,9 @@ import java.util.stream.Collectors;
 
 //A horrible pun based off of the real life Sanvitalia flower
 public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable {
-	@GameRegistry.ObjectHolder("incorporeal:corporea_ticket")
-	public static final Item CORPOREA_TICKET = Items.AIR;
-	
 	public static final Predicate<EntityItem> ITEM_IS_VALID_TICKET = (entity) -> {
 		ItemStack stack = (entity).getItem();
-		return stack.getItem() == CORPOREA_TICKET && ItemCorporeaTicket.isRequestable(stack);
+		return stack.getItem() instanceof ItemCorporeaTicket && ItemCorporeaTicket.isRequestable(stack);
 	};
 	
 	@Nullable
@@ -52,8 +49,6 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		
-		if(mana <= 20) return;
 		
 		World w = supertile.getWorld();
 		BlockPos pos = supertile.getPos();
@@ -74,7 +69,7 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 			//This is a nod to when players accidentally type corporea requests into chat, lol
 			TextComponentTranslation txt = new TextComponentTranslation("chat.type.text", customName, CorporeaHelper2.requestToString(ticketsRequest));
 			MinecraftServer server = w.getMinecraftServer();
-			if(server != null) {
+			if(server != null && mana >= 100) {
 				for(EntityPlayerMP player : w.getMinecraftServer().getPlayerList().getPlayers()) {
 					if(IncorporeticConfig.Sanvocalia.EVERYONE_HEARS_MESSAGES || player.getUniqueID().equals(owner)) {
 						player.sendMessage(txt);
@@ -82,16 +77,24 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 				}
 				
 				mana -= 100;
+				ticket.setDead();
+				sync();
 			}
 		} else {
 			//Read the request to all nearby indices
+			boolean did = false;
 			for(TileCorporeaIndex index : nearbyIndices) {
+				if(mana < 20) break;
 				CorporeaHelper2.spawnRequest(w, ticketsRequest, index.getSpark(), index.getPos());
 				mana -= 20;
+				did = true;
+			}
+			
+			if(did) {
+				ticket.setDead();
+				sync();
 			}
 		}
-		
-		ticket.setDead();
 	}
 	
 	public int getRange() {

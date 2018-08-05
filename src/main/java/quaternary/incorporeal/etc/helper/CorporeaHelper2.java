@@ -35,6 +35,8 @@ public final class CorporeaHelper2 {
 	
 	//Perform and spawn items from a request, much like a Corporea Index.
 	public static void spawnRequest(World w, CorporeaRequest request, ICorporeaSpark spork, Vec3d spawningPos) {
+		if(spork == null) return;
+		
 		List<ItemStack> stacks = CorporeaHelper.requestItem(request.matcher, request.count, spork, request.checkNBT, true);
 		spork.onItemsRequested(stacks);
 		
