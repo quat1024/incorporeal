@@ -79,11 +79,12 @@ public final class Hooks {
 				prevPos.setPos(searchX, searchY, searchZ);
 				if(!oldPos.equals(prevPos)) {
 					oldPos.setPos(searchX, searchY, searchZ);
+					BlockPos searchPos = new BlockPos(searchX, searchY, searchZ);
 					
-					IBlockState state = world.getBlockState(new BlockPos(searchX, searchY, searchZ));
+					IBlockState state = world.getBlockState(searchPos);
 					Block block = state.getBlock();
 					if(block instanceof ICorporeaInhibitor) {
-						boolean blocksCorporea = ((ICorporeaInhibitor)block).shouldBlockCorporea(world, state);
+						boolean blocksCorporea = ((ICorporeaInhibitor)block).shouldBlockCorporea(world, state, searchPos);
 						if(blocksCorporea) return true;
 					}
 				}

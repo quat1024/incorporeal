@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:cube_all",
+	"textures": {
+		"all": "incorporeal:block/corporea_inhibitor/tex"
+	}
+}

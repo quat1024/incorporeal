@@ -5,12 +5,18 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.api.ICorporeaInhibitor;
 import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
@@ -29,7 +35,7 @@ public class BlockCorporeaInhibitor extends Block implements ICorporeaInhibitor,
 	private static final WeakHashMap<World, Set<BlockPos>> deferredCheckPositions = new WeakHashMap<>();
 	
 	@Override
-	public boolean shouldBlockCorporea(World world, IBlockState state) {
+	public boolean shouldBlockCorporea(World world, IBlockState state, BlockPos pos) {
 		return true;
 	}
 	
@@ -65,6 +71,28 @@ public class BlockCorporeaInhibitor extends Block implements ICorporeaInhibitor,
 		AxisAlignedBB aabb = new AxisAlignedBB(pos).grow(8);
 		
 		world.getEntitiesWithinAABB(EntityCorporeaSpark.class, aabb).forEach(CorporeaHelper2::causeSparkRelink);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.TRANSLUCENT;
+	}
+	
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+		return !(world.getBlockState(pos.offset(side)).getBlock() instanceof BlockCorporeaInhibitor);
 	}
 	
 	@Override
