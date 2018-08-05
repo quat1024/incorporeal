@@ -1,17 +1,24 @@
 package quaternary.incorporeal.flower;
 
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTUtil;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import quaternary.incorporeal.IncorporeticConfig;
 import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import quaternary.incorporeal.item.ItemCorporeaTicket;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
@@ -23,15 +30,13 @@ import vazkii.botania.api.subtile.RadiusDescriptor;
 import vazkii.botania.api.subtile.SubTileFunctional;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaIndex;
 
+import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 //A horrible pun based off of the real life Sanvitalia flower
 public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable {
-	public static final String NAME = "sanvocalia";
-	public static final String NAME_CHIBI = "sanvocalia_chibi";
-	
 	@GameRegistry.ObjectHolder("incorporeal:corporea_ticket")
 	public static final Item CORPOREA_TICKET = Items.AIR;
 	
@@ -39,6 +44,10 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 		ItemStack stack = (entity).getItem();
 		return stack.getItem() == CORPOREA_TICKET && ItemCorporeaTicket.isRequestable(stack);
 	};
+	
+	@Nullable
+	private UUID owner;
+	private String customName = "Sanvocalia"; 
 	
 	@Override
 	public void onUpdate() {
@@ -59,23 +68,29 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 		EntityItem ticket = nearbyTickets.get(0);
 		CorporeaRequest ticketsRequest = ItemCorporeaTicket.getRequestFromTicket(ticket.getItem());
 		
-		//Definitely cache nearby indices and stuff, this is expensive
-		List<TileCorporeaIndex> nearbyIndices = getNearbyIndicesReflect(w, pos);
+		List<TileCorporeaIndex> nearbyIndices = CorporeaHelper2.getNearbyIndicesReflect(w, pos);
 		if(nearbyIndices.isEmpty()) {
 			//No indexes nearby? Post the message to chat
 			//This is a nod to when players accidentally type corporea requests into chat, lol
-			TextComponentTranslation txt = new TextComponentTranslation("chat.type.text", "Sanvocalia", CorporeaHelper2.requestToString(ticketsRequest));
-			for(EntityPlayerMP player : w.getMinecraftServer().getPlayerList().getPlayers()) {
-				player.sendMessage(txt);
+			TextComponentTranslation txt = new TextComponentTranslation("chat.type.text", customName, CorporeaHelper2.requestToString(ticketsRequest));
+			MinecraftServer server = w.getMinecraftServer();
+			if(server != null) {
+				for(EntityPlayerMP player : w.getMinecraftServer().getPlayerList().getPlayers()) {
+					if(IncorporeticConfig.Sanvocalia.EVERYONE_HEARS_MESSAGES || player.getUniqueID().equals(owner)) {
+						player.sendMessage(txt);
+					}
+				}
+				
+				mana -= 100;
 			}
 		} else {
-			Collections.shuffle(nearbyIndices);
-			TileCorporeaIndex index = nearbyIndices.get(0);
-			
-			ICorporeaSpark spork = index.getSpark();
-			CorporeaHelper2.spawnRequest(w, ticketsRequest, spork, index.getPos());
+			//Read the request to all nearby indices
+			for(TileCorporeaIndex index : nearbyIndices) {
+				CorporeaHelper2.spawnRequest(w, ticketsRequest, index.getSpark(), index.getPos());
+				mana -= 20;
+			}
 		}
-		mana -= 20;		
+		
 		ticket.setDead();
 	}
 	
@@ -107,15 +122,31 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 		return 0xed9625;
 	}
 	
-	public static List<TileCorporeaIndex> getNearbyIndicesReflect(World w, BlockPos pos) {
-		//TODO: Can I just call TileCorporeaIndex$InputHandler.getNearbyIndexes?
-		Set<TileCorporeaIndex> indices = ReflectionHelper.getPrivateValue(TileCorporeaIndex.class, null, "serverIndexes");
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entity, ItemStack stack) {
+		if(entity != null) {
+			owner = entity.getUniqueID();
+		} else {
+			owner = null;
+		}
 		
-		return indices.stream().filter(tile -> {
-			if(tile.getWorld().provider.getDimension() != w.provider.getDimension()) return false;
-			
-			return Math.abs(pos.getX() - tile.getPos().getX()) <= 2 && Math.abs(pos.getZ() - tile.getPos().getZ()) <= 2 && tile.getPos().getY() == pos.getY();
-		}).collect(Collectors.toList());
+		if(stack.hasDisplayName()) {
+			customName = stack.getDisplayName();
+		}
+	}
+	
+	@Override
+	public void readFromPacketNBT(NBTTagCompound cmp) {
+		super.readFromPacketNBT(cmp);
+		owner = NBTUtil.getUUIDFromTag(cmp.getCompoundTag("Owner"));
+		customName = cmp.getString("CustomName");
+	}
+	
+	@Override
+	public void writeToPacketNBT(NBTTagCompound cmp) {
+		cmp.setTag("Owner", NBTUtil.createUUIDTag(owner));
+		cmp.setString("CustomName", customName);
+		super.writeToPacketNBT(cmp);
 	}
 	
 	@Override

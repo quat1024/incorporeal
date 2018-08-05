@@ -56,7 +56,7 @@ public final class IncorporeticLexicon {
 		corporeaTinkerer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_SPARK_TINKERER, BotaniaAPI.categoryEnder, 2);
 		corporeaRetainerDecrementer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER, BotaniaAPI.categoryEnder, 2);
 		
-		sanvocalia = buildFlowerEntry(SubTileSanvocalia.NAME, IncorporeticPetalRecipes.sanvocalia, BotaniaAPI.categoryFunctionalFlowers, 1);
+		sanvocalia = buildFlowerEntry("sanvocalia", IncorporeticPetalRecipes.sanvocalia, BotaniaAPI.categoryFunctionalFlowers, 1);
 	}
 	
 	private static LexiconEntry buildCraftingEntry(IForgeRegistryEntry subject, LexiconCategory category, int pageCount) {

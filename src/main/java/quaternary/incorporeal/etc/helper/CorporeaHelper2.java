@@ -6,10 +6,13 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import vazkii.botania.api.corporea.*;
+import vazkii.botania.common.block.tile.corporea.TileCorporeaIndex;
 import vazkii.botania.common.entity.EntityCorporeaSpark;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public final class CorporeaHelper2 {
 	private CorporeaHelper2() {}
@@ -17,6 +20,17 @@ public final class CorporeaHelper2 {
 	public static EntityCorporeaSpark getSparkEntityForBlock(World world, BlockPos pos) {
 		List<EntityCorporeaSpark> sparks = world.getEntitiesWithinAABB(EntityCorporeaSpark.class, new AxisAlignedBB(pos.up(), pos.add(1, 2, 1)));
 		return sparks.isEmpty() ? null : sparks.get(0);
+	}
+	
+	public static List<TileCorporeaIndex> getNearbyIndicesReflect(World w, BlockPos pos) {
+		//TODO: Can I just call TileCorporeaIndex$InputHandler.getNearbyIndexes?
+		Set<TileCorporeaIndex> indices = ReflectionHelper.getPrivateValue(TileCorporeaIndex.class, null, "serverIndexes");
+		
+		return indices.stream().filter(tile -> {
+			if(tile.getWorld().provider.getDimension() != w.provider.getDimension()) return false;
+			
+			return Math.abs(pos.getX() - tile.getPos().getX()) <= 2 && Math.abs(pos.getZ() - tile.getPos().getZ()) <= 2 && tile.getPos().getY() == pos.getY();
+		}).collect(Collectors.toList());
 	}
 	
 	//Perform and spawn items from a request, much like a Corporea Index.

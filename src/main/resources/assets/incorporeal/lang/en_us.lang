@@ -18,10 +18,10 @@ tile.incorporeal.corporea_soul_core.name=Corporetic Soul Core
 
 tile.incorporeal.natural_repeater.name=Earthen Repeater
 
-tile.botania:flower.sanvocalia.name=Sanvocalia
-tile.botania:flower.sanvocalia_chibi.name=Sanvocalia Petite
-tile.botania:flower.sanvocalia.reference=Teknopathetic
-tile.botania:flower.sanvocalia_chibi.reference=Teknopathetic
+tile.incorporeal.flower.sanvocalia.name=Sanvocalia
+tile.incorporeal.flower.sanvocalia_chibi.name=Sanvocalia Petite
+tile.incorporeal.flower.sanvocalia.flavor=Teknopathetic
+tile.incorporeal.flower.sanvocalia_chibi.flavor=Teknopathetic
 
 ###############################Lexicon!!!
 ########PRE-ELVEN
