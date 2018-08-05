@@ -23,6 +23,7 @@ public final class ClientEvents {
 		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.FRAME_TINKERER));
 		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_INHIBITOR));
 		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_SPARK_TINKERER));
+		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_SOLIDIFIER));
 		
 		setIgnoreAllStateMapper(IncorporeticBlocks.FRAME_TINKERER);
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_SPARK_TINKERER);
