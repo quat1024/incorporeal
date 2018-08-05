@@ -55,6 +55,7 @@ public class BlockFrameTinkerer extends Block implements ILexiconable {
 		if(myPower != worldPower) {
 			world.setBlockState(pos, state.withProperty(BotaniaStateProps.POWERED, worldPower));
 			
+			//TODO switch to using an in-world item; can remove the tile entity
 			if(worldPower) {
 				TileEntity tile = world.getTileEntity(pos);
 				if(tile instanceof TileFrameTinkerer) {
@@ -80,10 +81,10 @@ public class BlockFrameTinkerer extends Block implements ILexiconable {
 		return state.getValue(BotaniaStateProps.POWERED) ? 1 : 0;
 	}
 	
-	private static final AxisAlignedBB aabb = new AxisAlignedBB(0d, 0d, 0d, 1d, 0.1875d, 1d);
+	private static final AxisAlignedBB AABB = new AxisAlignedBB(0d, 0d, 0d, 1d, 3/16d, 1d);
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return aabb;
+		return AABB;
 	}
 	
 	@Override

@@ -104,14 +104,4 @@ public final class Incorporeal {
 			IncorporeticEntities.registerEntityEntries(e.getRegistry());
 		}
 	}
-	
-	@Mod.EventBusSubscriber(value = Side.CLIENT, modid = Incorporeal.MODID)
-	public static final class ClientEvents {
-		private ClientEvents() {}
-		
-		@SubscribeEvent
-		public static void models(ModelRegistryEvent e) {
-			//TODO BotaniaAPIClient.registerSubtileModel("sanvocalia", etc etc)
-		}
-	}
 }
