@@ -9,6 +9,7 @@ import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -28,6 +29,20 @@ public class BlockFrameTinkerer extends Block implements ILexiconable {
 		super(Material.ROCK);
 		
 		setDefaultState(getDefaultState().withProperty(BotaniaStateProps.POWERED, false));
+	}
+	
+	@Override
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		ItemStack held = player.getHeldItem(hand);
+		if(!held.isEmpty()) {
+			if(!world.isRemote) {
+				ItemStack deposit = held.splitStack(1);
+				spawnItem(world, pos, deposit);
+			}
+			return true;
+		}
+		
+		return false;
 	}
 	
 	//Powering
