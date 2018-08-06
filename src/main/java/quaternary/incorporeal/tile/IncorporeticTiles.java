@@ -15,7 +15,6 @@ public final class IncorporeticTiles {
 		reg(TileCorporeaLiar.class, "liar");
 		reg(TileCorporeaSolidifier.class, "solidifier");
 		reg(TileCorporeaSparkTinkerer.class, "corporea_tinkerer");
-		reg(TileFrameTinkerer.class, "frame_tinkerer");
 		reg(TileEnderSoulCore.class, "ender_soul_core");
 		reg(TileCorporeaSoulCore.class, "corporea_soul_core");
 		reg(TileWildcardCorporeaInterceptor.class, "wildcard_corporea_interceptor");
