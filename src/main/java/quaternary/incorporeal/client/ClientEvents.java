@@ -29,12 +29,14 @@ public final class ClientEvents {
 		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_INHIBITOR));
 		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_SPARK_TINKERER));
 		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_SOLIDIFIER));
+		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_INTERCEPTOR_OMNI));
 		
 		setSimpleModel(IncorporeticItems.CORPOREA_TICKET);
 		setSimpleModel(IncorporeticItems.TICKET_CONJURER);
 		
 		setIgnoreAllStateMapper(IncorporeticBlocks.FRAME_TINKERER);
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_SPARK_TINKERER);
+		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_INTERCEPTOR_OMNI);
 		
 		setFlowerModel(SubTileSanvocalia.class, "sanvocalia");
 		setFlowerModel(SubTileSanvocalia.Mini.class, "sanvocalia_chibi");

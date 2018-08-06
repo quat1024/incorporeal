@@ -18,6 +18,7 @@ public final class IncorporeticTiles {
 		reg(TileFrameTinkerer.class, "frame_tinkerer");
 		reg(TileEnderSoulCore.class, "ender_soul_core");
 		reg(TileCorporeaSoulCore.class, "corporea_soul_core");
+		reg(TileCorporeaInterceptorOmni.class, "wildcard_corporea_interceptor");
 	}
 	
 	private static void reg(Class<? extends TileEntity> c, String name) {

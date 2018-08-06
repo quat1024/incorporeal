@@ -33,6 +33,7 @@ public final class IncorporeticLexicon {
 	public static LexiconEntry corporeaSolidifier;
 	public static LexiconEntry corporeaTinkerer;
 	public static LexiconEntry corporeaRetainerDecrementer;
+	public static LexiconEntry corporeaInterceptorOmni;
 	
 	//etc
 	public static LexiconEntry sanvocalia;
@@ -55,6 +56,7 @@ public final class IncorporeticLexicon {
 		corporeaSolidifier = buildCraftingEntry(IncorporeticBlocks.CORPOREA_SOLIDIFIER, BotaniaAPI.categoryEnder, 2);
 		corporeaTinkerer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_SPARK_TINKERER, BotaniaAPI.categoryEnder, 2);
 		corporeaRetainerDecrementer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER, BotaniaAPI.categoryEnder, 2);
+		corporeaInterceptorOmni = buildCraftingEntry(IncorporeticBlocks.CORPOREA_INTERCEPTOR_OMNI, BotaniaAPI.categoryEnder, 1);
 		
 		sanvocalia = buildFlowerEntry("sanvocalia", IncorporeticPetalRecipes.sanvocalia, BotaniaAPI.categoryFunctionalFlowers, 1);
 	}

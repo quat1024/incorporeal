@@ -11,6 +11,7 @@ tile.incorporeal.corporea_inhibitor.name=Corporea Inhibitor
 tile.incorporeal.corporea_solidifier.name=Corporea Solidifier
 tile.incorporeal.corporea_spark_tinkerer.name=Corporea Spark Tinkerer
 tile.incorporeal.corporea_retainer_decrementer.name=Corporea Retainer Evaporator
+tile.incorporeal.wildcard_corporea_interceptor.name=Corporea Interceptor Omni
 tile.incorporeal.frame_tinkerer.name=Frame Tinkerer
 
 tile.incorporeal.ender_soul_core.name=Ender Soul Core
@@ -67,6 +68,11 @@ botania.tagline.incorporeal.corporea_retainer_decrementer=Wither away a retainer
 botania.page.incorporeal.corporea_retainer_decrementer0=The &1Corporea Retainer Evaporator&0 is an addon to the &1Corporea Retainer&0, similar to how the &1Corporea Retainer&0 is itself an addon for the &1Corporea Interceptor&0. When the &1Corporea Retainer Evaporator&0 receives a redstone signal, the item counts of all stored requests in adjacent &1Corporea Retainers&0 will decrease by 1.
 botania.page.incorporeal.corporea_retainer_decrementer1=Note that this process is destructive; powering the &1Corporea Retainer&0 after decrementing its request size will cause it to perform a request of the new size. Using multiple retainers off of the same &1Corporea Interceptor&0 could prove useful.
 botania.page.incorporeal.corporea_retainer_decrementer.flavor=Cha os [Chal len ge ]
+
+botania.entry.incorporeal.wildcard_corporea_interceptor=Corporea Interceptor Omni
+botania.tagline.incorporeal.wildcard_corporea_interceptor=Intercepts all corporea traffic
+botania.page.incorporeal.wildcard_corporea_interceptor0=The &1Corporea Interceptor Omni&0 is an all-knowing variant of the &1Corporea Interceptor&0. It will emit a redstone pulse on all corporea traffic in the network (excluding "count" requests), regardless of the item requested or if the request failed or not. They do not respond to &1Item Frames&0.
+botania.page.incorporeal.wildcard_corporea_interceptor.flavor=Dying Breath of Stokesia
 
 botania.entry.incorporeal.frame_tinkerer=Frame Tinkerer
 botania.tagline.incorporeal.frame_tinkerer=Swap items in item frames

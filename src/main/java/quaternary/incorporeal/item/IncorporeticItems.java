@@ -44,6 +44,7 @@ public final class IncorporeticItems {
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_SOLIDIFIER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_SPARK_TINKERER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER)));
+		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_INTERCEPTOR_OMNI)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.FRAME_TINKERER)));
 		
 		reg.register(createItemBlock(new ItemSoulCore(IncorporeticBlocks.ENDER_SOUL_CORE)));

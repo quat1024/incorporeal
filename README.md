@@ -33,4 +33,5 @@ This Source Code Form is subject to the terms of the Mozilla Public License, v. 
 * Corporea spark augment x d
 * More options for corporea sparks (byebye dropper spark chains)
 * Data boxes
+*????? wildcard corporea interceptor ?????
 * MORE COREMODDING
