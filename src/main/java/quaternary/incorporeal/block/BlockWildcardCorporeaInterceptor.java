@@ -14,17 +14,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
-import quaternary.incorporeal.tile.TileCorporeaInterceptorOmni;
+import quaternary.incorporeal.tile.TileWildcardCorporeaInterceptor;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockCorporeaInterceptorOmni extends Block implements ILexiconable {
+public class BlockWildcardCorporeaInterceptor extends Block implements ILexiconable {
 	public static final PropertyBool POWERED = PropertyBool.create("powered");
 	
-	public BlockCorporeaInterceptorOmni() {
+	public BlockWildcardCorporeaInterceptor() {
 		super(Material.IRON, MapColor.PURPLE);
 		
 		setDefaultState(getDefaultState().withProperty(POWERED, false));
@@ -53,7 +53,7 @@ public class BlockCorporeaInterceptorOmni extends Block implements ILexiconable 
 	@Nullable
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
-		return new TileCorporeaInterceptorOmni();
+		return new TileWildcardCorporeaInterceptor();
 	}
 	
 	@Override

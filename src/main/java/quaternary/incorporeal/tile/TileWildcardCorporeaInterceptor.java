@@ -4,8 +4,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.block.BlockCorporeaInterceptorOmni;
+import quaternary.incorporeal.block.BlockWildcardCorporeaInterceptor;
 import vazkii.botania.api.corporea.ICorporeaInterceptor;
 import vazkii.botania.api.corporea.ICorporeaSpark;
 import vazkii.botania.api.corporea.InvWithLocation;
@@ -14,7 +13,7 @@ import vazkii.botania.common.block.tile.corporea.TileCorporeaRetainer;
 
 import java.util.List;
 
-public class TileCorporeaInterceptorOmni extends TileCorporeaBase implements ICorporeaInterceptor {
+public class TileWildcardCorporeaInterceptor extends TileCorporeaBase implements ICorporeaInterceptor {
 	@Override
 	public void interceptRequest(Object request, int count, ICorporeaSpark spark, ICorporeaSpark source, List<ItemStack> stacks, List<InvWithLocation> inventories, boolean doit) {
 		//Not sure what the difference here is, but the corporea interceptor uses the latter, not this one
@@ -24,9 +23,9 @@ public class TileCorporeaInterceptorOmni extends TileCorporeaBase implements ICo
 	public void interceptRequestLast(Object request, int count, ICorporeaSpark spark, ICorporeaSpark source, List<ItemStack> stacks, List<InvWithLocation> inventories, boolean doit) {
 		if(!doit || count <= 0) return; //So things like crystal cubes, "count x" requests, etc don't trigger a pulse.
 		IBlockState state = world.getBlockState(pos);
-		if(!state.getValue(BlockCorporeaInterceptorOmni.POWERED)) {
+		if(!state.getValue(BlockWildcardCorporeaInterceptor.POWERED)) {
 			//Based on copypasta from TileCorporeaInterceptor of course.
-			world.setBlockState(pos, state.withProperty(BlockCorporeaInterceptorOmni.POWERED, true), 3);
+			world.setBlockState(pos, state.withProperty(BlockWildcardCorporeaInterceptor.POWERED, true), 3);
 			world.scheduleUpdate(pos, getBlockType(), 2);
 			
 			//Notify nearby corporea retainers.
