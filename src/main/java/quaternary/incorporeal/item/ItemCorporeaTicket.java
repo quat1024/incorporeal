@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.*;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
@@ -15,12 +16,15 @@ import vazkii.botania.api.corporea.CorporeaRequest;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
 
-public class ItemCorporeaTicket extends Item implements ILexiconable {	
-	@GameRegistry.ItemStackHolder(value = "incorporeal:corporea_ticket")
-	public static final ItemStack TICKETSTACK = ItemStack.EMPTY;
+public class ItemCorporeaTicket extends Item implements ILexiconable {
+	public ItemCorporeaTicket() {
+		addPropertyOverride(new ResourceLocation(Incorporeal.MODID, "written_ticket"), (stack, world, entity) -> {
+			return isRequestable(stack) ? 1 : 0;
+		});
+	}
 	
 	public static ItemStack createFromRequest(Object request, int requestedCount) {
-		ItemStack stack = TICKETSTACK.copy();		
+		ItemStack stack = new ItemStack(IncorporeticItems.CORPOREA_TICKET);
 		stack.setTagInfo("RequestAmount", new NBTTagInt(requestedCount));
 		if(request instanceof ItemStack) {
 			stack.setTagInfo("RequestItem", ((ItemStack) request).writeToNBT(new NBTTagCompound()));

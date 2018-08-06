@@ -26,6 +26,7 @@ import quaternary.incorporeal.flower.IncorporeticFlowers;
 import quaternary.incorporeal.flower.IncorporeticPetalRecipes;
 import quaternary.incorporeal.flower.SubTileSanvocalia;
 import quaternary.incorporeal.item.IncorporeticItems;
+import quaternary.incorporeal.item.ItemCorporeaTicket;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import quaternary.incorporeal.tile.IncorporeticTiles;
 import vazkii.botania.api.BotaniaAPI;
@@ -49,7 +50,7 @@ public final class Incorporeal {
 		@SideOnly(Side.CLIENT)
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(IncorporeticItems.CORPOREA_TICKET);
+			return new ItemStack(IncorporeticItems.TICKET_CONJURER);
 		}
 		
 		@SideOnly(Side.CLIENT)
