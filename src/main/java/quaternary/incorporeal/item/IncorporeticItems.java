@@ -51,6 +51,7 @@ public final class IncorporeticItems {
 		reg.register(createItemBlock(new ItemSoulCore(IncorporeticBlocks.CORPOREA_SOUL_CORE)));
 		
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.NATURAL_REPEATER)));
+		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.NATURAL_COMPARATOR)));
 	}
 	
 	private static <T extends Item> T createItem(T item, String name) {

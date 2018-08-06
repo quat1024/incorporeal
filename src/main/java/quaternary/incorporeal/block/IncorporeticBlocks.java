@@ -5,6 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.block.naturaldevices.BlockNaturalComparator;
 import quaternary.incorporeal.block.naturaldevices.BlockNaturalDeviceCrop;
 import quaternary.incorporeal.block.naturaldevices.BlockNaturalRepeater;
 import quaternary.incorporeal.block.soulcore.BlockCorporeaSoulCore;
@@ -31,6 +32,7 @@ public final class IncorporeticBlocks {
 		
 		public static final String REDSTONE_ROOT_CROP = "redstone_root_crop";
 		public static final String NATURAL_REPEATER = "natural_repeater";
+		public static final String NATURAL_COMPARATOR = "natural_comparator";
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_INHIBITOR)
@@ -66,6 +68,9 @@ public final class IncorporeticBlocks {
 	@GameRegistry.ObjectHolder(RegistryNames.NATURAL_REPEATER)
 	public static final BlockNaturalRepeater NATURAL_REPEATER = null;
 	
+	@GameRegistry.ObjectHolder(RegistryNames.NATURAL_COMPARATOR)
+	public static final BlockNaturalComparator NATURAL_COMPARATOR = null;
+	
 	public static void registerBlocks(IForgeRegistry<Block> reg) {
 		reg.register(createBlock(new BlockCorporeaInhibitor(), RegistryNames.CORPOREA_INHIBITOR));
 		reg.register(createBlock(new BlockCorporeaLiar(), RegistryNames.CORPOREA_LIAR));
@@ -80,6 +85,7 @@ public final class IncorporeticBlocks {
 		
 		reg.register(createBlock(new BlockNaturalDeviceCrop(), RegistryNames.REDSTONE_ROOT_CROP));
 		reg.register(createBlock(new BlockNaturalRepeater(), RegistryNames.NATURAL_REPEATER));
+		reg.register(createBlock(new BlockNaturalComparator(), RegistryNames.NATURAL_COMPARATOR));
 	}
 	
 	private static <T extends Block> T createBlock(T block, String name) {
