@@ -17,7 +17,8 @@ This Source Code Form is subject to the terms of the Mozilla Public License, v. 
 * the Ender Soul Core: it's an ender chest that can be hoppered into, corporea sparked, etc.
 * the Corporea Soul Core: Only people who have a soul core on the network can use corporea indices
 * Plant redstone roots to grow natural redstone circuitry
-* (name WIP) Corporea Retainer Decrementer, allowing for richer control of interceptor-retainer pairs
+* Corporea Retainer Evaporator, allowing for richer control of interceptor-retainer pairs
+* Corporea Interceptor Omni, pulses on *all* corporea traffic on the network
 
 * Lexica Botania integration
 * 1 coremod boy
