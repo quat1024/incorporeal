@@ -47,6 +47,8 @@ public final class CommonGameEvents {
 				}
 				
 				if(!player.isCreative()) stack.shrink(1);
+				
+				player.swingArm(e.getHand());
 			}
 		}
 	}
