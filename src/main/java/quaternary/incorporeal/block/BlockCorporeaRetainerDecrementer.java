@@ -7,16 +7,20 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import quaternary.incorporeal.lexicon.IncorporeticLexicon;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.common.block.ModBlocks;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaRetainer;
 
-public class BlockCorporeaRetainerDecrementer extends Block {
+public class BlockCorporeaRetainerDecrementer extends Block implements ILexiconable {
 	public BlockCorporeaRetainerDecrementer() {
 		super(Material.IRON);
 		setHardness(5.5f);
@@ -79,5 +83,10 @@ public class BlockCorporeaRetainerDecrementer extends Block {
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		return state.getValue(POWERED) ? 1 : 0;
+	}
+	
+	@Override
+	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
+		return IncorporeticLexicon.corporeaRetainerDecrementer;
 	}
 }

@@ -32,6 +32,17 @@ tile.botania:flower.sanvocaliaChibi.name=Sanvocalia Petite
 ###############################Lexicon!!!
 ########PRE-ELVEN
 
+botania.entry.incorporeal.frame_tinkerer=Frame Tinkerer
+botania.tagline.incorporeal.frame_tinkerer=Swap items in item frames
+botania.page.incorporeal.frame_tinkerer0=The &1Frame Tinkerer&0 is an indispensable tool for any advanced corporeticist. It acts like a &1Spark Tinkerer&0 - drop an item on it, give it a redstone signal, and the item will change places with one in a random nearby &1Item Frame&0.<br>Note that, unlike the &1Spark Tinkerer&0, the &1Frame Tinkerer&0 doesn't have a dedicated location to place items. Just dropping the item on top will suffice.
+botania.page.incorporeal.frame_tinkerer.flavor=Symbiotic Hematophage
+
+botania.entry.incorporeal.naturalDevices=Earthen Devices
+botania.tagline.incorporeal.naturalDevices=Repeaters and comparators - just add water
+botania.page.incorporeal.naturalDevices0=&1Redstone Roots&0 can be planted, and will eventually blossom into usable redstone components. Due to their natural construction, they can only be planted on &1Dirt&0-type blocks, but otherwise operate similarly to traditional redstone components.<br>A &1Redstone Root&0 will grow into a random &1Earthen Device&0 when planted.
+botania.page.incorporeal.naturalDevices1=&1Earthen Repeaters&0 are repeaters that last exactly one second, over twice as long as the maximum-delay traditional repeater. They are the most common device that a &1Redstone Root&0 will grow into.
+botania.page.incorporeal.naturalDevices2=&1Earthen Comparators&0 also have a one-second response and delay time. While they cannot compare redstone signal strengths, and don't have a subtraction mode, they can properly read from chests, item frames, and other comparator-attuned blocks, and will always output either a signal strength of 15 or 0.
+
 ########ELVEN
 ####ITEMS
 botania.entry.incorporeal.fractured_space_rod=Rod of the Fractured Space
@@ -75,10 +86,14 @@ botania.tagline.incorporeal.wildcard_corporea_interceptor=Intercepts all corpore
 botania.page.incorporeal.wildcard_corporea_interceptor0=The &1Corporea Interceptor Omni&0 is an all-knowing variant of the &1Corporea Interceptor&0. It will emit a redstone pulse on all corporea traffic in the network (excluding "count" requests), regardless of the item requested or if the request failed or not. They do not respond to &1Item Frames&0.
 botania.page.incorporeal.wildcard_corporea_interceptor.flavor=Dying Breath of Stokesia
 
-botania.entry.incorporeal.frame_tinkerer=Frame Tinkerer
-botania.tagline.incorporeal.frame_tinkerer=Swap items in item frames
-botania.page.incorporeal.frame_tinkerer0=The &1Frame Tinkerer&0 is an indispensable tool for any advanced corporeticist. It acts like a &1Spark Tinkerer&0 - drop an item on it, give it a redstone signal, and the item will change places with one in a random nearby &1Item Frame&0.<br>Note that, unlike the &1Spark Tinkerer&0, the &1Frame Tinkerer&0 doesn't have a dedicated location to place items. Just dropping the item on top will suffice.
-botania.page.incorporeal.frame_tinkerer.flavor=Symbiotic Hematophage
+botania.entry.incorporeal.soulCores=Soul Cores
+botania.tagline.incorporeal.soulCores=Spirit-specific interactions
+botania.page.incorporeal.soulCores0=&1Soul Cores&0 surround and envelop a &1Player Head&0 in a light mana solution, ever-so-slightly reanimating it. The disembodied head, while not capable of too much remaining brain function, shares the same &4Soul&0 as the real, live &4Player&0 the head is from. Place them by right clicking on a placed &1Player Head&0.
+botania.page.incorporeal.soulCores1=The &1Ender Soul Core&0 provides block-level access to the &1Ender Chest&0 inventory of the bound &1Player&0. As long as the &1Player&0 is online, the &1Ender Soul Core&0's inventory will mirror the contents of their &1Ender Chest&0. All the usual interactions work; hoppers, corporea sparks...
+botania.page.incorporeal.soulCores.flavor0=You Would Not Believe This Random Hecking Nonsense
+botania.page.incorporeal.soulCores2=The &4Corporea Soul Core&0 is a simple privacy system for &4Corporea Networks&0. &1Players&0 are not able to use a &4Corporea Index&0 on the same network as a &1Corporea Soul Core&0, unless one of the &1Corporea Soul Core&0's contains their &4Soul&0.
+botania.page.incorporeal.soulCores.flavor1=Now let me see you &2DANCE&0
+botania.page.incorporeal.soulCoresSpook=<br><br><br><br>     &eThey can feel pain.&r
 
 ####OTHER ELVEN THINGIES
 #TODO add an Incorporeal lang key prefix to these if at all possible

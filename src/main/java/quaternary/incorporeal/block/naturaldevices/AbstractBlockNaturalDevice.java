@@ -10,6 +10,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -22,11 +23,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import quaternary.incorporeal.lexicon.IncorporeticLexicon;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public abstract class BlockNaturalDeviceBase extends Block {
+public abstract class AbstractBlockNaturalDevice extends Block implements ILexiconable {
 	protected abstract boolean shouldPower(World world, BlockPos pos, IBlockState state);
 	
 	public static final int TICK_DELAY = 20;
@@ -34,7 +38,7 @@ public abstract class BlockNaturalDeviceBase extends Block {
 	public static final PropertyBool LIT = PropertyBool.create("lit");
 	public static final AxisAlignedBB AABB = new AxisAlignedBB(0, 1/16d, 0, 1, 3/16d, 1);
 	
-	public BlockNaturalDeviceBase() {
+	public AbstractBlockNaturalDevice() {
 		super(Material.CIRCUITS, MapColor.BROWN);
 		setHardness(0);
 		setSoundType(SoundType.WOOD);
@@ -183,5 +187,10 @@ public abstract class BlockNaturalDeviceBase extends Block {
 	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirror) {
 		return state.withRotation(mirror.toRotation(state.getValue(FACING)));
+	}
+	
+	@Override
+	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
+		return IncorporeticLexicon.naturalDevices;
 	}
 }

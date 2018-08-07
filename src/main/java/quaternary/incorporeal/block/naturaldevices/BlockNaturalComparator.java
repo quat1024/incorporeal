@@ -1,10 +1,8 @@
 package quaternary.incorporeal.block.naturaldevices;
 
-import com.google.common.base.Predicate;
 import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -15,7 +13,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class BlockNaturalComparator extends BlockNaturalDeviceBase {
+public class BlockNaturalComparator extends AbstractBlockNaturalDevice {
 	@Override
 	public boolean getWeakChanges(IBlockAccess world, BlockPos pos) {
 		return true;

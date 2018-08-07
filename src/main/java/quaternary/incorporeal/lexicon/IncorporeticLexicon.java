@@ -3,6 +3,7 @@ package quaternary.incorporeal.lexicon;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
@@ -12,6 +13,7 @@ import quaternary.incorporeal.item.IncorporeticItems;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.lexicon.*;
 import vazkii.botania.api.recipe.RecipePetals;
+import vazkii.botania.common.item.ModItems;
 import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 import vazkii.botania.common.lexicon.CompatLexiconEntry;
 import vazkii.botania.common.lexicon.page.*;
@@ -22,6 +24,7 @@ public final class IncorporeticLexicon {
 	
 	//PRE-ELVEN
 	public static LexiconEntry frameTinkerer;
+	public static LexiconEntry naturalDevices;
 	
 	//ELVEN
 	//items
@@ -34,6 +37,7 @@ public final class IncorporeticLexicon {
 	public static LexiconEntry corporeaTinkerer;
 	public static LexiconEntry corporeaRetainerDecrementer;
 	public static LexiconEntry corporeaInterceptorOmni;
+	public static LexiconEntry soulCores;
 	
 	//etc
 	public static LexiconEntry sanvocalia;
@@ -44,6 +48,14 @@ public final class IncorporeticLexicon {
 		/////
 		
 		frameTinkerer = buildCraftingEntry(IncorporeticBlocks.FRAME_TINKERER, BotaniaAPI.categoryDevices, 1);
+		
+		//tfw u build castles of abstractions but they come crashing down on you
+		naturalDevices = new CompatLexiconEntry("incorporeal.naturalDevices", BotaniaAPI.categoryDevices, Incorporeal.NAME).setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"));
+		naturalDevices.setIcon(new ItemStack(Item.getItemFromBlock(IncorporeticBlocks.NATURAL_COMPARATOR)));
+		naturalDevices.addExtraDisplayedRecipe(new ItemStack(Item.getItemFromBlock(IncorporeticBlocks.NATURAL_REPEATER)));
+		naturalDevices.addExtraDisplayedRecipe(new ItemStack(ModItems.manaResource, 1, 6));
+		naturalDevices.setKnowledgeType(newEntryType);
+		//anyhoo
 		
 		/////
 		newEntryType = BotaniaAPI.elvenKnowledge; //Elven Knowledge entries
@@ -57,6 +69,20 @@ public final class IncorporeticLexicon {
 		corporeaTinkerer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_SPARK_TINKERER, BotaniaAPI.categoryEnder, 2);
 		corporeaRetainerDecrementer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER, BotaniaAPI.categoryEnder, 2);
 		corporeaInterceptorOmni = buildCraftingEntry(IncorporeticBlocks.CORPOREA_INTERCEPTOR_OMNI, BotaniaAPI.categoryEnder, 1);
+		
+		soulCores = new CompatLexiconEntry("incorporeal.soulCores", BotaniaAPI.categoryEnder, Incorporeal.NAME);
+		soulCores.setLexiconPages(
+						new PageText("0"),
+						new PageText("1"),
+						new PageCraftingRecipe(".flavor0", IncorporeticBlocks.ENDER_SOUL_CORE.getRegistryName()),
+						new PageText("2"),
+						new PageCraftingRecipe(".flavor1", IncorporeticBlocks.CORPOREA_SOUL_CORE.getRegistryName()),
+						new PageText("Spook")
+		);
+		soulCores.setKnowledgeType(newEntryType);
+		soulCores.addExtraDisplayedRecipe(new ItemStack(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_SOUL_CORE)));
+		soulCores.addExtraDisplayedRecipe(new ItemStack(Item.getItemFromBlock(IncorporeticBlocks.ENDER_SOUL_CORE)));
+		soulCores.setIcon(new ItemStack(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_SOUL_CORE)));
 		
 		sanvocalia = buildFlowerEntry("sanvocalia", IncorporeticPetalRecipes.sanvocalia, BotaniaAPI.categoryFunctionalFlowers, 1);
 	}
