@@ -30,6 +30,8 @@ public final class ClientEvents {
 		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_SPARK_TINKERER));
 		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_SOLIDIFIER));
 		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_INTERCEPTOR_OMNI));
+		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.NATURAL_REPEATER));
+		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.NATURAL_COMPARATOR));
 		
 		setSimpleModel(IncorporeticItems.CORPOREA_TICKET);
 		setSimpleModel(IncorporeticItems.TICKET_CONJURER);

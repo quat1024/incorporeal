@@ -1,20 +1,27 @@
 package quaternary.incorporeal.block.naturaldevices;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -23,18 +30,57 @@ public abstract class BlockNaturalDeviceBase extends Block {
 	protected abstract boolean shouldPower(World world, BlockPos pos, IBlockState state);
 	
 	public static final int TICK_DELAY = 20;
+	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+	public static final PropertyBool LIT = PropertyBool.create("lit");
+	public static final AxisAlignedBB AABB = new AxisAlignedBB(0, 1/16d, 0, 1, 3/16d, 1);
 	
 	public BlockNaturalDeviceBase() {
 		super(Material.CIRCUITS, MapColor.BROWN);
-		
+		setHardness(0);
+		setSoundType(SoundType.WOOD);
+		setLightOpacity(0);
 		setDefaultState(getDefaultState().withProperty(FACING, EnumFacing.NORTH).withProperty(LIT, false));
 	}
 	
-	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-	public static final PropertyBool LIT = PropertyBool.create("lit");
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.CUTOUT_MIPPED;
+	}
+	
+	@Override
+	public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+		return false;
+	}
+	
+	@Override
+	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+		return face == EnumFacing.DOWN ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
+	}
+	
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return AABB;
+	}
+	
+	@Override
+	public boolean canPlaceBlockAt(World world, BlockPos pos) {
+		return canStay(world, pos);
+	}
 	
 	protected boolean canStay(World world, BlockPos pos) {
-		return world.getBlockState(pos.down()).isTopSolid(); //Same logic as repeater, Dont mind the deprecation
+		return world.getBlockState(pos.down()).getMaterial() == Material.GROUND;
+		//return world.getBlockState(pos.down()).isTopSolid(); //Same logic as repeater
 	}
 	
 	@Override

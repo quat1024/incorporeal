@@ -14,6 +14,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
@@ -55,5 +57,23 @@ public class BlockNaturalRepeater extends BlockNaturalDeviceBase {
 		}
 		
 		super.onBlockDestroyedByPlayer(worldIn, pos, state);
+	}
+	
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
+		if(state.getValue(LIT)) {
+			//Based on copypasta from BlockRedstoneRepeater
+			EnumFacing enumfacing = state.getValue(FACING);
+			double d0 = (double)((float)pos.getX() + 0.5F) + (double)(rand.nextFloat() - 0.5F) * 0.2D;
+			double d1 = (double)((float)pos.getY() + 0.4F) + (double)(rand.nextFloat() - 0.5F) * 0.2D;
+			double d2 = (double)((float)pos.getZ() + 0.5F) + (double)(rand.nextFloat() - 0.5F) * 0.2D;
+			float f = (rand.nextBoolean() ? -5 : 7) / 16f;
+			
+			double d3 = (double)(f * (float)enumfacing.getFrontOffsetX());
+			double d4 = (double)(f * (float)enumfacing.getFrontOffsetZ());
+			world.spawnParticle(EnumParticleTypes.REDSTONE, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
+		}
 	}
 }

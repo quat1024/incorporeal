@@ -2,7 +2,7 @@
 	"parent": "incorporeal:block/natural_devices/natural_comparator",
 	"textures": {
 		"cross": "incorporeal:block/natural_devices/cross/large",
-		"top": "incorporeal:block/natural_devices/top/comparator",
+		"top": "incorporeal:block/natural_devices/top/comparator_lit",
 		"bottom": "incorporeal:block/natural_devices/bottom",
 		"side": "incorporeal:block/natural_devices/side",
 		"torch_short": "incorporeal:block/natural_devices/torch_lit",

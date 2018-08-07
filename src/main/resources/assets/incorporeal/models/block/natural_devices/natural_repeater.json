@@ -2,6 +2,9 @@
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/block",
 	"ambientocclusion": false,
+	"textures": {
+		"particle": "#top"
+	},
 	"elements": [
 		{
 			"name": "cross2",
@@ -9,12 +12,8 @@
 			"to": [11, 2, 11],
 			"rotation": {"angle": 45, "axis": "y", "origin": [5, -1, 11], "rescale": true},
 			"faces": {
-				"north": {"uv": [0, 0, 8, 3], "texture": "#cross"},
-				"east": {"uv": [0, 0, 0, 3], "texture": "#missing"},
-				"south": {"uv": [0, 0, 8, 3], "texture": "#cross"},
-				"west": {"uv": [0, 0, 0, 3], "texture": "#missing"},
-				"up": {"uv": [0, 0, 8.48, 0], "texture": "#missing"},
-				"down": {"uv": [0, 0, 8.48, 0], "texture": "#missing"}
+				"north": {"uv": [4, 13, 12, 16], "texture": "#cross"},
+				"south": {"uv": [4, 13, 12, 16], "texture": "#cross"}
 			}
 		},
 		{
@@ -23,12 +22,8 @@
 			"to": [11, 2, 5],
 			"rotation": {"angle": -45, "axis": "y", "origin": [5, -1, 5], "rescale": true},
 			"faces": {
-				"north": {"uv": [0, 0, 8, 3], "texture": "#cross"},
-				"east": {"uv": [0, 0, 0, 3], "texture": "#missing"},
-				"south": {"uv": [0, 0, 8, 3], "texture": "#cross"},
-				"west": {"uv": [0, 0, 0, 3], "texture": "#missing"},
-				"up": {"uv": [0, 0, 8.48, 0], "texture": "#missing"},
-				"down": {"uv": [0, 0, 8.48, 0], "texture": "#missing"}
+				"north": {"uv": [4, 13, 12, 16], "texture": "#cross"},
+				"south": {"uv": [4, 13, 12, 16], "texture": "#cross"}
 			}
 		},
 		{
@@ -54,8 +49,7 @@
 				"east": {"uv": [6, 0, 8, 8], "texture": "#torch_tall"},
 				"south": {"uv": [2, 0, 4, 8], "texture": "#torch_tall"},
 				"west": {"uv": [4, 0, 6, 8], "texture": "#torch_tall"},
-				"up": {"uv": [8, 0, 10, 2], "texture": "#torch_tall"},
-				"down": {"uv": [0, 0, 2, 2], "texture": "#missing"}
+				"up": {"uv": [8, 0, 10, 2], "texture": "#torch_tall"}
 			}
 		},
 		{
@@ -68,8 +62,7 @@
 				"east": {"uv": [6, 0, 8, 4], "texture": "#torch_short"},
 				"south": {"uv": [2, 0, 4, 4], "texture": "#torch_short"},
 				"west": {"uv": [4, 0, 6, 4], "texture": "#torch_short"},
-				"up": {"uv": [8, 0, 10, 2], "texture": "#torch_short"},
-				"down": {"uv": [0, 0, 2, 2], "texture": "#missing"}
+				"up": {"uv": [8, 0, 10, 2], "texture": "#torch_short"}
 			}
 		}
 	]

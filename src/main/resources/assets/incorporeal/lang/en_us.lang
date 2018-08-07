@@ -18,6 +18,7 @@ tile.incorporeal.ender_soul_core.name=Ender Soul Core
 tile.incorporeal.corporea_soul_core.name=Corporetic Soul Core
 
 tile.incorporeal.natural_repeater.name=Earthen Repeater
+tile.incorporeal.natural_comparator.name=Earthen Comparator
 
 #Flowers
 tile.incorporeal.flower.sanvocalia.name=Sanvocalia
