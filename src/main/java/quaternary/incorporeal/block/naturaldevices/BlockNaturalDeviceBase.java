@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public abstract class BlockNaturalDeviceBase extends Block {
@@ -92,6 +93,11 @@ public abstract class BlockNaturalDeviceBase extends Block {
 	@Override
 	public int getWeakPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
 		return state.getValue(LIT) && (state.getValue(FACING) == side) ? 15 : 0;
+	}
+	
+	@Override
+	public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable EnumFacing side) {
+		return side != null && (state.getValue(FACING) == side || state.getValue(FACING) == side.getOpposite());
 	}
 	
 	@Override

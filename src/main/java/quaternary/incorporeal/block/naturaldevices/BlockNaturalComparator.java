@@ -23,7 +23,7 @@ public class BlockNaturalComparator extends BlockNaturalDeviceBase {
 		if(behind.hasComparatorInputOverride()) {
 			return behind.getComparatorInputOverride(world, behindPos) > 0;
 		} else if(behind.getBlock() instanceof BlockRedstoneWire) {
-			return state.getValue(BlockRedstoneWire.POWER) > 0;
+			return behind.getValue(BlockRedstoneWire.POWER) > 0;
 		} else if(world.getRedstonePower(behindPos, comparatorFacing) > 0) {
 			return true;
 		} else if(behind.isNormalCube()){
