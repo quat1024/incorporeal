@@ -1,42 +1,36 @@
 {
-	"forge_marker": 1,
-	"defaults": {
-		"model": "incorporeal:natural_devices/natural_repeater",
-		"textures": {
-			"cross": "incorporeal:block/natural_devices/cross/large",
-			"top": "incorporeal:block/natural_devices/top/comparator",
-			"bottom": "incorporeal:block/natural_devices/bottom",
-			"side": "incorporeal:block/natural_devices/side"
-		}
-	},
 	"variants": {
-		"facing": [{
-			"north": {
-				"y": 0
-			},
-			"east": {
-				"y": 90
-			},
-			"south": {
-				"y": 180
-			},
-			"west": {
-				"y": 270
-			}
-		}],
-		"lit": [{
-			"true": {
-				"textures": {
-					"torch_short": "incorporeal:block/natural_devices/torch_lit",
-					"torch_tall": "incorporeal:block/natural_devices/torch_lit"
-				}
-			},
-			"false": {
-				"textures": {
-					"torch_short": "incorporeal:block/natural_devices/torch_unlit",
-					"torch_tall": "incorporeal:block/natural_devices/torch_unlit"
-				}
-			}
-		}]
+		"facing=north,lit=false": {
+			"model": "incorporeal:natural_devices/natural_repeater_unlit",
+			"y": 180
+		},
+		"facing=east,lit=false": {
+			"model": "incorporeal:natural_devices/natural_repeater_unlit",
+			"y": 270
+		},
+		"facing=south,lit=false": {
+			"model": "incorporeal:natural_devices/natural_repeater_unlit",
+			"y": 0
+		},
+		"facing=west,lit=false": {
+			"model": "incorporeal:natural_devices/natural_repeater_unlit",
+			"y": 90
+		},
+		"facing=north,lit=true": {
+			"model": "incorporeal:natural_devices/natural_repeater_lit",
+			"y": 180
+		},
+		"facing=east,lit=true": {
+			"model": "incorporeal:natural_devices/natural_repeater_lit",
+			"y": 270
+		},
+		"facing=south,lit=true": {
+			"model": "incorporeal:natural_devices/natural_repeater_lit",
+			"y": 0
+		},
+		"facing=west,lit=true": {
+			"model": "incorporeal:natural_devices/natural_repeater_lit",
+			"y": 90
+		}
 	}
 }
