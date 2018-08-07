@@ -7,6 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
@@ -19,6 +20,20 @@ import java.util.*;
 public class BlockNaturalDeviceCrop extends BlockCrops {
 	//don't have access to a world in withAge
 	private static final Random naturalDeviceRandom = new Random();
+	
+	public static final AxisAlignedBB[] AABBS = new AxisAlignedBB[7];
+	
+	static {
+		for(int i = 0; i < 7; i++) {
+			double uhh = (7 - i) / 32d;
+			AABBS[i] = new AxisAlignedBB(uhh, 0, uhh, 1 - uhh, 3/16d, 1 - uhh);
+		}
+	}
+	
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		return AABBS[state.getValue(AGE)];
+	}
 	
 	@Override
 	public IBlockState withAge(int age) {
@@ -94,7 +109,7 @@ public class BlockNaturalDeviceCrop extends BlockCrops {
 	
 	@Override
 	protected Item getSeed() {
-		return Items.ACACIA_BOAT; //A dummy item that will get stomped on in getDrops.
+		return Items.REDSTONE; //A dummy item that will get stomped on in getDrops.
 		//I would love to return the redstone root item, but it uses metadata, and this isn't a stack.
 	}
 	
