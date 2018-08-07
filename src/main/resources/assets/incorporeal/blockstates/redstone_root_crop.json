@@ -1,0 +1,58 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "incorporeal:natural_devices/short_cross_with_hat"
+	},
+	"variants": {
+		"age": {
+			"0": {
+				"textures": {
+					"hat": "incorporeal:block/natural_devices/top/growing_0",
+					"cross": "incorporeal:block/natural_devices/cross/small"
+				}
+			},
+			"1": {
+				"textures": {
+					"hat": "incorporeal:block/natural_devices/top/growing_1",
+					"cross": "incorporeal:block/natural_devices/cross/small"
+				}
+			},
+			"2": {
+				"textures": {
+					"hat": "incorporeal:block/natural_devices/top/growing_2",
+					"cross": "incorporeal:block/natural_devices/cross/small"
+				}
+			},
+			"3": {
+				"textures": {
+					"hat": "incorporeal:block/natural_devices/top/growing_3",
+					"cross": "incorporeal:block/natural_devices/cross/small"
+				}
+			},
+			"4": {
+				"textures": {
+					"hat": "incorporeal:block/natural_devices/top/growing_4",
+					"cross": "incorporeal:block/natural_devices/cross/large"
+				}
+			},
+			"5": {
+				"textures": {
+					"hat": "incorporeal:block/natural_devices/top/growing_5",
+					"cross": "incorporeal:block/natural_devices/cross/large"
+				}
+			},
+			"6": {
+				"textures": {
+					"hat": "incorporeal:block/natural_devices/top/growing_6",
+					"cross": "incorporeal:block/natural_devices/cross/large"
+				}
+			},
+			"7": {
+				"textures": {
+					"hat": "incorporeal:block/natural_devices/top/growing_6",
+					"cross": "incorporeal:block/natural_devices/cross/large"
+				}
+			}
+		}
+	}
+}

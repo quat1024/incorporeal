@@ -74,12 +74,12 @@ public final class Incorporeal {
 		//TODO find a better home for these?
 		//TODO replace with custom "natural" crops too
 		IncorporealNaturalDeviceRegistry.addNaturalDevice((rand) -> {
-			return Blocks.UNPOWERED_COMPARATOR.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
-		}, 3);
+			return IncorporeticBlocks.NATURAL_REPEATER.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
+		}, 80);
 		
 		IncorporealNaturalDeviceRegistry.addNaturalDevice((rand) -> {
-			return Blocks.UNPOWERED_REPEATER.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
-		}, 5);
+			return IncorporeticBlocks.NATURAL_COMPARATOR.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
+		}, 20);
 		
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(ModItems.manaResource, new DispenserBehaviorRedstoneRoot());
 	}

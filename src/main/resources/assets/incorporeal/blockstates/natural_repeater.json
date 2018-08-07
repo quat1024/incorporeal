@@ -1,7 +1,7 @@
 {
 	"forge_marker": 1,
 	"defaults": {
-		"model": "incorporeal:natural_devices/natural_comparator",
+		"model": "incorporeal:natural_devices/natural_repeater",
 		"textures": {
 			"cross": "incorporeal:block/natural_devices/cross/large",
 			"top": "incorporeal:block/natural_devices/top/comparator",
@@ -10,8 +10,10 @@
 		}
 	},
 	"variants": {
-		"facing": {
-			"north": [{}],
+		"facing": [{
+			"north": {
+				"y": 0
+			},
 			"east": {
 				"y": 90
 			},
@@ -21,8 +23,8 @@
 			"west": {
 				"y": 270
 			}
-		},
-		"lit": {
+		}],
+		"lit": [{
 			"true": {
 				"textures": {
 					"torch_short": "incorporeal:block/natural_devices/torch_lit",
@@ -35,6 +37,6 @@
 					"torch_tall": "incorporeal:block/natural_devices/torch_unlit"
 				}
 			}
-		}
+		}]
 	}
 }
