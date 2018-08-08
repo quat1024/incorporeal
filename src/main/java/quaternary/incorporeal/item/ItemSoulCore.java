@@ -16,10 +16,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import quaternary.incorporeal.IncorporeticConfig;
 import quaternary.incorporeal.block.soulcore.AbstractBlockSoulCore;
 import quaternary.incorporeal.tile.soulcore.AbstractTileSoulCore;
-
-import java.util.UUID;
 
 public class ItemSoulCore extends ItemBlock {
 	public ItemSoulCore(AbstractBlockSoulCore block) {
@@ -38,16 +37,17 @@ public class ItemSoulCore extends ItemBlock {
 		Block clickedBlock = clickedState.getBlock();
 		
 		if(clickedBlock instanceof BlockSkull) {
-			UUID uuid = null;
+			GameProfile profile = null;
 			
 			TileEntity tile = world.getTileEntity(pos);
 			if(tile instanceof TileEntitySkull) {
 				TileEntitySkull skull = (TileEntitySkull) tile;
-				GameProfile profile = skull.getPlayerProfile();
-				if(profile != null) uuid = profile.getId();
+				profile = skull.getPlayerProfile();
 			}
 			
-			if(uuid == null) return EnumActionResult.PASS;
+			if(profile == null) return EnumActionResult.PASS;
+			
+			if(!IncorporeticConfig.SoulCore.EVERYONE_ANYONE && !profile.equals(player.getGameProfile())) return EnumActionResult.PASS;
 			
 			IBlockState placedState = block.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, heldStack.getMetadata(), player, hand);
 			boolean success = placeBlockAt(heldStack, player, world, pos, facing, hitX, hitY, hitZ, placedState) ;
@@ -58,13 +58,13 @@ public class ItemSoulCore extends ItemBlock {
 				world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
 				
 				//shrincc
-				heldStack.shrink(1);
+				if(!player.isCreative()) heldStack.shrink(1);
 				
-				//set the uuid on the tile entity to the one on the skull
+				//set the game profile on the tile entity to the one on the skull
 				if(!world.isRemote) {
 					TileEntity soulcoreTile = world.getTileEntity(pos);
 					if(soulcoreTile instanceof AbstractTileSoulCore) {
-						((AbstractTileSoulCore) soulcoreTile).setOwnerUUID(uuid);
+						((AbstractTileSoulCore) soulcoreTile).setOwnerProfile(profile);
 					}
 				}
 			}

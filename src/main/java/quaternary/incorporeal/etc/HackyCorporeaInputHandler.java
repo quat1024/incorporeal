@@ -1,5 +1,6 @@
 package quaternary.incorporeal.etc;
 
+import com.mojang.authlib.GameProfile;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -51,28 +52,28 @@ public class HackyCorporeaInputHandler extends SacrificialGoat implements ICorpo
 		
 		if(firstSpark == null) return; //Without calling super; they're not near an index anyway.
 		
-		List<UUID> soulCoreUUIDs = new ArrayList<>();
+		List<GameProfile> soulCoreProfiles = new ArrayList<>();
 		
 		//Look for corporea sparks on the same network attacked to corporea soul cores.
 		List<InvWithLocation> nearbyInv = CorporeaHelper.getInventoriesOnNetwork(firstSpark);
 		for(InvWithLocation inv : nearbyInv) {
 			TileEntity tile = event.getPlayer().world.getTileEntity(inv.pos);
 			if(tile instanceof TileCorporeaSoulCore) {
-				soulCoreUUIDs.add(((TileCorporeaSoulCore) tile).getOwnerUUID());
+				soulCoreProfiles.add(((TileCorporeaSoulCore) tile).getOwnerProfile());
 			}
 		}
 		
 		//If there's none on the network, assume it's already ok to use the network
-		if(soulCoreUUIDs.isEmpty()) {
+		if(soulCoreProfiles.isEmpty()) {
 			super.onChatMessage(event);
 			return;
 		}
 		
-		//If there are some, their UUID must match at least one in order to use the index
-		UUID playerID = event.getPlayer().getUniqueID();
+		//If there are some, their game profile must match at least one in order to use the index
+		GameProfile playerProfile = event.getPlayer().getGameProfile();
 		boolean ok = false;
-		for(UUID uuid : soulCoreUUIDs) {
-			if(uuid.equals(playerID)) {
+		for(GameProfile profile : soulCoreProfiles) {
+			if(profile.equals(playerProfile)) {
 				ok = true;
 				break;
 			}

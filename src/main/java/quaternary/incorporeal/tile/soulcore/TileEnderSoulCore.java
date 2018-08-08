@@ -23,7 +23,7 @@ public class TileEnderSoulCore extends AbstractTileSoulCore implements ITickable
 		
 		//TODO: Would be nice if it worked crossdimensionally.
 		for(EntityPlayer playerEnt : world.playerEntities) {
-			if(playerEnt.getUniqueID().equals(getOwnerUUID())) {
+			if(playerEnt.getGameProfile().equals(getOwnerProfile())) {
 				isOnline = true;
 				owner = playerEnt;
 				break;
