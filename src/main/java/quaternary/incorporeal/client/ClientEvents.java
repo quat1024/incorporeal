@@ -2,7 +2,6 @@ package quaternary.incorporeal.client;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.IStateMapper;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ColorHandlerEvent;
@@ -15,7 +14,6 @@ import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.flower.SubTileSanvocalia;
 import quaternary.incorporeal.item.IncorporeticItems;
-import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.BotaniaAPIClient;
 import vazkii.botania.api.subtile.SubTileEntity;
 

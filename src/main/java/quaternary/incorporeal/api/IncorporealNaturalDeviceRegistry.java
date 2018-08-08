@@ -2,10 +2,11 @@ package quaternary.incorporeal.api;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Bootstrap;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.function.Function;
 
 /** Used to determine what blocks the "planted redstone root" will be able to grow into. */

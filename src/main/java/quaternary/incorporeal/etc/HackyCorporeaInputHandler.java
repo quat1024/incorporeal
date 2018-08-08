@@ -1,17 +1,24 @@
 package quaternary.incorporeal.etc;
 
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.text.*;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.tile.soulcore.TileCorporeaSoulCore;
-import vazkii.botania.api.corporea.*;
+import vazkii.botania.api.corporea.CorporeaHelper;
+import vazkii.botania.api.corporea.ICorporeaAutoCompleteController;
+import vazkii.botania.api.corporea.ICorporeaSpark;
+import vazkii.botania.api.corporea.InvWithLocation;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaIndex;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * This is the worst class I've ever written in my whole life. Ever. There's no topping this.

@@ -2,7 +2,9 @@ package quaternary.incorporeal.spookyasm;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.eventbus.EventBus;
-import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.DummyModContainer;
+import net.minecraftforge.fml.common.LoadController;
+import net.minecraftforge.fml.common.ModMetadata;
 
 @SuppressWarnings("unused")
 public class IncorporealCoreModContainer extends DummyModContainer {

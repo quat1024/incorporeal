@@ -1,13 +1,13 @@
 package quaternary.incorporeal;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockDispenser;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -24,17 +24,10 @@ import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
 import quaternary.incorporeal.flower.IncorporeticFlowers;
 import quaternary.incorporeal.flower.IncorporeticPetalRecipes;
-import quaternary.incorporeal.flower.SubTileSanvocalia;
 import quaternary.incorporeal.item.IncorporeticItems;
-import quaternary.incorporeal.item.ItemCorporeaTicket;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import quaternary.incorporeal.tile.IncorporeticTiles;
-import vazkii.botania.api.BotaniaAPI;
-import vazkii.botania.api.subtile.signature.BasicSignature;
-import vazkii.botania.common.block.ModBlocks;
 import vazkii.botania.common.item.ModItems;
-import vazkii.botania.common.item.block.ItemBlockFloatingSpecialFlower;
-import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 
 @SuppressWarnings("ALL")
 @Mod(modid = Incorporeal.MODID, name = Incorporeal.NAME, version = Incorporeal.VERSION, dependencies = Incorporeal.DEPENDENCIES)

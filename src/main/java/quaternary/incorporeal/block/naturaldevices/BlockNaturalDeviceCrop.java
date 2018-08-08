@@ -1,6 +1,6 @@
 package quaternary.incorporeal.block.naturaldevices;
 
-import net.minecraft.block.*;
+import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -15,7 +15,8 @@ import net.minecraft.world.World;
 import quaternary.incorporeal.api.IncorporealNaturalDeviceRegistry;
 import vazkii.botania.common.item.ModItems;
 
-import java.util.*;
+import java.util.ListIterator;
+import java.util.Random;
 
 public class BlockNaturalDeviceCrop extends BlockCrops {
 	//don't have access to a world in withAge

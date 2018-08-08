@@ -2,10 +2,14 @@ package quaternary.incorporeal.etc.helper;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import vazkii.botania.api.corporea.*;
+import vazkii.botania.api.corporea.CorporeaHelper;
+import vazkii.botania.api.corporea.CorporeaRequest;
+import vazkii.botania.api.corporea.ICorporeaSpark;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaIndex;
 import vazkii.botania.common.entity.EntityCorporeaSpark;
 

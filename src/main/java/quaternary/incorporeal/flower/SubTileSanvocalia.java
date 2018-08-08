@@ -5,25 +5,19 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import quaternary.incorporeal.IncorporeticConfig;
 import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import quaternary.incorporeal.item.ItemCorporeaTicket;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import vazkii.botania.api.corporea.CorporeaRequest;
-import vazkii.botania.api.corporea.ICorporeaSpark;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.subtile.RadiusDescriptor;
@@ -31,9 +25,9 @@ import vazkii.botania.api.subtile.SubTileFunctional;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaIndex;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.List;
+import java.util.UUID;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 //A horrible pun based off of the real life Sanvitalia flower
 public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable {

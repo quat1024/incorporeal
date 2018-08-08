@@ -3,20 +3,23 @@ package quaternary.incorporeal.lexicon;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.flower.IncorporeticPetalRecipes;
-import quaternary.incorporeal.flower.SubTileSanvocalia;
 import quaternary.incorporeal.item.IncorporeticItems;
 import vazkii.botania.api.BotaniaAPI;
-import vazkii.botania.api.lexicon.*;
+import vazkii.botania.api.lexicon.KnowledgeType;
+import vazkii.botania.api.lexicon.LexiconCategory;
+import vazkii.botania.api.lexicon.LexiconEntry;
+import vazkii.botania.api.lexicon.LexiconPage;
 import vazkii.botania.api.recipe.RecipePetals;
 import vazkii.botania.common.item.ModItems;
 import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 import vazkii.botania.common.lexicon.CompatLexiconEntry;
-import vazkii.botania.common.lexicon.page.*;
+import vazkii.botania.common.lexicon.page.PageCraftingRecipe;
+import vazkii.botania.common.lexicon.page.PagePetalRecipe;
+import vazkii.botania.common.lexicon.page.PageText;
 
 public final class IncorporeticLexicon {
 	private IncorporeticLexicon() {

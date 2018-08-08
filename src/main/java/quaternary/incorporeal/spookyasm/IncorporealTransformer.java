@@ -3,9 +3,15 @@ package quaternary.incorporeal.spookyasm;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.objectweb.asm.*;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.ClassNode;
-import quaternary.incorporeal.spookyasm.tweaks.*;
+import quaternary.incorporeal.spookyasm.tweaks.AbstractTweak;
+import quaternary.incorporeal.spookyasm.tweaks.CorporeaInhibitorTweak;
+import quaternary.incorporeal.spookyasm.tweaks.InventoryWrapTweak;
+import quaternary.incorporeal.spookyasm.tweaks.RetainerComparatorTweak;
+import quaternary.incorporeal.spookyasm.tweaks.TerribleHorribleNoGoodVeryBadAwfulCorporeaIndexInputHandlerTweak;
 
 import java.util.ArrayList;
 import java.util.List;

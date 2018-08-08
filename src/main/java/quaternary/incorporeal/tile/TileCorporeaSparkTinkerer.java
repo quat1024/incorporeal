@@ -12,7 +12,9 @@ import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import vazkii.botania.common.entity.EntityCorporeaSpark;
 
 import javax.annotation.Nonnull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class TileCorporeaSparkTinkerer extends TileEntity {
 	private EnumDyeColor myNetwork = EnumDyeColor.WHITE; //the default setting	

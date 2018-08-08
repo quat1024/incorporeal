@@ -11,7 +11,9 @@ import net.minecraftforge.items.IItemHandler;
 import quaternary.incorporeal.api.ICustomWrappedInventory;
 import quaternary.incorporeal.block.BlockCorporeaLiar;
 import quaternary.incorporeal.etc.LyingWrappedInventory;
-import vazkii.botania.api.corporea.*;
+import vazkii.botania.api.corporea.ICorporeaSpark;
+import vazkii.botania.api.corporea.IWrappedInventory;
+import vazkii.botania.api.corporea.InvWithLocation;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaBase;
 
 import javax.annotation.Nonnull;

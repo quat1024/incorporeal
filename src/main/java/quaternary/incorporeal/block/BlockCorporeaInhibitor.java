@@ -6,7 +6,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -24,7 +23,9 @@ import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.common.entity.EntityCorporeaSpark;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.WeakHashMap;
 
 @Mod.EventBusSubscriber
 public class BlockCorporeaInhibitor extends Block implements ICorporeaInhibitor, ILexiconable {

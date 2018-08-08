@@ -6,7 +6,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import quaternary.incorporeal.tile.TileCorporeaLiar;
-import vazkii.botania.api.corporea.*;
+import vazkii.botania.api.corporea.CorporeaRequest;
+import vazkii.botania.api.corporea.ICorporeaSpark;
+import vazkii.botania.api.corporea.InvWithLocation;
 import vazkii.botania.common.integration.corporea.WrappedInventoryBase;
 
 import java.util.ArrayList;
