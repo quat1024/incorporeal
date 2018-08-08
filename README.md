@@ -3,35 +3,43 @@ Incorporeal
 
 A Botania addon that adds more toys for your corporea system. Designed for managing large-scale systems and expanding what is possible with corporea without trivializing it.
 
+Development status - adding the finishing touches and hastily slapping together some art. Tentative release date is August 14th.
+
 This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 ### Sounds cool what does it add
 
 * A Corporea Spark Tinkerer to swap out spark networks
+* An Item Frame Tinkerer to switch items on Item Frames
 * Corporea Prevaricator to lie to your system about the contents of a chest
-* Corporea Solidifier to store corporea requests as items
-* Sanvocalia flower to read those requests off to corporea indexes
-* A corporea index you can carry around in your hand
-* Item frame tinkerer!
+* Corporea Solidifier to store corporea requests as *corporea tickets*
+* Ticket Conjurer to create tickets on the go
+* Sanvocalia flower to read those tickets off to corporea indexes
 * the Rod of the Fractured Space: teleport items to an Open Crate, from anywhere
-* the Ender Soul Core: it's an ender chest that can be hoppered into, corporea sparked, etc.
+* the Ender Soul Core: A link to a player's ender chest that can be hoppered into, corporea sparked, etc
 * the Corporea Soul Core: Only people who have a soul core on the network can use corporea indices
 * Plant redstone roots to grow natural redstone circuitry
 * Corporea Retainer Evaporator, allowing for richer control of interceptor-retainer pairs
-* Corporea Interceptor Omni, pulses on *all* corporea traffic on the network
+* Corporea Interceptor Omni, pulses on *all* corporea traffic on the network, failed or not
+* Lexica Botania integration for ~~all~~most of this, of course
 
-* Lexica Botania integration
-* 1 coremod boy
+* 1 coremod boio
 
 ### What doesn't it add?
 
-* GUIs
+* GUIs, what is this, some garbage tech mod?
 * Things that make corporea systems easy to create
 
-### What's planned?
+### What's left to do?
 
-* Can i get uhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh Boneless block model
-* Corporea spark augment x d
+* Can i get uhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh 🅱🅱🅱🅱oneless block model
+* with a large coke and a side of Tesr
+* Understandable have a nice day.
+* clean up Todo comments
+
+### What's planned for the next update?
+
+* ~~Corporea spark augment x d~~too hard, pr that
 * More options for corporea sparks (byebye dropper spark chains)
 * Data boxes
-* MORE COREMODDING
+* MORE COREMODDING????!??!!
