@@ -29,6 +29,8 @@ public final class IncorporeticLexicon {
 	public static LexiconEntry frameTinkerer;
 	public static LexiconEntry naturalDevices;
 	
+	public static LexiconEntry sweetAlexum;
+	
 	//ELVEN
 	//items
 	public static LexiconEntry fracturedSpace;
@@ -59,6 +61,8 @@ public final class IncorporeticLexicon {
 		naturalDevices.addExtraDisplayedRecipe(new ItemStack(ModItems.manaResource, 1, 6));
 		naturalDevices.setKnowledgeType(newEntryType);
 		//anyhoo
+		
+		sweetAlexum = buildFlowerEntry("sweet_alexum", IncorporeticPetalRecipes.sweetAlexum, BotaniaAPI.categoryFunctionalFlowers, 2);
 		
 		/////
 		newEntryType = BotaniaAPI.elvenKnowledge; //Elven Knowledge entries

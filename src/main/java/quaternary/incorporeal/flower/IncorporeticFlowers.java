@@ -17,6 +17,9 @@ public final class IncorporeticFlowers {
 	public static void registerFlowers() {
 		//sanvocalia!
 		registerFlower("sanvocalia", SubTileSanvocalia.class, SubTileSanvocalia.Mini.class);
+		
+		//This is so sad, Alexa play Despacito.
+		registerFlower("sweet_alexum", SubTileSweetAlexum.class, SubTileSweetAlexum.Mini.class);
 	}
 	
 	public static List<ItemStack> getAllIncorporeticFlowerStacks() {

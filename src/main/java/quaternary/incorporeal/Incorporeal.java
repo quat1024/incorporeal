@@ -22,6 +22,7 @@ import quaternary.incorporeal.api.IncorporealNaturalDeviceRegistry;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
+import quaternary.incorporeal.etc.helper.DespacitoHelper;
 import quaternary.incorporeal.flower.IncorporeticFlowers;
 import quaternary.incorporeal.flower.IncorporeticPetalRecipes;
 import quaternary.incorporeal.item.IncorporeticItems;
@@ -63,6 +64,7 @@ public final class Incorporeal {
 	public static void init(FMLInitializationEvent e) {
 		IncorporeticPetalRecipes.init();
 		IncorporeticLexicon.init();
+		DespacitoHelper.init();
 		
 		//TODO find a better home for these?
 		//TODO replace with custom "natural" crops too
