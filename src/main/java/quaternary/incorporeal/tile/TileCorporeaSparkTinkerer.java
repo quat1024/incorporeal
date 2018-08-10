@@ -3,6 +3,8 @@ package quaternary.incorporeal.tile;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -12,6 +14,7 @@ import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import vazkii.botania.common.entity.EntityCorporeaSpark;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -53,6 +56,28 @@ public class TileCorporeaSparkTinkerer extends TileEntity {
 	
 	public void setNetwork(EnumDyeColor color) {
 		myNetwork = color;
+	}
+	
+	public EnumDyeColor getNetwork() {
+		return myNetwork;
+	}
+	
+	@Nullable
+	@Override
+	public SPacketUpdateTileEntity getUpdatePacket() {
+		return new SPacketUpdateTileEntity(pos, 6969, getUpdateTag());
+	}
+	
+	@Override
+	public NBTTagCompound getUpdateTag() {
+		return writeToNBT(new NBTTagCompound());
+	}
+	
+	@Override
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+		readFromNBT(pkt.getNbtCompound());
+		IBlockState memes = world.getBlockState(pos);
+		world.notifyBlockUpdate(pos, memes, memes, 3); //i guess
 	}
 	
 	@Override

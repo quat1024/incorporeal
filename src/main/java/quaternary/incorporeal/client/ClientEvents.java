@@ -15,9 +15,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.client.tesr.RenderItemSoulCore;
+import quaternary.incorporeal.client.tesr.RenderTileCorporeaSparkTinkerer;
 import quaternary.incorporeal.client.tesr.RenderTileSoulCore;
 import quaternary.incorporeal.flower.SubTileSanvocalia;
 import quaternary.incorporeal.item.IncorporeticItems;
+import quaternary.incorporeal.tile.TileCorporeaSparkTinkerer;
 import quaternary.incorporeal.tile.soulcore.TileEnderSoulCore;
 import vazkii.botania.api.BotaniaAPIClient;
 import vazkii.botania.api.subtile.SubTileEntity;
@@ -55,6 +57,8 @@ public final class ClientEvents {
 		setInvisibleStateMapper(IncorporeticBlocks.CORPOREA_SOUL_CORE);
 		
 		//Tile Entity Special Renderers
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCorporeaSparkTinkerer.class, new RenderTileCorporeaSparkTinkerer());
+		
 		RenderTileSoulCore<TileEnderSoulCore> enderRender = new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "tempblah"));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEnderSoulCore.class, enderRender);
 		
