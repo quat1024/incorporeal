@@ -3,6 +3,7 @@ package quaternary.incorporeal.flower;
 import net.minecraft.item.ItemStack;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.subtile.SubTileEntity;
+import vazkii.botania.common.block.ModBlocks;
 import vazkii.botania.common.item.block.ItemBlockFloatingSpecialFlower;
 import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 
@@ -30,8 +31,7 @@ public final class IncorporeticFlowers {
 		}
 		
 		for(String a : moddedFlowers) {
-			//TODO this doesnt actually work lmao.
-			memes.add(ItemBlockFloatingSpecialFlower.ofType(a));
+			memes.add(ItemBlockSpecialFlower.ofType(new ItemStack(ModBlocks.floatingSpecialFlower), a));
 		}
 		return memes;
 	}
