@@ -40,6 +40,7 @@ public final class ClientRegistryEvents {
 		setSimpleModel(IncorporeticItems.CORPOREA_SPARK_TINKERER);
 		setSimpleModel(IncorporeticItems.CORPOREA_SOLIDIFIER);
 		setSimpleModel(IncorporeticItems.CORPOREA_INTERCEPTOR_OMNI);
+		setSimpleModel(IncorporeticItems.CORPOREA_LIAR);
 		setSimpleModel(IncorporeticItems.NATURAL_REPEATER);
 		setSimpleModel(IncorporeticItems.NATURAL_COMPARATOR);
 		
