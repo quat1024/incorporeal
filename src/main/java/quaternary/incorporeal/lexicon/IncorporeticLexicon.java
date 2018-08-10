@@ -56,8 +56,8 @@ public final class IncorporeticLexicon {
 		
 		//tfw u build castles of abstractions but they come crashing down on you
 		naturalDevices = new CompatLexiconEntry("incorporeal.naturalDevices", BotaniaAPI.categoryDevices, Incorporeal.NAME).setLexiconPages(new PageText("0"), new PageText("1"), new PageText("2"));
-		naturalDevices.setIcon(new ItemStack(Item.getItemFromBlock(IncorporeticBlocks.NATURAL_COMPARATOR)));
-		naturalDevices.addExtraDisplayedRecipe(new ItemStack(Item.getItemFromBlock(IncorporeticBlocks.NATURAL_REPEATER)));
+		naturalDevices.setIcon(new ItemStack(IncorporeticItems.NATURAL_COMPARATOR));
+		naturalDevices.addExtraDisplayedRecipe(new ItemStack(IncorporeticItems.NATURAL_REPEATER));
 		naturalDevices.addExtraDisplayedRecipe(new ItemStack(ModItems.manaResource, 1, 6));
 		naturalDevices.setKnowledgeType(newEntryType);
 		//anyhoo
@@ -87,9 +87,9 @@ public final class IncorporeticLexicon {
 						new PageText("Spook")
 		);
 		soulCores.setKnowledgeType(newEntryType);
-		soulCores.addExtraDisplayedRecipe(new ItemStack(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_SOUL_CORE)));
-		soulCores.addExtraDisplayedRecipe(new ItemStack(Item.getItemFromBlock(IncorporeticBlocks.ENDER_SOUL_CORE)));
-		soulCores.setIcon(new ItemStack(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_SOUL_CORE)));
+		soulCores.addExtraDisplayedRecipe(new ItemStack(IncorporeticItems.CORPOREA_SOUL_CORE));
+		soulCores.addExtraDisplayedRecipe(new ItemStack(IncorporeticItems.ENDER_SOUL_CORE));
+		soulCores.setIcon(new ItemStack(IncorporeticItems.CORPOREA_SOUL_CORE));
 		
 		sanvocalia = buildFlowerEntry("sanvocalia", IncorporeticPetalRecipes.sanvocalia, BotaniaAPI.categoryFunctionalFlowers, 1);
 	}
@@ -99,7 +99,7 @@ public final class IncorporeticLexicon {
 		ItemStack icon;
 		
 		if(subject instanceof Block) {
-			icon = new ItemStack(Item.getItemFromBlock((Block) subject));
+			icon = new ItemStack((Block) subject);
 		} else if (subject instanceof Item) {
 			icon = new ItemStack((Item) subject);
 		} else {

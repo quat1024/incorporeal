@@ -35,13 +35,13 @@ public final class ClientEvents {
 	public static void models(ModelRegistryEvent e) {
 		//TODO this is a lot of Item.getItemFromBlock; should i store ItemBlocks somewhere?
 		//Item models
-		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.FRAME_TINKERER));
-		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_INHIBITOR));
-		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_SPARK_TINKERER));
-		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_SOLIDIFIER));
-		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.CORPOREA_INTERCEPTOR_OMNI));
-		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.NATURAL_REPEATER));
-		setSimpleModel(Item.getItemFromBlock(IncorporeticBlocks.NATURAL_COMPARATOR));
+		setSimpleModel(IncorporeticItems.FRAME_TINKERER);
+		setSimpleModel(IncorporeticItems.CORPOREA_INHIBITOR);
+		setSimpleModel(IncorporeticItems.CORPOREA_SPARK_TINKERER);
+		setSimpleModel(IncorporeticItems.CORPOREA_SOLIDIFIER);
+		setSimpleModel(IncorporeticItems.CORPOREA_INTERCEPTOR_OMNI);
+		setSimpleModel(IncorporeticItems.NATURAL_REPEATER);
+		setSimpleModel(IncorporeticItems.NATURAL_COMPARATOR);
 		
 		setSimpleModel(IncorporeticItems.CORPOREA_TICKET);
 		setSimpleModel(IncorporeticItems.TICKET_CONJURER);
@@ -66,7 +66,7 @@ public final class ClientEvents {
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEnderSoulCore.class, enderRender);
 		
 		//Teisrs
-		setTEISRModel(Item.getItemFromBlock(IncorporeticBlocks.ENDER_SOUL_CORE), new RenderItemSoulCore(enderRender));
+		setTEISRModel(IncorporeticItems.ENDER_SOUL_CORE, new RenderItemSoulCore(enderRender));
 	}
 	
 	private static void setSimpleModel(Item i) {

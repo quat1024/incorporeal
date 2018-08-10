@@ -6,7 +6,18 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.block.BlockCorporeaLiar;
+import quaternary.incorporeal.block.BlockCorporeaRetainerDecrementer;
+import quaternary.incorporeal.block.BlockCorporeaSolidifier;
+import quaternary.incorporeal.block.BlockCorporeaSparkTinkerer;
+import quaternary.incorporeal.block.BlockFrameTinkerer;
+import quaternary.incorporeal.block.BlockWildcardCorporeaInterceptor;
 import quaternary.incorporeal.block.IncorporeticBlocks;
+import quaternary.incorporeal.block.naturaldevices.BlockNaturalComparator;
+import quaternary.incorporeal.block.naturaldevices.BlockNaturalDeviceCrop;
+import quaternary.incorporeal.block.naturaldevices.BlockNaturalRepeater;
+import quaternary.incorporeal.block.soulcore.BlockCorporeaSoulCore;
+import quaternary.incorporeal.block.soulcore.BlockEnderSoulCore;
 
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
 @SuppressWarnings("unused")
@@ -29,6 +40,39 @@ public final class IncorporeticItems {
 	
 	@GameRegistry.ObjectHolder(RegistryNames.FRACTURED_SPACE_ROD)
 	public static final ItemFracturedSpaceRod FRACTURED_SPACE_ROD = null;
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_INHIBITOR)
+	public static final ItemBlock CORPOREA_INHIBITOR = null;
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_LIAR)
+	public static final ItemBlock CORPOREA_LIAR = null;
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_SOLIDIFIER)
+	public static final ItemBlock CORPOREA_SOLIDIFIER = null;
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_SPARK_TINKERER)
+	public static final ItemBlock CORPOREA_SPARK_TINKERER = null;
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_RETAINER_DECREMENTER)
+	public static final ItemBlock CORPOREA_RETAINER_DECREMENTER = null;
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_INTERCEPTOR_OMNI)
+	public static final ItemBlock CORPOREA_INTERCEPTOR_OMNI = null;
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.FRAME_TINKERER)
+	public static final ItemBlock FRAME_TINKERER = null;
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.ENDER_SOUL_CORE)
+	public static final ItemSoulCore ENDER_SOUL_CORE = null;
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_SOUL_CORE)
+	public static final ItemSoulCore CORPOREA_SOUL_CORE = null;
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.NATURAL_REPEATER)
+	public static final ItemBlock NATURAL_REPEATER = null;
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.NATURAL_COMPARATOR)
+	public static final ItemBlock NATURAL_COMPARATOR = null;
 	
 	//IDEA balks at the idea of injecting values into final fields in incorporeticblocks
 	//That's what objectholder does, though, so make it shut up.
