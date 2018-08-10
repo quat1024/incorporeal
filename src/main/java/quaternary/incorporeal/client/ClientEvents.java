@@ -18,6 +18,7 @@ import quaternary.incorporeal.client.tesr.RenderItemSoulCore;
 import quaternary.incorporeal.client.tesr.RenderTileCorporeaSparkTinkerer;
 import quaternary.incorporeal.client.tesr.RenderTileSoulCore;
 import quaternary.incorporeal.flower.SubTileSanvocalia;
+import quaternary.incorporeal.flower.SubTileSweetAlexum;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.tile.TileCorporeaSparkTinkerer;
 import quaternary.incorporeal.tile.soulcore.TileEnderSoulCore;
@@ -47,6 +48,8 @@ public final class ClientEvents {
 		
 		setFlowerModel(SubTileSanvocalia.class, "sanvocalia");
 		setFlowerModel(SubTileSanvocalia.Mini.class, "sanvocalia_chibi");
+		setFlowerModel(SubTileSweetAlexum.class, "sweet_alexum");
+		setFlowerModel(SubTileSweetAlexum.Mini.class, "sweet_alexum_chibi");
 		
 		//Statemappers
 		setIgnoreAllStateMapper(IncorporeticBlocks.FRAME_TINKERER);
