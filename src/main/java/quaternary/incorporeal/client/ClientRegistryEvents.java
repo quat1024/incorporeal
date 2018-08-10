@@ -28,12 +28,11 @@ import vazkii.botania.api.subtile.SubTileEntity;
 import java.util.Collections;
 
 @Mod.EventBusSubscriber(modid = Incorporeal.MODID, value = Side.CLIENT)
-public final class ClientEvents {
-	private ClientEvents() {}
+public final class ClientRegistryEvents {
+	private ClientRegistryEvents() {}
 	
 	@SubscribeEvent
 	public static void models(ModelRegistryEvent e) {
-		//TODO this is a lot of Item.getItemFromBlock; should i store ItemBlocks somewhere?
 		//Item models
 		setSimpleModel(IncorporeticItems.FRAME_TINKERER);
 		setSimpleModel(IncorporeticItems.CORPOREA_INHIBITOR);
