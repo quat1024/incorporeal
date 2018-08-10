@@ -21,6 +21,7 @@ import quaternary.incorporeal.flower.SubTileSanvocalia;
 import quaternary.incorporeal.flower.SubTileSweetAlexum;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.tile.TileCorporeaSparkTinkerer;
+import quaternary.incorporeal.tile.soulcore.TileCorporeaSoulCore;
 import quaternary.incorporeal.tile.soulcore.TileEnderSoulCore;
 import vazkii.botania.api.BotaniaAPIClient;
 import vazkii.botania.api.subtile.SubTileEntity;
@@ -54,18 +55,20 @@ public final class ClientRegistryEvents {
 		setIgnoreAllStateMapper(IncorporeticBlocks.FRAME_TINKERER);
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_SPARK_TINKERER);
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_INTERCEPTOR_OMNI);
-		
-		setInvisibleStateMapper(IncorporeticBlocks.ENDER_SOUL_CORE);
-		setInvisibleStateMapper(IncorporeticBlocks.CORPOREA_SOUL_CORE);
+		setIgnoreAllStateMapper(IncorporeticBlocks.ENDER_SOUL_CORE);
+		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_SOUL_CORE);
 		
 		//Tile Entity Special Renderers
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCorporeaSparkTinkerer.class, new RenderTileCorporeaSparkTinkerer());
 		
-		RenderTileSoulCore<TileEnderSoulCore> enderRender = new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "tempblah"));
+		RenderTileSoulCore<TileEnderSoulCore> enderRender = new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/tesr/ender_soul_core.png"));
+		RenderTileSoulCore<TileCorporeaSoulCore> corporeaRender = new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/tesr/corporea_soul_core.png"));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEnderSoulCore.class, enderRender);
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCorporeaSoulCore.class, corporeaRender);
 		
 		//Teisrs
 		setTEISRModel(IncorporeticItems.ENDER_SOUL_CORE, new RenderItemSoulCore(enderRender));
+		setTEISRModel(IncorporeticItems.CORPOREA_SOUL_CORE, new RenderItemSoulCore(corporeaRender));
 	}
 	
 	private static void setSimpleModel(Item i) {
@@ -82,10 +85,6 @@ public final class ClientRegistryEvents {
 	
 	private static void setIgnoreAllStateMapper(Block b) {
 		ModelLoader.setCustomStateMapper(b, new IgnoreAllStateMapper(b));
-	}
-	
-	private static void setInvisibleStateMapper(Block b) {
-		ModelLoader.setCustomStateMapper(b, (block) -> Collections.emptyMap());
 	}
 	
 	private static void setFlowerModel(Class<? extends SubTileEntity> flower, String name) {
