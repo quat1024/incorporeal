@@ -6,9 +6,11 @@ import net.minecraft.block.BlockHorizontal;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.launchwrapper.Launch;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -39,6 +41,16 @@ public final class Incorporeal {
 	public static final String DEPENDENCIES = "required-after:botania;";
 	
 	public static final Logger LOGGER = LogManager.getLogger(NAME);
+	
+	public static final boolean DEV_ENV = (boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
+	
+	static {
+		//TODO remove for obvious reasons.
+		if(!DEV_ENV) {
+			FMLLog.bigWarning("[Incorporeal] You are stupid");
+			throw new RuntimeException("Incorporeal is not ready to be played yet. I'm ashamed I even have to add this error message");
+		}
+	}
 	
 	public static final CreativeTabs TAB = new CreativeTabs(MODID) {
 		@SideOnly(Side.CLIENT)
