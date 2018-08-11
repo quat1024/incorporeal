@@ -6,6 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import quaternary.incorporeal.IncorporeticConfig;
 import quaternary.incorporeal.api.ICorporeaInhibitor;
 import quaternary.incorporeal.api.ICustomWrappedInventory;
 import vazkii.botania.api.corporea.ICorporeaSpark;
@@ -108,14 +109,15 @@ public final class Hooks {
 	public static int retainerComparatorHook(IBlockState state, World world, BlockPos pos) {
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile instanceof TileCorporeaRetainer) {
-			//TODO configuration for this to go to the old behavior.
-			
 			TileCorporeaRetainer retainer = (TileCorporeaRetainer) tile;
-			
 			if(!retainer.hasPendingRequest()) return 0;
 			
-			int count = ReflectionHelper.getPrivateValue(TileCorporeaRetainer.class, retainer, "requestCount");
-			return count == 0 ? 0 : Math.min(15, (int) Math.floor(Math.log(count) / LOG_2) + 1);
+			if(IncorporeticConfig.Etc.VARIABLE_RETAINER) {
+				int count = ReflectionHelper.getPrivateValue(TileCorporeaRetainer.class, retainer, "requestCount");
+				return count == 0 ? 0 : Math.min(15, (int) Math.floor(Math.log(count) / LOG_2) + 1);
+			} else {
+				return 15;
+			}
 		} else return 0;
 	}
 }

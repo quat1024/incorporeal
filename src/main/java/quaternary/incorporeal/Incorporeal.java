@@ -33,7 +33,7 @@ import quaternary.incorporeal.tile.IncorporeticTiles;
 import vazkii.botania.common.item.ModItems;
 
 @SuppressWarnings("ALL")
-@Mod(modid = Incorporeal.MODID, name = Incorporeal.NAME, version = Incorporeal.VERSION, dependencies = Incorporeal.DEPENDENCIES)
+@Mod(modid = Incorporeal.MODID, name = Incorporeal.NAME, version = Incorporeal.VERSION, dependencies = Incorporeal.DEPENDENCIES, guiFactory = "quaternary.incorporeal.etc.configjunk.IncorporeticGuiFactory")
 public final class Incorporeal {	
 	public static final String MODID = "incorporeal";
 	public static final String NAME = "Incorporeal";
