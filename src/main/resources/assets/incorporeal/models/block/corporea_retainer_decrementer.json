@@ -1,0 +1,8 @@
+{
+	"parent": "block/cube_bottom_top",
+	"textures": {
+		"bottom": "incorporeal:block/corporea_retainer_decrementer/top_bottom",
+		"top": "incorporeal:block/corporea_retainer_decrementer/top_bottom",
+		"side": "incorporeal:block/corporea_retainer_decrementer/side"
+	}
+}

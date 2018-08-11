@@ -43,9 +43,11 @@ public final class ClientRegistryEvents {
 		setSimpleModel(IncorporeticItems.CORPOREA_LIAR);
 		setSimpleModel(IncorporeticItems.NATURAL_REPEATER);
 		setSimpleModel(IncorporeticItems.NATURAL_COMPARATOR);
+		setSimpleModel(IncorporeticItems.CORPOREA_RETAINER_DECREMENTER);
 		
 		setSimpleModel(IncorporeticItems.CORPOREA_TICKET);
 		setSimpleModel(IncorporeticItems.TICKET_CONJURER);
+		setSimpleModel(IncorporeticItems.FRACTURED_SPACE_ROD);
 		
 		setFlowerModel(SubTileSanvocalia.class, "sanvocalia");
 		setFlowerModel(SubTileSanvocalia.Mini.class, "sanvocalia_chibi");
@@ -56,6 +58,7 @@ public final class ClientRegistryEvents {
 		setIgnoreAllStateMapper(IncorporeticBlocks.FRAME_TINKERER);
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_SPARK_TINKERER);
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_INTERCEPTOR_OMNI);
+		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER);
 		setIgnoreAllStateMapper(IncorporeticBlocks.ENDER_SOUL_CORE);
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_SOUL_CORE);
 		
