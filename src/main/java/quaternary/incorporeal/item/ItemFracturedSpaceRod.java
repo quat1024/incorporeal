@@ -61,7 +61,7 @@ public class ItemFracturedSpaceRod extends Item implements IManaUsingItem, ILexi
 			
 			if(!world.isRemote) {
 				BlockPos cratePos = NBTUtil.getPosFromTag(cratePosCmp);
-				EntityFracturedSpaceCollector fsc = new EntityFracturedSpaceCollector(world, cratePos);
+				EntityFracturedSpaceCollector fsc = new EntityFracturedSpaceCollector(world, cratePos, player);
 				fsc.setPosition(pos.getX() + hitX, pos.getY() + 1, pos.getZ() + hitZ);
 				world.spawnEntity(fsc);
 			}

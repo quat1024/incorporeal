@@ -9,7 +9,6 @@ import org.objectweb.asm.tree.VarInsnNode;
 
 import java.util.List;
 
-//TODO Pull request this because it's actually really good lol
 public class RetainerComparatorTweak extends AbstractTweak {
 	@Override
 	protected String describe(String transformedName) {

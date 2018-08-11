@@ -53,10 +53,7 @@ public class BlockFrameTinkerer extends Block implements ILexiconable {
 		if(isPowered != shouldPower) {
 			world.setBlockState(pos, state.withProperty(BotaniaStateProps.POWERED, shouldPower));
 			
-			//TODO switch to using an in-world item; can remove the tile entity
 			if(!world.isRemote && shouldPower) {
-				//((TileFrameTinkerer)tile).doSwap();
-				
 				//Find what stack to switch
 				EntityItem ent = null;
 				ItemStack inWorldStack = null;

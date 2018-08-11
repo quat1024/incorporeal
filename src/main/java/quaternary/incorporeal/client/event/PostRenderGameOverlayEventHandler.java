@@ -41,7 +41,7 @@ public final class PostRenderGameOverlayEventHandler {
 				int x = res.getScaledWidth() - l - 20;
 				
 				//(change) move it up if botania will render theirs
-				//TODO would be nice if both of them actually worked :)
+				//TODO would be nice if both of them actually worked together :)
 				TileCorporeaIndex.getInputHandler();
 				int y = res.getScaledHeight() - (TileCorporeaIndex.InputHandler.getNearbyIndexes(mc.player).isEmpty() ? 60 : 110);
 				

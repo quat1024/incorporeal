@@ -4,6 +4,7 @@ import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
@@ -16,31 +17,37 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import quaternary.incorporeal.item.IncorporeticItems;
+import vazkii.botania.api.mana.ManaItemHandler;
 import vazkii.botania.common.Botania;
 import vazkii.botania.common.block.tile.TileCraftCrate;
 import vazkii.botania.common.block.tile.TileOpenCrate;
 import vazkii.botania.common.core.helper.MathHelper;
 
 import java.util.List;
+import java.util.UUID;
 
 public class EntityFracturedSpaceCollector extends Entity {
 	public EntityFracturedSpaceCollector(World world) {
 		super(world);
 	}
 	
-	public EntityFracturedSpaceCollector(World world, BlockPos cratePos) {
+	public EntityFracturedSpaceCollector(World world, BlockPos cratePos, EntityPlayer player) {
 		this(world);
 		
 		this.cratePos = cratePos;
+		this.ownerUUID = player.getUniqueID();
 	}
 	
 	private BlockPos cratePos = BlockPos.ORIGIN;
 	private static final DataParameter<Integer> DATA_AGE = EntityDataManager.createKey(EntityFracturedSpaceCollector.class, DataSerializers.VARINT);
+	private UUID ownerUUID;
 	
 	private static final double RADIUS = 2;
 	private static final int MAX_AGE = 30;
 	private static final float AGE_SPECIAL_START = MAX_AGE * 3f/4f;
 	private static final int PARTICLE_COUNT = 12;
+	private static final int MANA_COST_PER_ITEM = 100; //TODO balance?
 	
 	@Override
 	protected void entityInit() {
@@ -110,10 +117,23 @@ public class EntityFracturedSpaceCollector extends Entity {
 				
 				if(age >= MAX_AGE) {
 					//Transport the items
+					//first figure out who to take the mana from
+					if(ownerUUID == null) {
+						setDead();
+						return;
+					}
+					
+					EntityPlayer player = world.getPlayerEntityByUUID(ownerUUID);
+					
+					if(player == null) {
+						setDead();
+						return;
+					}
+					
 					//fuckit let's just load the chunk
 					IBlockState loadItBoy = world.getBlockState(cratePos);
-					
 					TileEntity tile = world.getTileEntity(cratePos);
+					
 					if(tile instanceof TileOpenCrate && !(tile instanceof TileCraftCrate)) {
 						TileOpenCrate crate = (TileOpenCrate) tile;
 						if(crate.canEject()) {
@@ -126,13 +146,19 @@ public class EntityFracturedSpaceCollector extends Entity {
 								}
 							}
 							
+							ItemStack toolStack = new ItemStack(IncorporeticItems.FRACTURED_SPACE_ROD);
+							
 							//Crates only have 1 slot inventory so I have to manually dump the items one by one
 							for(EntityItem ent : nearbyItemEnts) {
 								ItemStack stack = ent.getItem();
-								crate.eject(stack, redstone);
 								
-								//Todo make this consume mana from the players inventory or something. Per item
-								ent.setDead();
+								if(ManaItemHandler.requestManaExact(toolStack, player, MANA_COST_PER_ITEM, false)) {
+									ManaItemHandler.requestManaExact(toolStack, player, MANA_COST_PER_ITEM, true);
+									crate.eject(stack, redstone);
+									ent.setDead();
+								} else {
+									break;
+								}
 							}
 						}
 					}
@@ -148,12 +174,14 @@ public class EntityFracturedSpaceCollector extends Entity {
 	protected void readEntityFromNBT(NBTTagCompound nbt) {
 		dataManager.set(DATA_AGE, nbt.getInteger("Age"));
 		cratePos = NBTUtil.getPosFromTag(nbt.getCompoundTag("CratePos"));
+		ownerUUID = NBTUtil.getUUIDFromTag(nbt.getCompoundTag("Owner"));
 	}
 	
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbt) {
 		nbt.setInteger("Age", dataManager.get(DATA_AGE));
 		nbt.setTag("CratePos", NBTUtil.createPosTag(cratePos));
+		nbt.setTag("Owner", NBTUtil.createUUIDTag(ownerUUID));
 	}
 	
 	@Override

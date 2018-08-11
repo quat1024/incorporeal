@@ -27,7 +27,6 @@ public final class CorporeaHelper2 {
 	}
 	
 	public static List<TileCorporeaIndex> getNearbyIndicesReflect(World w, BlockPos pos) {
-		//TODO: Can I just call TileCorporeaIndex$InputHandler.getNearbyIndexes?
 		Set<TileCorporeaIndex> indices = ReflectionHelper.getPrivateValue(TileCorporeaIndex.class, null, "serverIndexes");
 		
 		return indices.stream().filter(tile -> {
