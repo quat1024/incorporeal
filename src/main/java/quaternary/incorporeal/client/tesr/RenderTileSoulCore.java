@@ -7,6 +7,7 @@ import net.minecraft.client.model.ModelHumanoidHead;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -33,8 +34,6 @@ public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEnti
 	
 	@Override
 	public void render(T te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-		
-		
 		int hash = te == null ? 0 : MathHelper.hash(MathHelper.hash(te.getPos().hashCode())) % 1500000;
 		float ticks = ClientTickHandler.ticksInGame + partialTicks;
 		
@@ -48,7 +47,9 @@ public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEnti
 		float verticalBob = EtcHelpers.sinDegrees((hash + ticks) * 4);
 		GlStateManager.translate(0, 0.1 * verticalBob, 0);
 		
-		if(te != null) {
+		if(te == null) {
+			GlStateManager.scale(0.9, 0.9, 0.9);
+		} else {
 			GlStateManager.pushMatrix();
 			
 			float wobble = (hash + ticks) * 5;
@@ -77,9 +78,8 @@ public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEnti
 		
 		//Draw cubes
 		bindTexture(cubesLocation);
-		Tessellator t = Tessellator.getInstance();
-		BufferBuilder b = t.getBuffer();
 		
+		GlStateManager.rotate(((-ticks + hash) / 5f) % 360, 0, 1, 0);
 		GlStateManager.rotate(MathHelper.sin(ticks / 50f) * 40, 0, 1, 0);
 		
 		float wobble2 = (hash + ticks) * 3;
@@ -91,58 +91,66 @@ public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEnti
 		GlStateManager.rotate(wobble2Cos * wobble2AmountDegrees, 0, 0, 1);
 		GlStateManager.rotate(wobble2Sin * wobble2AmountDegrees, 0, 0, 1);
 		
-		GlStateManager.scale(.4, .4, .4);
-		for(float outerX = -1f; outerX < 3f; outerX += 2f) {
-			for(float outerY = -1f; outerY < 3f; outerY += 2f) {
-				for(float outerZ = -1f; outerZ < 3f; outerZ += 2f) {
-					float innerX = outerX / 3f;
-					float innerY = outerY / 3f;
-					float innerZ = outerZ / 3f;
-					
-					b.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-					
-					//top
-					b.pos(outerX, outerY, outerZ).tex(1, 1).endVertex();
-					b.pos(outerX, outerY, innerZ).tex(1, 0).endVertex();
-					b.pos(innerX, outerY, innerZ).tex(0, 0).endVertex();
-					b.pos(innerX, outerY, outerZ).tex(0, 1).endVertex();
-					
-					//bottom
-					b.pos(outerX, innerY, outerZ).tex(1, 1).endVertex();
-					b.pos(outerX, innerY, innerZ).tex(1, 0).endVertex();
-					b.pos(innerX, innerY, innerZ).tex(0, 0).endVertex();
-					b.pos(innerX, innerY, outerZ).tex(0, 1).endVertex();
-					
-					//z out
-					b.pos(outerX, outerY, outerZ).tex(1, 1).endVertex();
-					b.pos(outerX, innerY, outerZ).tex(1, 0).endVertex();
-					b.pos(innerX, innerY, outerZ).tex(0, 0).endVertex();
-					b.pos(innerX, outerY, outerZ).tex(0, 1).endVertex();
-					
-					//z in
-					b.pos(outerX, outerY, innerZ).tex(1, 1).endVertex();
-					b.pos(outerX, innerY, innerZ).tex(1, 0).endVertex();
-					b.pos(innerX, innerY, innerZ).tex(0, 0).endVertex();
-					b.pos(innerX, outerY, innerZ).tex(0, 1).endVertex();
-					
-					//x out
-					b.pos(outerX, outerY, outerZ).tex(1, 1).endVertex();
-					b.pos(outerX, outerY, innerZ).tex(1, 0).endVertex();
-					b.pos(outerX, innerY, innerZ).tex(0, 0).endVertex();
-					b.pos(outerX, innerY, outerZ).tex(0, 1).endVertex();
-					
-					//x in
-					b.pos(innerX, outerY, outerZ).tex(1, 1).endVertex();
-					b.pos(innerX, outerY, innerZ).tex(1, 0).endVertex();
-					b.pos(innerX, innerY, innerZ).tex(0, 0).endVertex();
-					b.pos(innerX, innerY, outerZ).tex(0, 1).endVertex();
-					
-					t.draw();
-				}
-			}
+		GlStateManager.enableRescaleNormal();
+		GlStateManager.disableLighting();
+		
+		Tessellator t = Tessellator.getInstance();
+		BufferBuilder b = t.getBuffer();
+		
+		for(int i = 0; i < 8; i++) {
+			drawBox(t, b, 0.1f, 0.1f, 0.1f, 0.35f);
+			GlStateManager.scale(1, -1, -1);
+			if(i % 2 == 0) GlStateManager.rotate(90, 0, 1, 0);
 		}
 		
+		GlStateManager.enableLighting();
 		GlStateManager.popMatrix();
+	}
+	
+	private static void drawBox(Tessellator t, BufferBuilder b, float x1, float y1, float z1, float size) {
+		float x2 = x1 + size;
+		float y2 = y1 + size;
+		float z2 = z1 + size;
+		
+		b.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+		
+		//low y
+		b.pos(x1, y1, z1).tex(1, 1).endVertex();
+		b.pos(x2, y1, z1).tex(0, 1).endVertex();
+		b.pos(x2, y1, z2).tex(0, 0).endVertex();
+		b.pos(x1, y1, z2).tex(1, 0).endVertex();
+		
+		//high y
+		b.pos(x1, y2, z1).tex(0, 0).endVertex();
+		b.pos(x1, y2, z2).tex(1, 0).endVertex();
+		b.pos(x2, y2, z2).tex(1, 1).endVertex();
+		b.pos(x2, y2, z1).tex(0, 1).endVertex();
+		
+		//low z
+		b.pos(x1, y1, z1).tex(1, 1).endVertex();
+		b.pos(x1, y2, z1).tex(1, 0).endVertex();
+		b.pos(x2, y2, z1).tex(0, 0).endVertex();
+		b.pos(x2, y1, z1).tex(0, 1).endVertex();
+		
+		//high z
+		b.pos(x1, y1, z2).tex(0, 0).endVertex();
+		b.pos(x2, y1, z2).tex(1, 0).endVertex();
+		b.pos(x2, y2, z2).tex(1, 1).endVertex();
+		b.pos(x1, y2, z2).tex(0, 1).endVertex();
+		
+		//low x
+		b.pos(x1, y1, z1).tex(1, 1).endVertex();
+		b.pos(x1, y1, z2).tex(1, 0).endVertex();
+		b.pos(x1, y2, z2).tex(0, 0).endVertex();
+		b.pos(x1, y2, z1).tex(0, 1).endVertex();
+		
+		//high x
+		b.pos(x2, y1, z1).tex(0, 0).endVertex();
+		b.pos(x2, y2, z1).tex(1, 0).endVertex();
+		b.pos(x2, y2, z2).tex(1, 1).endVertex();
+		b.pos(x2, y1, z2).tex(0, 1).endVertex();
+		
+		t.draw();
 	}
 	
 	private ResourceLocation getSkullLocation(T te) {
