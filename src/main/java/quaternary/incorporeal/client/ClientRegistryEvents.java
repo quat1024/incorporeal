@@ -39,7 +39,6 @@ public final class ClientRegistryEvents {
 		setSimpleModel(IncorporeticItems.CORPOREA_INHIBITOR);
 		setSimpleModel(IncorporeticItems.CORPOREA_SPARK_TINKERER);
 		setSimpleModel(IncorporeticItems.CORPOREA_SOLIDIFIER);
-		setSimpleModel(IncorporeticItems.CORPOREA_INTERCEPTOR_OMNI);
 		setSimpleModel(IncorporeticItems.CORPOREA_LIAR);
 		setSimpleModel(IncorporeticItems.NATURAL_REPEATER);
 		setSimpleModel(IncorporeticItems.NATURAL_COMPARATOR);
@@ -57,7 +56,6 @@ public final class ClientRegistryEvents {
 		//Statemappers
 		setIgnoreAllStateMapper(IncorporeticBlocks.FRAME_TINKERER);
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_SPARK_TINKERER);
-		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_INTERCEPTOR_OMNI);
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER);
 		setIgnoreAllStateMapper(IncorporeticBlocks.ENDER_SOUL_CORE);
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_SOUL_CORE);

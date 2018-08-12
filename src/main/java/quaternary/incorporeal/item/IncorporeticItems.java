@@ -6,18 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.block.BlockCorporeaLiar;
-import quaternary.incorporeal.block.BlockCorporeaRetainerDecrementer;
-import quaternary.incorporeal.block.BlockCorporeaSolidifier;
-import quaternary.incorporeal.block.BlockCorporeaSparkTinkerer;
-import quaternary.incorporeal.block.BlockFrameTinkerer;
-import quaternary.incorporeal.block.BlockWildcardCorporeaInterceptor;
 import quaternary.incorporeal.block.IncorporeticBlocks;
-import quaternary.incorporeal.block.naturaldevices.BlockNaturalComparator;
-import quaternary.incorporeal.block.naturaldevices.BlockNaturalDeviceCrop;
-import quaternary.incorporeal.block.naturaldevices.BlockNaturalRepeater;
-import quaternary.incorporeal.block.soulcore.BlockCorporeaSoulCore;
-import quaternary.incorporeal.block.soulcore.BlockEnderSoulCore;
 
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
 @SuppressWarnings("unused")
@@ -56,9 +45,6 @@ public final class IncorporeticItems {
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_RETAINER_DECREMENTER)
 	public static final ItemBlock CORPOREA_RETAINER_DECREMENTER = null;
 	
-	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_INTERCEPTOR_OMNI)
-	public static final ItemBlock CORPOREA_INTERCEPTOR_OMNI = null;
-	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.FRAME_TINKERER)
 	public static final ItemBlock FRAME_TINKERER = null;
 	
@@ -87,7 +73,6 @@ public final class IncorporeticItems {
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_SOLIDIFIER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_SPARK_TINKERER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER)));
-		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_INTERCEPTOR_OMNI)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.FRAME_TINKERER)));
 		
 		reg.register(createItemBlock(new ItemSoulCore(IncorporeticBlocks.ENDER_SOUL_CORE)));
