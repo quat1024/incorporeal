@@ -16,6 +16,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.IncorporeticConfig;
 import quaternary.incorporeal.block.soulcore.AbstractBlockSoulCore;
 import quaternary.incorporeal.tile.soulcore.AbstractTileSoulCore;
@@ -50,7 +52,7 @@ public class ItemSoulCore extends ItemBlock {
 			if(!IncorporeticConfig.SoulCore.EVERYONE_ANYONE && !profile.equals(player.getGameProfile())) return EnumActionResult.PASS;
 			
 			IBlockState placedState = block.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, heldStack.getMetadata(), player, hand);
-			boolean success = placeBlockAt(heldStack, player, world, pos, facing, hitX, hitY, hitZ, placedState) ;
+			boolean success = placeBlockAt(heldStack, player, world, pos, facing, hitX, hitY, hitZ, placedState);
 			if(success) {
 				//play placing noise TODO this can be souped up right?
 				placedState = world.getBlockState(pos);
@@ -73,5 +75,11 @@ public class ItemSoulCore extends ItemBlock {
 		}
 		
 		return EnumActionResult.PASS;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side, EntityPlayer player, ItemStack stack) {
+		return true;
 	}
 }
