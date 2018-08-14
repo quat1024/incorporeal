@@ -19,6 +19,7 @@ public final class IncorporeticItems {
 		public static final String TICKET_CONJURER = "ticket_conjurer";
 		public static final String CORPOREA_TICKET = "corporea_ticket";
 		public static final String FRACTURED_SPACE_ROD = "fractured_space_rod";
+		public static final String SOUL_CORE_FRAME = "soul_core_frame";
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.TICKET_CONJURER)
@@ -29,6 +30,9 @@ public final class IncorporeticItems {
 	
 	@GameRegistry.ObjectHolder(RegistryNames.FRACTURED_SPACE_ROD)
 	public static final ItemFracturedSpaceRod FRACTURED_SPACE_ROD = null;
+	
+	@GameRegistry.ObjectHolder(RegistryNames.SOUL_CORE_FRAME)
+	public static final Item SOUL_CORE_FRAME = null;
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_INHIBITOR)
 	public static final ItemBlock CORPOREA_INHIBITOR = null;
@@ -67,6 +71,7 @@ public final class IncorporeticItems {
 		reg.register(createItem(new ItemTicketConjurer(), RegistryNames.TICKET_CONJURER));
 		reg.register(createItem(new ItemCorporeaTicket(), RegistryNames.CORPOREA_TICKET));
 		reg.register(createItem(new ItemFracturedSpaceRod(), RegistryNames.FRACTURED_SPACE_ROD));
+		reg.register(createItem(new Item(), RegistryNames.SOUL_CORE_FRAME));
 		
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_INHIBITOR)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_LIAR)));

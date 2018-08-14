@@ -1,0 +1,21 @@
+{
+	"result": {
+		"item": "incorporeal:frame_tinkerer"
+	},
+	"pattern": [
+		"SLS",
+		"LFL"
+	],
+	"type": "forge:ore_shaped",
+	"key": {
+		"S": {
+			"item": "#INGOTMANASTEEL"
+		},
+		"L": {
+			"item": "#LIVINGROCK"
+		},
+		"F": {
+			"item": "minecraft:item_frame"
+		}
+	}
+}

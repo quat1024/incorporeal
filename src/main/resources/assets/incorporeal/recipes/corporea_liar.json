@@ -13,8 +13,8 @@
 			"item": "botania:foresteye"
 		},
 		"B": {
-			"item": "botania:biomestonea",
-			"data": 5
+			"item": "botania:biomestoneb",
+			"data": 3
 		},
 		"N": {
 			"item": "minecraft:ender_eye"

@@ -1,11 +1,13 @@
 package quaternary.incorporeal.lexicon;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
+import quaternary.incorporeal.etc.IncorporeticRuneRecipes;
 import quaternary.incorporeal.flower.IncorporeticPetalRecipes;
 import quaternary.incorporeal.item.IncorporeticItems;
 import vazkii.botania.api.BotaniaAPI;
@@ -19,6 +21,7 @@ import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 import vazkii.botania.common.lexicon.CompatLexiconEntry;
 import vazkii.botania.common.lexicon.page.PageCraftingRecipe;
 import vazkii.botania.common.lexicon.page.PagePetalRecipe;
+import vazkii.botania.common.lexicon.page.PageRuneRecipe;
 import vazkii.botania.common.lexicon.page.PageText;
 
 public final class IncorporeticLexicon {
@@ -80,11 +83,11 @@ public final class IncorporeticLexicon {
 		soulCores = new CompatLexiconEntry("incorporeal.soulCores", BotaniaAPI.categoryEnder, Incorporeal.NAME);
 		soulCores.setLexiconPages(
 						new PageText("0"),
+						new PageRuneRecipe(".flavor0", IncorporeticRuneRecipes.soulCoreFrame),
 						new PageText("1"),
-						new PageCraftingRecipe(".flavor0", IncorporeticBlocks.ENDER_SOUL_CORE.getRegistryName()),
+						new PageRuneRecipe(".flavor1", IncorporeticRuneRecipes.enderSoulCore),
 						new PageText("2"),
-						new PageCraftingRecipe(".flavor1", IncorporeticBlocks.CORPOREA_SOUL_CORE.getRegistryName()),
-						new PageText("Spook")
+						new PageRuneRecipe(".flavor2", IncorporeticRuneRecipes.corporeaSoulCore)
 		);
 		soulCores.setKnowledgeType(newEntryType);
 		soulCores.addExtraDisplayedRecipe(new ItemStack(IncorporeticItems.CORPOREA_SOUL_CORE));

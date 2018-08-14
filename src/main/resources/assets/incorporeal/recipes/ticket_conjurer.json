@@ -1,0 +1,22 @@
+{
+	"result": {
+		"item": "incorporeal:frame_tinkerer"
+	},
+	"pattern": [
+		"SES",
+		"EIE",
+		"SES"
+	],
+	"type": "forge:ore_shaped",
+	"key": {
+		"S": {
+			"item": "#INGOTMANASTEEL"
+		},
+		"E": {
+			"item": "#INGOTELVENELEMENTIUM"
+		},
+		"I": {
+			"item": "botania:corporeaindex"
+		}
+	}
+}

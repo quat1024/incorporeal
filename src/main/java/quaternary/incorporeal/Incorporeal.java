@@ -25,6 +25,7 @@ import quaternary.incorporeal.api.IncorporealNaturalDeviceRegistry;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
+import quaternary.incorporeal.etc.IncorporeticRuneRecipes;
 import quaternary.incorporeal.etc.helper.DespacitoHelper;
 import quaternary.incorporeal.etc.proxy.ServerProxy;
 import quaternary.incorporeal.flower.IncorporeticFlowers;
@@ -85,9 +86,12 @@ public final class Incorporeal {
 	
 	@Mod.EventHandler
 	public static void init(FMLInitializationEvent e) {
-		IncorporeticPetalRecipes.init();
-		IncorporeticLexicon.init();
 		DespacitoHelper.init();
+		
+		IncorporeticPetalRecipes.init();
+		IncorporeticRuneRecipes.init();
+		
+		IncorporeticLexicon.init();
 		
 		//TODO find a better home for these?
 		IncorporealNaturalDeviceRegistry.addNaturalDevice((rand) -> {

@@ -1,0 +1,22 @@
+{
+	"result": {
+		"item": "incorporeal:fractured_space_rod"
+	},
+	"pattern": [
+		" EG",
+		" TE",
+		"T  "
+	],
+	"type": "forge:ore_shaped",
+	"key": {
+		"E": {
+			"item": "minecraft:ender_eye"
+		},
+		"G": {
+			"item": "#ETERNALLIFEESSENCE"
+		},
+		"T": {
+			"item": "#DREAMWOODTWIG"
+		}
+	}
+}

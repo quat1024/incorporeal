@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.DefaultPlayerSkin;
@@ -34,6 +35,9 @@ public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEnti
 	
 	@Override
 	public void render(T te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+		//Fix weird bug w/ the soul core frame teisr, TODO what is actually causing this? that it's not actually a block/tile?
+		if(rendererDispatcher == null) setRendererDispatcher(TileEntityRendererDispatcher.instance);
+		
 		int hash = te == null ? 0 : MathHelper.hash(MathHelper.hash(te.getPos().hashCode())) % 1500000;
 		float ticks = ClientTickHandler.ticksInGame + partialTicks;
 		

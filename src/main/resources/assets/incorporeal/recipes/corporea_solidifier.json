@@ -1,0 +1,22 @@
+{
+	"result": {
+		"item": "incorporeal:corporea_solidifier"
+	},
+	"pattern": [
+		"PPP",
+		"EFE",
+		"PPP"
+	],
+	"type": "forge:ore_shaped",
+	"key": {
+		"P": {
+			"item": "minecraft:paper"
+		},
+		"F": {
+			"item": "botania:corporeafunnel"
+		},
+		"E": {
+			"item": "#INGOTELVENELEMENTIUM"
+		}
+	}
+}
