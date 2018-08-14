@@ -103,7 +103,7 @@ botania.page.incorporeal.corporea_retainer_decrementer.flavor=Cha os [Chal len g
 
 botania.entry.incorporeal.soulCores=Soul Cores
 botania.tagline.incorporeal.soulCores=Spirit-specific interactions
-botania.page.incorporeal.soulCores0=&1Soul Cores&0 surround and envelop a &1Player Head&0 in a light mana solution, ever-so-slightly reanimating it. The disembodied head, while not capable of &itoo&r&0 much remaining brain function, is somehow entangled with the same &4Soul&0 as the real, live &4Player&0 the head is from. Place them by right clicking on a placed &1Player Head&0.
+botania.page.incorporeal.soulCores0=&1Soul Cores&0 surround and envelop a &1Player Head&0 in a light mana solution, ever-so-slightly reanimating it. The disembodied head, while not capable of too much remaining brain function, is somehow entangled with the same &4Soul&0 as the real, live &4Player&0 the head is from. Place them by right clicking on a placed &1Player Head&0.
 botania.page.incorporeal.soulCores.flavor0=Driven Drop
 botania.page.incorporeal.soulCores1=The &1Ender Soul Core&0 provides block-level access to the &1Ender Chest&0 inventory of the bound &1Player&0. As long as the &1Player&0's spirit is present, the &1Ender Soul Core&0's inventory will mirror the contents of their &1Ender Chest&0. All the usual interactions work; hoppers, corporea sparks...
 botania.page.incorporeal.soulCores.flavor1=You Would Not Believe This Random Hecking Nonsense

@@ -57,7 +57,8 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 		EntityItem ticket = nearbyTickets.get(0);
 		CorporeaRequest ticketsRequest = ItemCorporeaTicket.getRequestFromTicket(ticket.getItem());
 		
-		List<TileCorporeaIndex> nearbyIndices = CorporeaHelper2.getNearbyIndicesReflect(w, pos);
+		List<TileCorporeaIndex> nearbyIndices = CorporeaHelper2.getNearbyIndicesReflect(w, pos, getRange());
+		
 		if(nearbyIndices.isEmpty()) {
 			//No indexes nearby? Post the message to chat
 			//This is a nod to when players accidentally type corporea requests into chat, lol

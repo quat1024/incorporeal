@@ -26,7 +26,7 @@ public final class CorporeaHelper2 {
 		return sparks.isEmpty() ? null : sparks.get(0);
 	}
 	
-	public static List<TileCorporeaIndex> getNearbyIndicesReflect(World w, BlockPos pos) {
+	public static List<TileCorporeaIndex> getNearbyIndicesReflect(World w, BlockPos pos, int range) {
 		Set<TileCorporeaIndex> indices = ReflectionHelper.getPrivateValue(TileCorporeaIndex.class, null, "serverIndexes");
 		
 		return indices.stream().filter(tile -> {

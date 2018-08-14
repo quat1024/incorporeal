@@ -5,6 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import quaternary.incorporeal.item.IncorporeticItems;
+import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.recipe.RecipeRuneAltar;
 import vazkii.botania.common.item.ModItems;
 
@@ -17,7 +18,7 @@ public final class IncorporeticRuneRecipes {
 	public static RecipeRuneAltar corporeaSoulCore;
 	
 	public static void init() {
-		soulCoreFrame = new RecipeRuneAltar(
+		soulCoreFrame = BotaniaAPI.registerRuneAltarRecipe(
 						new ItemStack(IncorporeticItems.SOUL_CORE_FRAME),
 						12000, //tier 3 rune cost
 						new ItemStack(Blocks.ICE),
@@ -39,12 +40,13 @@ public final class IncorporeticRuneRecipes {
 	}
 	
 	private static RecipeRuneAltar createStandardSoulCoreRecipe(Item out, ItemStack special) {
-		return new RecipeRuneAltar(
+		return BotaniaAPI.registerRuneAltarRecipe(
 						new ItemStack(out),
-						24000,
+						30000,
 						new ItemStack(IncorporeticItems.SOUL_CORE_FRAME),
-						new ItemStack(ModItems.manaResource, 1, 5), //gaia spirit
 						new ItemStack(ModItems.manaResource, 1, 9), //dragonstone
+						new ItemStack(ModItems.manaResource, 1, 9), //dragonstone
+						new ItemStack(ModItems.manaResource, 1, 22), //manaweave cloth
 						new ItemStack(ModItems.manaResource, 1, 22), //manaweave cloth
 						special
 		);
