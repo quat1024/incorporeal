@@ -42,7 +42,7 @@ public final class IncorporeticConfig {
 		
 		SoulCore.EVERYONE_ANYONE = config.getBoolean("anyoneCanPlaceAnyones", "soulcore", true, "If false, players can only place soul cores around their own skull; if true, anyone can place soul cores around anyone's skull.");
 		
-		Etc.VARIABLE_RETAINER = config.getBoolean("variabeRetainerStrength", "etc", true, "If true, the corporea retainer will output a comparator signal that's higher when more items have been requested.");
+		Etc.VARIABLE_RETAINER = config.getBoolean("variableRetainerStrength", "etc", true, "If true, the corporea retainer will output a comparator signal that's higher when more items have been requested.");
 		
 		if(config.hasChanged()) config.save();
 	}
