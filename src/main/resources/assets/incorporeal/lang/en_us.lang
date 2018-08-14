@@ -118,12 +118,23 @@ botania.page.sanvocalia.flavor=Do you still remember?
 
 #Blah!!!
 
-incorporeal.etc.savedPos=Crate remembered.
-incorporeal.etc.noPos=Not bound to a crate!
+incorporeal.fracturedSpace.savedPos=Crate remembered.
+incorporeal.fracturedSpace.noPos=Not bound to a crate
+incorporeal.fracturedSpace.wrongDimension=Bound crate not of this realm
+incorporeal.fracturedSpace.noCrateThere=Missing crate at bound location
+
+incorporeal.fracturedSpace.tooltipBound=Bound to a crate
+incorporeal.fracturedSpace.tooltipNotBound=Not bound to a crate
+incorporeal.fracturedSpace.tooltipWrongDimension=! Bound crate not of this realm
+incorporeal.fracturedSpace.debug.tooltipPos=Bound position: X %s, Y %s, %s
+incorporeal.fracturedSpace.debug.tooltipDim=Bound dimension: %s
+
 incorporeal.etc.noSoulCore=Your soul is not compatible with this Corporea Network.
 
 incorporeal.etc.holdingTicketConjurer0=Holding Ticket Conjurer!
 incorporeal.etc.holdingTicketConjurer1=Anything you say will
 incorporeal.etc.holdingTicketConjurer2=create a Corporea Ticket
+
+incorporeal.etc.onlyTextureWip=(Works fine, only the texture is WIP!)
 
 entity.incorporeal.fractured_space_collector.name=Fractured Space (collector)

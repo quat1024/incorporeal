@@ -12,6 +12,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -25,6 +26,7 @@ import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
 import quaternary.incorporeal.etc.helper.DespacitoHelper;
+import quaternary.incorporeal.etc.proxy.ServerProxy;
 import quaternary.incorporeal.flower.IncorporeticFlowers;
 import quaternary.incorporeal.flower.IncorporeticPetalRecipes;
 import quaternary.incorporeal.item.IncorporeticItems;
@@ -49,6 +51,9 @@ public final class Incorporeal {
 	public static final Logger LOGGER = LogManager.getLogger(NAME);
 	
 	public static final boolean DEV_ENV = (boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
+	
+	@SidedProxy(clientSide = "quaternary.incorporeal.etc.proxy.ClientProxy", serverSide = "quaternary.incorporeal.etc.proxy.ServerProxy")
+	public static ServerProxy PROXY;
 	
 	static {
 		//TODO remove for obvious reasons.

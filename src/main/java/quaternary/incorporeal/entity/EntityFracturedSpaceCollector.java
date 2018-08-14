@@ -17,6 +17,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import quaternary.incorporeal.etc.helper.EtcHelpers;
 import quaternary.incorporeal.item.IncorporeticItems;
 import vazkii.botania.api.mana.ManaItemHandler;
 import vazkii.botania.common.Botania;
@@ -47,7 +48,7 @@ public class EntityFracturedSpaceCollector extends Entity {
 	private static final int MAX_AGE = 30;
 	private static final float AGE_SPECIAL_START = MAX_AGE * 3f/4f;
 	private static final int PARTICLE_COUNT = 12;
-	private static final int MANA_COST_PER_ITEM = 100; //TODO balance?
+	private static final int MANA_COST_PER_ITEM = 500; //TODO balance this?
 	
 	@Override
 	protected void entityInit() {
@@ -131,10 +132,10 @@ public class EntityFracturedSpaceCollector extends Entity {
 					}
 					
 					//fuckit let's just load the chunk
-					IBlockState loadItBoy = world.getBlockState(cratePos);
+					IBlockState state = world.getBlockState(cratePos);
 					TileEntity tile = world.getTileEntity(cratePos);
 					
-					if(tile instanceof TileOpenCrate && !(tile instanceof TileCraftCrate)) {
+					if(tile != null && EtcHelpers.isOpenCrate(state, tile)) {
 						TileOpenCrate crate = (TileOpenCrate) tile;
 						if(crate.canEject()) {
 							//This is kinda weird but let's emulate the way the open crate itself looks for redstone
@@ -150,14 +151,13 @@ public class EntityFracturedSpaceCollector extends Entity {
 							
 							//Crates only have 1 slot inventory so I have to manually dump the items one by one
 							for(EntityItem ent : nearbyItemEnts) {
-								ItemStack stack = ent.getItem();
+								ItemStack stack = ent.getItem/*Stack*/();
 								
-								if(ManaItemHandler.requestManaExact(toolStack, player, MANA_COST_PER_ITEM, false)) {
-									ManaItemHandler.requestManaExact(toolStack, player, MANA_COST_PER_ITEM, true);
+								int costForThisStack = MANA_COST_PER_ITEM * stack.getCount();
+								if(ManaItemHandler.requestManaExact(toolStack, player, costForThisStack, false)) {
+									ManaItemHandler.requestManaExact(toolStack, player, costForThisStack, true);
 									crate.eject(stack, redstone);
 									ent.setDead();
-								} else {
-									break;
 								}
 							}
 						}
