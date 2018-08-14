@@ -21,7 +21,6 @@ public class TileEnderSoulCore extends AbstractTileSoulCore implements ITickable
 		boolean isOnline = false;
 		EntityPlayer owner = null;
 		
-		//TODO: Would be nice if it worked crossdimensionally.
 		for(EntityPlayer playerEnt : world.playerEntities) {
 			if(playerEnt.getGameProfile().equals(getOwnerProfile())) {
 				isOnline = true;

@@ -54,7 +54,7 @@ public class ItemSoulCore extends ItemBlock {
 			IBlockState placedState = block.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, heldStack.getMetadata(), player, hand);
 			boolean success = placeBlockAt(heldStack, player, world, pos, facing, hitX, hitY, hitZ, placedState);
 			if(success) {
-				//play placing noise TODO this can be souped up right?
+				//play placing noise?
 				placedState = world.getBlockState(pos);
 				SoundType soundtype = placedState.getBlock().getSoundType(placedState, world, pos, player);
 				world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);

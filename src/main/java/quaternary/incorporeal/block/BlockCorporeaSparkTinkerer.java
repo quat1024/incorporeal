@@ -38,12 +38,14 @@ public class BlockCorporeaSparkTinkerer extends Block implements ILexiconable {
 		ItemStack heldStack = player.getHeldItem(hand);
 		TileEntity te = world.getTileEntity(pos);
 		if(te instanceof TileCorporeaSparkTinkerer && heldStack.getItem() == ModItems.dye) { //floral powder
-			if(!world.isRemote) {
-				TileCorporeaSparkTinkerer tinkerer = (TileCorporeaSparkTinkerer) te;
-				EnumDyeColor heldColor = EnumDyeColor.byMetadata(heldStack.getMetadata());
+			TileCorporeaSparkTinkerer tinkerer = (TileCorporeaSparkTinkerer) te;
+			EnumDyeColor heldColor = EnumDyeColor.byMetadata(heldStack.getMetadata());
+			EnumDyeColor networkColor = tinkerer.getNetwork();
+			if(networkColor != heldColor) {
 				tinkerer.setNetwork(heldColor);
+				if(!player.capabilities.isCreativeMode) heldStack.shrink(1);
+				return true;
 			}
-			return true;
 		}
 		
 		return false;

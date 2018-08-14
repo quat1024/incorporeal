@@ -56,6 +56,9 @@ public class TileCorporeaSparkTinkerer extends TileEntity {
 	
 	public void setNetwork(EnumDyeColor color) {
 		myNetwork = color;
+		
+		IBlockState memes = world.getBlockState(pos);
+		world.notifyBlockUpdate(pos, memes, memes, 3);
 	}
 	
 	public EnumDyeColor getNetwork() {

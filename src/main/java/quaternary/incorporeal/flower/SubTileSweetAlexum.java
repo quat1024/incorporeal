@@ -27,7 +27,7 @@ public class SubTileSweetAlexum extends SubTileFunctional {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if(getWorld().isRemote) return;
+		if(getWorld().isRemote) return; //TODO: It sounds like garbage on mp
 		
 		if(redstoneSignal == 15) {
 			resetTime();

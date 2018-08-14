@@ -74,7 +74,7 @@ public final class Incorporeal {
 		@Override
 		public void displayAllRelevantItems(NonNullList<ItemStack> list) {
 			super.displayAllRelevantItems(list);
-			//list.addAll(IncorporeticFlowers.getAllIncorporeticFlowerStacks());
+			list.addAll(IncorporeticFlowers.getAllIncorporeticFlowerStacks());
 		}
 	};
 	
