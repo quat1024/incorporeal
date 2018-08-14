@@ -37,7 +37,8 @@ import vazkii.botania.common.item.ModItems;
 				name = Incorporeal.NAME,
 				version = Incorporeal.VERSION,
 				dependencies = Incorporeal.DEPENDENCIES,
-				guiFactory = "quaternary.incorporeal.etc.configjunk.IncorporeticGuiFactory"
+				guiFactory = "quaternary.incorporeal.etc.configjunk.IncorporeticGuiFactory",
+				updateJSON = "https://raw.githubusercontent.com/quat1024/incorporeal/master/_static/forge_update.json"
 )
 public final class Incorporeal {	
 	public static final String MODID = "incorporeal";
