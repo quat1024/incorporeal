@@ -64,6 +64,12 @@ botania.page.incorporeal.fractured_space_rod0=The &1Rod of the Fractured Space&0
 botania.page.incorporeal.fractured_space_rod1=Then, any time you right click on the ground, all &1Items&0 nearby will be sucked in to the wormhole and dropped out of the &1Open Crate&0, no matter where they are. The process consumes more &1Mana&0 when more items are sent at once; perhaps packaging them up into something like a &1Shulker Box&0 first would be beneficial?
 botania.page.incorporeal.fractured_space_rod.flavor=Ease, don't teleport
 
+botania.entry.incorporeal.ticket_conjurer=Ticket Conjurer
+botania.tagline.incorporeal.ticket_conjurer=Create corporea tickets on the go
+botania.page.incorporeal.ticket_conjurer0=The &1Ticket Conjurer&0 assists in the creation of arbitrary &1Corproea Tickets&0, for use with the &1Sanvocalia&0 flower. Other than the fact that it's an item, not a block, it acts identically to a &1Corporea Index&0. Simply hold it in either hand, speak a &4Corporea Request&0, and a &1Corporea Ticket&0 will be created for it.
+botania.page.incorporeal.ticket_conjurer1=The only other difference between it and a &1Corporea Index&0 is in the behavior of the word "this", which will refer to the item in your off-hand when you hold the &1Ticket Conjurer&0 in your main hand, and vice versa.
+botania.page.incorporeal.ticket_conjurer.flavor=Dying Breath of Stokesia
+
 ####CORPOREA BLOCKS
 botania.entry.incorporeal.corporea_inhibitor=Corporea Inhibitor
 botania.tagline.incorporeal.corporea_inhibitor=Block corporea spark connections

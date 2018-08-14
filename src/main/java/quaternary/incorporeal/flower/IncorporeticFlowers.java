@@ -47,5 +47,9 @@ public final class IncorporeticFlowers {
 		
 		moddedFlowers.add(normalName);
 		moddedFlowers.add(smolName);
+		
+		//Throw them in Botania's creative, TODO this is the wrong way to fix them not showing up in Search LOL
+		BotaniaAPI.addSubTileToCreativeMenu(normalName);
+		BotaniaAPI.addSubTileToCreativeMenu(smolName);
 	}
 }

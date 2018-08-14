@@ -10,6 +10,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import quaternary.incorporeal.api.ICustomWrappedInventory;
 import quaternary.incorporeal.block.BlockCorporeaLiar;
+import quaternary.incorporeal.etc.DummyItemHandler;
 import quaternary.incorporeal.etc.LyingWrappedInventory;
 import vazkii.botania.api.corporea.ICorporeaSpark;
 import vazkii.botania.api.corporea.IWrappedInventory;
@@ -22,9 +23,7 @@ import java.util.List;
 
 public class TileCorporeaLiar extends TileCorporeaBase implements ICustomWrappedInventory {
 	private EnumFacing spoofingDirection;
-	
-	public TileCorporeaLiar() {
-	}	
+	private static final DummyItemHandler dummyHandler = new DummyItemHandler();
 	
 	public TileCorporeaLiar setDirection(EnumFacing whichWay) {
 		spoofingDirection = whichWay;
@@ -61,27 +60,19 @@ public class TileCorporeaLiar extends TileCorporeaBase implements ICustomWrapped
 	
 	@Override
 	public boolean hasCapability(@Nonnull Capability<?> cap, EnumFacing side) {
-		if(cap != CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return false;
-		
-		if(spoofingDirection == null) updateDirection();
-		
-		TileEntity te = world.getTileEntity(pos.offset(spoofingDirection));
-		if(te == null) return false;
-		return te.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, spoofingDirection);
+		return cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(cap, side);
 	}
 	
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> T getCapability(@Nonnull Capability<T> cap, EnumFacing side) {
-		if(cap != CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return null;
-		
-		if(spoofingDirection == null) updateDirection();
-		
-		TileEntity te = world.getTileEntity(pos.offset(spoofingDirection));
-		if(te == null) return null; //UH OH
-		
-		IItemHandler wrappedHandler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, spoofingDirection);
-		return (T) wrappedHandler;
+		if(cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+			if(spoofingDirection == null) updateDirection();
+			TileEntity te = world.getTileEntity(pos.offset(spoofingDirection));
+			if(te == null) return (T) dummyHandler;
+			IItemHandler wrappedHandler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, spoofingDirection);
+			return (T) (wrappedHandler == null ? dummyHandler : wrappedHandler);
+		} else return super.getCapability(cap, side);
 	}
 	
 	@Override

@@ -1,8 +1,11 @@
 package quaternary.incorporeal.item;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -10,6 +13,9 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.items.ItemHandlerHelper;
+import quaternary.incorporeal.lexicon.IncorporeticLexicon;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaIndex;
 
 import java.util.Map;
@@ -17,14 +23,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Mod.EventBusSubscriber
-public class ItemTicketConjurer extends Item {
+public class ItemTicketConjurer extends Item implements ILexiconable {
 	static final Map<Pattern, TileCorporeaIndex.IRegexStacker> patterns = ReflectionHelper.getPrivateValue(TileCorporeaIndex.class, null, "patterns");
 	
 	//Based on code from Botania's TileCorporeaIndex
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public static void onChat(ServerChatEvent e) {
 		EntityPlayerMP player = e.getPlayer();
-		WorldServer w = e.getPlayer().getServerWorld();
 		
 		//The stack used for requests of the form "5 of this"
 		ItemStack thisOrderStack;
@@ -76,5 +81,10 @@ public class ItemTicketConjurer extends Item {
 			//Cancel the chat message so it doesn't leak into multiplayer chat
 			e.setCanceled(true);
 		}
+	}
+	
+	@Override
+	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
+		return IncorporeticLexicon.ticketConjurer;
 	}
 }

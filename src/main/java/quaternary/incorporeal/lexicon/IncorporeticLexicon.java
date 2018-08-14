@@ -34,6 +34,7 @@ public final class IncorporeticLexicon {
 	//ELVEN
 	//items
 	public static LexiconEntry fracturedSpace;
+	public static LexiconEntry ticketConjurer;
 	
 	//corporea blocks
 	public static LexiconEntry corporeaInhibitor;
@@ -68,6 +69,7 @@ public final class IncorporeticLexicon {
 		/////
 		
 		fracturedSpace = buildCraftingEntry(IncorporeticItems.FRACTURED_SPACE_ROD, BotaniaAPI.categoryTools, 2);
+		ticketConjurer = buildCraftingEntry(IncorporeticItems.TICKET_CONJURER, BotaniaAPI.categoryEnder, 2);
 		
 		corporeaInhibitor = buildCraftingEntry(IncorporeticBlocks.CORPOREA_INHIBITOR, BotaniaAPI.categoryEnder, 1);
 		corporeaLiar = buildCraftingEntry(IncorporeticBlocks.CORPOREA_LIAR, BotaniaAPI.categoryEnder, 2);

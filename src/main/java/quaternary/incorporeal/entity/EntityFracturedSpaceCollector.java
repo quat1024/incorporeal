@@ -98,7 +98,7 @@ public class EntityFracturedSpaceCollector extends Entity {
 			}
 		} else {
 			if(age > AGE_SPECIAL_START) {
-				AxisAlignedBB aabb = new AxisAlignedBB(posX - RADIUS, posY - .5, posZ - RADIUS, posX + RADIUS, posY + .5, posZ + RADIUS);
+				AxisAlignedBB aabb = new AxisAlignedBB(posX - RADIUS, posY - 1, posZ - RADIUS, posX + RADIUS, posY + 1, posZ + RADIUS);
 				List<EntityItem> nearbyItemEnts = world.getEntitiesWithinAABB(EntityItem.class, aabb, (ent) -> {
 					return ent != null && MathHelper.pointDistancePlane(ent.posX, ent.posZ, posX, posZ) <= RADIUS;
 				});

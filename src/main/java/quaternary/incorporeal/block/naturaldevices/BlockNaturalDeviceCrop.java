@@ -36,13 +36,6 @@ public class BlockNaturalDeviceCrop extends BlockCrops {
 		return AABBS[state.getValue(AGE)];
 	}
 	
-	@Override
-	public IBlockState withAge(int age) {
-		if(age == getMaxAge()) {
-			return IncorporealNaturalDeviceRegistry.pullRandomDevice(naturalDeviceRandom);
-		} else return super.withAge(age);
-	}
-	
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 		//COPYPASTA from super
 		
@@ -57,16 +50,24 @@ public class BlockNaturalDeviceCrop extends BlockCrops {
 				float f = getGrowthChance(this, world, pos);
 				
 				if(net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world, pos, state, rand.nextInt((int)(25.0F / f) + 1) == 0)) {
+					//basically copy from bonemeal but with a fixed +1, not a bonemeal age thing
+					int newAge = this.getAge(state) + 1;
+					int maxAge = this.getMaxAge();
 					
-					//Begin change: fix blockupdating when block changes
-					IBlockState oldState = world.getBlockState(pos);
-					IBlockState newState = withAge(i + 1);
-					boolean causeBlockUpdate = oldState.getBlock() != newState.getBlock();
-					world.setBlockState(pos, this.withAge(i + 1), causeBlockUpdate ? 3 : 2);
+					IBlockState newState;
+					boolean causeBlockUpdate;
+					if (newAge >= maxAge) {
+						causeBlockUpdate = true;
+						newState = IncorporealNaturalDeviceRegistry.pullRandomDevice(world.rand);
+					} else {
+						causeBlockUpdate = false;
+						newState = withAge(newAge);
+					}
+					
+					world.setBlockState(pos, newState, causeBlockUpdate ? 3 : 2);
 					if(causeBlockUpdate) {
 						world.neighborChanged(pos, newState.getBlock(), pos.down());
 					}
-					//End change
 					
 					net.minecraftforge.common.ForgeHooks.onCropsGrowPost(world, pos, state, world.getBlockState(pos));
 				}
@@ -83,7 +84,7 @@ public class BlockNaturalDeviceCrop extends BlockCrops {
 		boolean causeBlockUpdate;
 		if (newAge >= maxAge) {
 			causeBlockUpdate = true;
-			newState = withAge(maxAge);
+			newState = IncorporealNaturalDeviceRegistry.pullRandomDevice(world.rand);
 		} else {
 			causeBlockUpdate = false;
 			newState = withAge(newAge);

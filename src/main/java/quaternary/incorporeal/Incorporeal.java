@@ -32,12 +32,17 @@ import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import quaternary.incorporeal.tile.IncorporeticTiles;
 import vazkii.botania.common.item.ModItems;
 
-@SuppressWarnings("ALL")
-@Mod(modid = Incorporeal.MODID, name = Incorporeal.NAME, version = Incorporeal.VERSION, dependencies = Incorporeal.DEPENDENCIES, guiFactory = "quaternary.incorporeal.etc.configjunk.IncorporeticGuiFactory")
+@Mod(
+				modid = Incorporeal.MODID,
+				name = Incorporeal.NAME,
+				version = Incorporeal.VERSION,
+				dependencies = Incorporeal.DEPENDENCIES,
+				guiFactory = "quaternary.incorporeal.etc.configjunk.IncorporeticGuiFactory"
+)
 public final class Incorporeal {	
 	public static final String MODID = "incorporeal";
 	public static final String NAME = "Incorporeal";
-	public static final String VERSION = "0";
+	public static final String VERSION = "GRADLE:VERSION";
 	public static final String DEPENDENCIES = "required-after:botania;";
 	
 	public static final Logger LOGGER = LogManager.getLogger(NAME);
@@ -63,7 +68,7 @@ public final class Incorporeal {
 		@Override
 		public void displayAllRelevantItems(NonNullList<ItemStack> list) {
 			super.displayAllRelevantItems(list);
-			list.addAll(IncorporeticFlowers.getAllIncorporeticFlowerStacks());
+			//list.addAll(IncorporeticFlowers.getAllIncorporeticFlowerStacks());
 		}
 	};
 	
@@ -79,7 +84,6 @@ public final class Incorporeal {
 		DespacitoHelper.init();
 		
 		//TODO find a better home for these?
-		//TODO replace with custom "natural" crops too
 		IncorporealNaturalDeviceRegistry.addNaturalDevice((rand) -> {
 			return IncorporeticBlocks.NATURAL_REPEATER.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
 		}, 80);

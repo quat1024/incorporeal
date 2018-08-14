@@ -82,7 +82,8 @@ public abstract class AbstractBlockNaturalDevice extends Block implements ILexic
 	}
 	
 	protected boolean canStay(World world, BlockPos pos) {
-		return world.getBlockState(pos.down()).getMaterial() == Material.GROUND;
+		Material underMaterial = world.getBlockState(pos.down()).getMaterial();
+		return underMaterial == Material.GROUND || underMaterial == Material.GRASS;
 		//return world.getBlockState(pos.down()).isTopSolid(); //Same logic as repeater
 	}
 	
@@ -100,9 +101,10 @@ public abstract class AbstractBlockNaturalDevice extends Block implements ILexic
 			updateState(world, pos, state);
 		} else {
 			world.destroyBlock(pos, true);
+			/*
 			for(EnumFacing facing : EnumFacing.VALUES) {
 				world.notifyNeighborsOfStateChange(pos.offset(facing), this, false);
-			}
+			}*/
 		}
 	}
 	
@@ -121,12 +123,23 @@ public abstract class AbstractBlockNaturalDevice extends Block implements ILexic
 		
 		if(isPowered && !stillShouldPower) {
 			world.setBlockState(pos, state.withProperty(LIT, false));
+			notifyAround(world, pos, state);
+			
 		} else if(!isPowered) {
 			world.setBlockState(pos, state.withProperty(LIT, true));
+			notifyAround(world, pos, state);
+			
 			if(stillShouldPower) {
 				world.updateBlockTick(pos, this, TICK_DELAY, -1);
 			}
 		}
+	}
+	
+	private void notifyAround(World world, BlockPos pos, IBlockState state) {
+		EnumFacing inputSide = state.getValue(FACING);
+		BlockPos notifyAroundPos = pos.offset(inputSide.getOpposite());
+		world.neighborChanged(notifyAroundPos, this, pos);
+		world.notifyNeighborsOfStateExcept(notifyAroundPos, this, inputSide);
 	}
 	
 	@Override

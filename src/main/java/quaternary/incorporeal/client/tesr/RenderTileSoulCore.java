@@ -80,7 +80,7 @@ public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEnti
 		bindTexture(cubesLocation);
 		
 		GlStateManager.rotate(((-ticks + hash) / 5f) % 360, 0, 1, 0);
-		GlStateManager.rotate(MathHelper.sin(ticks / 50f) * 40, 0, 1, 0);
+		GlStateManager.rotate(MathHelper.sin((ticks + hash) / 50f) * 40, 0, 1, 0);
 		
 		float wobble2 = (hash + ticks) * 3;
 		float wobble2Sin = EtcHelpers.sinDegrees(wobble2);

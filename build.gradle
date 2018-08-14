@@ -10,7 +10,7 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "0"
+version = "1.0.0"
 group = "quaternary.incorporeal" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "incorporeal"
 
@@ -58,6 +58,8 @@ minecraft {
     if(project.hasProperty("mc_username")) {
         clientRunArgs += ["--username", project.mc_username]
     }
+    
+    replace "GRADLE:VERSION", project.version
 }
 
 processResources {
