@@ -32,14 +32,12 @@ This Source Code Form is subject to the terms of the Mozilla Public License, v. 
 
 ### What's left to do?
 
-* Can i get uhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh 🅱🅱🅱🅱oneless block model
-* with a large coke and a side of Tesr
-* Understandable have a nice day.
-* clean up Todo comments
+* Hire a goddamn artist lol
 
 ### What's planned for the next update?
 
-* ~~Corporea spark augment x d~~too hard, pr that
-* More options for corporea sparks (byebye dropper spark chains)
-* Data boxes
+* ~~Corporea spark augment x d~~too hard and hacky, pr that
+* More options for corporea sparks?
+* "Data boxes"
+* The little worldgen structure thingie.
 * MORE COREMODDING????!??!!
