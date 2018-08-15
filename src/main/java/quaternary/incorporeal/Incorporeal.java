@@ -52,18 +52,8 @@ public final class Incorporeal {
 	
 	public static final Logger LOGGER = LogManager.getLogger(NAME);
 	
-	public static final boolean DEV_ENV = (boolean) Launch.blackboard.get("fml.deobfuscatedEnvironment");
-	
 	@SidedProxy(clientSide = "quaternary.incorporeal.etc.proxy.ClientProxy", serverSide = "quaternary.incorporeal.etc.proxy.ServerProxy")
 	public static ServerProxy PROXY;
-	
-	static {
-		//TODO remove for obvious reasons.
-		if(!DEV_ENV) {
-			FMLLog.bigWarning("[Incorporeal] You are stupid");
-			throw new RuntimeException("Incorporeal is not ready to be played yet. I'm ashamed I even have to add this error message");
-		}
-	}
 	
 	public static final CreativeTabs TAB = new CreativeTabs(MODID) {
 		@SideOnly(Side.CLIENT)
