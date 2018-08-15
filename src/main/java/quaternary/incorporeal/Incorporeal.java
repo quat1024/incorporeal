@@ -32,6 +32,7 @@ import quaternary.incorporeal.flower.IncorporeticFlowers;
 import quaternary.incorporeal.flower.IncorporeticPetalRecipes;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
+import quaternary.incorporeal.net.IncorporeticPacketHandler;
 import quaternary.incorporeal.tile.IncorporeticTiles;
 import vazkii.botania.common.item.ModItems;
 
@@ -87,6 +88,8 @@ public final class Incorporeal {
 	@Mod.EventHandler
 	public static void init(FMLInitializationEvent e) {
 		DespacitoHelper.init();
+		
+		IncorporeticPacketHandler.init();
 		
 		IncorporeticPetalRecipes.init();
 		IncorporeticRuneRecipes.init();

@@ -5,18 +5,27 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import quaternary.incorporeal.IncorporeticConfig;
 import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import quaternary.incorporeal.item.ItemCorporeaTicket;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
+import quaternary.incorporeal.net.IncorporeticPacketHandler;
+import quaternary.incorporeal.net.MessageSparkleLine;
 import vazkii.botania.api.corporea.CorporeaRequest;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -25,7 +34,10 @@ import vazkii.botania.api.subtile.SubTileFunctional;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaIndex;
 
 import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -39,22 +51,28 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 	@Nullable
 	private UUID owner;
 	private String customName = "Sanvocalia"; 
+	private int cooldown;
 	
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
+		
+		if(cooldown > 0) {
+			cooldown--;
+			return;
+		}
 		
 		World w = supertile.getWorld();
 		BlockPos pos = supertile.getPos();
 		
 		if(w.isRemote || redstoneSignal > 0) return;
 		
-		AxisAlignedBB itemDetectionBox = new AxisAlignedBB(pos.add(-getRange(), 0, -getRange()), pos.add(getRange(), 1, getRange()));
+		AxisAlignedBB itemDetectionBox = new AxisAlignedBB(pos.add(-getRange(), 0, -getRange()), pos.add(getRange() + 1, 1, getRange() + 1));
 		List<EntityItem> nearbyTickets = w.getEntitiesWithinAABB(EntityItem.class, itemDetectionBox, ITEM_IS_VALID_TICKET::test);
 		
 		if(nearbyTickets.isEmpty()) return;
 		
-		EntityItem ticket = nearbyTickets.get(0);
+		EntityItem ticket = nearbyTickets.get(w.rand.nextInt(nearbyTickets.size()));
 		CorporeaRequest ticketsRequest = ItemCorporeaTicket.getRequestFromTicket(ticket.getItem());
 		
 		List<TileCorporeaIndex> nearbyIndices = CorporeaHelper2.getNearbyIndicesReflect(w, pos, getRange());
@@ -72,24 +90,58 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 				}
 				
 				mana -= 100;
-				ticket.setDead();
+				consumeTicket(ticket, null);
 				sync();
 			}
 		} else {
 			//Read the request to all nearby indices
 			boolean did = false;
+			Set<BlockPos> indexPositions = new HashSet<>();
 			for(TileCorporeaIndex index : nearbyIndices) {
 				if(mana < 20) break;
 				CorporeaHelper2.spawnRequest(w, ticketsRequest, index.getSpark(), index.getPos());
 				mana -= 20;
+				indexPositions.add(index.getPos());
 				did = true;
 			}
 			
 			if(did) {
-				ticket.setDead();
+				consumeTicket(ticket, indexPositions);
 				sync();
 			}
 		}
+	}
+	
+	//Only call serverside
+	private void consumeTicket(EntityItem ticket, @Nullable Collection<BlockPos> indexPositions) {
+		Vec3d ticketPos = ticket.getPositionVector();
+		ItemStack ticketStack = ticket.getItem/*Stack*/();
+		WorldServer world = (WorldServer) getWorld();
+		BlockPos pos = getPos();
+		
+		IncorporeticPacketHandler.sendToAllTracking(
+						new MessageSparkleLine(ticketPos, new Vec3d(pos).addVector(.5, .5, .5)), world, pos
+		);
+		if(indexPositions != null) {
+			for(BlockPos p : indexPositions) {
+				IncorporeticPacketHandler.sendToAllTracking(
+								new MessageSparkleLine(new Vec3d(p).addVector(.5, .5, .5), ticketPos), world, pos
+				);
+			}
+		}
+		
+		SoundEvent sound = world.rand.nextDouble() < 0.1 ? SoundEvents.ENTITY_PLAYER_BURP : SoundEvents.ENTITY_GENERIC_EAT;
+		world.playSound(null, pos, sound, SoundCategory.BLOCKS, .5f, 1);
+		world.spawnParticle(EnumParticleTypes.ITEM_CRACK, false, ticket.posX, ticket.posY, ticket.posZ, 20, 0.1D, 0.1D, 0.1D, 0.05D, Item.getIdFromItem(ticketStack.getItem()), ticketStack.getItemDamage());
+		
+		if(ticketStack.getCount() > 1) {
+			ticketStack.shrink(1);
+			ticket.setItem(ticketStack); //forces a sync (look inside setItem)
+		} else {
+			ticket.setDead();
+		}
+		
+		cooldown = 3;
 	}
 	
 	public int getRange() {
@@ -136,14 +188,20 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 	@Override
 	public void readFromPacketNBT(NBTTagCompound cmp) {
 		super.readFromPacketNBT(cmp);
-		owner = NBTUtil.getUUIDFromTag(cmp.getCompoundTag("Owner"));
+		if(cmp.hasKey("Owner")) {
+			owner = NBTUtil.getUUIDFromTag(cmp.getCompoundTag("Owner"));
+		} else owner = null;
 		customName = cmp.getString("CustomName");
+		cooldown = cmp.getInteger("TicketCooldown");
 	}
 	
 	@Override
 	public void writeToPacketNBT(NBTTagCompound cmp) {
-		cmp.setTag("Owner", NBTUtil.createUUIDTag(owner));
+		if(owner != null) {
+			cmp.setTag("Owner", NBTUtil.createUUIDTag(owner));
+		}
 		cmp.setString("CustomName", customName);
+		cmp.setInteger("TicketCooldown", cooldown);
 		super.writeToPacketNBT(cmp);
 	}
 	
