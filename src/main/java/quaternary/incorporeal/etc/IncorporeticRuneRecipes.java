@@ -33,7 +33,7 @@ public final class IncorporeticRuneRecipes {
 						new ItemStack(ModItems.manaResource, 1, 8) //pixie dust
 		);
 		
-		enderSoulCore = createStandardSoulCoreRecipe(IncorporeticItems.ENDER_SOUL_CORE, new ItemStack(Blocks.ENDER_CHEST));
+		enderSoulCore = createStandardSoulCoreRecipe(IncorporeticItems.ENDER_SOUL_CORE, new ItemStack(ModItems.enderHand));
 		
 		//TODO this is pretty expensive for what it is - rebalance?
 		corporeaSoulCore = createStandardSoulCoreRecipe(IncorporeticItems.CORPOREA_SOUL_CORE, new ItemStack(ModItems.corporeaSpark, 1, 0));
@@ -42,7 +42,7 @@ public final class IncorporeticRuneRecipes {
 	private static RecipeRuneAltar createStandardSoulCoreRecipe(Item out, ItemStack special) {
 		return BotaniaAPI.registerRuneAltarRecipe(
 						new ItemStack(out),
-						30000,
+						25000, //Hoo baby thats pricey
 						new ItemStack(IncorporeticItems.SOUL_CORE_FRAME),
 						new ItemStack(ModItems.manaResource, 1, 9), //dragonstone
 						new ItemStack(ModItems.manaResource, 1, 9), //dragonstone

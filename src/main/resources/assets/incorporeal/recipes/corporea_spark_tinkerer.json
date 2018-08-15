@@ -1,0 +1,22 @@
+{
+	"result": {
+		"item": "incorporeal:corporea_spark_tinkerer"
+	},
+	"pattern": [
+		"SLS",
+		"LCL"
+	],
+	"type": "forge:ore_shaped",
+	"key": {
+		"S": {
+			"item": "#INGOTMANASTEEL"
+		},
+		"L": {
+			"item": "#LIVINGROCK"
+		},
+		"C": {
+			"item": "botania:corporeaspark",
+			"data": 0
+		}
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"result": {
+		"item": "incorporeal:corporea_retainer_decrementer"
+	},
+	"pattern": [
+		"P P",
+		"PCP",
+		"P P"
+	],
+	"type": "forge:ore_shaped",
+	"key": {
+		"P": {
+			"item": "botania:pavement",
+			"data": 3
+		},
+		"C": {
+			"item": "botania:corporeaspark",
+			"data": 0
+		}
+	}
+}

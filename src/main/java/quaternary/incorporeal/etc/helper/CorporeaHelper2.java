@@ -32,7 +32,7 @@ public final class CorporeaHelper2 {
 		return indices.stream().filter(tile -> {
 			if(tile.getWorld().provider.getDimension() != w.provider.getDimension()) return false;
 			
-			return Math.abs(pos.getX() - tile.getPos().getX()) <= 2 && Math.abs(pos.getZ() - tile.getPos().getZ()) <= 2 && tile.getPos().getY() == pos.getY();
+			return Math.abs(pos.getX() - tile.getPos().getX()) <= range && Math.abs(pos.getZ() - tile.getPos().getZ()) <= range && tile.getPos().getY() == pos.getY();
 		}).collect(Collectors.toList());
 	}
 	

@@ -1,0 +1,86 @@
+{
+	"result": {
+		"item": "incorporeal:corporea_inhibitor"
+	},
+	"pattern": [
+		"GGG",
+		"PCP",
+		"GGG"
+	],
+	"type": "forge:ore_shaped",
+	"key": {
+		"G": {
+			"item": "botania:elfglasspane"
+		},
+		"C": {
+			"item": "botania:corporeaspark",
+			"data": 0
+		},
+		"P": [
+			{
+				"item": "botania:petalblock",
+				"data": 0
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 1
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 2
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 3
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 4
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 5
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 6
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 7
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 8
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 9
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 10
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 11
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 12
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 13
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 14
+			},
+			{
+				"item": "botania:petalblock",
+				"data": 15
+			}
+		]
+	}
+}
