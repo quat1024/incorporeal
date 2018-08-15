@@ -1,10 +1,11 @@
 {
 	"homepage": "https://github.com/quat1024/incorporeal/releases",
 	"1.12.2": {
+		"1.0.1": "Fix a startup crash outside of dev environment, whoops",
 		"1.0.0": "Initial release?"
 	},
 	"promos": {
-		"1.12.2-latest": "1.0.0",
-		"1.12.2-recommended": "1.0.0"
+		"1.12.2-latest": "1.0.1",
+		"1.12.2-recommended": "1.0.1"
 	}
 }
