@@ -45,7 +45,7 @@ public class IncorporealTransformer implements IClassTransformer, Opcodes {
 			tweak.accept(node, transformedName);
 		}
 		
-		ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+		ClassWriter writer = new SpookyClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
 		node.accept(writer);
 		
 		return writer.toByteArray();
