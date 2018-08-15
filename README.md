@@ -6,7 +6,9 @@ A Botania addon that adds more toys for your corporea system. Designed for manag
 Development status - adding the finishing touches and hastily slapping together some art. Tentative release date is August 14th.
 
 ---
+
 This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 ---
 
 This project uses a small amount of code from Gotta Go Fast by Thiakil, specifically, its ASM classwriter. Its license is reproduced in OTHER_LICENCES.md.
