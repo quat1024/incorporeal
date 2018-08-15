@@ -1,12 +1,14 @@
 package quaternary.incorporeal.tile;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -52,6 +54,9 @@ public class TileCorporeaSparkTinkerer extends TileEntity {
 		myNetwork = itsNetwork;
 		
 		CorporeaHelper2.causeSparkRelink(spork);
+		
+		//TODO: don't steal vanilla soundevents for nonvanilla things (incorrect subtitles!)
+		world.playSound(null, pos, SoundEvents.ENTITY_ITEMFRAME_ADD_ITEM, SoundCategory.BLOCKS, 1f, 1f);
 	}
 	
 	public void setNetwork(EnumDyeColor color) {

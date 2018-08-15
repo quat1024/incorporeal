@@ -8,9 +8,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -89,6 +91,11 @@ public class BlockFrameTinkerer extends Block implements ILexiconable {
 				ItemStack frameStack = frame.getDisplayedItem().copy();
 				frame.setDisplayedItem(inWorldStack.copy());
 				inWorldStack = frameStack;
+				
+				if(!inWorldStack.isEmpty()) {
+					//Removing an item from a frame doesn't play the sound so let's fix it!
+					world.playSound(null, frame.posX, frame.posY, frame.posZ, SoundEvents.ENTITY_ITEMFRAME_REMOVE_ITEM, SoundCategory.BLOCKS, 1f, 1);
+				}
 				
 				//Resolve the other item
 				if(ent == null) {
