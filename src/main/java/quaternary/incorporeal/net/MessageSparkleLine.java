@@ -3,6 +3,7 @@ package quaternary.incorporeal.net;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.fml.common.network.simpleimpl.*;
 import vazkii.botania.common.Botania;
 
@@ -11,13 +12,21 @@ import java.awt.*;
 public class MessageSparkleLine implements IncorporeticPacketHandler.IIncorporeticMessage {
 	public MessageSparkleLine() {}
 	
-	public MessageSparkleLine(Vec3d point1, Vec3d point2) {
+	public MessageSparkleLine(Vec3d point1, Vec3d point2, int decay) {
 		this.point1 = point1;
 		this.point2 = point2;
+		this.decay = decay;
+	}
+	
+	public MessageSparkleLine(Vec3i point1, Vec3i point2, int decay) {
+		this.point1 = new Vec3d(point1).addVector(.5, .5, .5);
+		this.point2 = new Vec3d(point2).addVector(.5, .5, .5);
+		this.decay = decay;
 	}
 	
 	private Vec3d point1;
 	private Vec3d point2;
+	private int decay;
 	
 	@Override
 	public void toBytes(ByteBuf buf) {
@@ -27,12 +36,14 @@ public class MessageSparkleLine implements IncorporeticPacketHandler.IIncorporet
 		buf.writeDouble(point2.x);
 		buf.writeDouble(point2.y);
 		buf.writeDouble(point2.z);
+		buf.writeInt(decay);
 	}
 	
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		point1 = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
 		point2 = new Vec3d(buf.readDouble(), buf.readDouble(), buf.readDouble());
+		decay = buf.readInt();
 	}
 	
 	public static class Handler implements IMessageHandler<MessageSparkleLine, IMessage> {
@@ -57,7 +68,7 @@ public class MessageSparkleLine implements IncorporeticPacketHandler.IIncorporet
 					float g = Math.min(1F, color.getGreen() / 255F + 0.4F);
 					float b = Math.min(1F, color.getBlue() / 255F + 0.4F);
 					
-					Botania.proxy.sparkleFX(currentPos.x, currentPos.y, currentPos.z, r, g, b, 1F, 12);
+					Botania.proxy.sparkleFX(currentPos.x, currentPos.y, currentPos.z, r, g, b, 1F, message.decay);
 					currentPos = currentPos.add(movement);
 				}
 				Botania.proxy.setSparkleFXNoClip(false);

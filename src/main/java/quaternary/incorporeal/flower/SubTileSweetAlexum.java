@@ -6,11 +6,14 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.NoteBlockEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.etc.helper.DespacitoHelper;
+import quaternary.incorporeal.net.IncorporeticPacketHandler;
+import quaternary.incorporeal.net.MessageSparkleLine;
 import vazkii.botania.api.subtile.RadiusDescriptor;
 import vazkii.botania.api.subtile.SubTileFunctional;
 
@@ -77,34 +80,51 @@ public class SubTileSweetAlexum extends SubTileFunctional {
 			boolean dirtyMana = false;
 			
 			if(flutePos != null) {
-				for(int note : DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.FLUTE)) {
-					world.addBlockEvent(flutePos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.FLUTE.ordinal(), note);
-					mana -= 10;
-					dirtyMana = true;
+				int[] notes = DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.FLUTE);
+				if(notes.length > 0) {
+					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(pos, flutePos, 1), world, pos);
+					
+					for(int note : notes) {
+						world.addBlockEvent(flutePos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.FLUTE.ordinal(), note);
+						mana -= 10;
+						dirtyMana = true;
+					}
 				}
 			}
 			
 			if(snarePos != null) {
-				for(int note : DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.SNARE)) {
-					world.addBlockEvent(snarePos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.SNARE.ordinal(), note);
-					mana -= 10;
-					dirtyMana = true;
+				int[] notes = DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.SNARE);
+				if(notes.length > 0) {
+					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(pos, snarePos, 2), world, pos);
+					for(int note : notes) {
+						world.addBlockEvent(snarePos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.SNARE.ordinal(), note);
+						mana -= 10;
+						dirtyMana = true;
+					}
 				}
 			}
 			
 			if(bassdrumPos != null) {
-				for(int note : DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.BASSDRUM)) {
-					world.addBlockEvent(bassdrumPos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.BASSDRUM.ordinal(), note);
-					mana -= 10;
-					dirtyMana = true;
+				int[] notes = DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.BASSDRUM);
+				if(notes.length > 0) {
+					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(pos, bassdrumPos, 2), world, pos);
+					for(int note : notes) {
+						world.addBlockEvent(bassdrumPos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.BASSDRUM.ordinal(), note);
+						mana -= 10;
+						dirtyMana = true;
+					}
 				}
 			}
 			
 			if(bassguitarPos != null) {
-				for(int note : DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.BASSGUITAR)) {
-					world.addBlockEvent(bassguitarPos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.BASSGUITAR.ordinal(), note);
-					mana -= 10;
-					dirtyMana = true;
+				int[] notes = DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.BASSGUITAR);
+				if(notes.length > 0) {
+					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(pos, bassguitarPos, 2), world, pos);
+					for(int note : notes) {
+						world.addBlockEvent(bassguitarPos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.BASSGUITAR.ordinal(), note);
+						mana -= 10;
+						dirtyMana = true;
+					}
 				}
 			}
 			
