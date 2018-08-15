@@ -24,7 +24,6 @@ This project uses a small amount of code from Gotta Go Fast by Thiakil, specific
 * the Corporea Soul Core: Only people who have a soul core on the network can use corporea indices
 * Plant redstone roots to grow natural redstone circuitry
 * Corporea Retainer Evaporator, allowing for richer control of interceptor-retainer pairs
-* Corporea Interceptor Omni, pulses on *all* corporea traffic on the network, failed or not
 * Lexica Botania integration for ~~all~~most of this, of course
 
 * 1 coremod boio
