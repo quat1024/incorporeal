@@ -23,7 +23,7 @@ public class RetainerComparatorTweak extends AbstractTweak {
 	@Override
 	protected void patch(ClassNode node, String transformedName) {
 		for(MethodNode method : node.methods) {
-			if(method.name.equals("getComparatorInputOverride")) {
+			if(method.name.equals("getComparatorInputOverride") || method.name.equals("func_180641_l")) {
 				method.instructions.clear();
 				
 				method.instructions.add(new VarInsnNode(ALOAD, 1));
