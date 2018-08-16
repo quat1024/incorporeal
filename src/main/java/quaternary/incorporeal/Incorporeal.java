@@ -106,12 +106,13 @@ public final class Incorporeal {
 		public static void blocks(RegistryEvent.Register<Block> e) {
 			IncorporeticBlocks.registerBlocks(e.getRegistry());
 			IncorporeticTiles.registerTileEntities();
-			IncorporeticFlowers.registerFlowers(); //good spot?
 		}
 		
 		@SubscribeEvent
 		public static void items(RegistryEvent.Register<Item> e) {
 			IncorporeticItems.registerItems(e.getRegistry());
+			
+			IncorporeticFlowers.registerFlowers(); //good spot?
 		}
 		
 		@SubscribeEvent
