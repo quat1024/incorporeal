@@ -23,13 +23,9 @@ tile.incorporeal.natural_comparator.name=自然比较器
 #Flowers
 tile.incorporeal.flower.sanvocalia.name=蛇语菊
 tile.incorporeal.flower.sanvocalia_chibi.name=小蛇语菊
-tile.incorporeal.flower.sanvocalia.flavor=Teknopathetic
-tile.incorporeal.flower.sanvocalia_chibi.flavor=Teknopathetic
 
 tile.incorporeal.flower.sweet_alexum.name=虞勒徘茗
 tile.incorporeal.flower.sweet_alexum_chibi.name=小虞勒徘茗
-tile.incorporeal.flower.sweet_alexum.flavor=This is so sad.
-tile.incorporeal.flower.sweet_alexum_chibi.flavor=This is so sad.
 #TODO report this as a bug, SubTileFunctional$renderHUD hardcodes the wrong flower localization key
 tile.botania:flower.sanvocalia.name=蛇语菊
 tile.botania:flower.sanvocaliaChibi.name=小蛇语菊
@@ -42,7 +38,6 @@ tile.botania:flower.sweet_alexum_chibi.name=小虞勒徘茗
 botania.entry.incorporeal.frame_tinkerer=展示框工匠台
 botania.tagline.incorporeal.frame_tinkerer=交换展示框内的物品
 botania.page.incorporeal.frame_tinkerer0=&1展示框工匠台&0对于每一位多 媒体专家来说都是不可或缺 的。它的功能和&1火花工匠台&0 类似——将一个物品扔到它的 上方，给它一个红石信号，然 后这个物品就会和与工匠台 相邻的&1物品展示框&0内的物品 互换。<br>注意一点，与&1火花工匠台&0不同， &1展示框工匠台&0没有专门储存 物品的位置，你只需要将物品 扔到它的上方就足够了。
-botania.page.incorporeal.frame_tinkerer.flavor=Symbiotic Hematophage
 
 botania.entry.incorporeal.naturalDevices=自然元件
 botania.tagline.incorporeal.naturalDevices=中继器和比较器——只需要你有洒水器
@@ -55,7 +50,6 @@ botania.entry.sweet_alexum=虞勒徘茗
 botania.tagline.sweet_alexum=演奏一首动听（……？）的曲子
 botania.page.sweet_alexum0=传说将&1音符盒&0放置在供有魔 力的&1虞勒徘茗&0旁会让音符盒 调谐到最动听的频率。要进 行完美演奏的话，需要四个&1音 符盒&0：一个放在&1沙子&0上，一个放 在&1原木&0上，一个放在&1石头&0上， 最后一个放在一块由&1最纯粹 的平衡&0构成的方块上。
 botania.page.sweet_alexum1=传说还提到给花一个强红石 信号会重新开始调谐，而弱信 号只会使其暂停。另外&1小虞 勒徘茗&0需要将&1音符盒&0放得更 近但演奏速度会变快。<br>可这些传说的真相是什么呢？
-botania.page.sweet_alexum.flavor=This is so sad.
 
 ########ELVEN
 ####ITEMS
@@ -69,7 +63,6 @@ botania.entry.incorporeal.ticket_conjurer=请求券咒写石
 botania.tagline.incorporeal.ticket_conjurer=在命运的网络中书写你自己的奖券
 botania.page.incorporeal.ticket_conjurer0=在&1请求券咒写石&0的帮助下你 可以写出任意的&1多媒体请求 券&0来与&1蛇语菊&0配合使用。另 外这是一个物品，而不是一个 方块。使用方式类似&1多媒体 索引&0：将其拿在任意一只手上， 做出&4多媒体请求&0，就会凭空写 出一张&1多媒体请求券&0。
 botania.page.incorporeal.ticket_conjurer1=它与&1多媒体索引&0的区别在于 它对你输入的“this”做出的 反应：当&1请求券咒写石&0在主手 时，“tihs”指你副手上的物品， 反过来同理。
-botania.page.incorporeal.ticket_conjurer.flavor=Dying Breath of Stokesia
 
 ####CORPOREA BLOCKS
 botania.entry.incorporeal.corporea_inhibitor=多媒体阻隔器
@@ -81,7 +74,6 @@ botania.entry.incorporeal.corporea_liar=多媒体谎报器
 botania.tagline.incorporeal.corporea_liar=向你的多媒体网络说谎
 botania.page.incorporeal.corporea_liar0=你可以使用&1多媒体谎报器&0来 欺骗你的&4多媒体网络&0。<br>将&1多媒体谎报器&0面朝一个容 器放置并连接到&4多媒体网络&0 后,&1多媒体谎报器&0向&4多媒体网 络&0呈现容器中的物品时会将 贴在其上的所有&1物品展示框 &0内的物品呈现给&4多媒体网络&0， 就好像容器里装满了用展示 框标记的物品一样。
 botania.page.incorporeal.corporea_liar1=从容器中抽取物品的操作没 有什么不同，只是由于&4多媒体 网络&0相信这个容器装满了展 示框内的物品，接收到的物品 可能会与请求的物品不符。<br>注意&1多媒体火花&0需要放置在 &1多媒体谎报器&0上, 而不是谎 报器面朝的容器上。
-botania.page.incorporeal.corporea_liar.flavor=tang pong
 
 botania.entry.incorporeal.corporea_solidifier=多媒体固化器
 botania.tagline.incorporeal.corporea_solidifier=处理请求（物理）
@@ -99,14 +91,11 @@ botania.entry.incorporeal.corporea_retainer_decrementer=多媒体固定器蒸发
 botania.tagline.incorporeal.corporea_retainer_decrementer=一个固定器信号的消逝
 botania.page.incorporeal.corporea_retainer_decrementer0=&1多媒体固定器蒸发箱&0是&1多媒 体固定器&0的附加设备，就像&1多 媒体固定器&0是&1多媒体拦截器 &0的附加设备一样。当&1多媒体 固定器蒸发箱&0接收到红石信 号时，紧贴的&1多媒体固定器&0储 存的请求记录的物品数会减 少 1。
 botania.page.incorporeal.corporea_retainer_decrementer1=注意：这是个不可逆转的操作。 在记录的物品数减少后再激 活&1多媒体固定器&0会使它用新 的物品数发出请求。这在同 一个&1多媒体拦截器&0同时贴着 多个固定器时会很有用。
-botania.page.incorporeal.corporea_retainer_decrementer.flavor=Cha os [Chal len ge ]
 
 botania.entry.incorporeal.soulCores=灵魂核心
 botania.tagline.incorporeal.soulCores=灵魂指定交互
 botania.page.incorporeal.soulCores0=&1灵魂核心&0包围着&1玩家头颅&0，将 其浸在柔和的魔力中，用你从 未见过的轻柔为头颅注入生 命力。这颗失去了身体的头 颅没剩下多少大脑机能，然而 它却与相同的&4灵魂&0，与这颗头 颅的主人——现世里活着的&4玩 家&0的灵魂纠缠着。人话：右击 &1玩家头颅&0放置灵魂核心。
-botania.page.incorporeal.soulCores.flavor0=Driven Drop
 botania.page.incorporeal.soulCores1=可以用&1末影灵魂核心&0来读取 &1玩家&0的&1末影箱&0里的物品。只 要&1玩家&0的灵魂还在这个世上， &1末影箱&0中的物品就会映射在 &1末影灵魂核心&0中。所有正常 的方块交互，比如漏斗和多媒 体火花，都能照常运作。
-botania.page.incorporeal.soulCores.flavor1=You Would Not Believe This Random Hecking Nonsense
 botania.page.incorporeal.soulCores2=&1多媒体灵魂核心&0为&4多媒体网 络&0提供了简单的隐私保全系 统。对于一个&1玩家&0来说，除非 网络中存在拥有它的&4灵魂&0的&1 多媒体灵魂核心&0，否则无法使 用同一网络中的&4多媒体索引&0。
 botania.page.incorporeal.soulCores.flavor2=来，让我康你&2跳舞&0
 
