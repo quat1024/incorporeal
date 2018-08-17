@@ -24,7 +24,9 @@ minecraft.coreMod = "quaternary.incorporeal.spookyasm.IncorporealPlugin"
 
 jar {    
     manifest {
-        attributes "FMLCorePlugin": "quaternary.incorporeal.spookyasm.IncorporealPlugin", "FMLCorePluginContainsFMLMod": true
+        attributes "FMLCorePlugin": "quaternary.incorporeal.spookyasm.IncorporealPlugin"
+        attributes "FMLCorePluginContainsFMLMod": true
+        attributes "FMLAT": "incorporeal_at.cfg"
     }
 }
 
