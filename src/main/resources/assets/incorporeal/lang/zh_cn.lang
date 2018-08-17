@@ -1,0 +1,141 @@
+itemGroup.incorporeal=幻想多媒体
+
+item.incorporeal.ticket_conjurer.name=请求券咒写石
+
+item.incorporeal.corporea_ticket.name=多媒体请求券（空白）
+item.incorporeal.filled_corporea_ticket.name=多媒体请求券（%sx %s）
+item.incorporeal.fractured_space_rod.name=裂空法杖
+
+tile.incorporeal.corporea_liar.name=多媒体谎报器
+tile.incorporeal.corporea_inhibitor.name=多媒体阻隔器
+tile.incorporeal.corporea_solidifier.name=多媒体固化器
+tile.incorporeal.corporea_spark_tinkerer.name=多媒体火花工匠台
+tile.incorporeal.corporea_retainer_decrementer.name=多媒体固定器蒸发箱
+tile.incorporeal.frame_tinkerer.name=展示框工匠台
+
+item.incorporeal.soul_core_frame.name=灵魂核心框架
+tile.incorporeal.ender_soul_core.name=末影灵魂核心
+tile.incorporeal.corporea_soul_core.name=多媒体灵魂核心
+
+tile.incorporeal.natural_repeater.name=自然中继器
+tile.incorporeal.natural_comparator.name=自然比较器
+
+#Flowers
+tile.incorporeal.flower.sanvocalia.name=蛇语菊
+tile.incorporeal.flower.sanvocalia_chibi.name=小蛇语菊
+tile.incorporeal.flower.sanvocalia.flavor=Teknopathetic
+tile.incorporeal.flower.sanvocalia_chibi.flavor=Teknopathetic
+
+tile.incorporeal.flower.sweet_alexum.name=虞勒徘茗
+tile.incorporeal.flower.sweet_alexum_chibi.name=小虞勒徘茗
+tile.incorporeal.flower.sweet_alexum.flavor=This is so sad.
+tile.incorporeal.flower.sweet_alexum_chibi.flavor=This is so sad.
+#TODO report this as a bug, SubTileFunctional$renderHUD hardcodes the wrong flower localization key
+tile.botania:flower.sanvocalia.name=蛇语菊
+tile.botania:flower.sanvocaliaChibi.name=小蛇语菊
+tile.botania:flower.sweet_alexum.name=虞勒徘茗
+tile.botania:flower.sweet_alexum_chibi.name=小虞勒徘茗
+
+###############################Lexicon!!!
+########PRE-ELVEN
+
+botania.entry.incorporeal.frame_tinkerer=展示框工匠台
+botania.tagline.incorporeal.frame_tinkerer=交换展示框内的物品
+botania.page.incorporeal.frame_tinkerer0=&1展示框工匠台&0对于每一位多 媒体专家来说都是不可或缺 的。它的功能和&1火花工匠台&0 类似——将一个物品扔到它的 上方，给它一个红石信号，然 后这个物品就会和与工匠台 相邻的&1物品展示框&0内的物品 互换。<br>注意一点，与&1火花工匠台&0不同， &1展示框工匠台&0没有专门储存 物品的位置，你只需要将物品 扔到它的上方就足够了。
+botania.page.incorporeal.frame_tinkerer.flavor=Symbiotic Hematophage
+
+botania.entry.incorporeal.naturalDevices=自然元件
+botania.tagline.incorporeal.naturalDevices=中继器和比较器——只需要你有洒水器
+botania.page.incorporeal.naturalDevices0=现在你可以种植&1红石根&0,待其 长成后可结出红石元件。由 于红石根的自然构造，这些元 件只能长在&1泥土&0之类的方块 上，不过其他方面和往常的红 石元件差不多。<br>&1红石根&0会长成随机的&1自然元 件&0。
+botania.page.incorporeal.naturalDevices1=&1自然中继器&0有整整一秒的 延迟，比原版中继器最大延迟的 两倍还长。&1红石根&0多 数会长成这种中继器。
+botania.page.incorporeal.naturalDevices2=&1自然比较器&0的反应时间和延 迟时间也是一秒。虽然这种 比较器不能比较红石信号的 大小，也没有减法模式，但它们 仍可以检测箱子、物品展示 框以及其他能被比较器检测 的方块，同时它们只会输出 0 或者 15 强度的信号。
+
+#TODO add an Incorporeal lang key prefix to these if at all possible
+botania.entry.sweet_alexum=虞勒徘茗
+botania.tagline.sweet_alexum=演奏一首动听（……？）的曲子
+botania.page.sweet_alexum0=传说将&1音符盒&0放置在供有魔 力的&1虞勒徘茗&0旁会让音符盒 调谐到最动听的频率。要进 行完美演奏的话，需要四个&1音 符盒&0：一个放在&1沙子&0上，一个放 在&1原木&0上，一个放在&1石头&0上， 最后一个放在一块由&1最纯粹 的平衡&0构成的方块上。
+botania.page.sweet_alexum1=传说还提到给花一个强红石 信号会重新开始调谐，而弱信 号只会使其暂停。另外&1小虞 勒徘茗&0需要将&1音符盒&0放得更 近但演奏速度会变快。<br>可这些传说的真相是什么呢？
+botania.page.sweet_alexum.flavor=This is so sad.
+
+########ELVEN
+####ITEMS
+botania.entry.incorporeal.fractured_space_rod=裂空法杖
+botania.tagline.incorporeal.fractured_space_rod=将物品从任意位置传送到花格箱
+botania.page.incorporeal.fractured_space_rod0=&1裂空法杖&0的作用是独一无二 的，虽然很简单：它可以在两 个空间点间制造虫洞，但看起 来只有&1物品&0这种够小够轻的 东西能穿过。<br>右击&1花格箱&0设置目标位置。
+botania.page.incorporeal.fractured_space_rod1=然后，不管离目标位置有多远， 每当你右击地面时，附近所有 的&1物品&0都会被吸入虫洞然后 从&1花格箱&0里掉出来。尝试一 次传送多个物品会消耗更多 的&1魔力&0，也许你可以考虑用&1潜 影盒&0这类道具来降低魔力消 耗。
+botania.page.incorporeal.fractured_space_rod.flavor=小心点，别传走了
+
+botania.entry.incorporeal.ticket_conjurer=请求券咒写石
+botania.tagline.incorporeal.ticket_conjurer=在命运的网络中书写你自己的奖券
+botania.page.incorporeal.ticket_conjurer0=在&1请求券咒写石&0的帮助下你 可以写出任意的&1多媒体请求 券&0来与&1蛇语菊&0配合使用。另 外这是一个物品，而不是一个 方块。使用方式类似&1多媒体 索引&0：将其拿在任意一只手上， 做出&4多媒体请求&0，就会凭空写 出一张&1多媒体请求券&0。
+botania.page.incorporeal.ticket_conjurer1=它与&1多媒体索引&0的区别在于 它对你输入的“this”做出的 反应：当&1请求券咒写石&0在主手 时，“tihs”指你副手上的物品， 反过来同理。
+botania.page.incorporeal.ticket_conjurer.flavor=Dying Breath of Stokesia
+
+####CORPOREA BLOCKS
+botania.entry.incorporeal.corporea_inhibitor=多媒体阻隔器
+botania.tagline.incorporeal.corporea_inhibitor=阻断多媒体火花链接
+botania.page.incorporeal.corporea_inhibitor0=&1多媒体阻隔器&0的奇特构造通 过某种古怪的方式扭曲了多 媒体领域，使&1多媒体火花&0无法 穿过阻隔器建立链接。<br>阻隔器可以被&1活塞&0推动。
+botania.page.incorporeal.corporea_inhibitor.flavor=根本读不了！
+
+botania.entry.incorporeal.corporea_liar=多媒体谎报器
+botania.tagline.incorporeal.corporea_liar=向你的多媒体网络说谎
+botania.page.incorporeal.corporea_liar0=你可以使用&1多媒体谎报器&0来 欺骗你的&4多媒体网络&0。<br>将&1多媒体谎报器&0面朝一个容 器放置并连接到&4多媒体网络&0 后,&1多媒体谎报器&0向&4多媒体网 络&0呈现容器中的物品时会将 贴在其上的所有&1物品展示框 &0内的物品呈现给&4多媒体网络&0， 就好像容器里装满了用展示 框标记的物品一样。
+botania.page.incorporeal.corporea_liar1=从容器中抽取物品的操作没 有什么不同，只是由于&4多媒体 网络&0相信这个容器装满了展 示框内的物品，接收到的物品 可能会与请求的物品不符。<br>注意&1多媒体火花&0需要放置在 &1多媒体谎报器&0上, 而不是谎 报器面朝的容器上。
+botania.page.incorporeal.corporea_liar.flavor=tang pong
+
+botania.entry.incorporeal.corporea_solidifier=多媒体固化器
+botania.tagline.incorporeal.corporea_solidifier=处理请求（物理）
+botania.page.incorporeal.corporea_solidifier0=&1多媒体固化器&0可以代替&1多媒 体固定器&0来使用。将&1多媒体 固化器&0紧贴&1多媒体拦截器&0放 置后，它并不会记住拦截器拦 截的请求，而是制造一张记录 了所请求的物品及数量的&1多 媒体请求券&0。
+botania.page.incorporeal.corporea_solidifier1=值得注意的是功能花&1蛇语菊&0 似乎会被&1物品请求券&0散发出 的能量所吸引。
+botania.page.incorporeal.corporea_solidifier.flavor=上，上，下，上
+
+botania.entry.incorporeal.corporea_spark_tinkerer=多媒体火花工匠台
+botania.tagline.incorporeal.corporea_spark_tinkerer=通过红石信号切换网络
+botania.page.incorporeal.corporea_spark_tinkerer0=&1多媒体火花工匠台&0的工作原 理与&1火花工匠台&0类似，不过这 次是作用于&1多媒体火花&0而不 是&1火花升级&0的。当&1多媒体火 花工匠台&0与放置在&1多媒体火 花&0所连接的方块旁并收到红石信号时，工匠台会与其中随 机一个&1多媒体火花&0互换颜色。
+botania.page.incorporeal.corporea_spark_tinkerer1=&1多媒体火花工匠台&0可以用&1花 粉&0染色。
+botania.page.incorporeal.corporea_spark_tinkerer.flavor=翻转与反转
+
+botania.entry.incorporeal.corporea_retainer_decrementer=多媒体固定器蒸发箱
+botania.tagline.incorporeal.corporea_retainer_decrementer=一个固定器信号的消逝
+botania.page.incorporeal.corporea_retainer_decrementer0=&1多媒体固定器蒸发箱&0是&1多媒 体固定器&0的附加设备，就像&1多 媒体固定器&0是&1多媒体拦截器 &0的附加设备一样。当&1多媒体 固定器蒸发箱&0接收到红石信 号时，紧贴的&1多媒体固定器&0储 存的请求记录的物品数会减 少 1。
+botania.page.incorporeal.corporea_retainer_decrementer1=注意：这是个不可逆转的操作。 在记录的物品数减少后再激 活&1多媒体固定器&0会使它用新 的物品数发出请求。这在同 一个&1多媒体拦截器&0同时贴着 多个固定器时会很有用。
+botania.page.incorporeal.corporea_retainer_decrementer.flavor=Cha os [Chal len ge ]
+
+botania.entry.incorporeal.soulCores=灵魂核心
+botania.tagline.incorporeal.soulCores=灵魂指定交互
+botania.page.incorporeal.soulCores0=&1灵魂核心&0包围着&1玩家头颅&0，将 其浸在柔和的魔力中，用你从 未见过的轻柔为头颅注入生 命力。这颗失去了身体的头 颅没剩下多少大脑机能，然而 它却与相同的&4灵魂&0，与这颗头 颅的主人——现世里活着的&4玩 家&0的灵魂纠缠着。人话：右击 &1玩家头颅&0放置灵魂核心。
+botania.page.incorporeal.soulCores.flavor0=Driven Drop
+botania.page.incorporeal.soulCores1=可以用&1末影灵魂核心&0来读取 &1玩家&0的&1末影箱&0里的物品。只 要&1玩家&0的灵魂还在这个世上， &1末影箱&0中的物品就会映射在 &1末影灵魂核心&0中。所有正常 的方块交互，比如漏斗和多媒 体火花，都能照常运作。
+botania.page.incorporeal.soulCores.flavor1=You Would Not Believe This Random Hecking Nonsense
+botania.page.incorporeal.soulCores2=&1多媒体灵魂核心&0为&4多媒体网 络&0提供了简单的隐私保全系 统。对于一个&1玩家&0来说，除非 网络中存在拥有它的&4灵魂&0的&1 多媒体灵魂核心&0，否则无法使 用同一网络中的&4多媒体索引&0。
+botania.page.incorporeal.soulCores.flavor2=来，让我康你&2跳舞&0
+
+####OTHER ELVEN THINGIES
+#TODO add an Incorporeal lang key prefix to these if at all possible
+botania.entry.sanvocalia=蛇语菊
+botania.tagline.sanvocalia=向多媒体索引低语
+botania.page.sanvocalia0=&1蛇语菊&0是一种特别容易与多 媒体频率共振的花。当其靠 近&1多媒体索引&0种植并且有&1魔 力&0，它会照着掉在它附近的&1多 媒体请求券&0上的请求向&1多媒 体索引&0低语。<br>请求券可以通过&1多媒体固化 器&0或&1请求券咒写石&0获得。
+botania.page.sanvocalia.flavor=你还记得吗？
+
+#Blah!!!
+
+incorporeal.fracturedSpace.savedPos=已记录花格箱
+incorporeal.fracturedSpace.noPos=未绑定花格箱
+incorporeal.fracturedSpace.wrongDimension=绑定的花格箱不在这个维度内
+incorporeal.fracturedSpace.noCrateThere=绑定坐标上的花格箱丢失
+
+incorporeal.fracturedSpace.tooltipBound=已绑定花格箱
+incorporeal.fracturedSpace.tooltipNotBound=未绑定花格箱
+incorporeal.fracturedSpace.tooltipWrongDimension=！绑定的花格箱不在这个维度内
+incorporeal.fracturedSpace.debug.tooltipPos=绑定坐标： X %s， Y %s， %s
+incorporeal.fracturedSpace.debug.tooltipDim=绑定维度： %s
+
+incorporeal.etc.noSoulCore=你的灵魂无法与这个多媒体网络契合
+
+incorporeal.etc.holdingTicketConjurer0=你有权保持沉默！
+incorporeal.etc.holdingTicketConjurer1=但你所说的一切
+incorporeal.etc.holdingTicketConjurer2=都会成为多媒体请求券
+
+incorporeal.etc.onlyTextureWip=（材质在做了，正常使用是没问题的）
+
+entity.incorporeal.fractured_space_collector.name=空间裂痕（吸尘器）
