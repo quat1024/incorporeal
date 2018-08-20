@@ -3,7 +3,6 @@ package quaternary.incorporeal.client;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -17,16 +16,16 @@ import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.client.tesr.RenderItemSoulCore;
 import quaternary.incorporeal.client.tesr.RenderTileCorporeaSparkTinkerer;
 import quaternary.incorporeal.client.tesr.RenderTileSoulCore;
+import quaternary.incorporeal.client.tesr.decorative.RenderTileUnstableCube;
 import quaternary.incorporeal.flower.SubTileSanvocalia;
 import quaternary.incorporeal.flower.SubTileSweetAlexum;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.tile.TileCorporeaSparkTinkerer;
+import quaternary.incorporeal.tile.decorative.TileUnstableCube;
 import quaternary.incorporeal.tile.soulcore.TileCorporeaSoulCore;
 import quaternary.incorporeal.tile.soulcore.TileEnderSoulCore;
 import vazkii.botania.api.BotaniaAPIClient;
 import vazkii.botania.api.subtile.SubTileEntity;
-
-import java.util.Collections;
 
 @Mod.EventBusSubscriber(modid = Incorporeal.MODID, value = Side.CLIENT)
 public final class ClientRegistryEvents {
@@ -48,6 +47,8 @@ public final class ClientRegistryEvents {
 		setSimpleModel(IncorporeticItems.TICKET_CONJURER);
 		setSimpleModel(IncorporeticItems.FRACTURED_SPACE_ROD);
 		
+		setSimpleModel(IncorporeticItems.DECORATIVE_UNSTABLE_CUBE);
+		
 		setFlowerModel(SubTileSanvocalia.class, "sanvocalia");
 		setFlowerModel(SubTileSanvocalia.Mini.class, "sanvocalia_chibi");
 		setFlowerModel(SubTileSweetAlexum.class, "sweet_alexum");
@@ -59,9 +60,11 @@ public final class ClientRegistryEvents {
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER);
 		setIgnoreAllStateMapper(IncorporeticBlocks.ENDER_SOUL_CORE);
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_SOUL_CORE);
+		setIgnoreAllStateMapper(IncorporeticBlocks.DECORATIVE_UNSTABLE_CUBE);
 		
 		//Tile Entity Special Renderers
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCorporeaSparkTinkerer.class, new RenderTileCorporeaSparkTinkerer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileUnstableCube.class, new RenderTileUnstableCube());
 		
 		RenderTileSoulCore<TileEnderSoulCore> enderRender = new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/tesr/ender_soul_core.png"));
 		RenderTileSoulCore<TileCorporeaSoulCore> corporeaRender = new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/tesr/corporea_soul_core.png"));
