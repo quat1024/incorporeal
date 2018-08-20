@@ -3,7 +3,7 @@ Incorporeal
 
 A Botania addon that adds more toys for your corporea system. Designed for managing large-scale systems and expanding what is possible with corporea without trivializing it.
 
-Development status - adding the finishing touches and hastily slapping together some art. Tentative release date is August 14th.
+Development status - first version is out, now thinking of more things to add to it ;)
 
 ---
 
