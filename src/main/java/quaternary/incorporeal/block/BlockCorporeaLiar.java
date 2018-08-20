@@ -1,6 +1,7 @@
 package quaternary.incorporeal.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -25,6 +26,8 @@ public class BlockCorporeaLiar extends Block implements ILexiconable {
 	
 	public BlockCorporeaLiar() {
 		super(Material.IRON, MapColor.PURPLE);
+		this.setHardness(5.5F);
+		this.setSoundType(SoundType.METAL);
 		
 		setDefaultState(getDefaultState().withProperty(FACING, EnumFacing.UP));
 	}

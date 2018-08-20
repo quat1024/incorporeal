@@ -1,6 +1,7 @@
 package quaternary.incorporeal.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,6 +20,8 @@ import javax.annotation.Nullable;
 public class BlockCorporeaSolidifier extends Block implements ILexiconable {
 	public BlockCorporeaSolidifier() {
 		super(Material.IRON, MapColor.PURPLE);
+		this.setHardness(5.5F);
+		this.setSoundType(SoundType.METAL);
 	}
 	
 	//Tile entity creation stuff

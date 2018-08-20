@@ -1,6 +1,7 @@
 package quaternary.incorporeal.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -28,6 +29,8 @@ import javax.annotation.Nullable;
 public class BlockCorporeaSparkTinkerer extends Block implements ILexiconable {	
 	public BlockCorporeaSparkTinkerer() {
 		super(Material.ROCK, MapColor.PURPLE);
+		this.setHardness(3F);
+		this.setSoundType(SoundType.METAL);
 		
 		setDefaultState(getDefaultState().withProperty(BotaniaStateProps.POWERED, true));
 	}

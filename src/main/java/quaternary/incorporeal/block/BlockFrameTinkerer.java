@@ -1,6 +1,7 @@
 package quaternary.incorporeal.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -28,7 +29,10 @@ import java.util.List;
 
 public class BlockFrameTinkerer extends Block implements ILexiconable {
 	public BlockFrameTinkerer() {
-		super(Material.ROCK);
+		super(Material.WOOD);
+		this.setHardness(2.0F);
+		this.setResistance(5F);
+		this.setSoundType(SoundType.WOOD);
 		
 		setDefaultState(getDefaultState().withProperty(BotaniaStateProps.POWERED, false));
 	}

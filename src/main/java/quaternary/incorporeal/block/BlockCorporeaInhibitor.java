@@ -1,6 +1,7 @@
 package quaternary.incorporeal.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,6 +32,8 @@ import java.util.WeakHashMap;
 public class BlockCorporeaInhibitor extends Block implements ICorporeaInhibitor, ILexiconable {
 	public BlockCorporeaInhibitor() {
 		super(Material.ROCK);
+		this.setHardness(5.5F);
+		this.setSoundType(SoundType.METAL);
 	}
 	
 	private static final WeakHashMap<World, Set<BlockPos>> deferredCheckPositions = new WeakHashMap<>();
