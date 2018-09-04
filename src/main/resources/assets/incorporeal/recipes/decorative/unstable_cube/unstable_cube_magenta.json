@@ -1,0 +1,24 @@
+{
+	"type": "forge:ore_shaped",
+	"pattern": [
+		"OPO",
+		"PEP",
+		"OPO"
+	],
+	"key": {
+		"O": {
+			"item": "#OBSIDIAN"
+		},
+		"P": {
+			"item": "#PETALMAGENTA"
+		},
+		"E": {
+			"item": "minecraft:ender_pearl"
+		}
+	},
+	"result": {
+		"item": "incorporeal:unstable_cube",
+		"data": 2,
+		"count": 2
+	}
+}
