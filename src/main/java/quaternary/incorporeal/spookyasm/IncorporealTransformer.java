@@ -7,11 +7,7 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.ClassNode;
-import quaternary.incorporeal.spookyasm.tweaks.AbstractTweak;
-import quaternary.incorporeal.spookyasm.tweaks.CorporeaInhibitorTweak;
-import quaternary.incorporeal.spookyasm.tweaks.InventoryWrapTweak;
-import quaternary.incorporeal.spookyasm.tweaks.RetainerComparatorTweak;
-import quaternary.incorporeal.spookyasm.tweaks.TerribleHorribleNoGoodVeryBadAwfulCorporeaIndexInputHandlerTweak;
+import quaternary.incorporeal.spookyasm.tweaks.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +21,6 @@ public class IncorporealTransformer implements IClassTransformer, Opcodes {
 	static {
 		allTweaks.add(new InventoryWrapTweak());
 		allTweaks.add(new CorporeaInhibitorTweak());
-		allTweaks.add(new RetainerComparatorTweak());
-		allTweaks.add(new TerribleHorribleNoGoodVeryBadAwfulCorporeaIndexInputHandlerTweak());
 		
 		for(AbstractTweak tweak : allTweaks) {
 			patches.addAll(tweak.getAffectedClassNames());

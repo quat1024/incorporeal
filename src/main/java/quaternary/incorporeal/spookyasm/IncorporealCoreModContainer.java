@@ -12,9 +12,9 @@ public class IncorporealCoreModContainer extends DummyModContainer {
 		super(new ModMetadata());
 		ModMetadata meta = getMetadata(); //Thanks java requiring super to be first
 		
-		meta.version = "1.0.0";
+		meta.version = "1.1.0";
 		meta.modId = "incorporeal_core";
-		meta.name = "In-core-poreal";
+		meta.name = "Incoremod-poreal";
 		meta.credits = "Your MOM";
 		meta.authorList = ImmutableList.of("quaternary");
 		meta.description = "Don't mind me, just a little coremod used by Incorporeal!";

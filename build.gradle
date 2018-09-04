@@ -41,7 +41,8 @@ repositories {
 }
 
 dependencies {
-    deobfCompile "vazkii.botania:Botania:r1.10-355.4"
+    //Building from the libs folder for now (see README)
+    //deobfCompile "vazkii.botania:Botania:r1.10-355.4"
     deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
 }
 

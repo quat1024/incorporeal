@@ -17,7 +17,7 @@ public class InventoryWrapTweak extends AbstractTweak {
 	}
 	
 	@Override
-	protected List<String> getAffectedClassNamesImpl() {
+	protected List<String> computeAffectedClassNames() {
 		return ImmutableList.of("vazkii.botania.common.core.handler.InternalMethodHandler");
 	}
 	

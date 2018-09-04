@@ -18,6 +18,8 @@ import java.util.List;
  * 
  * While it would be useful to extend Botania's WrappedIInventory, its constructor is private.
  * Most of this class is therefore just copied from it. */
+//TODO the PR allows extending WrappedIInventory now~
+	//I dont feel like dealing with these messy functions though lmaO
 public class LyingWrappedInventory extends WrappedInventoryBase {
 	private final InvWithLocation inv;
 	

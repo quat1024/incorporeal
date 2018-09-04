@@ -18,7 +18,7 @@ public class CorporeaInhibitorTweak extends AbstractTweak {
 	}
 	
 	@Override
-	protected List<String> getAffectedClassNamesImpl() {
+	protected List<String> computeAffectedClassNames() {
 		return ImmutableList.of("vazkii.botania.common.entity.EntityCorporeaSpark");
 	}
 	
