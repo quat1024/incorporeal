@@ -4,6 +4,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.tile.decorative.TileUnstableCube;
 import quaternary.incorporeal.tile.soulcore.TileCorporeaSoulCore;
 import quaternary.incorporeal.tile.soulcore.TileEnderSoulCore;
 
@@ -17,6 +18,7 @@ public final class IncorporeticTiles {
 		reg(TileCorporeaSparkTinkerer.class, "corporea_tinkerer");
 		reg(TileEnderSoulCore.class, "ender_soul_core");
 		reg(TileCorporeaSoulCore.class, "corporea_soul_core");
+		reg(TileUnstableCube.class, "unstable_cube");
 	}
 	
 	private static void reg(Class<? extends TileEntity> c, String name) {

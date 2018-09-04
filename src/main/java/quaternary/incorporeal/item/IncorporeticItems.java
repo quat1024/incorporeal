@@ -64,6 +64,9 @@ public final class IncorporeticItems {
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.NATURAL_COMPARATOR)
 	public static final ItemBlock NATURAL_COMPARATOR = null;
 	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.DECORATIVE_UNSTABLE_CUBE)
+	public static final ItemBlock DECORATIVE_UNSTABLE_CUBE = null;
+	
 	//IDEA balks at the idea of injecting values into final fields in incorporeticblocks
 	//That's what objectholder does, though, so make it shut up.
 	@SuppressWarnings("ConstantConditions")
@@ -85,6 +88,8 @@ public final class IncorporeticItems {
 		
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.NATURAL_REPEATER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.NATURAL_COMPARATOR)));
+		
+		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.DECORATIVE_UNSTABLE_CUBE)));
 	}
 	
 	private static <T extends Item> T createItem(T item, String name) {
