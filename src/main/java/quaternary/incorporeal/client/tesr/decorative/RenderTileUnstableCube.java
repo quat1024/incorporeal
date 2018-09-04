@@ -27,19 +27,32 @@ public class RenderTileUnstableCube extends TileEntitySpecialRenderer<TileUnstab
 		IBlockState state = te.getWorld().getBlockState(te.getPos());
 		if(!(state.getBlock() instanceof BlockUnstableCube)) return;
 		
+		GlStateManager.pushMatrix();
+		doTransformations(te, partialTicks, x, y, z);
+		
+		bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+		
+		BlockRendererDispatcher brd = Minecraft.getMinecraft().getBlockRendererDispatcher();
+		BlockModelShapes bms = brd.getBlockModelShapes();
+		BlockModelRenderer bmr = brd.getBlockModelRenderer();
+		GlStateManager.rotate(-90, 0, 1, 0); //literally just counteract the weird rotation in the below func lmao
+		bmr.renderModelBrightness(bms.getModelForState(state), state, 1f, true);
+		
+		GlStateManager.popMatrix();
+	}
+	
+	//spaghetti emoji
+	//this is used in the custom block highlight for this block, that spins with the block
+	//so obvs they need the same transformations; might as well break them out into a method to call
+	public static void doTransformations(TileUnstableCube te, float partialTicks, double x, double y, double z) {
 		float ticks = ClientTickHandler.ticksInGame + partialTicks;
 		
 		float predictedTileAngle = te.rotationAngle + (te.rotationSpeed * partialTicks);
 		
 		int hash = MathHelper.hash(MathHelper.hash(te.getPos().hashCode())) % 50000;
 		
-		GlStateManager.pushMatrix();
-		
 		GlStateManager.translate(x + .5, y + .5, z + .5);
 		GlStateManager.rotate((predictedTileAngle + hash) % 360, 0, 1, 0);
-		
-		//float verticalBob = EtcHelpers.sinDegrees((hash + ticks) * 4);
-		//GlStateManager.translate(0, .1 * verticalBob, 0);
 		
 		float wobble = ticks + hash;
 		float wobbleSin = EtcHelpers.sinDegrees(wobble);
@@ -52,14 +65,5 @@ public class RenderTileUnstableCube extends TileEntitySpecialRenderer<TileUnstab
 		GlStateManager.rotate(-wobbleCos * wobbleAmountDegrees, 0, 0, 1);
 		
 		GlStateManager.translate(-.5, -.5, -.5);
-		
-		bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-		
-		BlockRendererDispatcher brd = Minecraft.getMinecraft().getBlockRendererDispatcher();
-		BlockModelShapes bms = brd.getBlockModelShapes();
-		BlockModelRenderer bmr = brd.getBlockModelRenderer();
-		bmr.renderModelBrightnessColor(bms.getModelForState(state), 1f, 1f, 1f, 1f);
-		
-		GlStateManager.popMatrix();
 	}
 }

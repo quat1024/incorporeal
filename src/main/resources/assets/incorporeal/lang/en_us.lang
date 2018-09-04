@@ -20,6 +20,23 @@ tile.incorporeal.corporea_soul_core.name=Corporetic Soul Core
 tile.incorporeal.natural_repeater.name=Earthen Repeater
 tile.incorporeal.natural_comparator.name=Earthen Comparator
 
+tile.incorporeal.unstable_cube.black.name=Black Unstable Cube
+tile.incorporeal.unstable_cube.red.name=Red Unstable Cube
+tile.incorporeal.unstable_cube.green.name=Green Unstable Cube
+tile.incorporeal.unstable_cube.brown.name=Brown Unstable Cube
+tile.incorporeal.unstable_cube.blue.name=Blue Unstable Cube
+tile.incorporeal.unstable_cube.purple.name=Purple Unstable Cube
+tile.incorporeal.unstable_cube.cyan.name=Cyan Unstable Cube
+tile.incorporeal.unstable_cube.silver.name=Light Gray Unstable Cube
+tile.incorporeal.unstable_cube.gray.name=Gray Unstable Cube
+tile.incorporeal.unstable_cube.pink.name=Pink Unstable Cube
+tile.incorporeal.unstable_cube.lime.name=Lime Unstable Cube
+tile.incorporeal.unstable_cube.yellow.name=Yellow Unstable Cube
+tile.incorporeal.unstable_cube.lightBlue.name=Light Blue Unstable Cube
+tile.incorporeal.unstable_cube.magenta.name=Magenta Unstable Cube
+tile.incorporeal.unstable_cube.orange.name=Orange Unstable Cube
+tile.incorporeal.unstable_cube.white.name=White Unstable Cube
+
 #Flowers
 tile.incorporeal.flower.sanvocalia.name=Sanvocalia
 tile.incorporeal.flower.sanvocalia_chibi.name=Sanvocalia Petite

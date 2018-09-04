@@ -2,6 +2,7 @@ package quaternary.incorporeal.item;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemCloth;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -89,7 +90,7 @@ public final class IncorporeticItems {
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.NATURAL_REPEATER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.NATURAL_COMPARATOR)));
 		
-		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.DECORATIVE_UNSTABLE_CUBE)));
+		reg.register(createItemBlock(new ItemCloth(IncorporeticBlocks.DECORATIVE_UNSTABLE_CUBE)));
 	}
 	
 	private static <T extends Item> T createItem(T item, String name) {

@@ -1,11 +1,15 @@
 package quaternary.incorporeal.tile.decorative;
 
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.Vec3d;
+import quaternary.incorporeal.block.decorative.BlockUnstableCube;
+import vazkii.botania.api.state.BotaniaStateProps;
 import vazkii.botania.common.Botania;
 import vazkii.botania.common.core.helper.Vector3;
 
@@ -27,9 +31,17 @@ public class TileUnstableCube extends TileEntity implements ITickable {
 		
 		if(world.isRemote) {
 			if(world.getTotalWorldTime() >= nextLightningTick) {
+				//Yeah yeah i could cache this whatever
+				IBlockState state = world.getBlockState(pos);
+				int color = state.getBlock() instanceof BlockUnstableCube ? state.getValue(BotaniaStateProps.COLOR).colorValue : 0xFF0000; //oof
+				int red = (color & 0xFF0000) >> 16;
+				int green = (color & 0x00FF00) >> 8;
+				int blue = (color & 0x0000FF);
+				int colorDarker = ((red / 2) << 16) | ((green / 2) << 8) | (blue / 2);
+				
 				Vector3 start = new Vector3(new Vec3d(pos)).add(.5, .5, .5);
 				Vector3 end = start.add(world.rand.nextDouble() * 2 - 1, world.rand.nextDouble() * 2 - 1, world.rand.nextDouble() * 2 - 1);
-				Botania.proxy.lightningFX(start, end, 5f, 0x333333, 0x999999);
+				Botania.proxy.lightningFX(start, end, 5f, colorDarker, color);
 				
 				if(rotationSpeed > 1) {
 					nextLightningTick = world.getTotalWorldTime() + (int) (60 - Math.min(60, rotationSpeed)) + 3;
