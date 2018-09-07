@@ -66,7 +66,7 @@ The buildscript also contains a few handy lines that allow you to set your Minec
 
 This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-**`SpookyClassWriter.java`:``
+**`SpookyClassWriter.java`:**
 
 This is from Gotta Go Fast by Thiakil, MIT license. Its license is reproduced in OTHER_LICENCES.md.
 
