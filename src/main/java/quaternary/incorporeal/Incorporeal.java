@@ -19,7 +19,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import quaternary.incorporeal.api.IncorporealNaturalDeviceRegistry;
+import quaternary.incorporealapi.IIncorporealAPI;
+import quaternary.incorporeal.api.impl.IncorporealAPI;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
@@ -49,6 +50,8 @@ public final class Incorporeal {
 	public static final String DEPENDENCIES = "required-after:botania;";
 	
 	public static final Logger LOGGER = LogManager.getLogger(NAME);
+	
+	public static final IIncorporealAPI API = new IncorporealAPI();
 	
 	@SidedProxy(clientSide = "quaternary.incorporeal.etc.proxy.ClientProxy", serverSide = "quaternary.incorporeal.etc.proxy.ServerProxy")
 	public static ServerProxy PROXY;
@@ -85,11 +88,11 @@ public final class Incorporeal {
 		IncorporeticLexicon.init();
 		
 		//TODO find a better home for these?
-		IncorporealNaturalDeviceRegistry.addNaturalDevice((rand) -> {
+		API.getNaturalDeviceRegistry().registerNaturalDevice((rand) -> {
 			return IncorporeticBlocks.NATURAL_REPEATER.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
 		}, 80);
 		
-		IncorporealNaturalDeviceRegistry.addNaturalDevice((rand) -> {
+		API.getNaturalDeviceRegistry().registerNaturalDevice((rand) -> {
 			return IncorporeticBlocks.NATURAL_COMPARATOR.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
 		}, 20);
 		

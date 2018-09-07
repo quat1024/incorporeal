@@ -12,7 +12,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import quaternary.incorporeal.api.IncorporealNaturalDeviceRegistry;
+import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.api.impl.IncorporealNaturalDeviceRegistry;
 import vazkii.botania.common.item.ModItems;
 
 import java.util.ListIterator;
@@ -55,7 +56,7 @@ public class BlockNaturalDeviceCrop extends BlockCrops {
 					boolean causeBlockUpdate;
 					if (newAge >= maxAge) {
 						causeBlockUpdate = true;
-						newState = IncorporealNaturalDeviceRegistry.pullRandomDevice(world.rand);
+						newState = Incorporeal.API.getNaturalDeviceRegistry().pullRandomDevice(world.rand);
 					} else {
 						causeBlockUpdate = false;
 						newState = withAge(newAge);
@@ -81,7 +82,7 @@ public class BlockNaturalDeviceCrop extends BlockCrops {
 		boolean causeBlockUpdate;
 		if (newAge >= maxAge) {
 			causeBlockUpdate = true;
-			newState = IncorporealNaturalDeviceRegistry.pullRandomDevice(world.rand);
+			newState = Incorporeal.API.getNaturalDeviceRegistry().pullRandomDevice(world.rand);
 		} else {
 			causeBlockUpdate = false;
 			newState = withAge(newAge);

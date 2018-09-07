@@ -62,6 +62,14 @@ The buildscript also contains a few handy lines that allow you to set your Minec
 
 ## License information
 
+**All source files in `src/main/java/quaternary/incorporeal/` except `SpookyClassWriter.java`:**
+
 This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-This project uses a small amount of code from Gotta Go Fast by Thiakil, specifically, its ASM classwriter. Its license is reproduced in OTHER_LICENCES.md.
+**`SpookyClassWriter.java`:``
+
+This is from Gotta Go Fast by Thiakil, MIT license. Its license is reproduced in OTHER_LICENCES.md.
+
+**All files in `src/main/java/quaternary/incorporealapi/`:**
+
+CC0, public domain. Repackaging them in your mods is very much encouraged.

@@ -8,7 +8,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import quaternary.incorporeal.api.ICustomWrappedInventory;
+import quaternary.incorporealapi.ICustomWrappedInventory;
 import quaternary.incorporeal.block.BlockCorporeaLiar;
 import quaternary.incorporeal.etc.DummyItemHandler;
 import quaternary.incorporeal.etc.LyingWrappedInventory;

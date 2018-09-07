@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import quaternary.incorporeal.api.ICorporeaInhibitor;
+import quaternary.incorporealapi.ICorporeaInhibitor;
 import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import vazkii.botania.api.lexicon.ILexiconable;
