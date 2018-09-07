@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import quaternary.incorporeal.world.gen.IncorporeticWorldGenerators;
 import quaternary.incorporealapi.IIncorporealAPI;
 import quaternary.incorporeal.api.impl.IncorporealAPI;
 import quaternary.incorporeal.block.IncorporeticBlocks;
@@ -86,6 +87,8 @@ public final class Incorporeal {
 		IncorporeticRuneRecipes.init();
 		
 		IncorporeticLexicon.init();
+		
+		IncorporeticWorldGenerators.init();
 		
 		//TODO find a better home for these?
 		API.getNaturalDeviceRegistry().registerNaturalDevice((rand) -> {
