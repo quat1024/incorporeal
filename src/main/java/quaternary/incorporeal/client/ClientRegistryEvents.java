@@ -19,13 +19,16 @@ import net.minecraftforge.fml.relauncher.Side;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.client.tesr.RenderItemSoulCore;
+import quaternary.incorporeal.client.tesr.decorative.RenderItemLivingwoodChest;
 import quaternary.incorporeal.client.tesr.RenderTileCorporeaSparkTinkerer;
 import quaternary.incorporeal.client.tesr.RenderTileSoulCore;
+import quaternary.incorporeal.client.tesr.decorative.RenderTileLivingwoodChest;
 import quaternary.incorporeal.client.tesr.decorative.RenderTileUnstableCube;
 import quaternary.incorporeal.flower.SubTileSanvocalia;
 import quaternary.incorporeal.flower.SubTileSweetAlexum;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.tile.TileCorporeaSparkTinkerer;
+import quaternary.incorporeal.tile.decorative.TileLivingwoodChest;
 import quaternary.incorporeal.tile.decorative.TileUnstableCube;
 import quaternary.incorporeal.tile.soulcore.TileCorporeaSoulCore;
 import quaternary.incorporeal.tile.soulcore.TileEnderSoulCore;
@@ -67,6 +70,7 @@ public final class ClientRegistryEvents {
 		setIgnoreAllStateMapper(IncorporeticBlocks.ENDER_SOUL_CORE);
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_SOUL_CORE);
 		setIgnoreAllStateMapper(IncorporeticBlocks.DECORATIVE_UNSTABLE_CUBE);
+		setIgnoreAllStateMapper(IncorporeticBlocks.DECORATIVE_LIVINGWOOD_CHEST);
 		
 		//Tile Entity Special Renderers
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCorporeaSparkTinkerer.class, new RenderTileCorporeaSparkTinkerer());
@@ -74,13 +78,16 @@ public final class ClientRegistryEvents {
 		
 		RenderTileSoulCore<TileEnderSoulCore> enderRender = new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/tesr/ender_soul_core.png"));
 		RenderTileSoulCore<TileCorporeaSoulCore> corporeaRender = new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/tesr/corporea_soul_core.png"));
+		RenderTileLivingwoodChest livingwoodChestRender = new RenderTileLivingwoodChest();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEnderSoulCore.class, enderRender);
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCorporeaSoulCore.class, corporeaRender);
+		ClientRegistry.bindTileEntitySpecialRenderer(TileLivingwoodChest.class, livingwoodChestRender);
 		
 		//Teisrs
-		setTEISRModel(IncorporeticItems.ENDER_SOUL_CORE, new RenderItemSoulCore(enderRender));
-		setTEISRModel(IncorporeticItems.CORPOREA_SOUL_CORE, new RenderItemSoulCore(corporeaRender));
-		setTEISRModel(IncorporeticItems.SOUL_CORE_FRAME, new RenderItemSoulCore(new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/tesr/soul_core_frame.png"))));
+		setTEISRModel(IncorporeticItems.ENDER_SOUL_CORE, new RenderItemSoulCore(enderRender), true);
+		setTEISRModel(IncorporeticItems.CORPOREA_SOUL_CORE, new RenderItemSoulCore(corporeaRender), true);
+		setTEISRModel(IncorporeticItems.SOUL_CORE_FRAME, new RenderItemSoulCore(new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/tesr/soul_core_frame.png"))), true);
+		setTEISRModel(IncorporeticItems.DECORATIVE_LIVINGWOOD_CHEST, new RenderItemLivingwoodChest(livingwoodChestRender), false);
 	}
 	
 	@SubscribeEvent
@@ -105,8 +112,8 @@ public final class ClientRegistryEvents {
 		ModelLoader.setCustomModelResourceLocation(i, 0, mrl);
 	}
 	
-	private static void setTEISRModel(Item i, TileEntityItemStackRenderer rend) {
-		ModelResourceLocation mrl = new ModelResourceLocation(new ResourceLocation(Incorporeal.MODID, "dummy_builtin_blocktransforms"), "inventory");
+	private static void setTEISRModel(Item i, TileEntityItemStackRenderer rend, boolean useDefaultDummyModel) {
+		ModelResourceLocation mrl = new ModelResourceLocation(new ResourceLocation(Incorporeal.MODID, useDefaultDummyModel ? "dummy_builtin_blocktransforms" : Preconditions.checkNotNull(i.getRegistryName()).getResourcePath()), "inventory");
 		ModelLoader.setCustomModelResourceLocation(i, 0, mrl);
 		
 		i.setTileEntityItemStackRenderer(rend);
