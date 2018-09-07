@@ -22,12 +22,6 @@ public final class IncorporeticConfig {
 		public static boolean EVERYONE_ANYONE = true;
 	}
 	
-	public static final class Etc {
-		private Etc() {}
-		
-		public static boolean VARIABLE_RETAINER = true;
-	}
-	
 	public static Configuration config;
 	
 	static void preinit(FMLPreInitializationEvent e) {
@@ -42,7 +36,7 @@ public final class IncorporeticConfig {
 		
 		SoulCore.EVERYONE_ANYONE = config.getBoolean("anyoneCanPlaceAnyones", "soulcore", true, "If false, players can only place soul cores around their own skull; if true, anyone can place soul cores around anyone's skull.");
 		
-		Etc.VARIABLE_RETAINER = config.getBoolean("variableRetainerStrength", "etc", true, "If true, the corporea retainer will output a comparator signal that's higher when more items have been requested.");
+		//TODO config versioning system to remove etc.variableRetainerStrength since it was merged into 356
 		
 		if(config.hasChanged()) config.save();
 	}

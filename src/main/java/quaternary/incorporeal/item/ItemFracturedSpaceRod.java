@@ -13,7 +13,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
@@ -30,7 +29,6 @@ import vazkii.botania.api.state.BotaniaStateProps;
 import vazkii.botania.api.state.enums.CrateVariant;
 import vazkii.botania.api.wand.ICoordBoundItem;
 import vazkii.botania.common.block.BlockOpenCrate;
-import vazkii.botania.common.block.ModBlocks;
 import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import javax.annotation.Nullable;

@@ -12,8 +12,20 @@ import vazkii.botania.common.block.ModBlocks;
 import vazkii.botania.common.block.tile.TileCraftCrate;
 import vazkii.botania.common.block.tile.TileOpenCrate;
 
+import javax.annotation.Nonnull;
+
 public final class EtcHelpers {
 	private EtcHelpers() {}
+	
+	@Nonnull
+	@SuppressWarnings({"ConstantConditions", "SameReturnValue"})
+	public static <T> T definitelyIsntNullISwear() {
+		//Used to make IntelliJ shut up about "xxx may be null" inspections.
+		//Thanks, IJ, but they're hit with an ObjectHolder.
+		//If that's not happening we have bigger fish to fry.
+		//(And it sure doesn't justify null checking every single field every time lmao)
+		return null;
+	}
 	
 	public static float sinDegrees(float degreesIn) {
 		return MathHelper.sin((degreesIn % 360) * (float) (Math.PI / 180f));
@@ -26,12 +38,11 @@ public final class EtcHelpers {
 	public static boolean isOpenCrate(IBlockState state, TileEntity tile) {
 		return state.getBlock() == ModBlocks.openCrate && 
 						state.getValue(BotaniaStateProps.CRATE_VARIANT) == CrateVariant.OPEN &&
-						tile != null &&
 						tile instanceof TileOpenCrate &&
 						!(tile instanceof TileCraftCrate) &&
 						//Wacky hack to work around not being able to extend TileCraftCrate with custom crates in botaniatweaks
 						//I'm allowed to do this since botaniatweaks is my own mod :^)
-						!state.getBlock().getClass().getName().contains("quaternary.botania");
+						!state.getBlock().getClass().getName().startsWith("quaternary.botania");
 	}
 	
 	public static void sendMessage(EntityPlayer player, String message, TextFormatting color) {

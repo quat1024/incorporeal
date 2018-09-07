@@ -1,5 +1,6 @@
 package quaternary.incorporeal.item;
 
+import com.google.common.base.Preconditions;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemCloth;
@@ -8,6 +9,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
+import quaternary.incorporeal.etc.helper.EtcHelpers;
 
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
 @SuppressWarnings("unused")
@@ -24,49 +26,49 @@ public final class IncorporeticItems {
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.TICKET_CONJURER)
-	public static final ItemTicketConjurer TICKET_CONJURER = null;
+	public static final ItemTicketConjurer TICKET_CONJURER = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_TICKET)
-	public static final ItemCorporeaTicket CORPOREA_TICKET = null;
+	public static final ItemCorporeaTicket CORPOREA_TICKET = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.FRACTURED_SPACE_ROD)
-	public static final ItemFracturedSpaceRod FRACTURED_SPACE_ROD = null;
+	public static final ItemFracturedSpaceRod FRACTURED_SPACE_ROD = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.SOUL_CORE_FRAME)
-	public static final Item SOUL_CORE_FRAME = null;
+	public static final Item SOUL_CORE_FRAME = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_INHIBITOR)
-	public static final ItemBlock CORPOREA_INHIBITOR = null;
+	public static final ItemBlock CORPOREA_INHIBITOR = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_LIAR)
-	public static final ItemBlock CORPOREA_LIAR = null;
+	public static final ItemBlock CORPOREA_LIAR = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_SOLIDIFIER)
-	public static final ItemBlock CORPOREA_SOLIDIFIER = null;
+	public static final ItemBlock CORPOREA_SOLIDIFIER = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_SPARK_TINKERER)
-	public static final ItemBlock CORPOREA_SPARK_TINKERER = null;
+	public static final ItemBlock CORPOREA_SPARK_TINKERER = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_RETAINER_DECREMENTER)
-	public static final ItemBlock CORPOREA_RETAINER_DECREMENTER = null;
+	public static final ItemBlock CORPOREA_RETAINER_DECREMENTER = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.FRAME_TINKERER)
-	public static final ItemBlock FRAME_TINKERER = null;
+	public static final ItemBlock FRAME_TINKERER = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.ENDER_SOUL_CORE)
-	public static final ItemSoulCore ENDER_SOUL_CORE = null;
+	public static final ItemSoulCore ENDER_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_SOUL_CORE)
-	public static final ItemSoulCore CORPOREA_SOUL_CORE = null;
+	public static final ItemSoulCore CORPOREA_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.NATURAL_REPEATER)
-	public static final ItemBlock NATURAL_REPEATER = null;
+	public static final ItemBlock NATURAL_REPEATER = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.NATURAL_COMPARATOR)
-	public static final ItemBlock NATURAL_COMPARATOR = null;
+	public static final ItemBlock NATURAL_COMPARATOR = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.DECORATIVE_UNSTABLE_CUBE)
-	public static final ItemBlock DECORATIVE_UNSTABLE_CUBE = null;
+	public static final ItemBlock DECORATIVE_UNSTABLE_CUBE = EtcHelpers.definitelyIsntNullISwear();
 	
 	//IDEA balks at the idea of injecting values into final fields in incorporeticblocks
 	//That's what objectholder does, though, so make it shut up.
@@ -101,7 +103,7 @@ public final class IncorporeticItems {
 	}
 	
 	private static <T extends ItemBlock> T createItemBlock(T itemBlock) {
-		itemBlock.setRegistryName(itemBlock.getBlock().getRegistryName());
+		itemBlock.setRegistryName(Preconditions.checkNotNull(itemBlock.getBlock().getRegistryName()));
 		return itemBlock;
 	}
 }

@@ -67,7 +67,6 @@ public class BlockFrameTinkerer extends Block implements ILexiconable {
 				List<EntityItem> itemEnts = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(pos));
 				
 				if(itemEnts.isEmpty()) {
-					ent = null;
 					inWorldStack = ItemStack.EMPTY;
 				} else {
 					Collections.shuffle(itemEnts);

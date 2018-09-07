@@ -18,7 +18,9 @@ import quaternary.incorporeal.client.tesr.decorative.RenderTileUnstableCube;
 import quaternary.incorporeal.tile.decorative.TileUnstableCube;
 
 @Mod.EventBusSubscriber(modid = Incorporeal.MODID, value = Side.CLIENT)
-public class BlockHighlightEventHandler {
+public final class BlockHighlightEventHandler {
+	private BlockHighlightEventHandler() {}
+	
 	private static final AxisAlignedBB UNSTABLE_CUBE_HIGHLIGHT_AABB = new AxisAlignedBB(0.25, 0.25, 0.25, 0.75, 0.75, 0.75).grow(0.002);
 	
 	@SubscribeEvent

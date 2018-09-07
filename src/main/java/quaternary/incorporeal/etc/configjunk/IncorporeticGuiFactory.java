@@ -6,10 +6,11 @@ import net.minecraftforge.fml.client.IModGuiFactory;
 
 import java.util.Set;
 
+@SuppressWarnings("SameReturnValue")
 public class IncorporeticGuiFactory implements IModGuiFactory {
 	@Override
 	public void initialize(Minecraft minecraftInstance) {
-		
+		//No-op
 	}
 	
 	@Override

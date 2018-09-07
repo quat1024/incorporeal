@@ -38,7 +38,7 @@ public class BlockNaturalComparator extends AbstractBlockNaturalDevice {
 				return behind2.getComparatorInputOverride(world, behind2Pos) > 0;
 			} else if(behind2.getMaterial() == Material.AIR) {
 				EntityItemFrame frameyboi = findItemFrame(world, comparatorFacing, behind2Pos);
-				return frameyboi == null ? false : !frameyboi.getDisplayedItem().isEmpty();
+				return frameyboi != null && !frameyboi.getDisplayedItem().isEmpty();
 			}
 		}
 		

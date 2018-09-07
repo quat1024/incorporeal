@@ -1,15 +1,14 @@
 package quaternary.incorporeal.etc.helper;
 
 import com.google.common.collect.ImmutableMap;
-
-import java.util.Map;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.event.world.NoteBlockEvent;
 import net.minecraftforge.event.world.NoteBlockEvent.Instrument;
+
+import java.util.Map;
 
 //Haha yes type safety very good
 @SuppressWarnings("unchecked")

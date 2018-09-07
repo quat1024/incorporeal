@@ -9,8 +9,7 @@ import quaternary.incorporeal.tile.soulcore.TileCorporeaSoulCore;
 import quaternary.incorporeal.tile.soulcore.TileEnderSoulCore;
 
 public final class IncorporeticTiles {
-	private IncorporeticTiles() {
-	}
+	private IncorporeticTiles() { }
 	
 	public static void registerTileEntities() {
 		reg(TileCorporeaLiar.class, "liar");

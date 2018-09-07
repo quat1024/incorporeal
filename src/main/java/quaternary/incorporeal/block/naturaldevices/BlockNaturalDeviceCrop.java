@@ -18,10 +18,7 @@ import vazkii.botania.common.item.ModItems;
 import java.util.ListIterator;
 import java.util.Random;
 
-public class BlockNaturalDeviceCrop extends BlockCrops {
-	//don't have access to a world in withAge
-	private static final Random naturalDeviceRandom = new Random();
-	
+public class BlockNaturalDeviceCrop extends BlockCrops {	
 	public static final AxisAlignedBB[] AABBS = new AxisAlignedBB[7];
 	
 	static {

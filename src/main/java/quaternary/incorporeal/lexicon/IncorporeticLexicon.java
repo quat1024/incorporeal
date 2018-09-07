@@ -1,6 +1,6 @@
 package quaternary.incorporeal.lexicon;
 
-import com.google.common.collect.ImmutableList;
+import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -98,7 +98,7 @@ public final class IncorporeticLexicon {
 	}
 	
 	private static LexiconEntry buildCraftingEntry(IForgeRegistryEntry subject, LexiconCategory category, int pageCount) {
-		String name = Incorporeal.MODID + '.' + subject.getRegistryName().getResourcePath();
+		String name = Incorporeal.MODID + '.' + Preconditions.checkNotNull(subject.getRegistryName()).getResourcePath();
 		ItemStack icon;
 		
 		if(subject instanceof Block) {

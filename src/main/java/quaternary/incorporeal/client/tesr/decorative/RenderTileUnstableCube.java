@@ -6,12 +6,8 @@ import net.minecraft.client.renderer.BlockModelRenderer;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.block.model.ModelManager;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.BlockStateMapper;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import quaternary.incorporeal.block.decorative.BlockUnstableCube;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
@@ -19,8 +15,6 @@ import quaternary.incorporeal.tile.decorative.TileUnstableCube;
 import vazkii.botania.client.core.handler.ClientTickHandler;
 
 public class RenderTileUnstableCube extends TileEntitySpecialRenderer<TileUnstableCube> {
-	ModelResourceLocation tinyPlanetBoi = new ModelResourceLocation(new ResourceLocation("botania", "tinyplanetblock"), "normal");
-	
 	@Override
 	public void render(TileUnstableCube te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
 		if(te == null) return;

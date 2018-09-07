@@ -1,24 +1,26 @@
 package quaternary.incorporeal.flower;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.NoteBlockEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.etc.helper.DespacitoHelper;
+import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import quaternary.incorporeal.net.IncorporeticPacketHandler;
 import quaternary.incorporeal.net.MessageSparkleLine;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.subtile.RadiusDescriptor;
 import vazkii.botania.api.subtile.SubTileFunctional;
 
 //based on real life "sweet alyssum" flower. This is so sad, Alexa play Despacito.
-public class SubTileSweetAlexum extends SubTileFunctional {
+public class SubTileSweetAlexum extends SubTileFunctional implements ILexiconable {
 	private int ticksPaused = 0;
 	private int ticksSinceReset = 0;
 	
@@ -190,5 +192,10 @@ public class SubTileSweetAlexum extends SubTileFunctional {
 		protected int getTicksBetweenNotes() {
 			return 3;
 		}
+	}
+	
+	@Override
+	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
+		return IncorporeticLexicon.sweetAlexum;
 	}
 }

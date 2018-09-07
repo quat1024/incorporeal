@@ -1,7 +1,6 @@
 package quaternary.incorporeal.tile.decorative;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;

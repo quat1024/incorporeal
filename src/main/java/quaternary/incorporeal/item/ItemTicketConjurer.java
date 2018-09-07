@@ -6,7 +6,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -24,7 +23,7 @@ import java.util.regex.Pattern;
 
 @Mod.EventBusSubscriber
 public class ItemTicketConjurer extends Item implements ILexiconable {
-	static final Map<Pattern, TileCorporeaIndex.IRegexStacker> patterns = ReflectionHelper.getPrivateValue(TileCorporeaIndex.class, null, "patterns");
+	private static final Map<Pattern, TileCorporeaIndex.IRegexStacker> patterns = ReflectionHelper.getPrivateValue(TileCorporeaIndex.class, null, "patterns");
 	
 	//Based on code from Botania's TileCorporeaIndex
 	@SubscribeEvent(priority = EventPriority.HIGHEST)

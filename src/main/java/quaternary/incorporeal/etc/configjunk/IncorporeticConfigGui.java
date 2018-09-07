@@ -18,7 +18,7 @@ public class IncorporeticConfigGui extends GuiConfig {
 	
 	//Adapted from Choonster's TestMod3. They say they adapted it from EnderIO "a while back".
 	//http://www.minecraftforge.net/forum/topic/39880-110solved-make-config-options-show-up-in-gui/
-	static List<IConfigElement> getConfigElements() {
+	private static List<IConfigElement> getConfigElements() {
 		Configuration c = IncorporeticConfig.config;
 		//Don't look!
 		return c.getCategoryNames().stream().filter(name -> !c.getCategory(name).isChild()).map(name -> new ConfigElement(c.getCategory(name).setLanguageKey(Incorporeal.MODID + ".config." + name))).collect(Collectors.toList());

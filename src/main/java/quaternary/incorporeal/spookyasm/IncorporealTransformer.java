@@ -7,7 +7,9 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.ClassNode;
-import quaternary.incorporeal.spookyasm.tweaks.*;
+import quaternary.incorporeal.spookyasm.tweaks.AbstractTweak;
+import quaternary.incorporeal.spookyasm.tweaks.CorporeaInhibitorTweak;
+import quaternary.incorporeal.spookyasm.tweaks.InventoryWrapTweak;
 
 import java.util.ArrayList;
 import java.util.List;

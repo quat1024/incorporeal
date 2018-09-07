@@ -43,11 +43,6 @@ import java.util.function.Predicate;
 
 //A horrible pun based off of the real life Sanvitalia flower
 public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable {
-	public static final Predicate<EntityItem> ITEM_IS_VALID_TICKET = (entity) -> {
-		ItemStack stack = (entity).getItem();
-		return stack.getItem() instanceof ItemCorporeaTicket && ItemCorporeaTicket.isRequestable(stack);
-	};
-	
 	@Nullable
 	private UUID owner;
 	private String customName = "Sanvocalia"; 
@@ -68,21 +63,28 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 		if(w.isRemote || redstoneSignal > 0) return;
 		
 		AxisAlignedBB itemDetectionBox = new AxisAlignedBB(pos.add(-getRange(), 0, -getRange()), pos.add(getRange() + 1, 1, getRange() + 1));
-		List<EntityItem> nearbyTickets = w.getEntitiesWithinAABB(EntityItem.class, itemDetectionBox, ITEM_IS_VALID_TICKET::test);
+		List<EntityItem> nearbyTickets = w.getEntitiesWithinAABB(EntityItem.class, itemDetectionBox, (ent) -> {
+			if(ent == null) return false;
+			
+			ItemStack stack = ent.getItem/*Stack*/();
+			return ItemCorporeaTicket.hasRequest(stack);
+		});
 		
 		if(nearbyTickets.isEmpty()) return;
 		
 		EntityItem ticket = nearbyTickets.get(w.rand.nextInt(nearbyTickets.size()));
-		CorporeaRequest ticketsRequest = ItemCorporeaTicket.getRequestFromTicket(ticket.getItem());
+		CorporeaRequest ticketsRequest = ItemCorporeaTicket.getRequest(ticket.getItem/*Stack*/());
+		assert ticketsRequest != null; //it already passed the predicate above
 		
 		List<TileCorporeaIndex> nearbyIndices = CorporeaHelper2.getNearbyIndicesReflect(w, pos, getRange());
 		
 		if(nearbyIndices.isEmpty()) {
 			//No indexes nearby? Post the message to chat
 			//This is a nod to when players accidentally type corporea requests into chat, lol
-			TextComponentTranslation txt = new TextComponentTranslation("chat.type.text", customName, CorporeaHelper2.requestToString(ticketsRequest));
 			MinecraftServer server = w.getMinecraftServer();
 			if(server != null && mana >= 100) {
+				TextComponentTranslation txt = new TextComponentTranslation("chat.type.text", customName, CorporeaHelper2.requestToString(ticketsRequest));
+				
 				for(EntityPlayerMP player : w.getMinecraftServer().getPlayerList().getPlayers()) {
 					if(IncorporeticConfig.Sanvocalia.EVERYONE_HEARS_MESSAGES || player.getUniqueID().equals(owner)) {
 						player.sendMessage(txt);

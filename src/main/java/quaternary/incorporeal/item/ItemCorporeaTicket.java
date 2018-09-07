@@ -20,7 +20,7 @@ import vazkii.botania.api.lexicon.LexiconEntry;
 public class ItemCorporeaTicket extends Item implements ILexiconable {
 	public ItemCorporeaTicket() {
 		addPropertyOverride(new ResourceLocation(Incorporeal.MODID, "written_ticket"), (stack, world, entity) -> {
-			return isRequestable(stack) ? 1 : 0;
+			return hasRequest(stack) ? 1 : 0;
 		});
 	}
 	
@@ -36,7 +36,7 @@ public class ItemCorporeaTicket extends Item implements ILexiconable {
 		return stack;
 	}
 	
-	public static CorporeaRequest getRequestFromTicket(ItemStack ticket) {
+	public static CorporeaRequest getRequest(ItemStack ticket) {
 		if(ticket.isEmpty()) return null;
 		
 		NBTTagCompound cmp = ticket.getTagCompound();
@@ -77,7 +77,7 @@ public class ItemCorporeaTicket extends Item implements ILexiconable {
 		return IncorporeticLexicon.corporeaSolidifier;
 	}
 	
-	public static boolean isRequestable(ItemStack stack) {
-		return getRequestFromTicket(stack) != null;
+	public static boolean hasRequest(ItemStack stack) {
+		return getRequest(stack) != null;
 	}
 }

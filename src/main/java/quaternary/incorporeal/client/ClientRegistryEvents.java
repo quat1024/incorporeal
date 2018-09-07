@@ -1,9 +1,9 @@
 package quaternary.incorporeal.client;
 
+import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.item.EnumDyeColor;
@@ -18,7 +18,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
-import quaternary.incorporeal.block.decorative.BlockUnstableCube;
 import quaternary.incorporeal.client.tesr.RenderItemSoulCore;
 import quaternary.incorporeal.client.tesr.RenderTileCorporeaSparkTinkerer;
 import quaternary.incorporeal.client.tesr.RenderTileSoulCore;
@@ -101,7 +100,8 @@ public final class ClientRegistryEvents {
 	}
 	
 	private static void setSimpleModel(Item i) {
-		ModelResourceLocation mrl = new ModelResourceLocation(i.getRegistryName(), "inventory");
+		ResourceLocation res = Preconditions.checkNotNull(i.getRegistryName());
+		ModelResourceLocation mrl = new ModelResourceLocation(res, "inventory");
 		ModelLoader.setCustomModelResourceLocation(i, 0, mrl);
 	}
 	
@@ -113,8 +113,10 @@ public final class ClientRegistryEvents {
 	}
 	
 	private static void set16DataValuesPointingAtSameModel(Item i) {
+		ResourceLocation res = Preconditions.checkNotNull(i.getRegistryName());
+		
 		for(int color = 0; color < 16; color++) {
-			ModelResourceLocation mrl = new ModelResourceLocation(i.getRegistryName(), "inventory");
+			ModelResourceLocation mrl = new ModelResourceLocation(res, "inventory");
 			ModelLoader.setCustomModelResourceLocation(i, color, mrl);
 		}
 	}

@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
@@ -15,8 +14,6 @@ import quaternary.incorporeal.tile.TileCorporeaSparkTinkerer;
 import vazkii.botania.client.core.handler.ClientTickHandler;
 import vazkii.botania.client.core.handler.MiscellaneousIcons;
 import vazkii.botania.client.core.proxy.ClientProxy;
-
-import java.util.Random;
 
 /** Majority of this class is based on a butchered copy of RenderSparkBase while basically just hardcoding the method calls to RenderCorporeaSpark. This isn't a pretty class x) */
 public class RenderTileCorporeaSparkTinkerer extends TileEntitySpecialRenderer<TileCorporeaSparkTinkerer> {

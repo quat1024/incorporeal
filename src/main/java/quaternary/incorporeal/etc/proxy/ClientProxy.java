@@ -1,12 +1,12 @@
 package quaternary.incorporeal.etc.proxy;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.World;
 
 public class ClientProxy extends ServerProxy {
 	@Override
 	public int getClientDimension() {
-		if(Minecraft.getMinecraft().world != null) {
-			return Minecraft.getMinecraft().world.provider.getDimension();
-		} else return Integer.MAX_VALUE;
+		World world = Minecraft.getMinecraft().world;
+		return world == null ? Integer.MAX_VALUE : world.provider.getDimension();
 	}
 }

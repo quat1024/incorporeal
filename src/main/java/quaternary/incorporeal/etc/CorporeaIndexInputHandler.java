@@ -17,7 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mod.EventBusSubscriber
-public class CorporeaInputHandler {
+public final class CorporeaIndexInputHandler {
+	private CorporeaIndexInputHandler() {}
+	
 	@SubscribeEvent
 	public static void corporeaInput(CorporeaIndexRequestEvent e) {
 		World world = e.requester.world;

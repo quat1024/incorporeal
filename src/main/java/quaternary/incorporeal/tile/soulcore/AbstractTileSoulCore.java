@@ -9,7 +9,6 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 import javax.annotation.Nullable;
-import java.util.UUID;
 
 public abstract class AbstractTileSoulCore extends TileEntity {
 	private GameProfile ownerProfile;

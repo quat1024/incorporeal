@@ -21,7 +21,6 @@ import quaternary.incorporeal.etc.helper.EtcHelpers;
 import quaternary.incorporeal.item.IncorporeticItems;
 import vazkii.botania.api.mana.ManaItemHandler;
 import vazkii.botania.common.Botania;
-import vazkii.botania.common.block.tile.TileCraftCrate;
 import vazkii.botania.common.block.tile.TileOpenCrate;
 import vazkii.botania.common.core.helper.MathHelper;
 

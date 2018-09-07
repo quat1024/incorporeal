@@ -22,9 +22,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class TileCorporeaSparkTinkerer extends TileEntity {
-	private EnumDyeColor myNetwork = EnumDyeColor.WHITE; //the default setting	
-	
-	public TileCorporeaSparkTinkerer() {}
+	private EnumDyeColor myNetwork = EnumDyeColor.WHITE; //the default setting
 	
 	//Thx jamie
 	public boolean shouldRefresh(World world, BlockPos pos, @Nonnull IBlockState oldState, @Nonnull IBlockState newState) {
