@@ -1,4 +1,4 @@
-package quaternary.incorporealapi;
+package quaternary.incorporeal.api;
 
 /**
  * Incorporeal's API.

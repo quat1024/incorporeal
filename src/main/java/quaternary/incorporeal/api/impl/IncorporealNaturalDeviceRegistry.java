@@ -3,7 +3,7 @@ package quaternary.incorporeal.api.impl;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import org.apache.commons.lang3.tuple.Pair;
-import quaternary.incorporealapi.INaturalDeviceRegistry;
+import quaternary.incorporeal.api.INaturalDeviceRegistry;
 
 import java.util.ArrayList;
 import java.util.List;

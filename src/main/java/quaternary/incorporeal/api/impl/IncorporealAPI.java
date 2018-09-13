@@ -1,7 +1,7 @@
 package quaternary.incorporeal.api.impl;
 
-import quaternary.incorporealapi.IIncorporealAPI;
-import quaternary.incorporealapi.INaturalDeviceRegistry;
+import quaternary.incorporeal.api.IIncorporealAPI;
+import quaternary.incorporeal.api.INaturalDeviceRegistry;
 
 public class IncorporealAPI implements IIncorporealAPI {
 	@Override

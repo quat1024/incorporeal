@@ -28,6 +28,9 @@ jar {
         attributes "FMLCorePluginContainsFMLMod": true
         attributes "FMLAT": "incorporeal_at.cfg"
     }
+    
+    from sourceSets.main.output
+    from sourceSets.api.output
 }
 
 repositories {
@@ -53,6 +56,7 @@ minecraft {
     mappings = "snapshot_20180407"
     
     useDepAts = true
+    makeObfSourceJar = false
     
     if(project.hasProperty("mc_uuid")) {
         clientRunArgs += ["--uuid", project.mc_uuid]

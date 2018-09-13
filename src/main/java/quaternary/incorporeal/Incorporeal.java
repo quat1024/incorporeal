@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import quaternary.incorporealapi.IIncorporealAPI;
+import quaternary.incorporeal.api.IIncorporealAPI;
 import quaternary.incorporeal.api.impl.IncorporealAPI;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.entity.IncorporeticEntities;

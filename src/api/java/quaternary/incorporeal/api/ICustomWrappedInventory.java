@@ -1,4 +1,4 @@
-package quaternary.incorporealapi;
+package quaternary.incorporeal.api;
 
 import vazkii.botania.api.corporea.ICorporeaSpark;
 import vazkii.botania.api.corporea.IWrappedInventory;

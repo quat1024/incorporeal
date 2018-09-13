@@ -1,4 +1,4 @@
-package quaternary.incorporealapi;
+package quaternary.incorporeal.api;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
