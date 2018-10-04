@@ -10,6 +10,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
+import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
 
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
 @SuppressWarnings("unused")
@@ -70,9 +71,6 @@ public final class IncorporeticItems {
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.DECORATIVE_UNSTABLE_CUBE)
 	public static final ItemBlock DECORATIVE_UNSTABLE_CUBE = EtcHelpers.definitelyIsntNullISwear();
 	
-	//IDEA balks at the idea of injecting values into final fields in incorporeticblocks
-	//That's what objectholder does, though, so make it shut up.
-	@SuppressWarnings("ConstantConditions")
 	public static void registerItems(IForgeRegistry<Item> reg) {
 		reg.register(createItem(new ItemTicketConjurer(), RegistryNames.TICKET_CONJURER));
 		reg.register(createItem(new ItemCorporeaTicket(), RegistryNames.CORPOREA_TICKET));
@@ -93,6 +91,8 @@ public final class IncorporeticItems {
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.NATURAL_COMPARATOR)));
 		
 		reg.register(createItemBlock(new ItemCloth(IncorporeticBlocks.DECORATIVE_UNSTABLE_CUBE)));
+		
+		IncorporeticCygnusItems.registerItems(reg);
 	}
 	
 	private static <T extends Item> T createItem(T item, String name) {

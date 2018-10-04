@@ -5,6 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.block.cygnus.IncorporeticCygnusBlocks;
 import quaternary.incorporeal.block.decorative.BlockUnstableCube;
 import quaternary.incorporeal.block.naturaldevices.BlockNaturalComparator;
 import quaternary.incorporeal.block.naturaldevices.BlockNaturalDeviceCrop;
@@ -90,6 +91,9 @@ public final class IncorporeticBlocks {
 		reg.register(createBlock(new BlockNaturalComparator(), RegistryNames.NATURAL_COMPARATOR));
 		
 		reg.register(createBlock(new BlockUnstableCube(), RegistryNames.DECORATIVE_UNSTABLE_CUBE));
+		
+		//These have pretty big constructors so they are broken out into their own class
+		IncorporeticCygnusBlocks.registerBlocks(reg);
 	}
 	
 	private static <T extends Block> T createBlock(T block, String name) {

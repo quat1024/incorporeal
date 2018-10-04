@@ -25,6 +25,7 @@ import quaternary.incorporeal.client.tesr.decorative.RenderTileUnstableCube;
 import quaternary.incorporeal.flower.SubTileSanvocalia;
 import quaternary.incorporeal.flower.SubTileSweetAlexum;
 import quaternary.incorporeal.item.IncorporeticItems;
+import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
 import quaternary.incorporeal.tile.TileCorporeaSparkTinkerer;
 import quaternary.incorporeal.tile.decorative.TileUnstableCube;
 import quaternary.incorporeal.tile.soulcore.TileCorporeaSoulCore;
@@ -52,6 +53,20 @@ public final class ClientRegistryEvents {
 		setSimpleModel(IncorporeticItems.CORPOREA_TICKET);
 		setSimpleModel(IncorporeticItems.TICKET_CONJURER);
 		setSimpleModel(IncorporeticItems.FRACTURED_SPACE_ROD);
+		
+		setSimpleModel(IncorporeticCygnusItems.WORD_BLANK);
+		setSimpleModel(IncorporeticCygnusItems.CARD_BLANK);
+		setSimpleModel(IncorporeticCygnusItems.CARD_DUPLICATE);
+		setSimpleModel(IncorporeticCygnusItems.CARD_NUMBER_ADD);
+		setSimpleModel(IncorporeticCygnusItems.CARD_NUMBER_SUBTRACT);
+		setSimpleModel(IncorporeticCygnusItems.CARD_NUMBER_MULTIPLY);
+		setSimpleModel(IncorporeticCygnusItems.CARD_NUMBER_DIVIDE);
+		setSimpleModel(IncorporeticCygnusItems.CARD_STACK_SET_COUNT);
+		setSimpleModel(IncorporeticCygnusItems.CARD_STACK_SET_ITEM);
+		setSimpleModel(IncorporeticCygnusItems.CARD_STACK_EXTRACT_COUNT);
+		
+		setSimpleModel(IncorporeticCygnusItems.MASTER_CYGNUS_SPARK);
+		setSimpleModel(IncorporeticCygnusItems.CYGNUS_SPARK);
 		
 		set16DataValuesPointingAtSameModel(IncorporeticItems.DECORATIVE_UNSTABLE_CUBE);
 		

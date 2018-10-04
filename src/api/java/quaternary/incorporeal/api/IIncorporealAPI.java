@@ -4,7 +4,7 @@ package quaternary.incorporeal.api;
  * Incorporeal's API.
  * 
  * The main instance of this API is available in Incorporeal#API.
- * If you'd like to soft-depend on this this API, you may be interested
+ * If you'd like to soft-depend on this API, you may be interested
  * in FMLPostInitializationEvent#buildSoftDependProxy.
  * 
  * @author quaternary
