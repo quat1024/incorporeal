@@ -9,6 +9,9 @@ import quaternary.incorporeal.entity.cygnus.AbstractEntityCygnusSparkBase;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusRegularSpark;
 
+import javax.annotation.Nullable;
+import java.util.List;
+
 public final class CygnusHelpers {
 	private CygnusHelpers() {}
 	
@@ -17,7 +20,7 @@ public final class CygnusHelpers {
 		else {
 			IBlockState state = world.getBlockState(pos);
 			if(state.getBlock() instanceof ICygnusSparkable) {
-				return ((ICygnusSparkable)state.getBlock()).acceptsSpark(world, state, pos);
+				return ((ICygnusSparkable)state.getBlock()).acceptsCygnusSpark(world, state, pos);
 			} else return false; //TODO tile entities too?
 		}
 	}
@@ -28,7 +31,18 @@ public final class CygnusHelpers {
 		world.spawnEntity(spork);
 	}
 	
+	@Nullable
+	public static AbstractEntityCygnusSparkBase getSparkAt(World world, BlockPos pos) {
+		List<AbstractEntityCygnusSparkBase> sporks = world.getEntitiesWithinAABB(AbstractEntityCygnusSparkBase.class, new AxisAlignedBB(pos.up()));
+		return sporks.isEmpty() ? null : sporks.get(0);
+	}
+	
 	public static boolean isSparked(World world, BlockPos pos) {
-		return !world.getEntitiesWithinAABB(AbstractEntityCygnusSparkBase.class, new AxisAlignedBB(pos.up())).isEmpty();
+		return getSparkAt(world, pos) != null;
+	}
+	
+	public static EntityCygnusMasterSpark getMasterSparkForSparkAt(World world, BlockPos pos) {
+		AbstractEntityCygnusSparkBase spork = getSparkAt(world, pos);
+		return spork == null ? null : spork.getMasterSpark();
 	}
 }

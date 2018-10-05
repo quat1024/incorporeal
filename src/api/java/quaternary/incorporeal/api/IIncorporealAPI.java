@@ -1,5 +1,7 @@
 package quaternary.incorporeal.api;
 
+import quaternary.incorporeal.api.cygnus.ICygnusSerializerRegistry;
+
 /**
  * Incorporeal's API.
  * 
@@ -18,4 +20,6 @@ public interface IIncorporealAPI {
 	int apiVersion();
 	
 	INaturalDeviceRegistry getNaturalDeviceRegistry();
+	
+	ICygnusSerializerRegistry getCygnusSerializerRegistry();
 }

@@ -1,5 +1,8 @@
 package quaternary.incorporeal.block.cygnus;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -9,26 +12,55 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import quaternary.incorporeal.api.cygnus.ICygnusSparkable;
 import quaternary.incorporeal.cygnus.CygnusStack;
+import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
+import quaternary.incorporeal.etc.helper.CygnusHelpers;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
 import quaternary.incorporeal.item.cygnus.ItemCygnusWordCard;
+import vazkii.botania.api.state.BotaniaStateProps;
 
 import java.util.Random;
 import java.util.function.Consumer;
 
-public class BlockCygnusWord extends BlockCygnusBase {
+public class BlockCygnusWord extends BlockCygnusBase implements ICygnusSparkable {
 	public BlockCygnusWord(String actionName, Consumer<CygnusStack> action) {
 		this.actionName = actionName;
 		this.action = action;
+		
+		setDefaultState(getDefaultState().withProperty(POWERED, false));
 	}
 	
 	public final String actionName;
 	public final Consumer<CygnusStack> action;
 	
+	public static final PropertyBool POWERED = BotaniaStateProps.POWERED;
+	
 	private ItemCygnusWordCard associatedCard = null;
 	
 	public void setAssociatedCard(ItemCygnusWordCard associatedCard) {
 		this.associatedCard = associatedCard;
+	}
+	
+	@Override
+	public boolean acceptsCygnusSpark(World world, IBlockState state, BlockPos pos) {
+		return true;
+	}
+	
+	@Override
+	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
+		boolean isPowered = state.getValue(POWERED);
+		boolean shouldPower = world.isBlockPowered(pos);
+		if(isPowered != shouldPower) {
+			world.setBlockState(pos, state.withProperty(POWERED, shouldPower));
+		}
+		
+		if(!isPowered && shouldPower) {
+			EntityCygnusMasterSpark master = CygnusHelpers.getMasterSparkForSparkAt(world, pos);
+			if(master != null) {
+				action.accept(master.cygnusStack);
+			}
+		}
 	}
 	
 	@Override
@@ -57,5 +89,22 @@ public class BlockCygnusWord extends BlockCygnusBase {
 			//Yes this is a kinda lousy hack. What are you gonna do.
 			return super.getPickBlock(state, target, world, pos, player);
 		} else return new ItemStack(associatedCard);
+	}
+	
+	//Hey look blockstate cruft
+	
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, POWERED);
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return getDefaultState().withProperty(POWERED, meta == 1);
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(POWERED) ? 1 : 0;
 	}
 }

@@ -5,5 +5,5 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public interface ICygnusSparkable {
-	boolean acceptsSpark(World world, IBlockState state, BlockPos pos);
+	boolean acceptsCygnusSpark(World world, IBlockState state, BlockPos pos);
 }

@@ -163,7 +163,7 @@ public final class IncorporeticCygnusBlocks {
 			} else {
 				stack.push(new CygnusError());
 			}
-		}
+		} else stack.push(new CygnusError());
 	}
 	
 	private static void registerCygnusActionBlock(String name, Consumer<CygnusStack> action , IForgeRegistry<Block> reg) {

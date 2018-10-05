@@ -1,5 +1,11 @@
 package quaternary.incorporeal.cygnus;
 
+import io.netty.buffer.ByteBuf;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.common.util.Constants;
+import quaternary.incorporeal.Incorporeal;
+
 import java.util.Optional;
 
 public class CygnusStack {
@@ -8,8 +14,8 @@ public class CygnusStack {
 		stack = new Object[maxDepth];
 	}
 	
-	private final int maxDepth;
-	private final Object[] stack;
+	private int maxDepth;
+	private Object[] stack;
 	
 	//One ahead of the index of the most recently pushed item.
 	//Or, the total number of items in the stack.
@@ -27,11 +33,6 @@ public class CygnusStack {
 	public Optional<Object> pop() {
 		if(cursor == 0) return Optional.empty();
 		cursor--;
-		/*
-		//TODO: It should be fine to not clear the array, since the cursor passes over it?
-		ICygnusItem itemAt = stack[cursor];
-		stack[cursor] = null;
-		*/
 		return Optional.of(stack[cursor]);
 	}
 	
@@ -76,5 +77,57 @@ public class CygnusStack {
 	
 	public int maxDepth() {
 		return maxDepth;
+	}
+	
+	public void clear() {
+		stack = new Object[maxDepth];
+		cursor = 0;
+	}
+	
+	//serializing!
+	
+	public NBTTagCompound toNBT() {
+		NBTTagCompound ret = new NBTTagCompound();
+		ret.setInteger("Version", 1); // ...?
+		
+		ret.setInteger("Cursor", cursor);
+		ret.setInteger("MaxDepth", maxDepth);
+		
+		NBTTagList nbtList = new NBTTagList();
+		for(int i = 0; i < cursor; i++) {
+			if(stack[i] == null) continue;
+			NBTTagCompound entry = new NBTTagCompound();
+			entry.setInteger("Depth", i);
+			Incorporeal.API.getCygnusSerializerRegistry().writeToNBT(entry, stack[i]);
+			nbtList.appendTag(entry);
+		}
+		
+		ret.setTag("Stack", nbtList);
+		
+		return ret;
+	}
+	
+	public void fromNBT(NBTTagCompound nbt) {
+		if(nbt.getInteger("Version") == 1) {
+			stack = new Object[nbt.getInteger("MaxDepth")];
+			cursor = nbt.getInteger("Cursor");
+			
+			NBTTagList nbtList = nbt.getTagList("Stack", Constants.NBT.TAG_COMPOUND);
+			for(int i = 0; i < nbtList.tagCount(); i++) {
+				NBTTagCompound entry = nbtList.getCompoundTagAt(i);
+				stack[entry.getInteger("Depth")] = Incorporeal.API.getCygnusSerializerRegistry().readFromNBT(entry);
+			}
+		} else {
+			Incorporeal.LOGGER.info("Problem deserializing NBT compound: Mismatched version :( " + nbt);
+			clear();
+		}
+	}
+	
+	public void writeToByteBuf(ByteBuf buf) {
+		throw new RuntimeException("NYI");
+	}
+	
+	public void readFromByteBuf() {
+		throw new RuntimeException("NYI");
 	}
 }

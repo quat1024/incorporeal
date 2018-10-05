@@ -22,6 +22,10 @@ import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.api.IIncorporealAPI;
 import quaternary.incorporeal.api.impl.IncorporealAPI;
 import quaternary.incorporeal.block.IncorporeticBlocks;
+import quaternary.incorporeal.cygnus.serializers.CygnusDoubleSerializer;
+import quaternary.incorporeal.cygnus.serializers.CygnusErrorSerializer;
+import quaternary.incorporeal.cygnus.serializers.CygnusIntegerSerializer;
+import quaternary.incorporeal.cygnus.serializers.CygnusItemStackSerializer;
 import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
 import quaternary.incorporeal.etc.IncorporeticRuneRecipes;
@@ -95,6 +99,11 @@ public final class Incorporeal {
 		API.getNaturalDeviceRegistry().registerNaturalDevice((rand) -> {
 			return IncorporeticBlocks.NATURAL_COMPARATOR.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
 		}, 20);
+		
+		API.getCygnusSerializerRegistry().registerSerializer(new CygnusDoubleSerializer());
+		API.getCygnusSerializerRegistry().registerSerializer(new CygnusIntegerSerializer());
+		API.getCygnusSerializerRegistry().registerSerializer(new CygnusItemStackSerializer());
+		API.getCygnusSerializerRegistry().registerSerializer(new CygnusErrorSerializer());
 		
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(ModItems.manaResource, new DispenserBehaviorRedstoneRoot());
 	}

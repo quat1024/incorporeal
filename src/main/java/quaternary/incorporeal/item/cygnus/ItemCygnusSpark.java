@@ -14,7 +14,7 @@ public class ItemCygnusSpark extends Item {
 		this.isMaster = isMaster;
 	}
 	
-	final boolean isMaster;
+	public final boolean isMaster;
 	
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
@@ -22,9 +22,11 @@ public class ItemCygnusSpark extends Item {
 		boolean isSparkAlreadyHere = CygnusHelpers.isSparked(world, pos);
 		
 		if(canPlaceHere && !isSparkAlreadyHere) {
-			CygnusHelpers.spawnSparkAt(world, pos, isMaster);
+			if(!world.isRemote) CygnusHelpers.spawnSparkAt(world, pos, isMaster);
 			
 			if(!player.isCreative()) player.getHeldItem(hand).shrink(1);
+			
+			player.swingArm(hand);
 			
 			return EnumActionResult.PASS;
 		} else return EnumActionResult.FAIL;

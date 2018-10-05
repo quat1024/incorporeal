@@ -21,6 +21,7 @@ public class EntityCygnusRegularSpark extends AbstractEntityCygnusSparkBase {
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
+		if(world.isRemote) return;
 		
 		//This stuff isn't *super* important and it's pretty expensive so I'll add this little clock
 		if(world.getTotalWorldTime() % 20 != 0) return;
@@ -107,5 +108,10 @@ public class EntityCygnusRegularSpark extends AbstractEntityCygnusSparkBase {
 	@Override
 	protected ItemStack getAssociatedItemStack() {
 		return new ItemStack(IncorporeticCygnusItems.CYGNUS_SPARK);
+	}
+	
+	@Override
+	public EntityCygnusMasterSpark getMasterSpark() {
+		return knownMaster;
 	}
 }
