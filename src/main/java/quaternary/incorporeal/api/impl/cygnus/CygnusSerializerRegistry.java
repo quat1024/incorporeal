@@ -5,8 +5,10 @@ import com.google.common.collect.HashBiMap;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusSerializer;
 import quaternary.incorporeal.api.cygnus.ICygnusSerializerRegistry;
+import quaternary.incorporeal.cygnus.serializers.DummyCygnusSerializer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +53,8 @@ public class CygnusSerializerRegistry implements ICygnusSerializerRegistry {
 		}
 		
 		//TODO: This won't handle removing mods very well...
-		throw new RuntimeException("Can't find a cygnus serializer for resourcelocation " + name);
+		Incorporeal.LOGGER.info("Can't find the Cygnus serializer for resource " + name + ", returning a dummy");
+		return new DummyCygnusSerializer<>();
 	}
 	
 	private <T> ICygnusSerializer<T> byClass(Class<?> tclass) {
@@ -61,13 +64,15 @@ public class CygnusSerializerRegistry implements ICygnusSerializerRegistry {
 			}
 		}
 		
-		throw new RuntimeException("Can't find a cygnus serializer for class " + tclass.getName());
+		Incorporeal.LOGGER.info("Can't find the Cygnus serializer for class " + tclass + ", returning a dummy");
+		return new DummyCygnusSerializer<>();
 	}
 	
 	private <T> ICygnusSerializer<T> byNetID(int netID) {
 		ICygnusSerializer<?> serializer = netIDs.inverse().get(netID);
 		if(serializer != null) return (ICygnusSerializer<T>) serializer;
 		
-		throw new RuntimeException("Can't find a cygnus serializer for net ID " + netID);
+		Incorporeal.LOGGER.info("Can't find the Cygnus serializer for net ID " + netID + ", returning a dummy");
+		return new DummyCygnusSerializer<>();
 	}
 }
