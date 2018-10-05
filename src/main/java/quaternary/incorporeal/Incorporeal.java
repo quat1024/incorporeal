@@ -22,7 +22,6 @@ import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.api.IIncorporealAPI;
 import quaternary.incorporeal.api.impl.IncorporealAPI;
 import quaternary.incorporeal.block.IncorporeticBlocks;
-import quaternary.incorporeal.cygnus.serializers.CygnusDoubleSerializer;
 import quaternary.incorporeal.cygnus.serializers.CygnusErrorSerializer;
 import quaternary.incorporeal.cygnus.serializers.CygnusIntegerSerializer;
 import quaternary.incorporeal.cygnus.serializers.CygnusItemStackSerializer;
@@ -100,7 +99,6 @@ public final class Incorporeal {
 			return IncorporeticBlocks.NATURAL_COMPARATOR.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
 		}, 20);
 		
-		API.getCygnusSerializerRegistry().registerSerializer(new CygnusDoubleSerializer());
 		API.getCygnusSerializerRegistry().registerSerializer(new CygnusIntegerSerializer());
 		API.getCygnusSerializerRegistry().registerSerializer(new CygnusItemStackSerializer());
 		API.getCygnusSerializerRegistry().registerSerializer(new CygnusErrorSerializer());
