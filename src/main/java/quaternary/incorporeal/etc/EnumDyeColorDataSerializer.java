@@ -6,8 +6,8 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializer;
 import net.minecraft.network.datasync.DataSerializers;
 
-public class EnumDyeColorSerializer implements DataSerializer<EnumDyeColor> {
-	public static final EnumDyeColorSerializer INST = new EnumDyeColorSerializer();
+public class EnumDyeColorDataSerializer implements DataSerializer<EnumDyeColor> {
+	public static final EnumDyeColorDataSerializer INST = new EnumDyeColorDataSerializer();
 	
 	static {
 		DataSerializers.registerSerializer(INST);

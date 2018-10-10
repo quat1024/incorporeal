@@ -2,6 +2,7 @@ package quaternary.incorporeal.api.cygnus;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
 import quaternary.incorporeal.api.IIncorporealAPI;
 
 /**
@@ -22,7 +23,7 @@ public interface ICygnusSerializerRegistry {
 	void registerSerializer(ICygnusSerializer<?> serializer);
 	
 	<T> void writeToNBT(NBTTagCompound nbt, T item);
-	<T> T readFromNBT(NBTTagCompound nbt);
-	<T> void writeToByteBuf(ByteBuf buf, T item);
-	<T> T readFromByteBuf(ByteBuf buf);
+	Object readFromNBT(NBTTagCompound nbt);
+	<T> void writeToPacketBuffer(PacketBuffer buf, T item);
+	Object readFromPacketBuffer(PacketBuffer buf);
 }

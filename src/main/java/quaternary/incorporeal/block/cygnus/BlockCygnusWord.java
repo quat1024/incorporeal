@@ -58,7 +58,7 @@ public class BlockCygnusWord extends BlockCygnusBase implements ICygnusSparkable
 		if(!isPowered && shouldPower) {
 			EntityCygnusMasterSpark master = CygnusHelpers.getMasterSparkForSparkAt(world, pos);
 			if(master != null) {
-				action.accept(master.cygnusStack);
+				action.accept(master.getCygnusStack());
 			}
 		}
 	}

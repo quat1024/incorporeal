@@ -2,13 +2,14 @@ package quaternary.incorporeal.cygnus.serializers;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusSerializer;
 
 public class CygnusIntegerSerializer implements ICygnusSerializer<Integer> {
 	@Override
-	public ResourceLocation getName() {
+	public ResourceLocation getType() {
 		return new ResourceLocation(Incorporeal.MODID, "integer");
 	}
 	
@@ -28,12 +29,12 @@ public class CygnusIntegerSerializer implements ICygnusSerializer<Integer> {
 	}
 	
 	@Override
-	public void writeToByteBuf(ByteBuf buf, Integer item) {
+	public void writeToPacketBuffer(PacketBuffer buf, Integer item) {
 		buf.writeInt(item);
 	}
 	
 	@Override
-	public Integer readFromByteBuf(ByteBuf buf) {
+	public Integer readFromPacketBuffer(PacketBuffer buf) {
 		return buf.readInt();
 	}
 }

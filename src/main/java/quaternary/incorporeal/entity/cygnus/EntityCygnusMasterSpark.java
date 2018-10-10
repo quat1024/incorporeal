@@ -2,8 +2,11 @@ package quaternary.incorporeal.entity.cygnus;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.world.World;
 import quaternary.incorporeal.cygnus.CygnusStack;
+import quaternary.incorporeal.etc.CygnusStackDataSerializer;
 import quaternary.incorporeal.etc.helper.CygnusHelpers;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
 
@@ -12,7 +15,12 @@ public class EntityCygnusMasterSpark extends AbstractEntityCygnusSparkBase {
 		super(world);
 	}
 	
-	public final CygnusStack cygnusStack = new CygnusStack(16);
+	private static final DataParameter<CygnusStack> CYGNUS_STACK = EntityDataManager.createKey(EntityCygnusMasterSpark.class, new CygnusStackDataSerializer());
+	
+	@Override
+	protected void entityInit() {
+		dataManager.register(CYGNUS_STACK, new CygnusStack(16));
+	}
 	
 	@Override
 	protected boolean canStay() {
@@ -29,15 +37,19 @@ public class EntityCygnusMasterSpark extends AbstractEntityCygnusSparkBase {
 		return this;
 	}
 	
+	public CygnusStack getCygnusStack() {
+		return dataManager.get(CYGNUS_STACK);
+	}
+	
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound nbt) {
 		super.writeEntityToNBT(nbt);
-		nbt.setTag("Stack", cygnusStack.toNBT());
+		nbt.setTag("Stack", getCygnusStack().toNBT());
 	}
 	
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound nbt) {
 		super.readEntityFromNBT(nbt);
-		cygnusStack.fromNBT(nbt.getCompoundTag("Stack"));
+		getCygnusStack().fromNBT(nbt.getCompoundTag("Stack"));
 	}
 }

@@ -2,6 +2,7 @@ package quaternary.incorporeal.api.cygnus;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import quaternary.incorporeal.api.IIncorporealAPI;
 
@@ -18,7 +19,7 @@ public interface ICygnusSerializer<T> {
 	/**
 	 * @return A globally-unique ResourceLocation that describes this Cygnus serializer.
 	 */
-	ResourceLocation getName();
+	ResourceLocation getType();
 	
 	/**
 	 * @return The class that this Cygnus serializer is in charge of.
@@ -44,16 +45,16 @@ public interface ICygnusSerializer<T> {
 	T readFromNBT(NBTTagCompound nbt);
 	
 	/**
-	 * Serialize this item to a Netty ByteBuf.
-	 * @param buf The ByteBuf to write to.
+	 * Serialize this item to a PacketBuffer.
+	 * @param buf The PacketBuffer to write to.
 	 * @param item The item to write to the buffer.
 	 */
-	void writeToByteBuf(ByteBuf buf, T item);
+	void writeToPacketBuffer(PacketBuffer buf, T item);
 	
 	/**
-	 * Deserialize an item from a Netty ByteBuf.
-	 * @param buf The ByteBuf to read from.
+	 * Deserialize an item from a PacketBuffer.
+	 * @param buf The PacketBuffer to read from.
 	 * @return The item read from the buffer.
 	 */
-	T readFromByteBuf(ByteBuf buf);
+	T readFromPacketBuffer(PacketBuffer buf);
 }

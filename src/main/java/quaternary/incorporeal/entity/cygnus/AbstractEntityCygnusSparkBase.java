@@ -14,7 +14,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import quaternary.incorporeal.etc.EnumDyeColorSerializer;
+import quaternary.incorporeal.etc.EnumDyeColorDataSerializer;
 import vazkii.botania.common.item.ItemTwigWand;
 import vazkii.botania.common.item.ModItems;
 import vazkii.botania.common.item.material.ItemDye;
@@ -34,7 +34,7 @@ public abstract class AbstractEntityCygnusSparkBase extends Entity {
 	
 	public static final int SEARCH_RADIUS = 8;
 	
-	private static final DataParameter<EnumDyeColor> TINT = EntityDataManager.createKey(AbstractEntityCygnusSparkBase.class, EnumDyeColorSerializer.INST);
+	private static final DataParameter<EnumDyeColor> TINT = EntityDataManager.createKey(AbstractEntityCygnusSparkBase.class, EnumDyeColorDataSerializer.INST);
 	private static final DataParameter<Boolean> PHANTOM = EntityDataManager.createKey(AbstractEntityCygnusSparkBase.class, DataSerializers.BOOLEAN);
 	
 	public AbstractEntityCygnusSparkBase(World world) {
