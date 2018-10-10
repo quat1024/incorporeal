@@ -13,15 +13,20 @@ import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
+import quaternary.incorporeal.client.entityrenderer.RenderEntityCygnusMasterSpark;
+import quaternary.incorporeal.client.entityrenderer.RenderEntityCygnusRegularSpark;
 import quaternary.incorporeal.client.tesr.RenderItemSoulCore;
 import quaternary.incorporeal.client.tesr.RenderTileCorporeaSparkTinkerer;
 import quaternary.incorporeal.client.tesr.RenderTileSoulCore;
 import quaternary.incorporeal.client.tesr.decorative.RenderTileUnstableCube;
+import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
+import quaternary.incorporeal.entity.cygnus.EntityCygnusRegularSpark;
 import quaternary.incorporeal.flower.SubTileSanvocalia;
 import quaternary.incorporeal.flower.SubTileSweetAlexum;
 import quaternary.incorporeal.item.IncorporeticItems;
@@ -112,6 +117,11 @@ public final class ClientRegistryEvents {
 		ic.registerItemColorHandler((stack, tintIndex) -> {
 			return tintIndex == 0 ? EnumDyeColor.byMetadata(stack.getMetadata()).colorValue : 0xFFFFFF;
 		}, IncorporeticItems.DECORATIVE_UNSTABLE_CUBE);
+	}
+	
+	public static void entityRenderers() {
+		RenderingRegistry.registerEntityRenderingHandler(EntityCygnusRegularSpark.class, RenderEntityCygnusRegularSpark::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityCygnusMasterSpark.class, RenderEntityCygnusMasterSpark::new);
 	}
 	
 	private static void setSimpleModel(Item i) {

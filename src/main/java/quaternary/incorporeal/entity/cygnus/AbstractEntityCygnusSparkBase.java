@@ -116,6 +116,7 @@ public abstract class AbstractEntityCygnusSparkBase extends Entity {
 	
 	public void setTint(EnumDyeColor tint) {
 		dataManager.set(TINT, tint);
+		dataManager.setDirty(TINT);
 	}
 	
 	//I'd love to use isInvisible but Entity has that as a method lol
@@ -125,6 +126,7 @@ public abstract class AbstractEntityCygnusSparkBase extends Entity {
 	
 	public void setPhantomInked(boolean phantom) {
 		dataManager.set(PHANTOM, phantom);
+		dataManager.setDirty(PHANTOM);
 	}
 	
 	protected List<AbstractEntityCygnusSparkBase> findNearbyMatchingTintSparks() {

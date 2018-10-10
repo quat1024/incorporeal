@@ -15,11 +15,24 @@ public class EntityCygnusMasterSpark extends AbstractEntityCygnusSparkBase {
 		super(world);
 	}
 	
-	private static final DataParameter<CygnusStack> CYGNUS_STACK = EntityDataManager.createKey(EntityCygnusMasterSpark.class, new CygnusStackDataSerializer());
+	private static final DataParameter<CygnusStack> CYGNUS_STACK = EntityDataManager.createKey(EntityCygnusMasterSpark.class, CygnusStackDataSerializer.INST);
 	
 	@Override
 	protected void entityInit() {
+		super.entityInit();
 		dataManager.register(CYGNUS_STACK, new CygnusStack(16));
+	}
+	
+	@Override
+	public void onUpdate() {
+		super.onUpdate();
+		
+		if(!world.isRemote) {
+			if(getCygnusStack().isDirty()) {
+				dataManager.setDirty(CYGNUS_STACK);
+				getCygnusStack().clean();
+			}
+		}
 	}
 	
 	@Override

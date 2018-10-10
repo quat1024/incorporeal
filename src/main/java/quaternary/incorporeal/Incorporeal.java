@@ -77,6 +77,8 @@ public final class Incorporeal {
 	@Mod.EventHandler
 	public static void preinit(FMLPreInitializationEvent e) {
 		IncorporeticConfig.preinit(e);
+		
+		PROXY.entityRendererBullshit();
 	}
 	
 	@Mod.EventHandler

@@ -4,6 +4,7 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusSerializer;
@@ -48,11 +49,11 @@ public class CygnusSerializerRegistry implements ICygnusSerializerRegistry {
 		return new CygnusError();
 	}
 	
-	public <T> void writeToByteBuf(ByteBuf buf, T item) {
+	public <T> void writeToPacketBuffer(PacketBuffer buf, T item) {
 		for(ICygnusSerializer<?> serializer : serializers) {
 			if(serializer.getSerializedClass() == item.getClass()) {
 				buf.writeInt(netIDs.get(serializer));
-				((ICygnusSerializer<T>) serializer).writeToByteBuf(buf, item);
+				((ICygnusSerializer<T>) serializer).writeToPacketBuffer(buf, item);
 				return;
 			}
 		}
@@ -60,9 +61,9 @@ public class CygnusSerializerRegistry implements ICygnusSerializerRegistry {
 		throw new IllegalArgumentException("No matching cygnus serializer registered for " + item.getClass());
 	}
 	
-	public Object readFromByteBuf(ByteBuf buf) {
+	public Object readFromPacketBuffer(PacketBuffer buf) {
 		//no null checks here since bytebufs are very short-term, right?
 		//there's not going to be a mod removed over the lifetime of this object
-		return netIDs.inverse().get(buf.readInt()).readFromByteBuf(buf);
+		return netIDs.inverse().get(buf.readInt()).readFromPacketBuffer(buf);
 	}
 }
