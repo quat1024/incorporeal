@@ -23,7 +23,7 @@ import quaternary.incorporeal.api.IIncorporealAPI;
 import quaternary.incorporeal.api.impl.IncorporealAPI;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.cygnus.serializers.CygnusErrorSerializer;
-import quaternary.incorporeal.cygnus.serializers.CygnusIntegerSerializer;
+import quaternary.incorporeal.cygnus.serializers.CygnusBigIntegerSerializer;
 import quaternary.incorporeal.cygnus.serializers.CygnusItemStackSerializer;
 import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
@@ -101,7 +101,7 @@ public final class Incorporeal {
 			return IncorporeticBlocks.NATURAL_COMPARATOR.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
 		}, 20);
 		
-		API.getCygnusSerializerRegistry().registerSerializer(new CygnusIntegerSerializer());
+		API.getCygnusSerializerRegistry().registerSerializer(new CygnusBigIntegerSerializer());
 		API.getCygnusSerializerRegistry().registerSerializer(new CygnusItemStackSerializer());
 		API.getCygnusSerializerRegistry().registerSerializer(new CygnusErrorSerializer());
 		

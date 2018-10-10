@@ -5,11 +5,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
+import org.apache.commons.lang3.StringUtils;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.cygnus.CygnusError;
 import quaternary.incorporeal.cygnus.CygnusStack;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
 
+import java.math.BigInteger;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -85,25 +87,25 @@ public final class IncorporeticCygnusBlocks {
 		//Add
 		//A B] -> (B+A)]
 		registerCygnusActionBlock("number_add", stack -> {
-			binaryMathOperation(stack, (top, under) -> Optional.of(under + top));
+			binaryMathOperation(stack, (top, under) -> Optional.of(under.add(top)));
 		}, reg);
 		
 		//Subtract
 		//A B] -> (B-A)]
 		registerCygnusActionBlock("number_subtract", stack -> {
-			binaryMathOperation(stack, (top, under) -> Optional.of(under - top));
+			binaryMathOperation(stack, (top, under) -> Optional.of(under.subtract(top)));
 		}, reg);
 		
 		//Multiply
 		//A B] -> (B*A)]
 		registerCygnusActionBlock("number_multiply", stack -> {
-			binaryMathOperation(stack, (top, under) -> Optional.of(under * top));
+			binaryMathOperation(stack, (top, under) -> Optional.of(under.multiply(top)));
 		}, reg);
 		
 		//Divide
 		//A B] -> (B/A)] or CygnusError if divide by 0
 		registerCygnusActionBlock("number_divide", stack -> {
-			binaryMathOperation(stack, (top, under) -> top == 0 ? Optional.empty() : Optional.of(under / top));
+			binaryMathOperation(stack, (top, under) -> top.compareTo(BigInteger.ZERO) == 0 ? Optional.empty() : Optional.of(under.divide(top)));
 		}, reg);
 		
 		//ItemStack operations
@@ -111,14 +113,14 @@ public final class IncorporeticCygnusBlocks {
 		//Set Count
 		//A{stack} B{int}] -> A{stack}]
 		registerCygnusActionBlock("stack_set_count", stack -> {
-			Optional<Integer> topCount = stack.peekMatching(Integer.class, 0);
+			Optional<BigInteger> topCount = stack.peekMatching(BigInteger.class, 0);
 			Optional<ItemStack> underStack = stack.peekMatching(ItemStack.class, 1);
 			if(topCount.isPresent() && underStack.isPresent()) {
 				stack.popDestroy(2);
 				ItemStack result = underStack.get().copy();
-				int stackSize = topCount.get();
+				int stackSize = topCount.get().intValue();
 				if(stackSize > 0 && stackSize <= result.getItem().getItemStackLimit(result)) {
-					result.setCount(topCount.get());
+					result.setCount(stackSize);
 					stack.push(result);
 				} else stack.push(new CygnusError());
 			} else stack.push(new CygnusError());
@@ -146,20 +148,29 @@ public final class IncorporeticCygnusBlocks {
 			Optional<ItemStack> top = stack.peekMatching(ItemStack.class);
 			if(top.isPresent()) {
 				stack.popDestroy(1);
-				stack.push(top.get().getCount());
+				stack.push(BigInteger.valueOf(top.get().getCount()));
 			} else stack.push(new CygnusError());
 		}, reg);
 	}
 	
-	private static void binaryMathOperation(CygnusStack stack, BiFunction<Integer, Integer, Optional<Integer>> operation) {
-		Optional<Integer> top = stack.peekMatching(Integer.class, 0);
-		Optional<Integer> under = stack.peekMatching(Integer.class, 1);
+	//TODO: break this out into a general purpose "validate" func
+	private static final BigInteger topCap =    new BigInteger("+" + StringUtils.repeat('9', 50), 10);
+	private static final BigInteger bottomCap = new BigInteger("-" + StringUtils.repeat('9', 50), 10);
+	
+	private static void binaryMathOperation(CygnusStack stack, BiFunction<BigInteger, BigInteger, Optional<BigInteger>> operation) {
+		Optional<BigInteger> top = stack.peekMatching(BigInteger.class, 0);
+		Optional<BigInteger> under = stack.peekMatching(BigInteger.class, 1);
 		if(top.isPresent() && under.isPresent()) {
 			stack.popDestroy(2);
-			Optional<Integer> operationResult = operation.apply(top.get(), under.get());
+			Optional<BigInteger> operationResult = operation.apply(top.get(), under.get());
 			
 			if(operationResult.isPresent()) {
-				stack.push(operationResult.get());
+				BigInteger result = operationResult.get();
+				if(result.compareTo(topCap) >= 1 || result.compareTo(bottomCap) <= -1) {
+					stack.push(new CygnusError());
+				} else {
+					stack.push(operationResult.get());
+				}
 			} else {
 				stack.push(new CygnusError());
 			}
