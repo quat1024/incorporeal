@@ -46,11 +46,13 @@ public class CygnusBigIntegerSerializer implements ICygnusSerializer<BigInteger>
 	
 	@Override
 	public void writeToPacketBuffer(PacketBuffer buf, BigInteger item) {
-		buf.writeBytes(item.toByteArray());
+		byte[] bytes = item.toByteArray();
+		//TODO length check?
+		buf.writeByteArray(bytes);
 	}
 	
 	@Override
 	public BigInteger readFromPacketBuffer(PacketBuffer buf) {
-		return new BigInteger(buf.readByteArray());
+		return new BigInteger(buf.readByteArray(1_000_000)); //Xd
 	}
 }

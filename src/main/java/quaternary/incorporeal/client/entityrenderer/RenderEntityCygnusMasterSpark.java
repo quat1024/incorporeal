@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.entity.Entity;
 import quaternary.incorporeal.client.IncorporeticClientIcons;
 import quaternary.incorporeal.client.event.IncorporeticClientTickHandler;
 import quaternary.incorporeal.cygnus.CygnusStack;
@@ -14,8 +13,6 @@ import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
 import vazkii.botania.client.core.handler.MiscellaneousIcons;
 import vazkii.botania.client.render.entity.RenderSparkBase;
 import vazkii.botania.common.item.equipment.bauble.ItemMonocle;
-
-import java.util.Optional;
 
 public class RenderEntityCygnusMasterSpark extends RenderSparkBase<EntityCygnusMasterSpark> {
 	public RenderEntityCygnusMasterSpark(RenderManager manager) {
@@ -68,7 +65,7 @@ public class RenderEntityCygnusMasterSpark extends RenderSparkBase<EntityCygnusM
 			//big wips lol
 			for(int i = 0; i < stack.depth(); i++) {
 				stack.peek(i).ifPresent(o -> {
-					String toDraw = o.getClass().getSimpleName() + ' ' + o.toString(); //Temp
+					String toDraw = o.toString(); //Temp
 					font.drawString(toDraw, -font.getStringWidth(toDraw) / 2, 0, 0xFFFFFF);
 					GlStateManager.translate(0, -14, 0);
 				});

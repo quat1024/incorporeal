@@ -79,7 +79,7 @@ public final class IncorporeticCygnusBlocks {
 			Optional<Object> top = stack.peek();
 			if(top.isPresent()) {
 				stack.push(top.get());
-			} else stack.push(new CygnusError());
+			} else stack.push(new CygnusError(CygnusError.UNDERFLOW));
 		}, reg);
 		
 		//Math operations
@@ -122,8 +122,11 @@ public final class IncorporeticCygnusBlocks {
 				if(stackSize > 0 && stackSize <= result.getItem().getItemStackLimit(result)) {
 					result.setCount(stackSize);
 					stack.push(result);
-				} else stack.push(new CygnusError());
-			} else stack.push(new CygnusError());
+				} else stack.push(new CygnusError(CygnusError.OUT_OF_RANGE));
+			} else {
+				String message = stack.depth() >= 2 ? CygnusError.MISMATCH : CygnusError.UNDERFLOW;
+				stack.push(new CygnusError(message));
+			}
 		}, reg);
 		
 		//Set Item
@@ -139,7 +142,10 @@ public final class IncorporeticCygnusBlocks {
 				ItemStack result = donor.copy();
 				donor.setCount(acceptor.getCount());
 				stack.push(result);
-			} else stack.push(new CygnusError());
+			} else {
+				String message = stack.depth() >= 2 ? CygnusError.MISMATCH : CygnusError.UNDERFLOW;
+				stack.push(new CygnusError(message));
+			}
 		}, reg);
 		
 		//Extract Count
@@ -149,7 +155,10 @@ public final class IncorporeticCygnusBlocks {
 			if(top.isPresent()) {
 				stack.popDestroy(1);
 				stack.push(BigInteger.valueOf(top.get().getCount()));
-			} else stack.push(new CygnusError());
+			} else {
+				String message = stack.depth() >= 2 ? CygnusError.MISMATCH : CygnusError.UNDERFLOW;
+				stack.push(new CygnusError(message));
+			}
 		}, reg);
 	}
 	
@@ -167,14 +176,17 @@ public final class IncorporeticCygnusBlocks {
 			if(operationResult.isPresent()) {
 				BigInteger result = operationResult.get();
 				if(result.compareTo(topCap) >= 1 || result.compareTo(bottomCap) <= -1) {
-					stack.push(new CygnusError());
+					stack.push(new CygnusError(CygnusError.OUT_OF_RANGE));
 				} else {
 					stack.push(operationResult.get());
 				}
 			} else {
-				stack.push(new CygnusError());
+				stack.push(new CygnusError(CygnusError.INVALID_MATH));
 			}
-		} else stack.push(new CygnusError());
+		} else {
+			String message = stack.depth() >= 2 ? CygnusError.MISMATCH : CygnusError.UNDERFLOW;
+			stack.push(new CygnusError(message));
+		}
 	}
 	
 	private static void registerCygnusActionBlock(String name, Consumer<CygnusStack> action , IForgeRegistry<Block> reg) {
