@@ -2,8 +2,8 @@ package quaternary.incorporeal.api.impl;
 
 import quaternary.incorporeal.api.IIncorporealAPI;
 import quaternary.incorporeal.api.INaturalDeviceRegistry;
-import quaternary.incorporeal.api.cygnus.ICygnusSerializerRegistry;
-import quaternary.incorporeal.api.impl.cygnus.CygnusSerializerRegistry;
+import quaternary.incorporeal.api.cygnus.ICygnusDatatypeInfoRegistry;
+import quaternary.incorporeal.api.impl.cygnus.CygnusDatatypeInfoRegistry;
 
 public class IncorporealAPI implements IIncorporealAPI {
 	@Override
@@ -12,7 +12,7 @@ public class IncorporealAPI implements IIncorporealAPI {
 	}
 	
 	private static final INaturalDeviceRegistry naturalDeviceRegistry = new IncorporealNaturalDeviceRegistry();
-	private static final ICygnusSerializerRegistry cygnusSerializerRegistry = new CygnusSerializerRegistry();
+	private static final ICygnusDatatypeInfoRegistry cygnusSerializerRegistry = new CygnusDatatypeInfoRegistry();
 	
 	@Override
 	public INaturalDeviceRegistry getNaturalDeviceRegistry() {
@@ -20,7 +20,7 @@ public class IncorporealAPI implements IIncorporealAPI {
 	}
 	
 	@Override
-	public ICygnusSerializerRegistry getCygnusSerializerRegistry() {
+	public ICygnusDatatypeInfoRegistry getCygnusDatatypeInfoRegistry() {
 		return cygnusSerializerRegistry;
 	}
 }

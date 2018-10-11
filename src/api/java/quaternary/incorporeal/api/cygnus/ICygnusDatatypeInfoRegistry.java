@@ -1,26 +1,30 @@
 package quaternary.incorporeal.api.cygnus;
 
-import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import quaternary.incorporeal.api.IIncorporealAPI;
 
 /**
- * Tell Incorporeal about your <pre>ICygnusSerializers</pre> here.
+ * Tell Incorporeal about your {@link ICygnusDatatypeInfo}s here.
  * There's also a few (intended for internal-use) methods that loop over this serializer registry and
  * try to choose the right one, for any item. Kinda cool. Not really.
  * 
- * @see IIncorporealAPI#getCygnusSerializerRegistry() 
+ * @see IIncorporealAPI#getCygnusDatatypeInfoRegistry() 
  * 
  * @author quaternary
  * @since 1.1
  */
-public interface ICygnusSerializerRegistry {
+public interface ICygnusDatatypeInfoRegistry {
 	/**
-	 * Tell Incorporeal about an ICygnusSerializer.
-	 * @param serializer The serializer you want Minecraft to start using.
+	 * Tell Incorporeal about an ICygnusDatatypeInfo.
+	 * @param datatype The datatype you want Incorporeal to know about.
 	 */
-	void registerSerializer(ICygnusSerializer<?> serializer);
+	void registerDatatype(ICygnusDatatypeInfo<?> datatype);
+	
+	/**
+	 * @return the ICygnusDatatypeInfo instance that objects of this class will use
+	 */
+	<T> ICygnusDatatypeInfo<T> getDatatypeForClass(Class<T> classs);
 	
 	<T> void writeToNBT(NBTTagCompound nbt, T item);
 	Object readFromNBT(NBTTagCompound nbt);

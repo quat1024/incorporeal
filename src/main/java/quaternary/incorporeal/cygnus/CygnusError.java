@@ -3,6 +3,8 @@ package quaternary.incorporeal.cygnus;
 import com.google.common.base.Preconditions;
 import net.minecraft.util.text.translation.I18n;
 
+import java.util.Arrays;
+
 //Cygnus datatype that represents an error.
 //Shows up in cases of stack underflow, division-by-zero, or really any case when an operation can't work.
 //Stack overflows are an exception; they just fail silently.
@@ -14,6 +16,7 @@ public class CygnusError {
 	public static final String MISMATCH = "incorporeal.cygnus.error.mismatched_type";
 	public static final String OUT_OF_RANGE = "incorporeal.cygnus.error.out_of_range";
 	public static final String INVALID_MATH = "incorporeal.cygnus.error.invalid_math";
+	public static final String REMOVED_TYPE = "incorporeal.cygnus.error.removed_type";
 	
 	public CygnusError() {
 		this(UNSPECIFIED);
@@ -37,7 +40,7 @@ public class CygnusError {
 	public final String[] errorFormat;
 	
 	public String getTranslatedText() {
-		return I18n.translateToLocalFormatted(errorTranslationKey, errorFormat);
+		return I18n.translateToLocalFormatted(errorTranslationKey, Arrays.stream(errorFormat).map(I18n::translateToLocal).toArray());
 	}
 	
 	//TODO remove toString stuff

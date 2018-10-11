@@ -22,9 +22,9 @@ import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.api.IIncorporealAPI;
 import quaternary.incorporeal.api.impl.IncorporealAPI;
 import quaternary.incorporeal.block.IncorporeticBlocks;
-import quaternary.incorporeal.cygnus.serializers.CygnusErrorSerializer;
-import quaternary.incorporeal.cygnus.serializers.CygnusBigIntegerSerializer;
-import quaternary.incorporeal.cygnus.serializers.CygnusItemStackSerializer;
+import quaternary.incorporeal.cygnus.types.CygnusErrorType;
+import quaternary.incorporeal.cygnus.types.CygnusBigIntegerType;
+import quaternary.incorporeal.cygnus.types.CygnusItemStackType;
 import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
 import quaternary.incorporeal.etc.IncorporeticRuneRecipes;
@@ -101,9 +101,9 @@ public final class Incorporeal {
 			return IncorporeticBlocks.NATURAL_COMPARATOR.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
 		}, 20);
 		
-		API.getCygnusSerializerRegistry().registerSerializer(new CygnusBigIntegerSerializer());
-		API.getCygnusSerializerRegistry().registerSerializer(new CygnusItemStackSerializer());
-		API.getCygnusSerializerRegistry().registerSerializer(new CygnusErrorSerializer());
+		API.getCygnusDatatypeInfoRegistry().registerDatatype(new CygnusBigIntegerType());
+		API.getCygnusDatatypeInfoRegistry().registerDatatype(new CygnusItemStackType());
+		API.getCygnusDatatypeInfoRegistry().registerDatatype(new CygnusErrorType());
 		
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(ModItems.manaResource, new DispenserBehaviorRedstoneRoot());
 	}

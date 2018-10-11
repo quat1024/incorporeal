@@ -1,23 +1,27 @@
-package quaternary.incorporeal.cygnus.serializers;
+package quaternary.incorporeal.cygnus.types;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.Constants;
+import org.apache.commons.lang3.StringUtils;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.cygnus.ICygnusSerializer;
+import quaternary.incorporeal.api.cygnus.ICygnusDatatypeInfo;
+import quaternary.incorporeal.api.cygnus.ICygnusStack;
+import quaternary.incorporeal.cygnus.CygnusError;
 
+import javax.annotation.Nullable;
 import java.math.BigInteger;
 
-public class CygnusBigIntegerSerializer implements ICygnusSerializer<BigInteger> {
+public class CygnusBigIntegerType implements ICygnusDatatypeInfo<BigInteger> {
 	@Override
-	public ResourceLocation getType() {
+	public ResourceLocation getResourceLocation() {
 		return new ResourceLocation(Incorporeal.MODID, "big_integer");
 	}
 	
 	@Override
-	public Class<BigInteger> getSerializedClass() {
+	public Class<BigInteger> getTypeClass() {
 		return BigInteger.class;
 	}
 	
@@ -54,5 +58,31 @@ public class CygnusBigIntegerSerializer implements ICygnusSerializer<BigInteger>
 	@Override
 	public BigInteger readFromPacketBuffer(PacketBuffer buf) {
 		return new BigInteger(buf.readByteArray(1_000_000)); //Xd
+	}
+	
+	private static final BigInteger topCap    = new BigInteger("+" + StringUtils.repeat('9', 50), 10);
+	private static final BigInteger bottomCap = new BigInteger("-" + StringUtils.repeat('9', 50), 10);
+	
+	private static final String TOO_SMALL_NUMBER = CygnusError.INVALID_MATH + ".too_small";
+	private static final String TOO_BIG_NUMBER   = CygnusError.INVALID_MATH + ".too_big";
+	
+	@Nullable
+	@Override
+	public Object getError(BigInteger item, ICygnusStack stack) {
+		if(item.compareTo(bottomCap) < 0) {
+			return new CygnusError(CygnusError.INVALID_MATH, TOO_SMALL_NUMBER);
+		} else if (item.compareTo(topCap) > 0) {
+			return new CygnusError(CygnusError.INVALID_MATH, TOO_BIG_NUMBER);
+		} else return null;
+	}
+	
+	@Override
+	public boolean areEqual(BigInteger item1, BigInteger item2) {
+		return item1.equals(item2);
+	}
+	
+	@Override
+	public int compare(BigInteger item1, BigInteger item2) {
+		return item1.compareTo(item2);
 	}
 }

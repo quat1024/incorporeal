@@ -140,7 +140,11 @@ incorporeal.cygnus.error.unspecified=(unspecified)
 incorporeal.cygnus.error.stack_underflow=Stack underflow
 incorporeal.cygnus.error.mismatched_type=Type mismatch
 incorporeal.cygnus.error.out_of_range=Out of range
-incorporeal.cygnus.error.invalid_math=Invalid math operation
+incorporeal.cygnus.error.invalid_math=Invalid math operation: %s
+incorporeal.cygnus.error.invalid_math.too_big=Too big
+incorporeal.cygnus.error.invalid_math.too_small=Too small
+incorporeal.cygnus.error.invalid_math.divide_by_0=Divide by zero
+incorporeal.cygnus.error.removed_type=(removed datatype)
 
 #Blah!!!
 

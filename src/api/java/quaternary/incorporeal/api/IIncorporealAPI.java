@@ -1,6 +1,6 @@
 package quaternary.incorporeal.api;
 
-import quaternary.incorporeal.api.cygnus.ICygnusSerializerRegistry;
+import quaternary.incorporeal.api.cygnus.ICygnusDatatypeInfoRegistry;
 
 /**
  * Incorporeal's API.
@@ -21,5 +21,5 @@ public interface IIncorporealAPI {
 	
 	INaturalDeviceRegistry getNaturalDeviceRegistry();
 	
-	ICygnusSerializerRegistry getCygnusSerializerRegistry();
+	ICygnusDatatypeInfoRegistry getCygnusDatatypeInfoRegistry();
 }

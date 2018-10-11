@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.commons.lang3.StringUtils;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.api.cygnus.ICygnusDatatypeInfo;
 import quaternary.incorporeal.cygnus.CygnusError;
 import quaternary.incorporeal.cygnus.CygnusStack;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
@@ -125,25 +126,29 @@ public final class IncorporeticCygnusBlocks {
 		//Add
 		//A B] -> (B+A)]
 		registerCygnusActionBlock("number_add", stack -> {
-			binaryMathOperation(stack, (top, under) -> Optional.of(under.add(top)));
+			binaryMathOperation(stack, (top, under) -> under.add(top));
 		}, reg);
 		
 		//Subtract
 		//A B] -> (B-A)]
 		registerCygnusActionBlock("number_subtract", stack -> {
-			binaryMathOperation(stack, (top, under) -> Optional.of(under.subtract(top)));
+			binaryMathOperation(stack, (top, under) -> under.subtract(top));
 		}, reg);
 		
 		//Multiply
 		//A B] -> (B*A)]
 		registerCygnusActionBlock("number_multiply", stack -> {
-			binaryMathOperation(stack, (top, under) -> Optional.of(under.multiply(top)));
+			binaryMathOperation(stack, (top, under) -> under.multiply(top));
 		}, reg);
 		
 		//Divide
 		//A B] -> (B/A)] or CygnusError if divide by 0
 		registerCygnusActionBlock("number_divide", stack -> {
-			binaryMathOperation(stack, (top, under) -> top.compareTo(BigInteger.ZERO) == 0 ? Optional.empty() : Optional.of(under.divide(top)));
+			binaryMathOperation(stack, (top, under) -> {
+				if(top.compareTo(BigInteger.ZERO) == 0) {
+					return new CygnusError(CygnusError.INVALID_MATH, CygnusError.INVALID_MATH + ".divide_by_0");
+				} else return under.divide(top);
+			});
 		}, reg);
 		
 		//ItemStack operations
@@ -215,12 +220,13 @@ public final class IncorporeticCygnusBlocks {
 			Optional<?> top = stack.peek(0);
 			Optional<?> under = stack.peek(1);
 			if(!top.isPresent() || !under.isPresent()) return false;
+			
 			Object thingTop = top.get();
 			Object thingUnder = under.get();
 			if(thingTop.getClass() != thingUnder.getClass()) return false;
-			//TODO not all stack entries support equals(), throw soemthing in serializer?
-			//i mean its hardly a serializer anymore lol just has a bunch of data
-			return thingTop.equals(thingUnder);
+			
+			ICygnusDatatypeInfo<?> topType = Incorporeal.API.getCygnusDatatypeInfoRegistry().getDatatypeForClass(thingTop.getClass());
+			return topType.areEqualUnchecked(thingTop, thingUnder);
 		}, reg);
 		
 		//are the top two items the same type?
@@ -236,8 +242,13 @@ public final class IncorporeticCygnusBlocks {
 			Optional<?> top = stack.peek(0);
 			Optional<?> under = stack.peek(1);
 			if(!top.isPresent() || !under.isPresent()) return false;
-			//TODO compareTo
-			return false;
+			
+			Object thingTop = top.get();
+			Object thingUnder = under.get();
+			if(thingTop.getClass() != thingUnder.getClass()) return false;
+			
+			ICygnusDatatypeInfo<?> topType = Incorporeal.API.getCygnusDatatypeInfoRegistry().getDatatypeForClass(thingTop.getClass());
+			return topType.compareUnchecked(thingTop, thingUnder) < 0;
 		}, reg);
 		
 		//is the under item larger than the top item?
@@ -245,35 +256,25 @@ public final class IncorporeticCygnusBlocks {
 			Optional<?> top = stack.peek(0);
 			Optional<?> under = stack.peek(1);
 			if(!top.isPresent() || !under.isPresent()) return false;
-			//TODO compareTo
-			return false;
+			
+			Object thingTop = top.get();
+			Object thingUnder = under.get();
+			if(thingTop.getClass() != thingUnder.getClass()) return false;
+			
+			ICygnusDatatypeInfo<?> topType = Incorporeal.API.getCygnusDatatypeInfoRegistry().getDatatypeForClass(thingTop.getClass());
+			return topType.compareUnchecked(thingTop, thingUnder) > 0;
 		}, reg);
 		
 		//is the top item an error?
 		registerCygnusCrystalCubeBlock("errored", stack -> stack.peekMatching(CygnusError.class).isPresent(), reg);
 	}
 	
-	//TODO: break this out into a general purpose "validate" func
-	private static final BigInteger topCap =    new BigInteger("+" + StringUtils.repeat('9', 50), 10);
-	private static final BigInteger bottomCap = new BigInteger("-" + StringUtils.repeat('9', 50), 10);
-	
-	private static void binaryMathOperation(CygnusStack stack, BiFunction<BigInteger, BigInteger, Optional<BigInteger>> operation) {
+	private static void binaryMathOperation(CygnusStack stack, BiFunction<BigInteger, BigInteger, ?> operation) {
 		Optional<BigInteger> top = stack.peekMatching(BigInteger.class, 0);
 		Optional<BigInteger> under = stack.peekMatching(BigInteger.class, 1);
 		if(top.isPresent() && under.isPresent()) {
 			stack.popDestroy(2);
-			Optional<BigInteger> operationResult = operation.apply(top.get(), under.get());
-			
-			if(operationResult.isPresent()) {
-				BigInteger result = operationResult.get();
-				if(result.compareTo(topCap) >= 1 || result.compareTo(bottomCap) <= -1) {
-					stack.push(new CygnusError(CygnusError.OUT_OF_RANGE));
-				} else {
-					stack.push(operationResult.get());
-				}
-			} else {
-				stack.push(new CygnusError(CygnusError.INVALID_MATH));
-			}
+			stack.push(operation.apply(top.get(), under.get()));
 		} else {
 			String message = stack.depth() >= 2 ? CygnusError.MISMATCH : CygnusError.UNDERFLOW;
 			stack.push(new CygnusError(message));
