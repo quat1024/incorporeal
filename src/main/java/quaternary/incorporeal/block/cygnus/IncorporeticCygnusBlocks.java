@@ -15,6 +15,7 @@ import java.math.BigInteger;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
 public final class IncorporeticCygnusBlocks {
@@ -37,6 +38,20 @@ public final class IncorporeticCygnusBlocks {
 		public static final String WORD_STACK_SET_COUNT = wordPrefix + "stack_set_count";
 		public static final String WORD_STACK_SET_ITEM = wordPrefix + "stack_set_item";
 		public static final String WORD_STACK_EXTRACT_COUNT = wordPrefix + "stack_extract_count";
+		
+		static final String crystalPrefix = "cygnus_crystal_cube_";
+		
+		public static final String CUBE_BLANK = crystalPrefix + "blank";
+		
+		public static final String CUBE_EMPTY_STACK = crystalPrefix + "empty_stack";
+		public static final String CUBE_FULL_STACK = crystalPrefix + "full_stack";
+		public static final String CUBE_EQUAL_VALUE = crystalPrefix + "equal_value";
+		public static final String CUBE_EQUAL_TYPE = crystalPrefix + "equal_type";
+		
+		public static final String CUBE_LESS = crystalPrefix + "less_than";
+		public static final String CUBE_GREATER = crystalPrefix + "greater_than";
+		
+		public static final String CUBE_ERRORED = crystalPrefix + "errored";
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.WORD_BLANK)
@@ -66,9 +81,32 @@ public final class IncorporeticCygnusBlocks {
 	@GameRegistry.ObjectHolder(RegistryNames.WORD_STACK_EXTRACT_COUNT)
 	public static final BlockCygnusWord WORD_STACK_EXTRACT_COUNT = EtcHelpers.definitelyIsntNullISwear();
 	
+	@GameRegistry.ObjectHolder(RegistryNames.CUBE_BLANK)
+	public static final BlockCygnusCrystalCube CUBE_BLANK = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(RegistryNames.CUBE_EMPTY_STACK)
+	public static final BlockCygnusCrystalCube CUBE_EMPTY_STACK = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(RegistryNames.CUBE_FULL_STACK)
+	public static final BlockCygnusCrystalCube CUBE_FULL_STACK = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(RegistryNames.CUBE_EQUAL_VALUE)
+	public static final BlockCygnusCrystalCube CUBE_EQUAL_VALUE = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(RegistryNames.CUBE_EQUAL_TYPE)
+	public static final BlockCygnusCrystalCube CUBE_EQUAL_TYPE = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(RegistryNames.CUBE_LESS)
+	public static final BlockCygnusCrystalCube CUBE_LESS = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(RegistryNames.CUBE_GREATER)
+	public static final BlockCygnusCrystalCube CUBE_GREATER = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(RegistryNames.CUBE_ERRORED)
+	public static final BlockCygnusCrystalCube CUBE_ERRORED = EtcHelpers.definitelyIsntNullISwear();
+	
 	public static void registerBlocks(IForgeRegistry<Block> reg) {
 		//A blank one that does nothing
-		
 		registerCygnusActionBlock("blank", stack -> {}, reg);
 		
 		//Untyped stack management operations
@@ -76,7 +114,7 @@ public final class IncorporeticCygnusBlocks {
 		//Duplicate
 		//A] -> A A]
 		registerCygnusActionBlock("duplicate", stack -> {
-			Optional<Object> top = stack.peek();
+			Optional<?> top = stack.peek();
 			if(top.isPresent()) {
 				stack.push(top.get());
 			} else stack.push(new CygnusError(CygnusError.UNDERFLOW));
@@ -160,6 +198,59 @@ public final class IncorporeticCygnusBlocks {
 				stack.push(new CygnusError(message));
 			}
 		}, reg);
+		
+		///////// Crystal cubes
+		
+		//Blank one
+		registerCygnusCrystalCubeBlock("blank", stack -> false, reg);
+		
+		//is the stack empty?
+		registerCygnusCrystalCubeBlock("empty_stack", CygnusStack::isEmpty, reg);
+		
+		//is it full?
+		registerCygnusCrystalCubeBlock("full_stack", CygnusStack::isFull, reg);
+		
+		//do the top two items match?
+		registerCygnusCrystalCubeBlock("equal_value", stack -> {
+			Optional<?> top = stack.peek(0);
+			Optional<?> under = stack.peek(1);
+			if(!top.isPresent() || !under.isPresent()) return false;
+			Object thingTop = top.get();
+			Object thingUnder = under.get();
+			if(thingTop.getClass() != thingUnder.getClass()) return false;
+			//TODO not all stack entries support equals(), throw soemthing in serializer?
+			//i mean its hardly a serializer anymore lol just has a bunch of data
+			return thingTop.equals(thingUnder);
+		}, reg);
+		
+		//are the top two items the same type?
+		registerCygnusCrystalCubeBlock("equal_type", stack -> {
+			Optional<?> top = stack.peek(0);
+			Optional<?> under = stack.peek(1);
+			if(!top.isPresent() || !under.isPresent()) return false;
+			else return top.get().getClass() == under.get().getClass();
+		}, reg);
+		
+		//is the under item smaller than the top item?
+		registerCygnusCrystalCubeBlock("less_than", stack -> {
+			Optional<?> top = stack.peek(0);
+			Optional<?> under = stack.peek(1);
+			if(!top.isPresent() || !under.isPresent()) return false;
+			//TODO compareTo
+			return false;
+		}, reg);
+		
+		//is the under item larger than the top item?
+		registerCygnusCrystalCubeBlock("greater_than", stack -> {
+			Optional<?> top = stack.peek(0);
+			Optional<?> under = stack.peek(1);
+			if(!top.isPresent() || !under.isPresent()) return false;
+			//TODO compareTo
+			return false;
+		}, reg);
+		
+		//is the top item an error?
+		registerCygnusCrystalCubeBlock("errored", stack -> stack.peekMatching(CygnusError.class).isPresent(), reg);
 	}
 	
 	//TODO: break this out into a general purpose "validate" func
@@ -189,12 +280,19 @@ public final class IncorporeticCygnusBlocks {
 		}
 	}
 	
-	private static void registerCygnusActionBlock(String name, Consumer<CygnusStack> action , IForgeRegistry<Block> reg) {
+	private static void registerCygnusActionBlock(String name, Consumer<CygnusStack> action, IForgeRegistry<Block> reg) {
 		BlockCygnusWord block = new BlockCygnusWord(name, action);
-		
-		String blockName = RegistryNames.wordPrefix + name;
-		block.setRegistryName(new ResourceLocation(Incorporeal.MODID, blockName));
-		block.setUnlocalizedName(Incorporeal.MODID + "." + blockName);
+		registerBlock(block, RegistryNames.wordPrefix + name, reg);
+	}
+	
+	private static void registerCygnusCrystalCubeBlock(String name, Predicate<CygnusStack> condition, IForgeRegistry<Block> reg) {
+		BlockCygnusCrystalCube block = new BlockCygnusCrystalCube(name, condition);
+		registerBlock(block, RegistryNames.crystalPrefix + name, reg);
+	}
+	
+	private static void registerBlock(Block block, String name, IForgeRegistry<Block> reg) {
+		block.setRegistryName(new ResourceLocation(Incorporeal.MODID, name));
+		block.setUnlocalizedName(Incorporeal.MODID + "." + name);
 		block.setCreativeTab(Incorporeal.TAB);
 		
 		reg.register(block);
