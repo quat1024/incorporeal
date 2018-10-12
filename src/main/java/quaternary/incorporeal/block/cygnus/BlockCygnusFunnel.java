@@ -6,6 +6,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -26,6 +27,10 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 	public static final PropertyEnum<EnumFacing> FACING = BotaniaStateProps.FACING;
 	public static final PropertyBool POWERED = BotaniaStateProps.POWERED;
 	
+	public BlockCygnusFunnel() {
+		setDefaultState(getDefaultState().withProperty(FACING, EnumFacing.UP).withProperty(POWERED, false));
+	}
+	
 	@Override
 	public boolean acceptsCygnusSpark(World world, IBlockState state, BlockPos pos) {
 		return true;
@@ -40,8 +45,8 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 			world.setBlockState(pos, state.withProperty(POWERED, shouldPower));
 			if(shouldPower) {
 				EnumFacing facing = state.getValue(FACING);
-				BlockPos fromPos = pos.offset(facing);
-				BlockPos toPos = pos.offset(facing.getOpposite());
+				BlockPos fromPos = pos.offset(facing.getOpposite());
+				BlockPos toPos = pos.offset(facing);
 				
 				ICygnusFunnelable source = findCygnusFunnelable(world, fromPos);
 				ICygnusFunnelable sink = findCygnusFunnelable(world, toPos);
@@ -63,7 +68,8 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 				
 				CygnusStack stack = master.getCygnusStack();
 				if(sourceCanGive) {
-					stack.push(source.giveItemToCygnus());
+					Object given = source.giveItemToCygnus();
+					if(given != null)	stack.push(given);
 				} else {
 					stack.pop().ifPresent(sink::acceptItemFromCygnus);
 				}
@@ -95,6 +101,11 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 		
 		//Idk where it is!
 		return null;
+	}
+	
+	@Override
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+		return getDefaultState().withProperty(FACING, EnumFacing.getDirectionFromEntityLiving(pos, placer).getOpposite());
 	}
 	
 	@Override

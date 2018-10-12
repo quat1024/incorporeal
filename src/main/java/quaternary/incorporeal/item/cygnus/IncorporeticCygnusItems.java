@@ -30,9 +30,9 @@ public final class IncorporeticCygnusItems {
 		public static final String WORD_NUMBER_MULTIPLY_CARD = IncorporeticCygnusBlocks.RegistryNames.WORD_NUMBER_MULTIPLY + cardSuffix;
 		public static final String WORD_NUMBER_DIVIDE_CARD = IncorporeticCygnusBlocks.RegistryNames.WORD_NUMBER_DIVIDE + cardSuffix;
 		
-		public static final String WORD_STACK_SET_COUNT_CARD = IncorporeticCygnusBlocks.RegistryNames.WORD_STACK_SET_COUNT + cardSuffix;
-		public static final String WORD_STACK_SET_ITEM_CARD = IncorporeticCygnusBlocks.RegistryNames.WORD_STACK_SET_ITEM + cardSuffix;
-		public static final String WORD_STACK_EXTRACT_COUNT_CARD = IncorporeticCygnusBlocks.RegistryNames.WORD_STACK_EXTRACT_COUNT + cardSuffix;
+		public static final String WORD_REQUEST_SET_COUNT_CARD = IncorporeticCygnusBlocks.RegistryNames.WORD_REQUEST_SET_COUNT + cardSuffix;
+		public static final String WORD_REQUEST_SET_ITEM_CARD = IncorporeticCygnusBlocks.RegistryNames.WORD_REQUEST_SET_ITEM + cardSuffix;
+		public static final String WORD_REQUEST_GET_COUNT_CARD = IncorporeticCygnusBlocks.RegistryNames.WORD_REQUEST_GET_COUNT + cardSuffix;
 		
 		public static final String CUBE_BLANK_CARD = IncorporeticCygnusBlocks.RegistryNames.CUBE_BLANK + cardSuffix;
 		
@@ -71,14 +71,14 @@ public final class IncorporeticCygnusItems {
 	@GameRegistry.ObjectHolder(RegistryNames.WORD_NUMBER_DIVIDE_CARD)
 	public static final ItemCygnusWordCard WORD_NUMBER_DIVIDE_CARD = EtcHelpers.definitelyIsntNullISwear();
 	
-	@GameRegistry.ObjectHolder(RegistryNames.WORD_STACK_SET_COUNT_CARD)
-	public static final ItemCygnusWordCard WORD_STACK_SET_COUNT_CARD = EtcHelpers.definitelyIsntNullISwear();
+	@GameRegistry.ObjectHolder(RegistryNames.WORD_REQUEST_SET_COUNT_CARD)
+	public static final ItemCygnusWordCard WORD_REQUEST_SET_COUNT_CARD = EtcHelpers.definitelyIsntNullISwear();
 	
-	@GameRegistry.ObjectHolder(RegistryNames.WORD_STACK_SET_ITEM_CARD)
-	public static final ItemCygnusWordCard WORD_STACK_SET_ITEM_CARD = EtcHelpers.definitelyIsntNullISwear();
+	@GameRegistry.ObjectHolder(RegistryNames.WORD_REQUEST_SET_ITEM_CARD)
+	public static final ItemCygnusWordCard WORD_REQUEST_SET_ITEM_CARD = EtcHelpers.definitelyIsntNullISwear();
 	
-	@GameRegistry.ObjectHolder(RegistryNames.WORD_STACK_EXTRACT_COUNT_CARD)
-	public static final ItemCygnusWordCard WORD_STACK_EXTRACT_COUNT_CARD = EtcHelpers.definitelyIsntNullISwear();
+	@GameRegistry.ObjectHolder(RegistryNames.WORD_REQUEST_GET_COUNT_CARD)
+	public static final ItemCygnusWordCard WORD_REQUEST_GET_COUNT_CARD = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticCygnusBlocks.RegistryNames.CUBE_BLANK)
 	public static final ItemBlock CUBE_BLANK = EtcHelpers.definitelyIsntNullISwear();
@@ -127,9 +127,9 @@ public final class IncorporeticCygnusItems {
 		registerWordCard(IncorporeticCygnusBlocks.WORD_NUMBER_SUBTRACT, reg);
 		registerWordCard(IncorporeticCygnusBlocks.WORD_NUMBER_MULTIPLY, reg);
 		registerWordCard(IncorporeticCygnusBlocks.WORD_NUMBER_DIVIDE, reg);
-		registerWordCard(IncorporeticCygnusBlocks.WORD_STACK_SET_COUNT, reg);
-		registerWordCard(IncorporeticCygnusBlocks.WORD_STACK_SET_ITEM, reg);
-		registerWordCard(IncorporeticCygnusBlocks.WORD_STACK_EXTRACT_COUNT, reg);
+		registerWordCard(IncorporeticCygnusBlocks.WORD_REQUEST_SET_COUNT, reg);
+		registerWordCard(IncorporeticCygnusBlocks.WORD_REQUEST_SET_ITEM, reg);
+		registerWordCard(IncorporeticCygnusBlocks.WORD_REQUEST_GET_COUNT, reg);
 		
 		registerItemBlock(new ItemBlock(IncorporeticCygnusBlocks.CUBE_BLANK), reg);
 		registerCrystalCard(IncorporeticCygnusBlocks.CUBE_BLANK, reg);

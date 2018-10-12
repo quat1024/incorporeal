@@ -23,9 +23,9 @@ import quaternary.incorporeal.api.IIncorporealAPI;
 import quaternary.incorporeal.api.impl.IncorporealAPI;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
+import quaternary.incorporeal.cygnus.types.CygnusCorporeaRequestType;
 import quaternary.incorporeal.cygnus.types.CygnusErrorType;
 import quaternary.incorporeal.cygnus.types.CygnusBigIntegerType;
-import quaternary.incorporeal.cygnus.types.CygnusItemStackType;
 import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
 import quaternary.incorporeal.etc.IncorporeticRuneRecipes;
@@ -104,7 +104,7 @@ public final class Incorporeal {
 		}, 20);
 		
 		API.getCygnusDatatypeInfoRegistry().registerDatatype(new CygnusBigIntegerType());
-		API.getCygnusDatatypeInfoRegistry().registerDatatype(new CygnusItemStackType());
+		API.getCygnusDatatypeInfoRegistry().registerDatatype(new CygnusCorporeaRequestType());
 		API.getCygnusDatatypeInfoRegistry().registerDatatype(new CygnusErrorType());
 		
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(ModItems.manaResource, new DispenserBehaviorRedstoneRoot());

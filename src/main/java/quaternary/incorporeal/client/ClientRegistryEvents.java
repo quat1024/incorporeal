@@ -66,9 +66,9 @@ public final class ClientRegistryEvents {
 		setSimpleModel(IncorporeticCygnusItems.WORD_NUMBER_SUBTRACT_CARD);
 		setSimpleModel(IncorporeticCygnusItems.WORD_NUMBER_MULTIPLY_CARD);
 		setSimpleModel(IncorporeticCygnusItems.WORD_NUMBER_DIVIDE_CARD);
-		setSimpleModel(IncorporeticCygnusItems.WORD_STACK_SET_COUNT_CARD);
-		setSimpleModel(IncorporeticCygnusItems.WORD_STACK_SET_ITEM_CARD);
-		setSimpleModel(IncorporeticCygnusItems.WORD_STACK_EXTRACT_COUNT_CARD);
+		setSimpleModel(IncorporeticCygnusItems.WORD_REQUEST_SET_COUNT_CARD);
+		setSimpleModel(IncorporeticCygnusItems.WORD_REQUEST_SET_ITEM_CARD);
+		setSimpleModel(IncorporeticCygnusItems.WORD_REQUEST_GET_COUNT_CARD);
 		
 		setSimpleModel(IncorporeticCygnusItems.CUBE_BLANK);
 		setSimpleModel(IncorporeticCygnusItems.CUBE_BLANK_CARD);

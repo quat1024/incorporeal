@@ -104,6 +104,17 @@ public interface ICygnusDatatypeInfo<T> {
 	}
 	
 	/**
+	 * Convert this item to a string.
+	 * Falls back to {@link Object#toString()} if not overridden.
+	 * You should override this, since that usually looks stupid.
+	 * 
+	 * @param item The item to convert into a friendly suitable-for-display string.
+	 */
+	default String toString(T item) {
+		return item.toString();
+	}
+	
+	/**
 	 * Java generics are stupid. Don't override
 	 */
 	@SuppressWarnings("unchecked")
@@ -117,5 +128,12 @@ public interface ICygnusDatatypeInfo<T> {
 	@SuppressWarnings("unchecked")
 	default int compareUnchecked(Object item1, Object item2) {
 		return compare((T) item1, (T) item2);
+	}
+	
+	/**
+	 * Java genetics are stupid. Don't override
+	 */
+	default String toStringUnchecked(Object item) {
+		return toString((T) item);
 	}
 }

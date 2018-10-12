@@ -1,16 +1,16 @@
 package quaternary.incorporeal.block.cygnus;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
-import org.apache.commons.lang3.StringUtils;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatypeInfo;
 import quaternary.incorporeal.cygnus.CygnusError;
 import quaternary.incorporeal.cygnus.CygnusStack;
+import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
+import vazkii.botania.api.corporea.CorporeaRequest;
 
 import java.math.BigInteger;
 import java.util.Optional;
@@ -36,9 +36,9 @@ public final class IncorporeticCygnusBlocks {
 		public static final String WORD_NUMBER_MULTIPLY = wordPrefix + "number_multiply";
 		public static final String WORD_NUMBER_DIVIDE = wordPrefix + "number_divide";
 		
-		public static final String WORD_STACK_SET_COUNT = wordPrefix + "stack_set_count";
-		public static final String WORD_STACK_SET_ITEM = wordPrefix + "stack_set_item";
-		public static final String WORD_STACK_EXTRACT_COUNT = wordPrefix + "stack_extract_count";
+		public static final String WORD_REQUEST_SET_COUNT = wordPrefix + "request_set_count";
+		public static final String WORD_REQUEST_SET_ITEM = wordPrefix + "request_set_item";
+		public static final String WORD_REQUEST_GET_COUNT = wordPrefix + "request_get_count";
 		
 		static final String crystalPrefix = "cygnus_crystal_cube_";
 		
@@ -76,14 +76,14 @@ public final class IncorporeticCygnusBlocks {
 	@GameRegistry.ObjectHolder(RegistryNames.WORD_NUMBER_DIVIDE)
 	public static final BlockCygnusWord WORD_NUMBER_DIVIDE = EtcHelpers.definitelyIsntNullISwear();
 	
-	@GameRegistry.ObjectHolder(RegistryNames.WORD_STACK_SET_COUNT)
-	public static final BlockCygnusWord WORD_STACK_SET_COUNT = EtcHelpers.definitelyIsntNullISwear();
+	@GameRegistry.ObjectHolder(RegistryNames.WORD_REQUEST_SET_COUNT)
+	public static final BlockCygnusWord WORD_REQUEST_SET_COUNT = EtcHelpers.definitelyIsntNullISwear();
 	
-	@GameRegistry.ObjectHolder(RegistryNames.WORD_STACK_SET_ITEM)
-	public static final BlockCygnusWord WORD_STACK_SET_ITEM = EtcHelpers.definitelyIsntNullISwear();
+	@GameRegistry.ObjectHolder(RegistryNames.WORD_REQUEST_SET_ITEM)
+	public static final BlockCygnusWord WORD_REQUEST_SET_ITEM = EtcHelpers.definitelyIsntNullISwear();
 	
-	@GameRegistry.ObjectHolder(RegistryNames.WORD_STACK_EXTRACT_COUNT)
-	public static final BlockCygnusWord WORD_STACK_EXTRACT_COUNT = EtcHelpers.definitelyIsntNullISwear();
+	@GameRegistry.ObjectHolder(RegistryNames.WORD_REQUEST_GET_COUNT)
+	public static final BlockCygnusWord WORD_REQUEST_GET_COUNT = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CUBE_BLANK)
 	public static final BlockCygnusCrystalCube CUBE_BLANK = EtcHelpers.definitelyIsntNullISwear();
@@ -163,16 +163,16 @@ public final class IncorporeticCygnusBlocks {
 		//ItemStack operations
 		
 		//Set Count
-		//A{stack} B{int}] -> A{stack}]
-		registerCygnusActionBlock("stack_set_count", stack -> {
+		//A{request} B{int}] -> A{request}]
+		registerCygnusActionBlock("request_set_count", stack -> {
 			Optional<BigInteger> topCount = stack.peekMatching(BigInteger.class, 0);
-			Optional<ItemStack> underStack = stack.peekMatching(ItemStack.class, 1);
-			if(topCount.isPresent() && underStack.isPresent()) {
+			Optional<CorporeaRequest> underRequest = stack.peekMatching(CorporeaRequest.class, 1);
+			if(topCount.isPresent() && underRequest.isPresent()) {
 				stack.popDestroy(2);
-				ItemStack result = underStack.get().copy();
-				int stackSize = topCount.get().intValue();
-				if(stackSize > 0 && stackSize <= result.getItem().getItemStackLimit(result)) {
-					result.setCount(stackSize);
+				CorporeaRequest result = CorporeaHelper2.copyCorporeaRequest(underRequest.get());
+				int newRequestSize = topCount.get().intValue();
+				if(newRequestSize > 0) {
+					result.count = newRequestSize;
 					stack.push(result);
 				} else stack.push(new CygnusError(CygnusError.OUT_OF_RANGE));
 			} else {
@@ -183,17 +183,15 @@ public final class IncorporeticCygnusBlocks {
 		
 		//Set Item
 		//A{stack} B{stack}] -> A{stack with B's item}]
-		registerCygnusActionBlock("stack_set_item", stack -> {
-			Optional<ItemStack> topDonor = stack.peekMatching(ItemStack.class, 0);
-			Optional<ItemStack> underAcceptor = stack.peekMatching(ItemStack.class, 1);
+		registerCygnusActionBlock("request_set_item", stack -> {
+			Optional<CorporeaRequest> topDonor = stack.peekMatching(CorporeaRequest.class, 0);
+			Optional<CorporeaRequest> underAcceptor = stack.peekMatching(CorporeaRequest.class, 1);
 			if(topDonor.isPresent() && underAcceptor.isPresent()) {
 				stack.popDestroy(2);
-				ItemStack donor = topDonor.get();
-				ItemStack acceptor = underAcceptor.get();
+				CorporeaRequest donor = topDonor.get();
+				CorporeaRequest acceptor = underAcceptor.get();
 				
-				ItemStack result = donor.copy();
-				donor.setCount(acceptor.getCount());
-				stack.push(result);
+				stack.push(new CorporeaRequest(donor.matcher, donor.checkNBT, acceptor.count));
 			} else {
 				String message = stack.depth() >= 2 ? CygnusError.MISMATCH : CygnusError.UNDERFLOW;
 				stack.push(new CygnusError(message));
@@ -202,11 +200,11 @@ public final class IncorporeticCygnusBlocks {
 		
 		//Extract Count
 		//A{stack}] -> A{int}]
-		registerCygnusActionBlock("stack_extract_count", stack -> {
-			Optional<ItemStack> top = stack.peekMatching(ItemStack.class);
+		registerCygnusActionBlock("request_get_count", stack -> {
+			Optional<CorporeaRequest> top = stack.peekMatching(CorporeaRequest.class);
 			if(top.isPresent()) {
 				stack.popDestroy(1);
-				stack.push(BigInteger.valueOf(top.get().getCount()));
+				stack.push(BigInteger.valueOf(top.get().count));
 			} else {
 				String message = stack.depth() >= 2 ? CygnusError.MISMATCH : CygnusError.UNDERFLOW;
 				stack.push(new CygnusError(message));

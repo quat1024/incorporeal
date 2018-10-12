@@ -11,6 +11,7 @@ import vazkii.botania.api.corporea.CorporeaHelper;
 import vazkii.botania.api.corporea.CorporeaRequest;
 import vazkii.botania.api.corporea.ICorporeaSpark;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaIndex;
+import vazkii.botania.common.block.tile.corporea.TileCorporeaRetainer;
 import vazkii.botania.common.entity.EntityCorporeaSpark;
 
 import java.lang.reflect.InvocationTargetException;
@@ -92,6 +93,44 @@ public final class CorporeaHelper2 {
 			ReflectionHelper.findMethod(EntityCorporeaSpark.class, "restartNetwork", null).invoke(spork);
 		} catch(IllegalAccessException | InvocationTargetException oof) {
 			throw new RuntimeException("There was a problem doing hacky reflective access on a spark!", oof);
+		}
+	}
+	
+	public static CorporeaRequest copyCorporeaRequest(CorporeaRequest request) {
+		return new CorporeaRequest(request.matcher, request.checkNBT, request.count);
+	}
+	
+	public static CorporeaRequest getCorporeaRequestInRetainer(TileCorporeaRetainer retainer) {
+		try {
+			Object matcher = ReflectionHelper.getPrivateValue(TileCorporeaRetainer.class, retainer, "request");
+			if(matcher == null) return null;
+			else return new CorporeaRequest(
+							matcher,
+							false,
+							ReflectionHelper.getPrivateValue(TileCorporeaRetainer.class, retainer, "requestCount")
+			);
+		} catch (RuntimeException oof) {
+			throw new RuntimeException("There was a problem doing hacky reflective access on a corporea retainer!", oof);
+		}
+	}
+	
+	public static void setCorporeaRequestInRetainer(TileCorporeaRetainer retainer, CorporeaRequest request) {
+		try {
+			clearRetainer(retainer);
+			retainer.setPendingRequest(ReflectionHelper.getPrivateValue(TileCorporeaRetainer.class, retainer, "requestPos"), request.matcher, request.count);
+		} catch (RuntimeException oof) {
+			throw new RuntimeException("There was a problem doing hacky reflective access on a corporea retainer!", oof);
+		}
+	}
+	
+	public static void clearRetainer(TileCorporeaRetainer retainer) {
+		try {
+			ReflectionHelper.setPrivateValue(TileCorporeaRetainer.class, retainer, false, "pendingRequest");
+			ReflectionHelper.setPrivateValue(TileCorporeaRetainer.class, retainer, 0, "compValue");
+			ReflectionHelper.setPrivateValue(TileCorporeaRetainer.class, retainer, null, "request");
+			retainer.getWorld().updateComparatorOutputLevel(retainer.getPos(), retainer.getBlockType());
+		} catch (RuntimeException oof) {
+			throw new RuntimeException("There was a problem doing hacky reflective access on a corporea retainer!", oof);
 		}
 	}
 }
