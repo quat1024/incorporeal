@@ -12,7 +12,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
+import quaternary.incorporeal.api.cygnus.ICygnusSparkable;
 import quaternary.incorporeal.cygnus.CygnusStack;
+import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
 import quaternary.incorporeal.etc.helper.CygnusHelpers;
 import vazkii.botania.api.state.BotaniaStateProps;
@@ -20,9 +22,14 @@ import vazkii.botania.api.state.BotaniaStateProps;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class BlockCygnusFunnel extends BlockCygnusBase {
+public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkable {
 	public static final PropertyEnum<EnumFacing> FACING = BotaniaStateProps.FACING;
 	public static final PropertyBool POWERED = BotaniaStateProps.POWERED;
+	
+	@Override
+	public boolean acceptsCygnusSpark(World world, IBlockState state, BlockPos pos) {
+		return true;
+	}
 	
 	@Override
 	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos updaterPos) {
@@ -75,14 +82,14 @@ public class BlockCygnusFunnel extends BlockCygnusBase {
 		//Is it a tile entity capability?
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile != null) {
-			ICygnusFunnelable capMaybe = tile.getCapability(null, null); //TODO actual cap
+			ICygnusFunnelable capMaybe = tile.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, null);
 			if(capMaybe != null) return capMaybe;
 		}
 		
 		//Is it an entity capability?
 		List<Entity> entities = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos));
 		for(Entity e : entities) {
-			ICygnusFunnelable capMaybe = e.getCapability(null, null); //TODO actual cap
+			ICygnusFunnelable capMaybe = e.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, null);
 			if(capMaybe != null) return capMaybe;
 		}
 		
@@ -92,7 +99,7 @@ public class BlockCygnusFunnel extends BlockCygnusBase {
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, FACING);
+		return new BlockStateContainer(this, FACING, POWERED);
 	}
 	
 	@Override

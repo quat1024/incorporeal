@@ -44,9 +44,9 @@ public class CygnusStack implements ICygnusStack {
 	public Optional<Object> pop() {
 		if(cursor == 0) return Optional.empty();
 		
+		cursor--;
 		Object removedObject = stack[cursor];
 		stack[cursor] = null;
-		cursor--;
 		dirty = true;
 		return Optional.of(removedObject);
 	}

@@ -6,6 +6,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
+import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 
 import javax.annotation.Nullable;
 
@@ -56,13 +57,13 @@ public class TileCygnusRetainer extends TileEntity implements ICygnusFunnelable 
 	
 	@Override
 	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
-		return capability == null; //TODO actual capability
+		return capability == IncorporeticCygnusCapabilities.FUNNEL_CAP; //TODO actual capability
 	}
 	
 	@Nullable
 	@Override
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
-		if(capability == null) { //TODO actual capability
+		if(capability == IncorporeticCygnusCapabilities.FUNNEL_CAP) { //TODO actual capability
 			return (T) this;
 		} else return null;
 	}

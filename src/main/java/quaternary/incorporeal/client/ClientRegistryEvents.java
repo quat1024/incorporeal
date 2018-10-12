@@ -82,6 +82,8 @@ public final class ClientRegistryEvents {
 		
 		setSimpleModel(IncorporeticCygnusItems.MASTER_CYGNUS_SPARK);
 		setSimpleModel(IncorporeticCygnusItems.CYGNUS_SPARK);
+		setSimpleModel(IncorporeticCygnusItems.CYGNUS_FUNNEL);
+		setSimpleModel(IncorporeticCygnusItems.CYGNUS_RETAINER);
 		
 		set16DataValuesPointingAtSameModel(IncorporeticItems.DECORATIVE_UNSTABLE_CUBE);
 		

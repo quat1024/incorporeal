@@ -113,6 +113,12 @@ public final class IncorporeticCygnusItems {
 	@GameRegistry.ObjectHolder(RegistryNames.CYGNUS_SPARK)
 	public static final ItemCygnusSpark CYGNUS_SPARK = EtcHelpers.definitelyIsntNullISwear();
 	
+	@GameRegistry.ObjectHolder(IncorporeticCygnusBlocks.RegistryNames.CYGNUS_FUNNEL)
+	public static final ItemBlock CYGNUS_FUNNEL = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(IncorporeticCygnusBlocks.RegistryNames.CYGNUS_RETAINER)
+	public static final ItemBlock CYGNUS_RETAINER = EtcHelpers.definitelyIsntNullISwear();
+	
 	public static void registerItems(IForgeRegistry<Item> reg) {
 		registerItemBlock(new ItemBlock(IncorporeticCygnusBlocks.WORD_BLANK), reg);
 		registerWordCard(IncorporeticCygnusBlocks.WORD_BLANK, reg);
@@ -137,6 +143,9 @@ public final class IncorporeticCygnusItems {
 		
 		registerItem(new ItemCygnusSpark(true), RegistryNames.MASTER_CYGNUS_SPARK, reg);
 		registerItem(new ItemCygnusSpark(false), RegistryNames.CYGNUS_SPARK, reg);
+		
+		registerItemBlock(new ItemBlock(IncorporeticCygnusBlocks.CYGNUS_FUNNEL), reg);
+		registerItemBlock(new ItemBlock(IncorporeticCygnusBlocks.CYGNUS_RETAINER), reg);
 	}
 	
 	private static void registerWordCard(BlockCygnusWord word, IForgeRegistry<Item> reg) {

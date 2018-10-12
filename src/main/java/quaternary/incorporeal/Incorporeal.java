@@ -22,6 +22,7 @@ import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.api.IIncorporealAPI;
 import quaternary.incorporeal.api.impl.IncorporealAPI;
 import quaternary.incorporeal.block.IncorporeticBlocks;
+import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.cygnus.types.CygnusErrorType;
 import quaternary.incorporeal.cygnus.types.CygnusBigIntegerType;
 import quaternary.incorporeal.cygnus.types.CygnusItemStackType;
@@ -77,6 +78,7 @@ public final class Incorporeal {
 	@Mod.EventHandler
 	public static void preinit(FMLPreInitializationEvent e) {
 		IncorporeticConfig.preinit(e);
+		IncorporeticCygnusCapabilities.preinit(e);
 		
 		PROXY.entityRendererBullshit();
 	}

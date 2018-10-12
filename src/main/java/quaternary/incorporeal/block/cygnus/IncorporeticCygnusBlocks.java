@@ -53,6 +53,9 @@ public final class IncorporeticCygnusBlocks {
 		public static final String CUBE_GREATER = crystalPrefix + "greater_than";
 		
 		public static final String CUBE_ERRORED = crystalPrefix + "errored";
+		
+		public static final String CYGNUS_FUNNEL = "cygnus_funnel";
+		public static final String CYGNUS_RETAINER = "cygnus_retainer";
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.WORD_BLANK)
@@ -105,6 +108,12 @@ public final class IncorporeticCygnusBlocks {
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CUBE_ERRORED)
 	public static final BlockCygnusCrystalCube CUBE_ERRORED = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(RegistryNames.CYGNUS_FUNNEL)
+	public static final BlockCygnusFunnel CYGNUS_FUNNEL = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(RegistryNames.CYGNUS_RETAINER)
+	public static final BlockCygnusRetainer CYGNUS_RETAINER = EtcHelpers.definitelyIsntNullISwear();
 	
 	public static void registerBlocks(IForgeRegistry<Block> reg) {
 		//A blank one that does nothing
@@ -267,6 +276,10 @@ public final class IncorporeticCygnusBlocks {
 		
 		//is the top item an error?
 		registerCygnusCrystalCubeBlock("errored", stack -> stack.peekMatching(CygnusError.class).isPresent(), reg);
+		
+		//and now for like the 2 actual blocks lol
+		registerBlock(new BlockCygnusFunnel(), RegistryNames.CYGNUS_FUNNEL, reg);
+		registerBlock(new BlockCygnusRetainer(), RegistryNames.CYGNUS_RETAINER, reg);
 	}
 	
 	private static void binaryMathOperation(CygnusStack stack, BiFunction<BigInteger, BigInteger, ?> operation) {
