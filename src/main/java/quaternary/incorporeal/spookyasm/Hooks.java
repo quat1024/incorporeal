@@ -98,4 +98,18 @@ public final class Hooks {
 		
 		return allNearby;
 	}
+	
+	@SuppressWarnings("unused")
+	public static void displayEvil(int x, int y, int mana, int maxMana) {
+		if (mana < 0) {
+			return; // Unknown
+		}
+		Minecraft mc = Minecraft.getMinecraft();
+		ScaledResolution res = new ScaledResolution(mc);
+		String text = mana + "/" + maxMana;
+		
+		x = res.getScaledWidth() / 2 - mc.fontRenderer.getStringWidth(text) / 2;
+		y -= 1;
+		mc.fontRenderer.drawStringWithShadow(text, x, y, 16777215);
+	}
 }
