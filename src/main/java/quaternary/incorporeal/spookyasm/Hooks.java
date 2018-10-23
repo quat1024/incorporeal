@@ -12,6 +12,8 @@ import vazkii.botania.api.corporea.IWrappedInventory;
 import vazkii.botania.api.corporea.InvWithLocation;
 import vazkii.botania.common.core.helper.MathHelper;
 import vazkii.botania.common.entity.EntityCorporeaSpark;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 
 import java.util.List;
 
