@@ -10,6 +10,7 @@ import org.objectweb.asm.tree.ClassNode;
 import quaternary.incorporeal.spookyasm.tweaks.AbstractTweak;
 import quaternary.incorporeal.spookyasm.tweaks.CorporeaInhibitorTweak;
 import quaternary.incorporeal.spookyasm.tweaks.InventoryWrapTweak;
+import quaternary.incorporeal.spookyasm.tweaks.EvilTweak;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class IncorporealTransformer implements IClassTransformer, Opcodes {
 	static {
 		allTweaks.add(new InventoryWrapTweak());
 		allTweaks.add(new CorporeaInhibitorTweak());
+		allTweaks.add(new EvilTweak());
 		
 		for(AbstractTweak tweak : allTweaks) {
 			patches.addAll(tweak.getAffectedClassNames());
