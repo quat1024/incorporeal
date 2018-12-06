@@ -120,6 +120,6 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta % 6)).withProperty(POWERED, meta >= 6);
+		return getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta % 6)).withProperty(POWERED, meta >= 6);
 	}
 }

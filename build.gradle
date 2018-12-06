@@ -44,16 +44,14 @@ repositories {
 }
 
 dependencies {
-    //Building from the libs folder for now (see README)
-    //deobfCompile "vazkii.botania:Botania:r1.10-355.4"
     deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
 }
 
 minecraft {
-    version = "1.12.2-14.23.4.2705"
+    version = "1.12.2-14.23.4.2718"
     runDir = "run"
     
-    mappings = "snapshot_20180407"
+    mappings = "stable_39"
     
     useDepAts = true
     makeObfSourceJar = false

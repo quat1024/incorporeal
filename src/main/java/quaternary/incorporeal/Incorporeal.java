@@ -2,11 +2,9 @@ package quaternary.incorporeal;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
-import net.minecraft.block.BlockHorizontal;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,12 +20,15 @@ import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.api.IIncorporealAPI;
 import quaternary.incorporeal.api.impl.IncorporealAPI;
 import quaternary.incorporeal.block.IncorporeticBlocks;
+import quaternary.incorporeal.cygnus.CygnusDatatypeHelpers;
+import quaternary.incorporeal.cygnus.CygnusRegistries;
+import quaternary.incorporeal.cygnus.IncorporeticCygnusActions;
+import quaternary.incorporeal.cygnus.IncorporeticCygnusConditions;
+import quaternary.incorporeal.cygnus.IncorporeticCygnusDatatypes;
 import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
-import quaternary.incorporeal.cygnus.types.CygnusCorporeaRequestType;
-import quaternary.incorporeal.cygnus.types.CygnusErrorType;
-import quaternary.incorporeal.cygnus.types.CygnusBigIntegerType;
 import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
+import quaternary.incorporeal.etc.IncorporeticNaturalDevices;
 import quaternary.incorporeal.etc.IncorporeticRuneRecipes;
 import quaternary.incorporeal.etc.helper.DespacitoHelper;
 import quaternary.incorporeal.etc.proxy.ServerProxy;
@@ -63,7 +64,7 @@ public final class Incorporeal {
 	public static final CreativeTabs TAB = new CreativeTabs(MODID) {
 		@SideOnly(Side.CLIENT)
 		@Override
-		public ItemStack getTabIconItem() {
+		public ItemStack createIcon() {
 			return new ItemStack(IncorporeticItems.TICKET_CONJURER);
 		}
 		
@@ -80,6 +81,10 @@ public final class Incorporeal {
 		IncorporeticConfig.preinit(e);
 		IncorporeticCygnusCapabilities.preinit(e);
 		
+		IncorporeticCygnusActions.registerCygnusActions();
+		IncorporeticCygnusConditions.registerCygnusConditions();
+		IncorporeticCygnusDatatypes.registerCygnusDatatypes();
+		
 		PROXY.entityRendererBullshit();
 	}
 	
@@ -87,25 +92,16 @@ public final class Incorporeal {
 	public static void init(FMLInitializationEvent e) {
 		DespacitoHelper.init();
 		
+		CygnusRegistries.freezeRegistries();
+		CygnusDatatypeHelpers.init();
+		
 		IncorporeticPacketHandler.init();
 		
 		IncorporeticPetalRecipes.init();
 		IncorporeticRuneRecipes.init();
+		IncorporeticNaturalDevices.init();
 		
 		IncorporeticLexicon.init();
-		
-		//TODO find a better home for these?
-		API.getNaturalDeviceRegistry().registerNaturalDevice((rand) -> {
-			return IncorporeticBlocks.NATURAL_REPEATER.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
-		}, 80);
-		
-		API.getNaturalDeviceRegistry().registerNaturalDevice((rand) -> {
-			return IncorporeticBlocks.NATURAL_COMPARATOR.getDefaultState().withProperty(BlockHorizontal.FACING, EnumFacing.getHorizontal(rand.nextInt(4)));
-		}, 20);
-		
-		API.getCygnusDatatypeInfoRegistry().registerDatatype(new CygnusBigIntegerType());
-		API.getCygnusDatatypeInfoRegistry().registerDatatype(new CygnusCorporeaRequestType());
-		API.getCygnusDatatypeInfoRegistry().registerDatatype(new CygnusErrorType());
 		
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(ModItems.manaResource, new DispenserBehaviorRedstoneRoot());
 	}

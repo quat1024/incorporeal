@@ -98,7 +98,7 @@ public final class IncorporeticLexicon {
 	}
 	
 	private static LexiconEntry buildCraftingEntry(IForgeRegistryEntry subject, LexiconCategory category, int pageCount) {
-		String name = Incorporeal.MODID + '.' + Preconditions.checkNotNull(subject.getRegistryName()).getResourcePath();
+		String name = Incorporeal.MODID + '.' + Preconditions.checkNotNull(subject.getRegistryName()).getPath();
 		ItemStack icon;
 		
 		if(subject instanceof Block) {

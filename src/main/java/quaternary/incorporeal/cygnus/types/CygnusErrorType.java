@@ -1,6 +1,5 @@
 package quaternary.incorporeal.cygnus.types;
 
-import com.google.common.base.Objects;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
@@ -8,12 +7,12 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.Constants;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.cygnus.ICygnusDatatypeInfo;
+import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.cygnus.CygnusError;
 
 import java.util.Arrays;
 
-public class CygnusErrorType implements ICygnusDatatypeInfo<CygnusError> {
+public class CygnusErrorType implements ICygnusDatatype<CygnusError> {
 	@Override
 	public ResourceLocation getResourceLocation() {
 		return new ResourceLocation(Incorporeal.MODID, "cygnus_error");

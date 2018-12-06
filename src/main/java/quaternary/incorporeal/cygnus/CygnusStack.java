@@ -5,10 +5,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.common.util.Constants;
-import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.cygnus.ICygnusDatatypeInfo;
+import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
 
+import javax.annotation.Nonnull;
 import java.util.Optional;
 
 public class CygnusStack implements ICygnusStack {
@@ -23,13 +23,13 @@ public class CygnusStack implements ICygnusStack {
 	
 	boolean dirty = false;
 	
-	public <T> void push(T item) {
+	public <T> void push(@Nonnull T item) {
 		if(cursor == maxDepth) return;
 		
 		Preconditions.checkNotNull(item);
 		
 		//This cast is sketchy
-		ICygnusDatatypeInfo<T> datatype = Incorporeal.API.getCygnusDatatypeInfoRegistry().getDatatypeForClass((Class<T>) item.getClass());
+		ICygnusDatatype<T> datatype = CygnusDatatypeHelpers.forClass((Class<T>) item.getClass());
 		Object error = datatype.getError(item, this);
 		
 		if(error == null) {
@@ -64,11 +64,6 @@ public class CygnusStack implements ICygnusStack {
 		}
 		
 		dirty = true;
-	}
-	
-	//Will still pop if the class doesn't match!!
-	public <T> Optional<T> popMatching(Class<T> matchingClass) {
-		return (Optional<T>) pop().filter(o -> o.getClass().equals(matchingClass));
 	}
 	
 	public Optional<Object> peek() {
@@ -138,7 +133,7 @@ public class CygnusStack implements ICygnusStack {
 		NBTTagList nbtList = new NBTTagList();
 		for(int i = 0; i < cursor; i++) {
 			NBTTagCompound entry = new NBTTagCompound();
-			Incorporeal.API.getCygnusDatatypeInfoRegistry().writeToNBT(entry, stack[i]);
+			CygnusDatatypeHelpers.writeToNBT(entry, stack[i]);
 			nbtList.appendTag(entry);
 		}
 		
@@ -154,7 +149,7 @@ public class CygnusStack implements ICygnusStack {
 		NBTTagList nbtList = nbt.getTagList("Stack", Constants.NBT.TAG_COMPOUND);
 		for(int i = 0; i < nbtList.tagCount(); i++) {
 			NBTTagCompound entry = nbtList.getCompoundTagAt(i);
-			stack[i] = Incorporeal.API.getCygnusDatatypeInfoRegistry().readFromNBT(entry);
+			stack[i] = CygnusDatatypeHelpers.readFromNBT(entry);
 		}
 		
 		cursor = nbtList.tagCount();
@@ -164,7 +159,7 @@ public class CygnusStack implements ICygnusStack {
 		buf.writeInt(maxDepth);
 		buf.writeInt(cursor);
 		for(int i = 0; i < cursor; i++) {
-			Incorporeal.API.getCygnusDatatypeInfoRegistry().writeToPacketBuffer(buf, stack[i]);
+			CygnusDatatypeHelpers.writeToPacketBuffer(buf, stack[i]);
 		}
 	}
 	
@@ -174,7 +169,7 @@ public class CygnusStack implements ICygnusStack {
 		
 		int stackAmount = buf.readInt();
 		for(int i = 0; i < stackAmount; i++) {
-			stack[i] = Incorporeal.API.getCygnusDatatypeInfoRegistry().readFromPacketBuffer(buf);
+			stack[i] = CygnusDatatypeHelpers.readFromPacketBuffer(buf);
 		}
 	}
 }

@@ -15,7 +15,6 @@ public class CygnusStackDataSerializer implements DataSerializer<CygnusStack> {
 	
 	@Override
 	public void write(PacketBuffer buf, CygnusStack value) {
-		//TODO: Actually use the toBytes methods lmao
 		value.toPacketBuffer(buf);
 	}
 	

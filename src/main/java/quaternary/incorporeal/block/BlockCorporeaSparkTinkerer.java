@@ -56,7 +56,7 @@ public class BlockCorporeaSparkTinkerer extends Block implements ILexiconable {
 	
 	@Override
 	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
-		boolean worldPower = world.isBlockIndirectlyGettingPowered(pos) > 0;
+		boolean worldPower = world.getRedstonePowerFromNeighbors(pos) > 0;
 		boolean myPower = state.getValue(BotaniaStateProps.POWERED);
 		
 		if(worldPower != myPower) {

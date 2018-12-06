@@ -7,14 +7,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.Constants;
 import org.apache.commons.lang3.StringUtils;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.cygnus.ICygnusDatatypeInfo;
+import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.cygnus.CygnusError;
 
 import javax.annotation.Nullable;
 import java.math.BigInteger;
 
-public class CygnusBigIntegerType implements ICygnusDatatypeInfo<BigInteger> {
+public class CygnusBigIntegerType implements ICygnusDatatype<BigInteger> {
 	@Override
 	public ResourceLocation getResourceLocation() {
 		return new ResourceLocation(Incorporeal.MODID, "big_integer");

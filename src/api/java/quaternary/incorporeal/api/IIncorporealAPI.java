@@ -1,6 +1,10 @@
 package quaternary.incorporeal.api;
 
-import quaternary.incorporeal.api.cygnus.ICygnusDatatypeInfoRegistry;
+import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
+import quaternary.incorporeal.api.cygnus.ICygnusStack;
+
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 /**
  * Incorporeal's API.
@@ -19,7 +23,23 @@ public interface IIncorporealAPI {
 	 */
 	int apiVersion();
 	
+	/**
+	 * @return A place to register your natural devices; things that can be grown from the redstone root.
+	 */
 	INaturalDeviceRegistry getNaturalDeviceRegistry();
 	
-	ICygnusDatatypeInfoRegistry getCygnusDatatypeInfoRegistry();
+	/**
+	 * @return A registry of Cygnus datatypes.
+	 */
+	ISimpleRegistry<ICygnusDatatype<?>> getCygnusDatatypeRegistry();
+	
+	/**
+	 * @return A registry of Cygnus actions; things that can transform a Cygnus stack.
+	 */
+	ISimpleRegistry<Consumer<ICygnusStack>> getCygnusStackActionRegistry();
+	
+	/**
+	 * @return A registry of Cygnus conditions; things that tell a true-false piece of information about a Cygnus stack.
+	 */
+	ISimpleRegistry<Predicate<ICygnusStack>> getCygnusStackConditionRegistry();
 }

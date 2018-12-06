@@ -97,7 +97,7 @@ public final class IncorporeticItems {
 	
 	private static <T extends Item> T createItem(T item, String name) {
 		item.setRegistryName(new ResourceLocation(Incorporeal.MODID, name));
-		item.setUnlocalizedName(Incorporeal.MODID + "." + name);
+		item.setTranslationKey(Incorporeal.MODID + "." + name);
 		item.setCreativeTab(Incorporeal.TAB);
 		return item;
 	}

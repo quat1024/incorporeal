@@ -6,9 +6,9 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.client.IncorporeticClientIcons;
 import quaternary.incorporeal.client.event.IncorporeticClientTickHandler;
+import quaternary.incorporeal.cygnus.CygnusDatatypeHelpers;
 import quaternary.incorporeal.cygnus.CygnusStack;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
 import vazkii.botania.client.core.handler.MiscellaneousIcons;
@@ -66,7 +66,7 @@ public class RenderEntityCygnusMasterSpark extends RenderSparkBase<EntityCygnusM
 			//big wips lol
 			for(int i = 0; i < stack.depth(); i++) {
 				stack.peek(i).ifPresent(o -> {
-					String toDraw = Incorporeal.API.getCygnusDatatypeInfoRegistry().getDatatypeForClass(o.getClass()).toStringUnchecked(o);
+					String toDraw = CygnusDatatypeHelpers.forClass(o.getClass()).toStringUnchecked(o);
 					font.drawString(toDraw, -font.getStringWidth(toDraw) / 2, 0, 0xFFFFFF);
 					GlStateManager.translate(0, -14, 0);
 				});

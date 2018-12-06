@@ -54,7 +54,7 @@ public class BlockFrameTinkerer extends Block implements ILexiconable {
 	//Powering
 	@Override
 	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
-		boolean shouldPower = world.isBlockIndirectlyGettingPowered(pos) > 0;
+		boolean shouldPower = world.getRedstonePowerFromNeighbors(pos) > 0;
 		boolean isPowered = state.getValue(BotaniaStateProps.POWERED);
 		if(isPowered != shouldPower) {
 			world.setBlockState(pos, state.withProperty(BotaniaStateProps.POWERED, shouldPower));

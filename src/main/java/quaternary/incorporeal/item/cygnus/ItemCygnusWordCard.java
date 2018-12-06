@@ -1,12 +1,17 @@
 package quaternary.incorporeal.item.cygnus;
 
-import net.minecraft.item.Item;
-import quaternary.incorporeal.block.cygnus.BlockCygnusWord;
+import quaternary.incorporeal.api.cygnus.ICygnusStack;
 
-public class ItemCygnusWordCard extends Item {
-	public ItemCygnusWordCard(BlockCygnusWord cygnusWord) {
-		this.cygnusWord = cygnusWord;
+import java.util.function.Consumer;
+
+import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.cygnus.IncorporeticCygnusActions;
+
+public class ItemCygnusWordCard extends ItemCygnusCard<Consumer<ICygnusStack>> {
+	public ItemCygnusWordCard() {
+		super(
+						Incorporeal.API.getCygnusStackActionRegistry(),
+						"Action",
+						IncorporeticCygnusActions.NOTHING);
 	}
-	
-	public BlockCygnusWord cygnusWord;
 }

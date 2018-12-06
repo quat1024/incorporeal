@@ -122,12 +122,12 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 		BlockPos pos = getPos();
 		
 		IncorporeticPacketHandler.sendToAllTracking(
-						new MessageSparkleLine(ticketPos, new Vec3d(pos).addVector(.5, .5, .5), 12), world, pos
+						new MessageSparkleLine(ticketPos, new Vec3d(pos).add(.5, .5, .5), 12), world, pos
 		);
 		if(indexPositions != null) {
 			for(BlockPos p : indexPositions) {
 				IncorporeticPacketHandler.sendToAllTracking(
-								new MessageSparkleLine(new Vec3d(p).addVector(.5, .5, .5), ticketPos, 12), world, pos
+								new MessageSparkleLine(new Vec3d(p).add(.5, .5, .5), ticketPos, 12), world, pos
 				);
 			}
 		}

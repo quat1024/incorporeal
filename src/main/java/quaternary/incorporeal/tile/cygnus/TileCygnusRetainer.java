@@ -6,11 +6,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
+import quaternary.incorporeal.cygnus.CygnusDatatypeHelpers;
 import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 
 import javax.annotation.Nullable;
 
-public class TileCygnusRetainer extends TileEntity implements ICygnusFunnelable {
+public class TileCygnusRetainer extends TileCygnusBase implements ICygnusFunnelable {
 	@Nullable
 	private Object retained;
 	
@@ -41,7 +42,7 @@ public class TileCygnusRetainer extends TileEntity implements ICygnusFunnelable 
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		if(retained != null) {
 			NBTTagCompound retainedNBT = new NBTTagCompound();
-			Incorporeal.API.getCygnusDatatypeInfoRegistry().writeToNBT(retainedNBT, retained);
+			CygnusDatatypeHelpers.writeToNBT(retainedNBT, retained);
 			nbt.setTag("Retained", retainedNBT);
 		}
 		return super.writeToNBT(nbt);
@@ -51,7 +52,7 @@ public class TileCygnusRetainer extends TileEntity implements ICygnusFunnelable 
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		if(nbt.hasKey("Retained")) {
-			retained = Incorporeal.API.getCygnusDatatypeInfoRegistry().readFromNBT(nbt.getCompoundTag("Retained"));
+			retained = CygnusDatatypeHelpers.readFromNBT(nbt.getCompoundTag("Retained"));
 		} else retained = null;
 	}
 	

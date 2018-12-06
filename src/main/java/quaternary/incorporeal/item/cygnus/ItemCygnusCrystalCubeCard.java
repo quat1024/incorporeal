@@ -1,12 +1,16 @@
 package quaternary.incorporeal.item.cygnus;
 
-import net.minecraft.item.Item;
-import quaternary.incorporeal.block.cygnus.BlockCygnusCrystalCube;
+import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.api.cygnus.ICygnusStack;
+import quaternary.incorporeal.cygnus.IncorporeticCygnusConditions;
 
-public class ItemCygnusCrystalCubeCard extends Item {
-	public ItemCygnusCrystalCubeCard(BlockCygnusCrystalCube cygnusCube) {
-		this.cygnusCube = cygnusCube;
+import java.util.function.Predicate;
+
+public class ItemCygnusCrystalCubeCard extends ItemCygnusCard<Predicate<ICygnusStack>> {
+	public ItemCygnusCrystalCubeCard() {
+		super(
+						Incorporeal.API.getCygnusStackConditionRegistry(),
+						"Condition",
+						IncorporeticCygnusConditions.NOTHING);
 	}
-	
-	public final BlockCygnusCrystalCube cygnusCube;
 }

@@ -2,8 +2,13 @@ package quaternary.incorporeal.api.impl;
 
 import quaternary.incorporeal.api.IIncorporealAPI;
 import quaternary.incorporeal.api.INaturalDeviceRegistry;
-import quaternary.incorporeal.api.cygnus.ICygnusDatatypeInfoRegistry;
-import quaternary.incorporeal.api.impl.cygnus.CygnusDatatypeInfoRegistry;
+import quaternary.incorporeal.api.ISimpleRegistry;
+import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
+import quaternary.incorporeal.api.cygnus.ICygnusStack;
+import quaternary.incorporeal.cygnus.CygnusRegistries;
+
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class IncorporealAPI implements IIncorporealAPI {
 	@Override
@@ -12,7 +17,6 @@ public class IncorporealAPI implements IIncorporealAPI {
 	}
 	
 	private static final INaturalDeviceRegistry naturalDeviceRegistry = new IncorporealNaturalDeviceRegistry();
-	private static final ICygnusDatatypeInfoRegistry cygnusSerializerRegistry = new CygnusDatatypeInfoRegistry();
 	
 	@Override
 	public INaturalDeviceRegistry getNaturalDeviceRegistry() {
@@ -20,7 +24,17 @@ public class IncorporealAPI implements IIncorporealAPI {
 	}
 	
 	@Override
-	public ICygnusDatatypeInfoRegistry getCygnusDatatypeInfoRegistry() {
-		return cygnusSerializerRegistry;
+	public ISimpleRegistry<ICygnusDatatype<?>> getCygnusDatatypeRegistry() {
+		return CygnusRegistries.DATATYPES;
+	}
+	
+	@Override
+	public ISimpleRegistry<Consumer<ICygnusStack>> getCygnusStackActionRegistry() {
+		return CygnusRegistries.ACTIONS;
+	}
+	
+	@Override
+	public ISimpleRegistry<Predicate<ICygnusStack>> getCygnusStackConditionRegistry() {
+		return CygnusRegistries.CONDITIONS;
 	}
 }

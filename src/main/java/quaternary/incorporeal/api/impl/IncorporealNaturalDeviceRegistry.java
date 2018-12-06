@@ -16,7 +16,7 @@ public final class IncorporealNaturalDeviceRegistry implements INaturalDeviceReg
 	private final List<Pair<Function<Random, IBlockState>, Double>> devices = new ArrayList<>();
 	private double totalWeight = 0;
 	
-	public void registerNaturalDevice(Function<Random, IBlockState> deviceStateFactory, double weight) {
+	public void register(Function<Random, IBlockState> deviceStateFactory, double weight) {
 		devices.add(Pair.of(deviceStateFactory, weight));
 		totalWeight += weight;
 	}

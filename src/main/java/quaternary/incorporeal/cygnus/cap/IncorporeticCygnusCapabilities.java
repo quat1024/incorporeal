@@ -37,7 +37,6 @@ public final class IncorporeticCygnusCapabilities {
 	public static final class NooneCaresDefaultImplementationOfICygnusFunnelable implements ICygnusFunnelable {
 		//The whole thing is defined in default methods so lol nothing to override here.
 		
-		
 		//...
 		
 		//Does anyone actually use default cap implementations? I doubt it, really.

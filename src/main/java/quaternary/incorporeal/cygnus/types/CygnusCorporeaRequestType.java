@@ -5,13 +5,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.cygnus.ICygnusDatatypeInfo;
+import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import vazkii.botania.api.corporea.CorporeaRequest;
 
 import java.io.IOException;
 
-public class CygnusCorporeaRequestType implements ICygnusDatatypeInfo<CorporeaRequest> {
+public class CygnusCorporeaRequestType implements ICygnusDatatype<CorporeaRequest> {
 	@Override
 	public ResourceLocation getResourceLocation() {
 		return new ResourceLocation(Incorporeal.MODID, "corporea_request");

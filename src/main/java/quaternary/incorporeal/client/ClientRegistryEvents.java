@@ -59,31 +59,13 @@ public final class ClientRegistryEvents {
 		setSimpleModel(IncorporeticItems.TICKET_CONJURER);
 		setSimpleModel(IncorporeticItems.FRACTURED_SPACE_ROD);
 		
-		setSimpleModel(IncorporeticCygnusItems.WORD_BLANK);
-		setSimpleModel(IncorporeticCygnusItems.WORD_BLANK_CARD);
-		setSimpleModel(IncorporeticCygnusItems.WORD_DUPLICATE_CARD);
-		setSimpleModel(IncorporeticCygnusItems.WORD_NUMBER_ADD_CARD);
-		setSimpleModel(IncorporeticCygnusItems.WORD_NUMBER_SUBTRACT_CARD);
-		setSimpleModel(IncorporeticCygnusItems.WORD_NUMBER_MULTIPLY_CARD);
-		setSimpleModel(IncorporeticCygnusItems.WORD_NUMBER_DIVIDE_CARD);
-		setSimpleModel(IncorporeticCygnusItems.WORD_REQUEST_SET_COUNT_CARD);
-		setSimpleModel(IncorporeticCygnusItems.WORD_REQUEST_SET_ITEM_CARD);
-		setSimpleModel(IncorporeticCygnusItems.WORD_REQUEST_GET_COUNT_CARD);
-		
-		setSimpleModel(IncorporeticCygnusItems.CUBE_BLANK);
-		setSimpleModel(IncorporeticCygnusItems.CUBE_BLANK_CARD);
-		setSimpleModel(IncorporeticCygnusItems.CUBE_EMPTY_STACK_CARD);
-		setSimpleModel(IncorporeticCygnusItems.CUBE_FULL_STACK_CARD);
-		setSimpleModel(IncorporeticCygnusItems.CUBE_EQUAL_VALUE_CARD);
-		setSimpleModel(IncorporeticCygnusItems.CUBE_EQUAL_TYPE_CARD);
-		setSimpleModel(IncorporeticCygnusItems.CUBE_LESS_CARD);
-		setSimpleModel(IncorporeticCygnusItems.CUBE_GREATER_CARD);
-		setSimpleModel(IncorporeticCygnusItems.CUBE_ERRORED_CARD);
-		
 		setSimpleModel(IncorporeticCygnusItems.MASTER_CYGNUS_SPARK);
 		setSimpleModel(IncorporeticCygnusItems.CYGNUS_SPARK);
-		setSimpleModel(IncorporeticCygnusItems.CYGNUS_FUNNEL);
-		setSimpleModel(IncorporeticCygnusItems.CYGNUS_RETAINER);
+		
+		setSimpleModel(IncorporeticCygnusItems.WORD);
+		setSimpleModel(IncorporeticCygnusItems.CRYSTAL_CUBE);
+		setSimpleModel(IncorporeticCygnusItems.FUNNEL);
+		setSimpleModel(IncorporeticCygnusItems.RETAINER);
 		
 		set16DataValuesPointingAtSameModel(IncorporeticItems.DECORATIVE_UNSTABLE_CUBE);
 		

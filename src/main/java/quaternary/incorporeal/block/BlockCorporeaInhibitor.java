@@ -79,7 +79,7 @@ public class BlockCorporeaInhibitor extends Block implements ICorporeaInhibitor,
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 	

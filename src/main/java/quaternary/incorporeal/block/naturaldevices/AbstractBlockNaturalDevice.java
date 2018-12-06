@@ -57,7 +57,7 @@ public abstract class AbstractBlockNaturalDevice extends Block implements ILexic
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 	
@@ -183,7 +183,7 @@ public abstract class AbstractBlockNaturalDevice extends Block implements ILexic
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta & 0b0011)).withProperty(LIT, (meta & 0b0100) != 0);
+		return getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta & 0b0011)).withProperty(LIT, (meta & 0b0100) != 0);
 	}
 	
 	@Override

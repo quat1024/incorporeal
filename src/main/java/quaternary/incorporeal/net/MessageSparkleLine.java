@@ -21,8 +21,8 @@ public class MessageSparkleLine implements IncorporeticPacketHandler.IIncorporet
 	}
 	
 	public MessageSparkleLine(Vec3i point1, Vec3i point2, int decay) {
-		this.point1 = new Vec3d(point1).addVector(.5, .5, .5);
-		this.point2 = new Vec3d(point2).addVector(.5, .5, .5);
+		this.point1 = new Vec3d(point1).add(.5, .5, .5);
+		this.point2 = new Vec3d(point2).add(.5, .5, .5);
 		this.decay = decay;
 	}
 	
@@ -57,7 +57,7 @@ public class MessageSparkleLine implements IncorporeticPacketHandler.IIncorporet
 				//and to use Ved3d instead of the custom Vector3
 				Vec3d diff = message.point2.subtract(message.point1);
 				Vec3d movement = diff.normalize().scale(.2); //Scale it up a bit bc there's really a lot of particles
-				int iters = (int) (diff.lengthVector() / movement.lengthVector());
+				int iters = (int) (diff.length() / movement.length());
 				float huePer = 1F / iters;
 				float hueSum = (float) Math.random();
 				

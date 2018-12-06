@@ -34,7 +34,7 @@ public interface INaturalDeviceRegistry {
 	 * @param weight How likely is it that this blockstate will be chosen over others?
 	 *               Incorporeal's defaults are 80 for the repeater and 20 for the comparator.
 	 */
-	void registerNaturalDevice(Function<Random, IBlockState> deviceStateFactory, double weight);
+	void register(Function<Random, IBlockState> deviceStateFactory, double weight);
 	
 	/**
 	 * Choose a random blockstate from the pool.

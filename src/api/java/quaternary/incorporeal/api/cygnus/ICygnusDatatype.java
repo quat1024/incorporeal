@@ -12,13 +12,13 @@ import javax.annotation.Nullable;
  * It contains serialization functions for saving to NBT and sending over the network,
  * as well as a few miscellaneous functions relating to gameplay.
  * 
- * @see IIncorporealAPI#getCygnusDatatypeInfoRegistry() 
- * @see ICygnusDatatypeInfoRegistry#registerDatatype(ICygnusDatatypeInfo) 
+ * @see IIncorporealAPI#getCygnusDatatypeRegistry() 
+ * @see ICygnusDatatypeRegistry#registerDatatype(ICygnusDatatype) 
  *
  * @author quaternary
  * @since 1.1
  */
-public interface ICygnusDatatypeInfo<T> {
+public interface ICygnusDatatype<T> {
 	/**
 	 * @return A globally-unique ResourceLocation that describes this Cygnus serializer.
 	 */
@@ -95,7 +95,7 @@ public interface ICygnusDatatypeInfo<T> {
 	
 	/**
 	 * Compare the two items.
-	 * Will never be called if {@link ICygnusDatatypeInfo#canCompare()} is <pre>false</pre>.
+	 * Will never be called if {@link ICygnusDatatype#canCompare()} is <pre>false</pre>.
 	 * 
 	 * @return a number >= 1 if <pre>item1</pre> is <i>greater than</i> <pre>item2</pre>, a number <= 1 if <pre>item1</pre> is <i>smaller than</i> <pre>item2</pre>, or 0 if they are equal
 	 */
