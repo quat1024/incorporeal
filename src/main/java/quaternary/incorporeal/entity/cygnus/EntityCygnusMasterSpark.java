@@ -4,13 +4,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
+import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.cygnus.CygnusStack;
+import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.etc.CygnusStackDataSerializer;
 import quaternary.incorporeal.etc.helper.CygnusHelpers;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
 
-public class EntityCygnusMasterSpark extends AbstractEntityCygnusSparkBase {
+import javax.annotation.Nullable;
+
+public class EntityCygnusMasterSpark extends AbstractEntityCygnusSparkBase implements ICygnusFunnelable {
 	public EntityCygnusMasterSpark(World world) {
 		super(world);
 	}
@@ -64,5 +71,51 @@ public class EntityCygnusMasterSpark extends AbstractEntityCygnusSparkBase {
 	protected void readEntityFromNBT(NBTTagCompound nbt) {
 		super.readEntityFromNBT(nbt);
 		getCygnusStack().fromNBT(nbt.getCompoundTag("Stack"));
+	}
+	
+	@Override
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+		if(capability == IncorporeticCygnusCapabilities.FUNNEL_CAP) return true;
+		else return super.hasCapability(capability, facing);
+	}
+	
+	@Nullable
+	@Override
+	@SuppressWarnings("unchecked")
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+		if(capability == IncorporeticCygnusCapabilities.FUNNEL_CAP) return (T) this;
+		else return super.getCapability(capability, facing);
+	}
+	
+	@Override
+	public boolean canGiveCygnusItem() {
+		return true;
+	}
+	
+	@Override
+	public boolean canAcceptCygnusItem() {
+		return true;
+	}
+	
+	@Nullable
+	@Override
+	public Object giveItemToCygnus() {
+		CygnusStack realStack = getCygnusStack();
+		CygnusStack ret = realStack.copy();
+		realStack.clear();
+		return ret;
+	}
+	
+	@Override
+	public void acceptItemFromCygnus(Object item) {
+		if(item instanceof ICygnusStack) {
+			ICygnusStack newStack = (ICygnusStack) item;
+			CygnusStack myStack = getCygnusStack();
+			
+			myStack.clear();
+			for(int i = newStack.depth() - 1; i >= 0; i--) {
+				newStack.peek(i).ifPresent(myStack::push);
+			}
+		}
 	}
 }

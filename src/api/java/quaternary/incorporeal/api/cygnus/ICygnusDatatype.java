@@ -12,18 +12,12 @@ import javax.annotation.Nullable;
  * It contains serialization functions for saving to NBT and sending over the network,
  * as well as a few miscellaneous functions relating to gameplay.
  * 
- * @see IIncorporealAPI#getCygnusDatatypeRegistry() 
- * @see ICygnusDatatypeRegistry#registerDatatype(ICygnusDatatype) 
+ * @see IIncorporealAPI#getCygnusDatatypeRegistry()
  *
  * @author quaternary
  * @since 1.1
  */
 public interface ICygnusDatatype<T> {
-	/**
-	 * @return A globally-unique ResourceLocation that describes this Cygnus serializer.
-	 */
-	ResourceLocation getResourceLocation();
-	
 	/**
 	 * @return The class that this Cygnus serializer is in charge of.
 	 */

@@ -7,6 +7,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -17,6 +18,7 @@ import quaternary.incorporeal.api.cygnus.ICygnusSparkable;
 import quaternary.incorporeal.cygnus.CygnusStack;
 import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
+import quaternary.incorporeal.etc.RedstoneDustCygnusFunnelable;
 import quaternary.incorporeal.etc.helper.CygnusHelpers;
 import vazkii.botania.api.state.BotaniaStateProps;
 
@@ -83,6 +85,9 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 		IBlockState state = world.getBlockState(pos);
 		if(state.getBlock() instanceof ICygnusFunnelable) {
 			return (ICygnusFunnelable) state;
+		} else if(state.getBlock() == Blocks.REDSTONE_WIRE) {
+			//Not my block to slap an interface on to, let's just hardcode it lmao
+			return new RedstoneDustCygnusFunnelable(state);
 		}
 		
 		//Is it a tile entity capability?

@@ -1,5 +1,6 @@
 package quaternary.incorporeal.entity.cygnus;
 
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import quaternary.incorporeal.etc.helper.CygnusHelpers;
@@ -98,6 +99,12 @@ public class EntityCygnusRegularSpark extends AbstractEntityCygnusSparkBase {
 		//The price is right losing horn.mp3
 		knownMaster = null;
 		uplinkToMaster = null;
+	}
+	
+	@Override
+	public void setTint(EnumDyeColor tint) {
+		super.setTint(tint);
+		clearMaster();
 	}
 	
 	@Override

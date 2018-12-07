@@ -13,11 +13,6 @@ import java.io.IOException;
 
 public class CygnusCorporeaRequestType implements ICygnusDatatype<CorporeaRequest> {
 	@Override
-	public ResourceLocation getResourceLocation() {
-		return new ResourceLocation(Incorporeal.MODID, "corporea_request");
-	}
-	
-	@Override
 	public Class<CorporeaRequest> getTypeClass() {
 		return CorporeaRequest.class;
 	}

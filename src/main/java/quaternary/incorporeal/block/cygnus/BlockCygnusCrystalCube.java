@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import quaternary.incorporeal.api.cygnus.ICygnusSparkable;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.block.IncorporeticStateProps;
-import quaternary.incorporeal.block.properties.UnlistedSimpleRegistryCondition;
+import quaternary.incorporeal.block.properties.UnlistedSimpleRegistryProperty;
 import quaternary.incorporeal.item.cygnus.ItemCygnusCrystalCubeCard;
 import quaternary.incorporeal.tile.cygnus.TileCygnusCrystalCube;
 import vazkii.botania.api.state.BotaniaStateProps;
@@ -24,7 +24,7 @@ import java.util.function.Predicate;
 
 public class BlockCygnusCrystalCube extends BlockCygnusBase implements ICygnusSparkable {
 	public static final PropertyBool POWERED = BotaniaStateProps.POWERED;
-	public static final UnlistedSimpleRegistryCondition<Predicate<ICygnusStack>> UNLISTED_CONDITION = IncorporeticStateProps.UNLISTED_CONDITION;
+	public static final UnlistedSimpleRegistryProperty<Predicate<ICygnusStack>> UNLISTED_CONDITION = IncorporeticStateProps.UNLISTED_CONDITION;
 	
 	@Override
 	public boolean acceptsCygnusSpark(World world, IBlockState state, BlockPos pos) {

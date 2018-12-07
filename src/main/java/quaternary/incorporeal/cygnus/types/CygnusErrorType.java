@@ -14,11 +14,6 @@ import java.util.Arrays;
 
 public class CygnusErrorType implements ICygnusDatatype<CygnusError> {
 	@Override
-	public ResourceLocation getResourceLocation() {
-		return new ResourceLocation(Incorporeal.MODID, "cygnus_error");
-	}
-	
-	@Override
 	public Class<CygnusError> getTypeClass() {
 		return CygnusError.class;
 	}

@@ -18,11 +18,15 @@ public final class CygnusDatatypeHelpers {
 	//Not guaranteed to be the same across multiple game launcher.
 	private static final BiMap<Integer, ICygnusDatatype<?>> typesByNetworkID = HashBiMap.create();
 	
+	private static BiMap<ResourceLocation, ICygnusDatatype<?>> typesByResourceLocation;
+	
 	public static void init() {
 		if(!typesByClass.isEmpty()) throw new IllegalStateException("Already initialized");
-		//TODO call api for this.
+		
+		typesByResourceLocation = Incorporeal.API.getCygnusDatatypeRegistry().backingMap();
+		
 		int i = 0;
-		for(ICygnusDatatype<?> type : CygnusRegistries.DATATYPES.allValues()) {
+		for(ICygnusDatatype<?> type : typesByResourceLocation.values()) {
 			typesByClass.put(type.getTypeClass(), type);
 			
 			typesByNetworkID.put(i, type);
@@ -41,14 +45,14 @@ public final class CygnusDatatypeHelpers {
 		if(datatype == null) {
 			throw new IllegalArgumentException("No Cygnus datatype registered for " + item.getClass());
 		} else {
-			nbt.setString("Type", datatype.getResourceLocation().toString());
+			nbt.setString("Type", typesByResourceLocation.inverse().get(datatype).toString());
 			((ICygnusDatatype<T>) datatype).writeToNBT(nbt, item);
 		}
 	}
 	
 	public static Object readFromNBT(NBTTagCompound nbt) {
 		ResourceLocation type = new ResourceLocation(nbt.getString("Type"));
-		ICygnusDatatype<?> datatype = CygnusRegistries.DATATYPES.get(type); //TODO call api
+		ICygnusDatatype<?> datatype = typesByResourceLocation.get(type);
 		if(datatype == null) {
 			//maybe the mod providing this serializer was removed or something?
 			//nbt is long-term storage, after all

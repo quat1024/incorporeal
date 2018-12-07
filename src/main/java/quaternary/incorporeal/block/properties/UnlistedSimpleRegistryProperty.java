@@ -2,17 +2,16 @@ package quaternary.incorporeal.block.properties;
 
 import net.minecraftforge.common.property.IUnlistedProperty;
 import quaternary.incorporeal.api.ISimpleRegistry;
-import quaternary.incorporeal.etc.SimpleRegistry;
 
-public class UnlistedSimpleRegistryCondition<T> implements IUnlistedProperty<T> {
-	public UnlistedSimpleRegistryCondition(String name, Class<T> tClass, ISimpleRegistry<T> simpleRegistry) {
+public class UnlistedSimpleRegistryProperty<T> implements IUnlistedProperty<T> {
+	public UnlistedSimpleRegistryProperty(String name, Class<T> tClass, ISimpleRegistry<T> simpleRegistry) {
 		this.name = name;
 		this.tClass = tClass;
 		this.simpleRegistry = simpleRegistry;
 	}
 	
-	public static <T> UnlistedSimpleRegistryCondition<T> create(String name, Class<T> tClass, ISimpleRegistry<T> simpleRegistry) {
-		return new UnlistedSimpleRegistryCondition<>(name, tClass, simpleRegistry);
+	public static <T> UnlistedSimpleRegistryProperty<T> create(String name, Class<T> tClass, ISimpleRegistry<T> simpleRegistry) {
+		return new UnlistedSimpleRegistryProperty<>(name, tClass, simpleRegistry);
 	}
 	
 	private String name;

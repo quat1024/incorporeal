@@ -16,11 +16,6 @@ import java.math.BigInteger;
 
 public class CygnusBigIntegerType implements ICygnusDatatype<BigInteger> {
 	@Override
-	public ResourceLocation getResourceLocation() {
-		return new ResourceLocation(Incorporeal.MODID, "big_integer");
-	}
-	
-	@Override
 	public Class<BigInteger> getTypeClass() {
 		return BigInteger.class;
 	}

@@ -24,36 +24,42 @@ public final class IncorporeticCygnusActions {
 		NOTHING = stack -> {};
 		reg.register(new ResourceLocation(Incorporeal.MODID, "nothing"), NOTHING);
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "duplicate") , stack -> {
+		reg.register(new ResourceLocation(Incorporeal.MODID, "duplicate"), stack -> {
 			Optional<Object> peek = stack.peek();
 			if(peek.isPresent()) {
 				stack.push(peek.get());
 			} else stack.push(new CygnusError());
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "number_add") , stack -> {
+		reg.register(new ResourceLocation(Incorporeal.MODID, "number_add"), stack -> {
 			pushIfMatching(BigInteger.class, BigInteger.class, stack, BigInteger::add);
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "number_subtract") , stack -> {
+		reg.register(new ResourceLocation(Incorporeal.MODID, "number_subtract"), stack -> {
 			pushIfMatching(BigInteger.class, BigInteger.class, stack, BigInteger::subtract);
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "number_multiply") , stack -> {
+		reg.register(new ResourceLocation(Incorporeal.MODID, "number_multiply"), stack -> {
 			pushIfMatching(BigInteger.class, BigInteger.class, stack, BigInteger::multiply);
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "number_divide") , stack -> {
+		reg.register(new ResourceLocation(Incorporeal.MODID, "number_divide"), stack -> {
 			pushIfMatching(BigInteger.class, BigInteger.class, stack, (under, top) -> {
 				return top.equals(BigInteger.ZERO) ? new CygnusError(CygnusError.INVALID_MATH, CygnusError.INVALID_MATH + ".divide_by_0") : under.divide(top);
 			});
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "request_get_count") , stack -> {
+		reg.register(new ResourceLocation(Incorporeal.MODID, "number_remainder"), stack -> {
+			pushIfMatching(BigInteger.class, BigInteger.class, stack, (under, top) -> {
+				return top.equals(BigInteger.ZERO) ? new CygnusError(CygnusError.INVALID_MATH, CygnusError.INVALID_MATH + ".divide_by_0") : under.remainder(top);
+			});
+		});
+		
+		reg.register(new ResourceLocation(Incorporeal.MODID, "request_get_count"), stack -> {
 			pushIfMatching(CorporeaRequest.class, stack, req -> BigInteger.valueOf(req.count));
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "request_set_count") , stack -> {
+		reg.register(new ResourceLocation(Incorporeal.MODID, "request_set_count"), stack -> {
 			pushIfMatching(CorporeaRequest.class, BigInteger.class, stack, (req, cnt) -> {
 				CorporeaRequest copy = CorporeaHelper2.copyCorporeaRequest(req);
 				copy.count = cnt.intValue();
@@ -61,9 +67,15 @@ public final class IncorporeticCygnusActions {
 			});
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "request_set_item") , stack -> {
+		reg.register(new ResourceLocation(Incorporeal.MODID, "request_set_item"), stack -> {
 			pushIfMatching(CorporeaRequest.class, CorporeaRequest.class, stack, (donor, acceptor) -> {
 				return new CorporeaRequest(donor.matcher, donor.checkNBT, acceptor.count);
+			});
+		});
+		
+		reg.register(new ResourceLocation(Incorporeal.MODID, "stack_get_depth"), stack -> {
+			pushIfMatching(CygnusStack.class, stack, stackstack -> {
+				return BigInteger.valueOf(stackstack.depth());
 			});
 		});
 	}
