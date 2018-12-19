@@ -58,13 +58,13 @@ public class TileCygnusRetainer extends TileCygnusBase implements ICygnusFunnela
 	
 	@Override
 	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
-		return capability == IncorporeticCygnusCapabilities.FUNNEL_CAP; //TODO actual capability
+		return capability == IncorporeticCygnusCapabilities.FUNNEL_CAP;
 	}
 	
 	@Nullable
 	@Override
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
-		if(capability == IncorporeticCygnusCapabilities.FUNNEL_CAP) { //TODO actual capability
+		if(capability == IncorporeticCygnusCapabilities.FUNNEL_CAP) {
 			return (T) this;
 		} else return null;
 	}

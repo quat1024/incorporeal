@@ -85,7 +85,7 @@ public final class Incorporeal {
 		IncorporeticCygnusConditions.registerCygnusConditions();
 		IncorporeticCygnusDatatypes.registerCygnusDatatypes();
 		
-		PROXY.entityRendererBullshit();
+		PROXY.preinit();
 	}
 	
 	@Mod.EventHandler

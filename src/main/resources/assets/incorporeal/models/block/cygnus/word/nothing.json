@@ -1,0 +1,6 @@
+{
+	"parent": "incorporeal:block/cygnus/word/word_base",
+	"textures": {
+		"word": "incorporeal:block/cygnus/word/nothing"
+	}
+}

@@ -12,7 +12,7 @@ public class ClientProxy extends ServerProxy {
 	}
 	
 	@Override
-	public void entityRendererBullshit() {
-		ClientRegistryEvents.entityRenderers();
+	public void preinit() {
+		ClientRegistryEvents.preinit();
 	}
 }

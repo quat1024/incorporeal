@@ -31,6 +31,11 @@ public class BlockCygnusWord extends BlockCygnusBase implements ICygnusSparkable
 		setDefaultState(getDefaultState().withProperty(POWERED, false));
 	}
 	
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
+	
 	public static final PropertyBool POWERED = BotaniaStateProps.POWERED;
 	public static final UnlistedSimpleRegistryProperty<Consumer<ICygnusStack>> UNLISTED_ACTION = IncorporeticStateProps.UNLISTED_ACTION;
 	
