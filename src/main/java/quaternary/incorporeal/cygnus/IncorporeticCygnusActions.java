@@ -25,10 +25,7 @@ public final class IncorporeticCygnusActions {
 		reg.register(new ResourceLocation(Incorporeal.MODID, "nothing"), NOTHING);
 		
 		reg.register(new ResourceLocation(Incorporeal.MODID, "duplicate"), stack -> {
-			Optional<Object> peek = stack.peek();
-			if(peek.isPresent()) {
-				stack.push(peek.get());
-			} else stack.push(new CygnusError());
+			stack.push(stack.peek().orElseGet(() -> new CygnusError(CygnusError.UNDERFLOW)));
 		});
 		
 		reg.register(new ResourceLocation(Incorporeal.MODID, "number_add"), stack -> {
@@ -82,25 +79,22 @@ public final class IncorporeticCygnusActions {
 	
 	//Quick helper funcs
 	private static <TOP> void pushIfMatching(Class<TOP> topClass, ICygnusStack stack, Function<TOP, Object> resultFactory) {
-		Optional<TOP> x = stack.peekMatching(topClass, 0);
-		if(x.isPresent()) {
+		stack.push(stack.peekMatching(topClass).flatMap(top -> {
 			stack.popDestroy(1);
-			stack.push(resultFactory.apply(x.get()));
-		} else {
-			if(stack.depth() < 1) stack.push(new CygnusError(CygnusError.UNDERFLOW));
-			else stack.push(new CygnusError(CygnusError.MISMATCH));
-		}
+			return Optional.of(resultFactory.apply(top));
+		}).orElseGet(() ->
+			new CygnusError(stack.depth() < 1 ? CygnusError.UNDERFLOW : CygnusError.MISMATCH))
+		);
 	}
 	
 	private static <TOP, UNDER> void pushIfMatching(Class<UNDER> underClass, Class<TOP> topClass, ICygnusStack stack, BiFunction<UNDER, TOP, Object> resultFactory) {
-		Optional<TOP> x = stack.peekMatching(topClass, 0);
-		Optional<UNDER> y = stack.peekMatching(underClass, 1);
-		if(x.isPresent() && y.isPresent()) {
-			stack.popDestroy(2);
-			stack.push(resultFactory.apply(y.get(), x.get()));
-		} else {
-			if(stack.depth() < 2) stack.push(new CygnusError(CygnusError.UNDERFLOW));
-			else stack.push(new CygnusError(CygnusError.MISMATCH));
-		}
+		stack.push(stack.peekMatching(topClass, 0).flatMap(top ->
+			stack.peekMatching(underClass, 1).flatMap(under -> {
+				stack.popDestroy(2);
+				return Optional.of(resultFactory.apply(under, top));
+			})
+		).orElseGet(() -> 
+			new CygnusError(stack.depth() < 1 ? CygnusError.UNDERFLOW : CygnusError.MISMATCH)
+		));
 	}
 }
