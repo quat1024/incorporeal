@@ -2,7 +2,9 @@ package quaternary.incorporeal.client;
 
 import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
@@ -20,6 +22,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
+import quaternary.incorporeal.block.cygnus.BlockCygnusFunnel;
 import quaternary.incorporeal.block.cygnus.IncorporeticCygnusBlocks;
 import quaternary.incorporeal.client.entityrenderer.RenderEntityCygnusMasterSpark;
 import quaternary.incorporeal.client.entityrenderer.RenderEntityCygnusRegularSpark;
@@ -87,6 +90,8 @@ public final class ClientRegistryEvents {
 		setIgnoreAllStateMapper(IncorporeticCygnusBlocks.WORD);
 		setIgnoreAllStateMapper(IncorporeticCygnusBlocks.CRYSTAL_CUBE);
 		
+		setIgnoringStateMapper(IncorporeticCygnusBlocks.FUNNEL, BlockCygnusFunnel.POWERED);
+		
 		//Tile Entity Special Renderers
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCorporeaSparkTinkerer.class, new RenderTileCorporeaSparkTinkerer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileUnstableCube.class, new RenderTileUnstableCube());
@@ -150,6 +155,14 @@ public final class ClientRegistryEvents {
 	
 	private static void setIgnoreAllStateMapper(Block b) {
 		ModelLoader.setCustomStateMapper(b, new IgnoreAllStateMapper(b));
+	}
+	
+	private static void setIgnoringStateMapper(Block b, IProperty<?>... props) {
+		StateMap.Builder builder = new StateMap.Builder();
+		for(int i = 0; i < props.length; i++) {
+			builder.ignore(props[i]);
+		}
+		ModelLoader.setCustomStateMapper(b, builder.build());
 	}
 	
 	private static void setFlowerModel(Class<? extends SubTileEntity> flower, String name) {

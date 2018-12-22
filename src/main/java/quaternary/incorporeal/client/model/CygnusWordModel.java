@@ -20,7 +20,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class CygnusWordModel implements IModel {
-	private static final ResourceLocation FRAME_MODEL = new ResourceLocation(Incorporeal.MODID, "block/cygnus/frame_word");
+	private static final ResourceLocation FRAME_MODEL = new ResourceLocation(Incorporeal.MODID, "block/cygnus/word/frame_word");
 	
 	public CygnusWordModel() {
 		initModelsIfNeeded();

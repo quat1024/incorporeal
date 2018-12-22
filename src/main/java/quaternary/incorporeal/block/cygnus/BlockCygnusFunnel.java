@@ -5,6 +5,7 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
@@ -12,7 +13,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ChunkCache;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.api.cygnus.ICygnusSparkable;
 import quaternary.incorporeal.cygnus.CygnusStack;
@@ -29,8 +34,17 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 	public static final PropertyEnum<EnumFacing> FACING = BotaniaStateProps.FACING;
 	public static final PropertyBool POWERED = BotaniaStateProps.POWERED;
 	
+	public static final PropertyBool BACK_LIT = PropertyBool.create("back_lit");
+	public static final PropertyBool FRONT_LIT = PropertyBool.create("front_lit");
+	
 	public BlockCygnusFunnel() {
-		setDefaultState(getDefaultState().withProperty(FACING, EnumFacing.UP).withProperty(POWERED, false));
+		setDefaultState(
+			getDefaultState()
+				.withProperty(FACING, EnumFacing.UP)
+				.withProperty(POWERED, false)
+				.withProperty(BACK_LIT, false)
+				.withProperty(FRONT_LIT, false)
+		);
 	}
 	
 	@Override
@@ -83,9 +97,10 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 	private static ICygnusFunnelable findCygnusFunnelable(World world, BlockPos pos) {
 		//Is it a block (as an interface?)
 		IBlockState state = world.getBlockState(pos);
-		if(state.getBlock() instanceof ICygnusFunnelable) {
-			return (ICygnusFunnelable) state;
-		} else if(state.getBlock() == Blocks.REDSTONE_WIRE) {
+		Block b = state.getBlock();
+		if(b instanceof ICygnusFunnelable) {
+			return (ICygnusFunnelable) b;
+		} else if(b == Blocks.REDSTONE_WIRE) {
 			//Not my block to slap an interface on to, let's just hardcode it lmao
 			return new RedstoneDustCygnusFunnelable(state);
 		}
@@ -115,7 +130,7 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, FACING, POWERED);
+		return new BlockStateContainer(this, FACING, POWERED, BACK_LIT, FRONT_LIT) ;
 	}
 	
 	@Override
@@ -126,5 +141,23 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta % 6)).withProperty(POWERED, meta >= 6);
+	}
+	
+	//TODO this is dodgy as SHIT lolol
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IBlockState getActualState(IBlockState state, IBlockAccess access, BlockPos pos) {
+		EnumFacing facing = state.getValue(FACING);
+		if(access instanceof ChunkCache) {
+			World world = Minecraft.getMinecraft().world;
+			if(world == null) return state;
+			
+			ICygnusFunnelable back = findCygnusFunnelable(world, pos.offset(facing.getOpposite()));
+			ICygnusFunnelable front = findCygnusFunnelable(world, pos.offset(facing.getOpposite()));
+			
+			return state
+				.withProperty(BACK_LIT, back == null ? false : back.canGiveCygnusItem())
+				.withProperty(FRONT_LIT, front == null ? false : front.canAcceptCygnusItem());
+		} else return state;
 	}
 }

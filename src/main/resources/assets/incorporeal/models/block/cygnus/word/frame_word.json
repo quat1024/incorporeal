@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"tex": "incorporeal:block/cygnus/frame_word",
-		"particle": "incorporeal:block/cygnus/frame_word"
+		"tex": "incorporeal:block/cygnus/word/frame_word",
+		"particle": "incorporeal:block/cygnus/word/frame_word"
 	},
 	"elements": [
 		{

@@ -1,0 +1,52 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "minecraft:block/cube_bottom_top",
+		"textures": {
+			"bottom": "incorporeal:block/cygnus/funnel/bottom",
+			"top": "incorporeal:block/cygnus/funnel/top"
+		}
+	},
+	"variants": {
+		"back_lit=false,front_lit=false": {
+			"textures": {
+				"side": "incorporeal:block/cygnus/funnel/arrow_off"
+			}
+		},
+		"back_lit=false,front_lit=true": {
+			"textures": {
+				"side": "incorporeal:block/cygnus/funnel/arrow_front"
+			}
+		},
+		"back_lit=true,front_lit=false": {
+			"textures": {
+				"side": "incorporeal:block/cygnus/funnel/arrow_back"
+			}
+		},
+		"back_lit=true,front_lit=true": {
+			"textures": {
+				"side": "incorporeal:block/cygnus/funnel/arrow_both"
+			}
+		},
+		"facing": {
+			"up": {
+				"x": 270
+			},
+			"down": {
+				"x": 90
+			},
+			"north": {
+				"x": 0
+			},
+			"south": {
+				"y": 180
+			},
+			"east": {
+				"y": 90
+			},
+			"west": {
+				"y": 270
+			}
+		}
+	}
+}
