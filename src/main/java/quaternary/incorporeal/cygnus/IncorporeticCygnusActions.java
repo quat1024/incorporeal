@@ -94,7 +94,7 @@ public final class IncorporeticCygnusActions {
 				return Optional.of(resultFactory.apply(under, top));
 			})
 		).orElseGet(() -> 
-			new CygnusError(stack.depth() < 1 ? CygnusError.UNDERFLOW : CygnusError.MISMATCH)
+			new CygnusError(stack.depth() < 2 ? CygnusError.UNDERFLOW : CygnusError.MISMATCH)
 		));
 	}
 }
