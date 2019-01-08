@@ -1,33 +1,14 @@
 {
 	"forge_marker": 1,
 	"defaults": {
-		"model": "minecraft:block/cube_bottom_top",
+		"model": "incorporeal:general/observish",
 		"textures": {
 			"bottom": "incorporeal:block/cygnus/funnel/bottom",
-			"top": "incorporeal:block/cygnus/funnel/top"
+			"front": "incorporeal:block/cygnus/funnel/top",
+			"side": "incorporeal:block/cygnus/funnel/arrow_off"
 		}
 	},
 	"variants": {
-		"back_lit=false,front_lit=false": {
-			"textures": {
-				"side": "incorporeal:block/cygnus/funnel/arrow_off"
-			}
-		},
-		"back_lit=false,front_lit=true": {
-			"textures": {
-				"side": "incorporeal:block/cygnus/funnel/arrow_front"
-			}
-		},
-		"back_lit=true,front_lit=false": {
-			"textures": {
-				"side": "incorporeal:block/cygnus/funnel/arrow_back"
-			}
-		},
-		"back_lit=true,front_lit=true": {
-			"textures": {
-				"side": "incorporeal:block/cygnus/funnel/arrow_both"
-			}
-		},
 		"facing": {
 			"up": {
 				"x": 270
