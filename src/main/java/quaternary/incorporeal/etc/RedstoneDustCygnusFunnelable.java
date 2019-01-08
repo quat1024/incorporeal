@@ -1,7 +1,5 @@
 package quaternary.incorporeal.etc;
 
-import net.minecraft.block.BlockRedstoneWire;
-import net.minecraft.block.state.IBlockState;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 
 import javax.annotation.Nullable;
@@ -10,8 +8,23 @@ import java.math.BigInteger;
 //BlockCygnusFunnel hardcodes this response when asked about redstone dust.
 //It's not my block to add an interface on to, and ASM is way overkill.
 public class RedstoneDustCygnusFunnelable implements ICygnusFunnelable {
-	public RedstoneDustCygnusFunnelable(IBlockState state) {
-		this.level = BigInteger.valueOf(state.getValue(BlockRedstoneWire.POWER));
+	//a Cache
+	private static final RedstoneDustCygnusFunnelable[] FUNNELABLES = new RedstoneDustCygnusFunnelable[16];
+	
+	static {
+		for(int i = 0; i < 16; i++) {
+			FUNNELABLES[i] = new RedstoneDustCygnusFunnelable(BigInteger.valueOf(i));
+		}
+	}
+	
+	public static RedstoneDustCygnusFunnelable forLevel(int level) {
+		return FUNNELABLES[level];
+	}
+	
+	///////////////
+	
+	private RedstoneDustCygnusFunnelable(BigInteger level) {
+		this.level = level;
 	}
 	
 	private final BigInteger level;

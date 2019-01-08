@@ -5,6 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.tile.cygnus.TileCygnusCrystalCube;
+import quaternary.incorporeal.tile.cygnus.TileCygnusFunnel;
 import quaternary.incorporeal.tile.cygnus.TileCygnusRetainer;
 import quaternary.incorporeal.tile.cygnus.TileCygnusWord;
 import quaternary.incorporeal.tile.decorative.TileUnstableCube;
@@ -25,6 +26,7 @@ public final class IncorporeticTiles {
 		reg(TileCygnusCrystalCube.class, "cygnus_crystal_cube");
 		reg(TileCygnusRetainer.class, "cygnus_retainer");
 		reg(TileCygnusWord.class, "cygnus_word");
+		reg(TileCygnusFunnel.class, "cygnus_funnel");
 	}
 	
 	private static void reg(Class<? extends TileEntity> c, String name) {

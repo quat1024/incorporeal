@@ -25,10 +25,12 @@ import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
 import quaternary.incorporeal.etc.RedstoneDustCygnusFunnelable;
 import quaternary.incorporeal.etc.helper.CygnusHelpers;
+import quaternary.incorporeal.tile.cygnus.TileCygnusFunnel;
 import vazkii.botania.api.state.BotaniaStateProps;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Random;
 
 public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkable {
 	public static final PropertyEnum<EnumFacing> FACING = BotaniaStateProps.FACING;
@@ -40,6 +42,20 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 				.withProperty(FACING, EnumFacing.UP)
 				.withProperty(POWERED, false)
 		);
+		
+		setTickRandomly(true);
+	}
+	
+	@Override
+	public void randomTick(World world, BlockPos pos, IBlockState state, Random random) {
+		TileEntity tile = world.getTileEntity(pos);
+		if(tile instanceof TileCygnusFunnel) {
+			//basically since entities can provide cygnus funnelables
+			//and they can move away of their own volition, without causing a block update to this
+			//randomly rechecking is a good balance between "keeping old data until a block update"
+			//and "making the tile tickable"
+			((TileCygnusFunnel)tile).updateArrowStatus(pos, state.getValue(FACING));
+		}
 	}
 	
 	@Override
@@ -49,73 +65,11 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 	
 	@Override
 	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos updaterPos) {
-		boolean isPowered = state.getValue(POWERED);
-		boolean shouldPower = world.isBlockPowered(pos);
-		
-		if(isPowered != shouldPower) {
-			world.setBlockState(pos, state.withProperty(POWERED, shouldPower));
-			if(shouldPower) {
-				EnumFacing facing = state.getValue(FACING);
-				BlockPos fromPos = pos.offset(facing.getOpposite());
-				BlockPos toPos = pos.offset(facing);
-				
-				ICygnusFunnelable source = findCygnusFunnelable(world, fromPos);
-				ICygnusFunnelable sink = findCygnusFunnelable(world, toPos);
-				
-				boolean sourceCanGive = source != null && source.canGiveCygnusItem();
-				boolean sinkCanAccept = sink != null && sink.canAcceptCygnusItem();
-				if(!sourceCanGive && !sinkCanAccept) return;
-				
-				if(sourceCanGive && sinkCanAccept) {
-					//Move data from the source to the sink, no stack needed
-					sink.acceptItemFromCygnus(source.giveItemToCygnus());
-					return;
-				}
-				
-				//Only 1 action is available (sourcing or sinking). So we will find a Cygnus stack
-				//and use that as the other end of the action.
-				EntityCygnusMasterSpark master = CygnusHelpers.getMasterSparkForSparkAt(world, pos);
-				if(master == null) return; //Or not, since we're not even on a network apparently :p
-				
-				CygnusStack stack = master.getCygnusStack();
-				if(sourceCanGive) {
-					Object given = source.giveItemToCygnus();
-					if(given != null)	stack.push(given);
-				} else {
-					stack.pop().ifPresent(sink::acceptItemFromCygnus);
-				}
-			}
-		}
-	}
-	
-	@Nullable
-	private static ICygnusFunnelable findCygnusFunnelable(World world, BlockPos pos) {
-		//Is it a block (as an interface?)
-		IBlockState state = world.getBlockState(pos);
-		Block b = state.getBlock();
-		if(b instanceof ICygnusFunnelable) {
-			return (ICygnusFunnelable) b;
-		} else if(b == Blocks.REDSTONE_WIRE) {
-			//Not my block to slap an interface on to, let's just hardcode it lmao
-			return new RedstoneDustCygnusFunnelable(state);
-		}
-		
-		//Is it a tile entity capability?
 		TileEntity tile = world.getTileEntity(pos);
-		if(tile != null) {
-			ICygnusFunnelable capMaybe = tile.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, null);
-			if(capMaybe != null) return capMaybe;
+		if(tile instanceof TileCygnusFunnel) {
+			TileCygnusFunnel funnel = (TileCygnusFunnel) tile;
+			funnel.onNeighborChange();
 		}
-		
-		//Is it an entity capability?
-		List<Entity> entities = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos));
-		for(Entity e : entities) {
-			ICygnusFunnelable capMaybe = e.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, null);
-			if(capMaybe != null) return capMaybe;
-		}
-		
-		//Idk where it is!
-		return null;
 	}
 	
 	@Override
