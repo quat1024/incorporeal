@@ -6,6 +6,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -24,15 +26,26 @@ import java.util.List;
 
 public class TileCygnusFunnel extends TileEntity {
 	private boolean isPowered;
-	private boolean displayBackArrow;
-	private boolean displayFrontArrow;
+	private boolean backLit;
+	private boolean frontLit;
 	
 	public void updateArrowStatus(BlockPos pos, EnumFacing facing) {
 		BlockPos fromPos = pos.offset(facing.getOpposite());
 		BlockPos toPos = pos.offset(facing);
 		
-		displayBackArrow = hasCygnusFunnelable(world, fromPos);
-		displayFrontArrow = hasCygnusFunnelable(world, toPos);
+		boolean oldBackLit = backLit;
+		boolean oldFrontLit = frontLit;
+		
+		ICygnusFunnelable backFunnelable = getCygnusFunnelable(world, fromPos);
+		backLit = backFunnelable != null && backFunnelable.canGiveCygnusItem();
+		
+		ICygnusFunnelable frontFunnelable = getCygnusFunnelable(world, toPos);
+		frontLit = frontFunnelable != null && frontFunnelable.canAcceptCygnusItem();
+		
+		if(oldBackLit != backLit || oldFrontLit != frontLit) {
+			IBlockState memes = world.getBlockState(pos);
+			world.notifyBlockUpdate(pos, memes, memes, 3);
+		}
 	}
 	
 	public void onNeighborChange() {
@@ -44,6 +57,7 @@ public class TileCygnusFunnel extends TileEntity {
 		
 		if(isPowered != shouldPower) {
 			isPowered = shouldPower;
+			markDirty();
 			if(shouldPower) {
 				BlockPos fromPos = pos.offset(facing.getOpposite());
 				BlockPos toPos = pos.offset(facing);
@@ -52,8 +66,8 @@ public class TileCygnusFunnel extends TileEntity {
 				ICygnusFunnelable sink = getCygnusFunnelable(world, toPos);
 				
 				//while i have this data, might as well update the arrows :P
-				displayBackArrow = source != null;
-				displayFrontArrow = source != null;
+				backLit = source != null;
+				frontLit = source != null;
 				
 				boolean sourceCanGive = source != null && source.canGiveCygnusItem();
 				boolean sinkCanAccept = sink != null && sink.canAcceptCygnusItem();
@@ -81,11 +95,37 @@ public class TileCygnusFunnel extends TileEntity {
 		}
 	}
 	
+	public boolean isBackLit() {
+		return backLit;
+	}
+	
+	public boolean isFrontLit() {
+		return frontLit;
+	}
+	
+	@Nullable
+	@Override
+	public SPacketUpdateTileEntity getUpdatePacket() {
+		return new SPacketUpdateTileEntity(pos, 6969, getUpdateTag());
+	}
+	
+	@Override
+	public NBTTagCompound getUpdateTag() {
+		return writeToNBT(new NBTTagCompound());
+	}
+	
+	@Override
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+		readFromNBT(pkt.getNbtCompound());
+		IBlockState yes = world.getBlockState(pos);
+		world.notifyBlockUpdate(pos, yes, yes, 3);
+	}
+	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		nbt.setBoolean("Powered", isPowered);
-		nbt.setBoolean("DisplayBack", displayBackArrow);
-		nbt.setBoolean("DisplayFront", displayFrontArrow);
+		nbt.setBoolean("DisplayBack", backLit);
+		nbt.setBoolean("DisplayFront", frontLit);
 		return super.writeToNBT(nbt);
 	}
 	
@@ -93,8 +133,8 @@ public class TileCygnusFunnel extends TileEntity {
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		isPowered = nbt.getBoolean("powered");
-		displayBackArrow = nbt.getBoolean("DisplayBack");
-		displayFrontArrow = nbt.getBoolean("DisplayFront");
+		backLit = nbt.getBoolean("DisplayBack");
+		frontLit = nbt.getBoolean("DisplayFront");
 	}
 	
 	@Nullable
@@ -125,26 +165,5 @@ public class TileCygnusFunnel extends TileEntity {
 		
 		//Idk where it is!
 		return null;
-	}
-	
-	private static boolean hasCygnusFunnelable(World world, BlockPos pos) {
-		IBlockState state = world.getBlockState(pos);
-		Block b = state.getBlock();
-		if(b instanceof ICygnusFunnelable || b == Blocks.REDSTONE_WIRE) {
-			return true;
-		}
-		
-		TileEntity tile = world.getTileEntity(pos);
-		if(tile != null) {
-			return tile.hasCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, null);
-		}
-		
-		List<Entity> entities = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos));
-		for(Entity e : entities) {
-			if(e.hasCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, null)) return true;
-		}
-		
-		//Guess no!
-		return false;
 	}
 }

@@ -90,8 +90,6 @@ public final class ClientRegistryEvents {
 		setIgnoreAllStateMapper(IncorporeticCygnusBlocks.WORD);
 		setIgnoreAllStateMapper(IncorporeticCygnusBlocks.CRYSTAL_CUBE);
 		
-		setIgnoringStateMapper(IncorporeticCygnusBlocks.FUNNEL, BlockCygnusFunnel.POWERED);
-		
 		//Tile Entity Special Renderers
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCorporeaSparkTinkerer.class, new RenderTileCorporeaSparkTinkerer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileUnstableCube.class, new RenderTileUnstableCube());

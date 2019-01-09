@@ -36,6 +36,7 @@ public class TileCygnusRetainer extends TileCygnusBase implements ICygnusFunnela
 	@Override
 	public void acceptItemFromCygnus(Object item) {
 		retained = item;
+		markDirty();
 	}
 	
 	@Override

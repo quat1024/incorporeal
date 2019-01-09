@@ -4,8 +4,7 @@
 		"model": "incorporeal:general/observish",
 		"textures": {
 			"bottom": "incorporeal:block/cygnus/funnel/bottom",
-			"front": "incorporeal:block/cygnus/funnel/top",
-			"side": "incorporeal:block/cygnus/funnel/arrow_off"
+			"front": "incorporeal:block/cygnus/funnel/top"
 		}
 	},
 	"variants": {
@@ -27,6 +26,28 @@
 			},
 			"west": {
 				"y": 270
+			}
+		},
+		"arrow_light": {
+			"off": {
+				"textures": {
+					"side": "incorporeal:block/cygnus/funnel/arrow_off"
+				}
+			},
+			"back": {
+				"textures": {
+					"side": "incorporeal:block/cygnus/funnel/arrow_back"
+				}
+			},
+			"front": {
+				"textures": {
+					"side": "incorporeal:block/cygnus/funnel/arrow_front"
+				}
+			},
+			"both": {
+				"textures": {
+					"side": "incorporeal:block/cygnus/funnel/arrow_both"
+				}
 			}
 		}
 	}

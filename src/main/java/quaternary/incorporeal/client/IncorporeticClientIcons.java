@@ -1,5 +1,6 @@
 package quaternary.incorporeal.client;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
@@ -19,9 +20,10 @@ public final class IncorporeticClientIcons {
 	@SubscribeEvent
 	public static void textureStitch(TextureStitchEvent.Pre e) {
 		TextureMap map = e.getMap();
-		
-		cygnusSpark = registerSprite(map, "textures/item/cygnus/spark");
-		masterCygnusSpark = registerSprite(map, "textures/item/cygnus/master_spark");
+		if(map == Minecraft.getMinecraft().getTextureMapBlocks()) {
+			cygnusSpark = registerSprite(map, "item/cygnus/spark");
+			masterCygnusSpark = registerSprite(map, "item/cygnus/master_spark");
+		}
 	}
 	
 	private static TextureAtlasSprite registerSprite(TextureMap map, String path) {
