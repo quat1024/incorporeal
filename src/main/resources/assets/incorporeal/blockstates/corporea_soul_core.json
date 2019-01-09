@@ -3,7 +3,7 @@
 	"defaults": {
 		"model": "minecraft:block",
 		"textures": {
-			"particle": "incorporeal:tesr/corporea_soul_core"
+			"particle": "incorporeal:entity/corporea_soul_core"
 		}
 	},
 	"variants": {
