@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/cube_column",
+	"textures": {
+		"side": "incorporeal:block/cygnus/retainer/side",
+		"end": "incorporeal:block/cygnus/retainer/top_bottom_off"
+	}
+}

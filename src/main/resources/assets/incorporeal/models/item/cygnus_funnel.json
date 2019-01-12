@@ -1,8 +1,8 @@
 {
 	"parent": "incorporeal:block/general/observish",
 	"textures": {
-		"bottom": "incorporeal:block/cygnus/funnel/bottom",
-		"front": "incorporeal:block/cygnus/funnel/top",
+		"bottom": "incorporeal:block/cygnus/funnel/back",
+		"front": "incorporeal:block/cygnus/funnel/front",
 		"side": "incorporeal:block/cygnus/funnel/arrow_off"
 	}
 }

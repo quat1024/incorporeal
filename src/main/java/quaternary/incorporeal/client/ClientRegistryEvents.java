@@ -30,6 +30,7 @@ import quaternary.incorporeal.client.model.CygnusWordModelLoader;
 import quaternary.incorporeal.client.tesr.RenderItemSoulCore;
 import quaternary.incorporeal.client.tesr.RenderTileCorporeaSparkTinkerer;
 import quaternary.incorporeal.client.tesr.RenderTileSoulCore;
+import quaternary.incorporeal.client.tesr.cygnus.RenderTileCygnusRetainer;
 import quaternary.incorporeal.client.tesr.decorative.RenderTileUnstableCube;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusRegularSpark;
@@ -38,6 +39,7 @@ import quaternary.incorporeal.flower.SubTileSweetAlexum;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
 import quaternary.incorporeal.tile.TileCorporeaSparkTinkerer;
+import quaternary.incorporeal.tile.cygnus.TileCygnusRetainer;
 import quaternary.incorporeal.tile.decorative.TileUnstableCube;
 import quaternary.incorporeal.tile.soulcore.TileCorporeaSoulCore;
 import quaternary.incorporeal.tile.soulcore.TileEnderSoulCore;
@@ -98,6 +100,8 @@ public final class ClientRegistryEvents {
 		RenderTileSoulCore<TileCorporeaSoulCore> corporeaRender = new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/entity/corporea_soul_core.png"));
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEnderSoulCore.class, enderRender);
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCorporeaSoulCore.class, corporeaRender);
+		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCygnusRetainer.class, new RenderTileCygnusRetainer());
 		
 		//Teisrs
 		setTEISRModel(IncorporeticItems.ENDER_SOUL_CORE, new RenderItemSoulCore(enderRender));

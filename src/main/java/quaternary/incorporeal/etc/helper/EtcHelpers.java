@@ -3,9 +3,14 @@ package quaternary.incorporeal.etc.helper;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.ChunkCache;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import vazkii.botania.api.state.BotaniaStateProps;
 import vazkii.botania.api.state.enums.CrateVariant;
 import vazkii.botania.common.block.ModBlocks;
@@ -49,5 +54,12 @@ public final class EtcHelpers {
 		TextComponentTranslation txt = new TextComponentTranslation(message);
 		txt.getStyle().setColor(color);
 		player.sendStatusMessage(txt, true);
+	}
+	
+	public static TileEntity getTileEntityThreadsafe(IBlockAccess world, BlockPos pos) {
+		//see https://mcforge.readthedocs.io/en/latest/blocks/states/#actual-states
+		if(world instanceof ChunkCache) {
+			return ((ChunkCache)world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK);
+		} else return world.getTileEntity(pos);
 	}
 }

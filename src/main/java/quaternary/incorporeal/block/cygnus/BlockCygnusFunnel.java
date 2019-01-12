@@ -6,6 +6,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
@@ -13,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import quaternary.incorporeal.api.cygnus.ICygnusSparkable;
+import quaternary.incorporeal.etc.helper.EtcHelpers;
 import quaternary.incorporeal.tile.cygnus.TileCygnusFunnel;
 import vazkii.botania.api.state.BotaniaStateProps;
 
@@ -66,6 +68,14 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 	}
 	
 	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		TileEntity tile = world.getTileEntity(pos);
+		if(tile instanceof TileCygnusFunnel) {
+			((TileCygnusFunnel)tile).updateArrowStatus(pos, state.getValue(FACING));
+		}
+	}
+	
+	@Override
 	public boolean hasTileEntity(IBlockState state) {
 		return true;
 	}
@@ -93,7 +103,7 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 	
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-		TileEntity tile = world.getTileEntity(pos);
+		TileEntity tile = EtcHelpers.getTileEntityThreadsafe(world, pos);
 		if(tile instanceof TileCygnusFunnel) {
 			TileCygnusFunnel funnel = (TileCygnusFunnel) tile; 
 			return state.withProperty(
