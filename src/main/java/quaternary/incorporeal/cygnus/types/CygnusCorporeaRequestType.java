@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.etc.helper.CorporeaHelper2;
+import vazkii.botania.api.corporea.CorporeaHelper;
 import vazkii.botania.api.corporea.CorporeaRequest;
 
 import java.io.IOException;
@@ -106,5 +107,11 @@ public class CygnusCorporeaRequestType implements ICygnusDatatype<CorporeaReques
 	@Override
 	public String toString(CorporeaRequest item) {
 		return CorporeaHelper2.requestToString(item);
+	}
+	
+	@Override
+	public int toComparator(CorporeaRequest item) {
+		int x = CorporeaHelper.signalStrengthForRequestSize(item.count);
+		return x == 0 ? 1 : x;
 	}
 }

@@ -46,6 +46,19 @@ public class BlockCygnusRetainer extends BlockCygnusBase {
 	}
 	
 	@Override
+	public boolean hasComparatorInputOverride(IBlockState state) {
+		return true;
+	}
+	
+	@Override
+	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos) {
+		TileEntity tile = world.getTileEntity(pos);
+		if(tile instanceof TileCygnusRetainer) {
+			return ((TileCygnusRetainer)tile).getComparator();
+		} else return 0;
+	}
+	
+	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		TileEntity tile = EtcHelpers.getTileEntityThreadsafe(world, pos);
 		if(tile instanceof TileCygnusRetainer) {

@@ -2,6 +2,7 @@ package quaternary.incorporeal.cygnus.types;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.MathHelper;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.cygnus.CygnusDatatypeHelpers;
 import quaternary.incorporeal.cygnus.CygnusStack;
@@ -77,5 +78,10 @@ public class CygnusStackType implements ICygnusDatatype<CygnusStack> {
 			item.peek(i).ifPresent(b::append);
 		}
 		return b.toString();
+	}
+	
+	@Override
+	public int toComparator(CygnusStack item) {
+		return MathHelper.clamp(item.depth(), 1, 15);
 	}
 }

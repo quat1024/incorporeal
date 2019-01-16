@@ -2,7 +2,6 @@ package quaternary.incorporeal.api.cygnus;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
 import quaternary.incorporeal.api.IIncorporealAPI;
 
 import javax.annotation.Nullable;
@@ -109,7 +108,18 @@ public interface ICygnusDatatype<T> {
 	}
 	
 	/**
-	 * Java generics are stupid. Don't override
+	 * Return a number 1 - 15 somehow representing this item.
+	 * This is used in for the comparator signal off cygnus retainers.
+	 * Don't return 0; in gameplay that means the retainer is empty.
+	 * 
+	 * @param item The item to convert into a comparator value.
+	 */
+	default int toComparator(T item) {
+		return 1;
+	}
+	
+	/**
+	 * Don't override
 	 */
 	@SuppressWarnings("unchecked")
 	default boolean areEqualUnchecked(Object item1, Object item2) {
@@ -117,7 +127,7 @@ public interface ICygnusDatatype<T> {
 	}
 	
 	/**
-	 * Java generics are stupid. Don't override
+	 * Don't override
 	 */
 	@SuppressWarnings("unchecked")
 	default int compareUnchecked(Object item1, Object item2) {
@@ -125,9 +135,18 @@ public interface ICygnusDatatype<T> {
 	}
 	
 	/**
-	 * Java genetics are stupid. Don't override
+	 * Don't override
 	 */
+	@SuppressWarnings("unchecked")
 	default String toStringUnchecked(Object item) {
 		return toString((T) item);
+	}
+	
+	/**
+	 * Don't override
+	 */
+	@SuppressWarnings("unchecked")
+	default int toComparatorUnchecked(Object item) {
+		return toComparator((T) item);
 	}
 }

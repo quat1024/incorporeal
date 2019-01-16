@@ -4,20 +4,18 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
-import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.cygnus.CygnusDatatypeHelpers;
 import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
-import vazkii.botania.api.internal.VanillaPacketDispatcher;
 
 import javax.annotation.Nullable;
 
 public class TileCygnusRetainer extends TileCygnusBase implements ICygnusFunnelable {
 	@Nullable
 	private Object retained;
+	private int comparator;
 	
 	@Override
 	public boolean canGiveCygnusItem() {
@@ -34,11 +32,9 @@ public class TileCygnusRetainer extends TileCygnusBase implements ICygnusFunnela
 	public Object giveItemToCygnus() {
 		Object ret = retained;
 		retained = null;
+		comparator = 0;
 		
-		//it is 3am
-		markDirty();
-		IBlockState ok = world.getBlockState(pos);
-		world.notifyBlockUpdate(pos, ok, ok, 2);
+		updateStuff();
 		
 		return ret;
 	}
@@ -47,9 +43,19 @@ public class TileCygnusRetainer extends TileCygnusBase implements ICygnusFunnela
 	public void acceptItemFromCygnus(Object item) {
 		retained = item;
 		
+		if(item != null) {
+			comparator = CygnusDatatypeHelpers.forClass(item.getClass()).toComparatorUnchecked(item);
+		}
+		
+		updateStuff();
+	}
+	
+	private void updateStuff() {
+		//it is 3am
 		markDirty();
 		IBlockState ok = world.getBlockState(pos);
 		world.notifyBlockUpdate(pos, ok, ok, 2);
+		world.updateComparatorOutputLevel(pos, getBlockType());
 	}
 	
 	public boolean hasRetainedObject() {
@@ -59,6 +65,10 @@ public class TileCygnusRetainer extends TileCygnusBase implements ICygnusFunnela
 	@Nullable
 	public Object getRetainedObject() {
 		return retained;
+	}
+	
+	public int getComparator() {
+		return comparator;
 	}
 	
 	@Override
@@ -76,6 +86,7 @@ public class TileCygnusRetainer extends TileCygnusBase implements ICygnusFunnela
 		super.readFromNBT(nbt);
 		if(nbt.hasKey("Retained")) {
 			retained = CygnusDatatypeHelpers.readFromNBT(nbt.getCompoundTag("Retained"));
+			comparator = CygnusDatatypeHelpers.forClass(retained.getClass()).toComparatorUnchecked(retained);
 		} else retained = null;
 	}
 	
@@ -93,9 +104,7 @@ public class TileCygnusRetainer extends TileCygnusBase implements ICygnusFunnela
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
 		readFromNBT(pkt.getNbtCompound());
-		
-		IBlockState ok = world.getBlockState(pos);
-		world.notifyBlockUpdate(pos, ok, ok, 3);
+		updateStuff();
 	}
 	
 	@Override

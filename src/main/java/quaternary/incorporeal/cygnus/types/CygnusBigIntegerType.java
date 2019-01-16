@@ -28,7 +28,7 @@ public class CygnusBigIntegerType implements ICygnusDatatype<BigInteger> {
 	@Override
 	public BigInteger readFromNBT(NBTTagCompound nbt) {
 		//Quick hack because there's no way to get a byte array tag from a string (that i know of)
-		//So you can't set it with entitydata etc
+		//So you can't set it with /entitydata etc
 		if(nbt.hasKey("BigInt", Constants.NBT.TAG_LIST)) {
 			NBTTagList list = nbt.getTagList("BigInt", Constants.NBT.TAG_INT);
 			if(list.tagCount() == 0) return BigInteger.ZERO;
@@ -79,5 +79,14 @@ public class CygnusBigIntegerType implements ICygnusDatatype<BigInteger> {
 	@Override
 	public int compare(BigInteger item1, BigInteger item2) {
 		return item1.compareTo(item2);
+	}
+	
+	private static final BigInteger FIFTEEN = BigInteger.valueOf(15);
+	
+	@Override
+	public int toComparator(BigInteger item) {
+		if(item.compareTo(BigInteger.ONE) < 0) return 1;
+		if(item.compareTo(FIFTEEN) > 0) return 15;
+		else return item.intValue();
 	}
 }
