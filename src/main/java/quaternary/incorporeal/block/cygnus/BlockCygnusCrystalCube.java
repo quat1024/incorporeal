@@ -27,6 +27,16 @@ public class BlockCygnusCrystalCube extends BlockCygnusBase implements ICygnusSp
 	public static final UnlistedSimpleRegistryProperty<Predicate<ICygnusStack>> UNLISTED_CONDITION = IncorporeticStateProps.UNLISTED_CONDITION;
 	
 	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
+	
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+	
+	@Override
 	public boolean acceptsCygnusSpark(World world, IBlockState state, BlockPos pos) {
 		return true;
 	}

@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"textures": {
 		"tex": "incorporeal:block/cygnus/word/frame_word",
 		"particle": "incorporeal:block/cygnus/word/frame_word"

@@ -27,6 +27,7 @@ import quaternary.incorporeal.block.cygnus.IncorporeticCygnusBlocks;
 import quaternary.incorporeal.client.entityrenderer.RenderEntityCygnusMasterSpark;
 import quaternary.incorporeal.client.entityrenderer.RenderEntityCygnusRegularSpark;
 import quaternary.incorporeal.client.model.CygnusWordModelLoader;
+import quaternary.incorporeal.client.model.MashedModelLoader;
 import quaternary.incorporeal.client.tesr.RenderItemSoulCore;
 import quaternary.incorporeal.client.tesr.RenderTileCorporeaSparkTinkerer;
 import quaternary.incorporeal.client.tesr.RenderTileSoulCore;
@@ -131,6 +132,7 @@ public final class ClientRegistryEvents {
 		
 		//Block model loader things
 		ModelLoaderRegistry.registerLoader(new CygnusWordModelLoader());
+		ModelLoaderRegistry.registerLoader(new MashedModelLoader());
 	}
 	
 	private static void setSimpleModel(Item i) {
