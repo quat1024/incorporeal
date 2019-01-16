@@ -3,6 +3,7 @@ package quaternary.incorporeal.client;
 import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -21,6 +22,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.api.ISimpleRegistry;
+import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.block.cygnus.BlockCygnusFunnel;
 import quaternary.incorporeal.block.cygnus.IncorporeticCygnusBlocks;
@@ -33,12 +36,15 @@ import quaternary.incorporeal.client.tesr.RenderTileCorporeaSparkTinkerer;
 import quaternary.incorporeal.client.tesr.RenderTileSoulCore;
 import quaternary.incorporeal.client.tesr.cygnus.RenderTileCygnusRetainer;
 import quaternary.incorporeal.client.tesr.decorative.RenderTileUnstableCube;
+import quaternary.incorporeal.cygnus.CygnusRegistries;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusRegularSpark;
 import quaternary.incorporeal.flower.SubTileSanvocalia;
 import quaternary.incorporeal.flower.SubTileSweetAlexum;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
+import quaternary.incorporeal.item.cygnus.ItemCygnusCard;
+import quaternary.incorporeal.item.cygnus.ItemCygnusWordCard;
 import quaternary.incorporeal.tile.TileCorporeaSparkTinkerer;
 import quaternary.incorporeal.tile.cygnus.TileCygnusRetainer;
 import quaternary.incorporeal.tile.decorative.TileUnstableCube;
@@ -47,6 +53,9 @@ import quaternary.incorporeal.tile.soulcore.TileEnderSoulCore;
 import vazkii.botania.api.BotaniaAPIClient;
 import vazkii.botania.api.state.BotaniaStateProps;
 import vazkii.botania.api.subtile.SubTileEntity;
+
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = Incorporeal.MODID, value = Side.CLIENT)
 public final class ClientRegistryEvents {
@@ -82,6 +91,9 @@ public final class ClientRegistryEvents {
 		setFlowerModel(SubTileSanvocalia.Mini.class, "sanvocalia_chibi");
 		setFlowerModel(SubTileSweetAlexum.class, "sweet_alexum");
 		setFlowerModel(SubTileSweetAlexum.Mini.class, "sweet_alexum_chibi");
+		
+		setCygnusCardSpreadingModel(IncorporeticCygnusItems.WORD_CARD, CygnusRegistries.ACTIONS, "cygnus/word/");
+		setCygnusCardSpreadingModel(IncorporeticCygnusItems.CRYSTAL_CUBE_CARD, CygnusRegistries.CONDITIONS, "cygnus/crystal_cube/");
 		
 		//Statemappers
 		setIgnoreAllStateMapper(IncorporeticBlocks.FRAME_TINKERER);
@@ -155,6 +167,26 @@ public final class ClientRegistryEvents {
 			ModelResourceLocation mrl = new ModelResourceLocation(res, "inventory");
 			ModelLoader.setCustomModelResourceLocation(i, color, mrl);
 		}
+	}
+	
+	private static <T> void setCygnusCardSpreadingModel(ItemCygnusCard<T> i, ISimpleRegistry<T> reg, String pathExt) {
+		ModelLoader.setCustomMeshDefinition(i, stack -> {
+			ResourceLocation actionName = reg.nameOf(i.readValue(stack));
+			return new ModelResourceLocation(
+				new ResourceLocation(
+					actionName.getNamespace(),
+					pathExt + actionName.getPath()
+				),
+				"inventory"
+			);
+		});
+		
+		ModelLoader.registerItemVariants(i, reg.allKeys().stream().map(res -> {
+			return new ResourceLocation(
+				res.getNamespace(),
+				pathExt + res.getPath()
+			);
+		}).toArray(ResourceLocation[]::new));
 	}
 	
 	private static void setIgnoreAllStateMapper(Block b) {
