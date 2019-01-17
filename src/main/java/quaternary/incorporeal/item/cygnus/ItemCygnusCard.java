@@ -35,7 +35,7 @@ public abstract class ItemCygnusCard<T> extends Item {
 		if(s.isEmpty()) return defaultValue;
 		
 		T thing = registry.get(new ResourceLocation(s));
-		if(thing == null) return thing;
+		if(thing == null) return defaultValue;
 		else return thing;
 	}
 	
