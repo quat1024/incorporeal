@@ -31,7 +31,6 @@ import quaternary.incorporeal.tile.cygnus.TileCygnusCrystalCube;
 import vazkii.botania.client.core.handler.ClientTickHandler;
 
 public class RenderTileCygnusCrystalCube extends TileEntitySpecialRenderer<TileCygnusCrystalCube> {
-	
 	//HUGE portions copied from RenderTileCorporeaCrystalCube, understandably since they are similar, lol
 	
 	private EntityItem entity = null;

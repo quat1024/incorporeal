@@ -20,7 +20,7 @@ public final class IncorporeticCygnusItems {
 		private RegistryNames() {}
 		
 		public static final String WORD_CARD = "cygnus_word_card";
-		public static final String CRYSTAL_CUBE_CARD = "crystal_cube_card";
+		public static final String CRYSTAL_CUBE_CARD = "cygnus_crystal_cube_card";
 		
 		public static final String MASTER_CYGNUS_SPARK = "master_cygnus_spark";
 		public static final String CYGNUS_SPARK = "cygnus_spark";

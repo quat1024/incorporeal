@@ -1,11 +1,21 @@
+## Hey, thanks for translating Incorporeal. You're the best.
+## A few things to keep in mind:
+##  - Please don't copy lines from English. If you simply leave off a lang key, Minecraft will pull the English translation on its own.
+##  - I will try to comment-out lang entries that are no longer applicable. So like, if I update how an item works and need to change it's Lexica Botania entry, I will comment out the entry in other languages.
+##  - Translator's notes (references, etc) are marked with "note".
+##  - Please be careful about translating references!
+##  - Feel free to ask me any questions you have or let me know if there are any problems with text length, formatting, ...
+##
+## Thanks again! Good luck!
+
+# Creative tab
 itemGroup.incorporeal=Incorporeal
 
+# Corporea Stuff
 item.incorporeal.ticket_conjurer.name=Ticket Conjurer
-
 item.incorporeal.corporea_ticket.name=Corporea Ticket (blank)
 item.incorporeal.filled_corporea_ticket.name=Corporea Ticket (%sx %s)
 item.incorporeal.fractured_space_rod.name=Rod of the Fractured Space
-
 tile.incorporeal.corporea_liar.name=Corporea Prevaricator
 tile.incorporeal.corporea_inhibitor.name=Corporea Inhibitor
 tile.incorporeal.corporea_solidifier.name=Corporea Solidifier
@@ -13,13 +23,16 @@ tile.incorporeal.corporea_spark_tinkerer.name=Corporea Spark Tinkerer
 tile.incorporeal.corporea_retainer_decrementer.name=Corporea Retainer Evaporator
 tile.incorporeal.frame_tinkerer.name=Frame Tinkerer
 
+# Soul Cores
 item.incorporeal.soul_core_frame.name=Soul Core Frame
 tile.incorporeal.ender_soul_core.name=Ender Soul Core
 tile.incorporeal.corporea_soul_core.name=Corporetic Soul Core
 
+# Natural devices
 tile.incorporeal.natural_repeater.name=Earthen Repeater
 tile.incorporeal.natural_comparator.name=Earthen Comparator
 
+# Unstable cubes
 tile.incorporeal.unstable_cube.black.name=Black Unstable Cube
 tile.incorporeal.unstable_cube.red.name=Red Unstable Cube
 tile.incorporeal.unstable_cube.green.name=Green Unstable Cube
@@ -37,6 +50,17 @@ tile.incorporeal.unstable_cube.magenta.name=Magenta Unstable Cube
 tile.incorporeal.unstable_cube.orange.name=Orange Unstable Cube
 tile.incorporeal.unstable_cube.white.name=White Unstable Cube
 
+#Cygnus blocks/items
+item.incorporeal.cygnus_word_card.name=Cygnus Word Pattern: %s
+item.incorporeal.cygnus_crystal_cube_card.name=Cygnus Crystal Cube Pattern: %s
+item.incorporeal.master_cygnus_spark.name=Master Cygnus Spark
+item.incorporeal.cygnus_spark.name=Cygnus Spark
+
+tile.incorporeal.cygnus_crystal_cube.name=Cygnus Crystal Cube
+tile.incorporeal.cygnus_word.name=Cygnus Word
+tile.incorporeal.cygnus_funnel.name=Cygnus Funnel
+tile.incorporeal.cygnus_retainer.name=Cygnus Retainer
+
 #Flowers
 tile.incorporeal.flower.sanvocalia.name=Sanvocalia
 tile.incorporeal.flower.sanvocalia_chibi.name=Sanvocalia Petite
@@ -48,6 +72,7 @@ tile.incorporeal.flower.sweet_alexum_chibi.name=Sweet Alexum Petite
 tile.incorporeal.flower.sweet_alexum.flavor=This is so sad
 tile.incorporeal.flower.sweet_alexum_chibi.flavor=This is so sad
 #TODO report this as a bug, SubTileFunctional$renderHUD hardcodes the wrong flower localization key
+# note | please make sure these lines match the lines above
 tile.botania:flower.sanvocalia.name=Sanvocalia
 tile.botania:flower.sanvocaliaChibi.name=Sanvocalia Petite
 tile.botania:flower.sweet_alexum.name=Sweet Alexum
@@ -59,6 +84,7 @@ tile.botania:flower.sweet_alexum_chibi.name=Sweet Alexum Petite
 botania.entry.incorporeal.frame_tinkerer=Frame Tinkerer
 botania.tagline.incorporeal.frame_tinkerer=Swap items in item frames
 botania.page.incorporeal.frame_tinkerer0=The &1Frame Tinkerer&0 is an indispensable tool for any advanced corporeticist. It acts like a &1Spark Tinkerer&0 - drop an item on it, give it a redstone signal, and the item will change places with one in a random nearby &1Item Frame&0.<br>Note that, unlike the &1Spark Tinkerer&0, the &1Frame Tinkerer&0 doesn't have a dedicated location to place items. Just dropping the item on top will suffice.
+# note | UKSRT reference (probably best left as-is)
 botania.page.incorporeal.frame_tinkerer.flavor=Symbiotic Hematophage
 
 botania.entry.incorporeal.naturalDevices=Earthen Devices
@@ -72,6 +98,7 @@ botania.entry.sweet_alexum=Sweet Alexum
 botania.tagline.sweet_alexum=Plays a beautiful(...?) song
 botania.page.sweet_alexum0=Legend has it that placing &1Note Blocks&0 around a mana-fed &1Sweet Alexum&0 flower will cause the note blocks to resonate with only the most beautiful of frequencies. For best results, four &1Note Blocks&0 are required to play all of the parts: one above &1sand&0, one above &1wood&0, one above &1rock&0, and one above a block composed of the &1purest balance&0.
 botania.page.sweet_alexum1=They also say providing the flower with a high-powered &4Redstone Signal&0 will restart the tune; while a low-powered signal will merely pause it, and that the &1Sweet Alexum Petite&0 needs the &1Note Blocks&0 to be placed much closer, but plays the song at a faster clip.<br>I wonder if these legends have any truth to them?
+# note | "this is so sad, Alexa play Despacito" reference (this whole flower is)
 botania.page.sweet_alexum.flavor=This is so sad.
 
 ########ELVEN
@@ -80,51 +107,62 @@ botania.entry.incorporeal.fractured_space_rod=Rod of the Fractured Space
 botania.tagline.incorporeal.fractured_space_rod=Send items from anywhere to an Open Crate
 botania.page.incorporeal.fractured_space_rod0=The &1Rod of the Fractured Space&0 has the unique ability to, albeit briefly, open a small wormhole between two points in space. Only &1Items&0 seem to be small and light enough to fit.<br>Right click on an &1Open Crate&0 to set the destination location.
 botania.page.incorporeal.fractured_space_rod1=Then, any time you right click on the ground, all &1Items&0 nearby will be sucked in to the wormhole and dropped out of the &1Open Crate&0, no matter where they are. The process consumes more &1Mana&0 when more items are sent at once; perhaps packaging them up into something like a &1Shulker Box&0 first would be beneficial?
+# note | reference to advice I heard when making mod files for dance games.
+# "ease" refers to a smooth sliding motion
 botania.page.incorporeal.fractured_space_rod.flavor=Ease, don't teleport
 
 botania.entry.incorporeal.ticket_conjurer=Ticket Conjurer
 botania.tagline.incorporeal.ticket_conjurer=Create corporea tickets on the go
 botania.page.incorporeal.ticket_conjurer0=The &1Ticket Conjurer&0 assists in the creation of arbitrary &1Corproea Tickets&0, for use with the &1Sanvocalia&0 flower. Other than the fact that it's an item, not a block, it acts identically to a &1Corporea Index&0. Simply hold it in either hand, speak a &4Corporea Request&0, and a &1Corporea Ticket&0 will be created for it.
 botania.page.incorporeal.ticket_conjurer1=The only other difference between it and a &1Corporea Index&0 is in the behavior of the word "this", which will refer to the item in your off-hand when you hold the &1Ticket Conjurer&0 in your main hand, and vice versa.
+# note | uksrt8 reference
 botania.page.incorporeal.ticket_conjurer.flavor=Dying Breath of Stokesia
 
 ####CORPOREA BLOCKS
 botania.entry.incorporeal.corporea_inhibitor=Corporea Inhibitor
 botania.tagline.incorporeal.corporea_inhibitor=Block corporea spark connections
 botania.page.incorporeal.corporea_inhibitor0=The &1Corporea Inhibitor&0's peculiar composition seems to distort the corporetic field in a curious way. &1Corporea Sparks&0 are simply unable to form connections that pass through it.<br>They are pushable with &1Pistons&0.
+# uksrt reference (none in particular, they're all like this lol)
 botania.page.incorporeal.corporea_inhibitor.flavor=Completely unreadable!
 
 botania.entry.incorporeal.corporea_liar=Corporea Prevaricator
 botania.tagline.incorporeal.corporea_liar=Lie to your network
 botania.page.incorporeal.corporea_liar0=The &1Corporea Prevaricator&0 allows for one to lie to their very own &4Corporea Network&0.<br>When this block is added to a &4Corporea Network&0 and facing into an inventory, the &1Corporea Prevaricator&0 will present the items in the inventory to the &4Corporea Network&0 as if it was an inventory full of whatever is in any adjacent &1Item Frames&0.
 botania.page.incorporeal.corporea_liar1=Extracting items from the linked inventory works normally. Since the &4Corporea Network&0 believes the inventory to be full of whatever is in the item frames, what is requested may not match what is received.<br>Note that the &1Corporea Prevaricator&0 needs the &1Corporea Spark&0, instead of the linked inventory.
+# song reference - "tang pong" by Mass Kaneko - probably best untranslated
 botania.page.incorporeal.corporea_liar.flavor=tang pong
 
 botania.entry.incorporeal.corporea_solidifier=Corporea Solidifier
 botania.tagline.incorporeal.corporea_solidifier=Treat corporea requests as items
 botania.page.incorporeal.corporea_solidifier0=The &1Corporea Solidifier&0 acts as a replacement for the &1Corporea Retainer&0. When placed next to a &1Corporea Interceptor&0, the &1Corporea Solidifier&0, instead of remembering the interceptor's request, will create a &1Corporea Ticket&0 containing the item and item count of the request.
 botania.page.incorporeal.corporea_solidifier1=Note that the &1Sanvocalia&0 functional flower seems to be particularly interested in the energies these &1Corporea Tickets&0 give off.
+# note | hey look another uksrt reference - this time to Defrag Dance from uksrt8
 botania.page.incorporeal.corporea_solidifier.flavor=Up, up, down, up
 
 botania.entry.incorporeal.corporea_spark_tinkerer=Corporea Spark Tinkerer
 botania.tagline.incorporeal.corporea_spark_tinkerer=Change corporea networks with redstone
 botania.page.incorporeal.corporea_spark_tinkerer0=The &1Corporea Spark Tinkerer&0 works much like a &1Spark Tinkerer&0, but for &1Corporea Spark&0 networks, as opposed to &1Spark Augments&0. When the &1Corporea Spark Tinkerer&0 is placed next to a block with a &1Corporea Spark&0 on it, it will switch colors with a random adjacent &1Corporea Spark&0 when given a redstone signal.
 botania.page.incorporeal.corporea_spark_tinkerer1=The color of the &1Corporea Spark Tinkerer&0 itself can be manually adjusted by rubbing some &1Floral Powder&0 against it.
+# note | these are just names of modifiers in stepmania
 botania.page.incorporeal.corporea_spark_tinkerer.flavor=Flip and invert
 
 botania.entry.incorporeal.corporea_retainer_decrementer=Corporea Retainer Evaporator
 botania.tagline.incorporeal.corporea_retainer_decrementer=Wither away a retainer signal
 botania.page.incorporeal.corporea_retainer_decrementer0=The &1Corporea Retainer Evaporator&0 is an addon to the &1Corporea Retainer&0, similar to how the &1Corporea Retainer&0 is itself an addon for the &1Corporea Interceptor&0. When the &1Corporea Retainer Evaporator&0 receives a redstone signal, the item counts of all stored requests in adjacent &1Corporea Retainers&0 will decrease by 1.
 botania.page.incorporeal.corporea_retainer_decrementer1=Note that this process is destructive; powering the &1Corporea Retainer&0 after decrementing its request size will cause it to perform a request of the new size. Using multiple retainers off of the same &1Corporea Interceptor&0 could prove useful.
+# note | reference to "DE-SIRE retunes - CHAOS" from DDR SuperNOVA, which has this awful pausing gimmick (hence the whitespace)
 botania.page.incorporeal.corporea_retainer_decrementer.flavor=Cha os [Chal len ge ]
 
 botania.entry.incorporeal.soulCores=Soul Cores
 botania.tagline.incorporeal.soulCores=Spirit-specific interactions
 botania.page.incorporeal.soulCores0=&1Soul Cores&0 surround and envelop a &1Player Head&0 in a light mana solution, ever-so-slightly reanimating it. The disembodied head, while not capable of too much remaining brain function, is somehow entangled with the same &4Soul&0 as the real, live &4Player&0 the head is from. Place them by right clicking on a placed &1Player Head&0.
+# note | a type of pattern from modded dance games
 botania.page.incorporeal.soulCores.flavor0=Driven Drop
 botania.page.incorporeal.soulCores1=The &1Ender Soul Core&0 provides block-level access to the &1Ender Chest&0 inventory of the bound &1Player&0. As long as the &1Player&0's spirit is present, the &1Ender Soul Core&0's inventory will mirror the contents of their &1Ender Chest&0. All the usual interactions work; hoppers, corporea sparks...
+# note | some reference idk
 botania.page.incorporeal.soulCores.flavor1=You Would Not Believe This Random Hecking Nonsense
 botania.page.incorporeal.soulCores2=The &1Corporea Soul Core&0 is a simple privacy system for &4Corporea Networks&0. &1Players&0 are not able to use a &4Corporea Index&0 on the same network as a &1Corporea Soul Core&0, unless one of the &1Corporea Soul Core&0s contains their &4Soul&0.
+# note | song reference to "line delta" by nitro, it's a sample in the song
 botania.page.incorporeal.soulCores.flavor2=Now let me see you &2DANCE&0
 
 ####OTHER ELVEN THINGIES
@@ -132,6 +170,7 @@ botania.page.incorporeal.soulCores.flavor2=Now let me see you &2DANCE&0
 botania.entry.sanvocalia=Sanvocalia
 botania.tagline.sanvocalia=Talk to Corporea Indexes
 botania.page.sanvocalia0=The &1Sanvocalia&0 is a flower especially attuned to corporetic frequencies. When this flower has &1Mana&0 available and is near a &1Corporea Index&0, it will whisper the requests written on nearby &1Corporea Tickets&0 to the &1Index&0.<br>Tickets can be created with a &1Corporea Solidifier&0 or a &1Ticker Conjurer&0.
+# note | the other part of the "up, up, down, up" reference
 botania.page.sanvocalia.flavor=Do you still remember?
 
 # Cygnus
@@ -144,7 +183,31 @@ incorporeal.cygnus.error.invalid_math=Invalid math operation: %s
 incorporeal.cygnus.error.invalid_math.too_big=Too big
 incorporeal.cygnus.error.invalid_math.too_small=Too small
 incorporeal.cygnus.error.invalid_math.divide_by_0=Divide by zero
-incorporeal.cygnus.error.removed_type=(removed datatype)
+#If Incorporeal ever can't find a datatype when loading a stack, it gets replaced with this error
+incorporeal.cygnus.error.removed_type=(removed dataclass)
+
+incorporeal.cygnus.action.nothing=Nothing
+incorporeal.cygnus.action.duplicate=Clone
+incorporeal.cygnus.action.number_add=Sum
+incorporeal.cygnus.action.number_subtract=Difference
+incorporeal.cygnus.action.number_multiply=Product
+incorporeal.cygnus.action.number_divide=Quotient
+incorporeal.cygnus.action.number_remainder=Remainder
+# This is a "getter"
+incorporeal.cygnus.action.request_get_count=Report Request Magnitude
+# And this is a "setter".
+incorporeal.cygnus.action.request_set_count=Overlay Request Magnitude
+incorporeal.cygnus.action.request_set_item=Overlay Request Item
+incorporeal.cygnus.action.stack_get_depth=Report Stack Depth
+
+incorporeal.cygnus.condition.nothing=Nothing
+incorporeal.cygnus.condition.empty_stack=Empty Stack
+incorporeal.cygnus.condition.full_stack=Full Stack
+incorporeal.cygnus.condition.equal_value=Equal Value
+incorporeal.cygnus.condition.equal_type=Equal Class
+incorporeal.cygnus.condition.less_than=Less Than
+incorporeal.cygnus.condition.greater_than=Greater Than
+incorporeal.cygnus.condition.errored=Has Error
 
 #Blah!!!
 
@@ -156,9 +219,10 @@ incorporeal.fracturedSpace.noCrateThere=Missing crate at bound location
 incorporeal.fracturedSpace.tooltipBound=Bound to a crate
 incorporeal.fracturedSpace.tooltipNotBound=Not bound to a crate
 incorporeal.fracturedSpace.tooltipWrongDimension=! Bound crate not of this realm
-incorporeal.fracturedSpace.debug.tooltipPos=Bound position: X %s, Y %s, %s
+incorporeal.fracturedSpace.debug.tooltipPos=Bound position: X %s, Y %s, Z %s
 incorporeal.fracturedSpace.debug.tooltipDim=Bound dimension: %s
 
+# if you try to request things from a corporea network that doesn't have your Corporea Soul Core:
 incorporeal.etc.noSoulCore=Your soul is not compatible with this Corporea Network.
 
 incorporeal.etc.holdingTicketConjurer0=Holding Ticket Conjurer!
@@ -167,4 +231,6 @@ incorporeal.etc.holdingTicketConjurer2=create a Corporea Ticket
 
 incorporeal.etc.onlyTextureWip=(Works fine, only the texture is WIP!)
 
+# the entity that collects items for the Rod of the Fractured Space
+# it's invisible, but translate this anyways for WAILA purposes!
 entity.incorporeal.fractured_space_collector.name=Fractured Space (collector)

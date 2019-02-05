@@ -15,12 +15,6 @@ Stuff I'm likely to forget about + stuff I need to do. Don't release without the
   * Both functions just pass the buck on to `CorporeaHelper.doCorporeaRequest` which can take both stacks and strings.
   * Neither function does anything else with the argument.
   * So it's possible to just remove the typecheck, and cross-type request shoving works just fine.
-  
-* Implement funnels-requesting-strings...?
-  * This is useful.
-  * Basically just if the funnel has a renamed item, it requests the string containing the item's name.
-  * This lets you do wildcards and stuff from a corporea funnel.
-  * Problem: you can request * from a corporea funnel which is not supposed to be possible.
 
 * Think over the fuzzy-match funnel and crystal cube and stuff.
   * The problem dud is trying to solve is that ticket *processing* through the ender soul core is silly.
@@ -50,3 +44,12 @@ Stuff I'm likely to forget about + stuff I need to do. Don't release without the
   * I like the idea of numbers being hard to reach automatically, but a ticket conjurer-like would be really handy either way.
 
 * Playtest lol???
+
+## IDEA BONFIRE
+
+* red string cygnus retainer
+* important cyg funnel things:
+  * pull from a regular corporea crystal cube -> corporearequest of whatever is inside
+  * push into a repeater number 1 - 4 -> sets delay
+  * push into written book/piece of paper (on the ground or in a frame) -> saves as item (could save to a corporea ticket)
+  * same for pulling

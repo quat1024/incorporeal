@@ -29,6 +29,7 @@ import quaternary.incorporeal.block.cygnus.BlockCygnusFunnel;
 import quaternary.incorporeal.block.cygnus.IncorporeticCygnusBlocks;
 import quaternary.incorporeal.client.entityrenderer.RenderEntityCygnusMasterSpark;
 import quaternary.incorporeal.client.entityrenderer.RenderEntityCygnusRegularSpark;
+import quaternary.incorporeal.client.model.CygnusCardModelLoader;
 import quaternary.incorporeal.client.model.CygnusWordModelLoader;
 import quaternary.incorporeal.client.model.MashedModelLoader;
 import quaternary.incorporeal.client.tesr.RenderItemSoulCore;
@@ -85,15 +86,16 @@ public final class ClientRegistryEvents {
 		setSimpleModel(IncorporeticCygnusItems.FUNNEL);
 		setSimpleModel(IncorporeticCygnusItems.RETAINER);
 		
+		//actually goes through custom model loaders owo
+		setSimpleModel(IncorporeticCygnusItems.WORD_CARD);
+		setSimpleModel(IncorporeticCygnusItems.CRYSTAL_CUBE_CARD);
+		
 		set16DataValuesPointingAtSameModel(IncorporeticItems.DECORATIVE_UNSTABLE_CUBE);
 		
 		setFlowerModel(SubTileSanvocalia.class, "sanvocalia");
 		setFlowerModel(SubTileSanvocalia.Mini.class, "sanvocalia_chibi");
 		setFlowerModel(SubTileSweetAlexum.class, "sweet_alexum");
 		setFlowerModel(SubTileSweetAlexum.Mini.class, "sweet_alexum_chibi");
-		
-		setCygnusCardSpreadingModel(IncorporeticCygnusItems.WORD_CARD, CygnusRegistries.ACTIONS, "cygnus/word/");
-		setCygnusCardSpreadingModel(IncorporeticCygnusItems.CRYSTAL_CUBE_CARD, CygnusRegistries.CONDITIONS, "cygnus/crystal_cube/");
 		
 		//Statemappers
 		setIgnoreAllStateMapper(IncorporeticBlocks.FRAME_TINKERER);
@@ -145,6 +147,7 @@ public final class ClientRegistryEvents {
 		//Block model loader things
 		ModelLoaderRegistry.registerLoader(new CygnusWordModelLoader());
 		ModelLoaderRegistry.registerLoader(new MashedModelLoader());
+		ModelLoaderRegistry.registerLoader(new CygnusCardModelLoader());
 	}
 	
 	private static void setSimpleModel(Item i) {
@@ -167,26 +170,6 @@ public final class ClientRegistryEvents {
 			ModelResourceLocation mrl = new ModelResourceLocation(res, "inventory");
 			ModelLoader.setCustomModelResourceLocation(i, color, mrl);
 		}
-	}
-	
-	private static <T> void setCygnusCardSpreadingModel(ItemCygnusCard<T> i, ISimpleRegistry<T> reg, String pathExt) {
-		ModelLoader.setCustomMeshDefinition(i, stack -> {
-			ResourceLocation actionName = reg.nameOf(i.readValue(stack));
-			return new ModelResourceLocation(
-				new ResourceLocation(
-					actionName.getNamespace(),
-					pathExt + actionName.getPath()
-				),
-				"inventory"
-			);
-		});
-		
-		ModelLoader.registerItemVariants(i, reg.allKeys().stream().map(res -> {
-			return new ResourceLocation(
-				res.getNamespace(),
-				pathExt + res.getPath()
-			);
-		}).toArray(ResourceLocation[]::new));
 	}
 	
 	private static void setIgnoreAllStateMapper(Block b) {
