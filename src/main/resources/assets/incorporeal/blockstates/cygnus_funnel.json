@@ -4,7 +4,8 @@
 		"model": "incorporeal:general/observish",
 		"textures": {
 			"bottom": "incorporeal:block/cygnus/funnel/back",
-			"front": "incorporeal:block/cygnus/funnel/front"
+			"front": "incorporeal:block/cygnus/funnel/front",
+			"particle": "incorporeal:block/cygnus/funnel/front"
 		}
 	},
 	"variants": {

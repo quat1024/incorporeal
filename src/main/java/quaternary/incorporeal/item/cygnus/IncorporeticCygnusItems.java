@@ -24,6 +24,8 @@ public final class IncorporeticCygnusItems {
 		
 		public static final String MASTER_CYGNUS_SPARK = "master_cygnus_spark";
 		public static final String CYGNUS_SPARK = "cygnus_spark";
+		
+		public static final String CYGNUS_TICKET = "cygnus_ticket";
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.WORD_CARD)
@@ -37,6 +39,9 @@ public final class IncorporeticCygnusItems {
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CYGNUS_SPARK)
 	public static final ItemCygnusSpark CYGNUS_SPARK = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(RegistryNames.CYGNUS_TICKET)
+	public static final ItemCygnusTicket CYGNUS_TICKET = EtcHelpers.definitelyIsntNullISwear();
 	
 	//Itemblocks
 	@GameRegistry.ObjectHolder(IncorporeticCygnusBlocks.RegistryNames.WORD)
@@ -57,6 +62,8 @@ public final class IncorporeticCygnusItems {
 		
 		registerItem(new ItemCygnusSpark(true), RegistryNames.MASTER_CYGNUS_SPARK, reg);
 		registerItem(new ItemCygnusSpark(false), RegistryNames.CYGNUS_SPARK, reg);
+		
+		registerItem(new ItemCygnusTicket(), RegistryNames.CYGNUS_TICKET, reg);
 		
 		registerItemBlock(new ItemBlock(IncorporeticCygnusBlocks.WORD), reg);
 		registerItemBlock(new ItemBlock(IncorporeticCygnusBlocks.CRYSTAL_CUBE), reg);

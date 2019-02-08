@@ -1,6 +1,7 @@
 package quaternary.incorporeal.tile.cygnus;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -10,6 +11,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -19,15 +21,24 @@ import quaternary.incorporeal.cygnus.CygnusStack;
 import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
 import quaternary.incorporeal.etc.RedstoneDustCygnusFunnelable;
+import quaternary.incorporeal.etc.RedstoneRepeaterCygnusFunnelable;
 import quaternary.incorporeal.etc.helper.CygnusHelpers;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Optional;
 
-public class TileCygnusFunnel extends TileEntity {
+public class TileCygnusFunnel extends TileEntity implements ITickable {
 	private boolean isPowered;
 	private boolean backLit;
 	private boolean frontLit;
+	
+	@Override
+	public void update() {
+		if(world.getTotalWorldTime() % 20 == 0) {
+			updateArrowStatus(pos, world.getBlockState(pos).getValue(BlockCygnusFunnel.FACING));
+		}
+	}
 	
 	public void updateArrowStatus(BlockPos pos, EnumFacing facing) {
 		BlockPos fromPos = pos.offset(facing.getOpposite());
@@ -52,8 +63,6 @@ public class TileCygnusFunnel extends TileEntity {
 		IBlockState state = world.getBlockState(pos);
 		EnumFacing facing = state.getValue(BlockCygnusFunnel.FACING);
 		boolean shouldPower = world.isBlockPowered(pos);
-		
-		updateArrowStatus(pos, facing);
 		
 		if(isPowered != shouldPower) {
 			isPowered = shouldPower;
@@ -86,8 +95,7 @@ public class TileCygnusFunnel extends TileEntity {
 				
 				CygnusStack stack = master.getCygnusStack();
 				if(sourceCanGive) {
-					Object given = source.giveItemToCygnus();
-					if(given != null)	stack.push(given);
+					Optional.ofNullable(source.giveItemToCygnus()).ifPresent(stack::push);
 				} else {
 					stack.pop().ifPresent(sink::acceptItemFromCygnus);
 				}
@@ -147,6 +155,9 @@ public class TileCygnusFunnel extends TileEntity {
 		} else if(b == Blocks.REDSTONE_WIRE) {
 			//Not my block to slap an interface on to, let's just hardcode it lmao
 			return RedstoneDustCygnusFunnelable.forLevel(state.getValue(BlockRedstoneWire.POWER));
+		} else if(b == Blocks.POWERED_REPEATER || b == Blocks.UNPOWERED_REPEATER) {
+			//Same here. Yeahh not really a better solution to this other than map lookups or asm
+			return new RedstoneRepeaterCygnusFunnelable(world, pos);
 		}
 		
 		//Is it a tile entity capability?

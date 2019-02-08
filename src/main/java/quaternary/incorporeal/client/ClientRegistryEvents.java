@@ -80,6 +80,7 @@ public final class ClientRegistryEvents {
 		
 		setSimpleModel(IncorporeticCygnusItems.MASTER_CYGNUS_SPARK);
 		setSimpleModel(IncorporeticCygnusItems.CYGNUS_SPARK);
+		setSimpleModel(IncorporeticCygnusItems.CYGNUS_TICKET);
 		
 		setSimpleModel(IncorporeticCygnusItems.WORD);
 		setSimpleModel(IncorporeticCygnusItems.CRYSTAL_CUBE);

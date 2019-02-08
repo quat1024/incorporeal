@@ -1,9 +1,13 @@
 package quaternary.incorporeal.cygnus.types;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.etc.helper.CorporeaHelper2;
@@ -11,11 +15,23 @@ import vazkii.botania.api.corporea.CorporeaHelper;
 import vazkii.botania.api.corporea.CorporeaRequest;
 
 import java.io.IOException;
+import java.util.List;
 
 public class CygnusCorporeaRequestType implements ICygnusDatatype<CorporeaRequest> {
 	@Override
 	public Class<CorporeaRequest> getTypeClass() {
 		return CorporeaRequest.class;
+	}
+	
+	@Override
+	public String getTranslationKey() {
+		return "incorporeal.cygnus.type.corporea_request";
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public List<String> describe(CorporeaRequest thing) {
+		return ImmutableList.of(TextFormatting.ITALIC + "\"" + toString(thing) + "\"");
 	}
 	
 	@Override

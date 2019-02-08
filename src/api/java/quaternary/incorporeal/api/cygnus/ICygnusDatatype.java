@@ -1,10 +1,14 @@
 package quaternary.incorporeal.api.cygnus;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.api.IIncorporealAPI;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * This class tells Incorporeal everything it needs to know about a Cygnus datatype.
@@ -21,6 +25,21 @@ public interface ICygnusDatatype<T> {
 	 * @return The class that this Cygnus serializer is in charge of.
 	 */
 	Class<T> getTypeClass();
+	
+	/**
+	 * @return A translation key that describes this datatype, e.g. "incorporeal.cygnus.type.corporea_request", which translates to "Corporea Request"
+	 */
+	String getTranslationKey();
+	
+	/**
+	 * Write details about this item in the tooltip.
+	 * Feel free to add text formatting codes and other goodies.
+	 * @return Lines to be added directly to the tooltip (they will not be translated, do that yourself!)
+	 */
+	@SideOnly(Side.CLIENT)
+	default List<String> describe(T thing) {
+		return ImmutableList.of(toString(thing));
+	}
 	
 	/**
 	 * Write this item to an NBT tag compound.
@@ -148,5 +167,14 @@ public interface ICygnusDatatype<T> {
 	@SuppressWarnings("unchecked")
 	default int toComparatorUnchecked(Object item) {
 		return toComparator((T) item);
+	}
+	
+	/**
+	 * Don't override
+	 */
+	@SuppressWarnings("unchecked")
+	@SideOnly(Side.CLIENT)
+	default List<String> describeUnchecked(Object item) {
+		return describe((T) item);
 	}
 }

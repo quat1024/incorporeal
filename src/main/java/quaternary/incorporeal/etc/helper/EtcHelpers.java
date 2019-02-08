@@ -62,4 +62,24 @@ public final class EtcHelpers {
 			return ((ChunkCache)world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK);
 		} else return world.getTileEntity(pos);
 	}
+	
+	/**
+	 * Appends ".vowel" to the end of `key` if `stringToInsert` starts with a vowel sound in English.
+	 */
+	public static String vowelizeTranslationKey(String key, String stringToInsert) {
+		if(stringToInsert.isEmpty()) return key;
+		
+		char first = Character.toLowerCase(stringToInsert.charAt(0));
+		switch(first) {
+			case 'a':
+			case 'e':
+			case 'i':
+			case 'o':
+			case 'u':
+			case 'y':
+				return key + ".vowel";
+			default:
+				return key;
+		}
+	}
 }

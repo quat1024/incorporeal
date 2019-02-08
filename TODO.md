@@ -48,8 +48,3 @@ Stuff I'm likely to forget about + stuff I need to do. Don't release without the
 ## IDEA BONFIRE
 
 * red string cygnus retainer
-* important cyg funnel things:
-  * pull from a regular corporea crystal cube -> corporearequest of whatever is inside
-  * push into a repeater number 1 - 4 -> sets delay
-  * push into written book/piece of paper (on the ground or in a frame) -> saves as item (could save to a corporea ticket)
-  * same for pulling

@@ -1,18 +1,46 @@
 package quaternary.incorporeal.cygnus.types;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.cygnus.CygnusDatatypeHelpers;
 import quaternary.incorporeal.cygnus.CygnusStack;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class CygnusStackType implements ICygnusDatatype<CygnusStack> {
 	@Override
 	public Class<CygnusStack> getTypeClass() {
 		return CygnusStack.class;
+	}
+	
+	@Override
+	public String getTranslationKey() {
+		return "incorporeal.cygnus.type.stack";
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public List<String> describe(CygnusStack thing) {
+		List<String> desc = new ArrayList<>(thing.depth());
+		
+		for(int i = 0; i < thing.depth(); i++) {
+			final int displayedIndex = thing.depth() - i; //Arrays start at 1
+			
+			thing.peek(i).ifPresent(entry -> {
+				for(String entryDesc : CygnusDatatypeHelpers.forClass(entry.getClass()).describeUnchecked(entry)) {
+					desc.add("  " + displayedIndex + ": " + entryDesc);
+				}
+			});
+		}
+		
+		return desc;
 	}
 	
 	@Override

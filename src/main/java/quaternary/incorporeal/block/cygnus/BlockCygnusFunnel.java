@@ -32,20 +32,6 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 				.withProperty(FACING, EnumFacing.UP)
 				.withProperty(ARROW_LIGHT, ArrowLight.OFF)
 		);
-		
-		setTickRandomly(true);
-	}
-	
-	@Override
-	public void randomTick(World world, BlockPos pos, IBlockState state, Random random) {
-		TileEntity tile = world.getTileEntity(pos);
-		if(tile instanceof TileCygnusFunnel) {
-			//basically since entities can provide cygnus funnelables
-			//and they can move away of their own volition, without causing a block update to this
-			//randomly rechecking is a good balance between "keeping old data until a block update"
-			//and "making the tile tickable"
-			((TileCygnusFunnel)tile).updateArrowStatus(pos, state.getValue(FACING));
-		}
 	}
 	
 	@Override

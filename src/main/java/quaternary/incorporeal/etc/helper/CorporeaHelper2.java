@@ -71,6 +71,10 @@ public final class CorporeaHelper2 {
 			pluralize = false;
 		} else if(request.count == 64) {
 			count = "a stack of ";
+			pluralize = false;
+		} else if(request.count % 64 == 0) {
+			count = request.count / 64 + " stacks of ";
+			pluralize = false;
 		} else if(request.count == Integer.MAX_VALUE) {
 			count = "all ";
 		} else {

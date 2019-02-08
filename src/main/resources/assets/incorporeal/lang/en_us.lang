@@ -55,6 +55,7 @@ item.incorporeal.cygnus_word_card.name=Cygnus Word Pattern: %s
 item.incorporeal.cygnus_crystal_cube_card.name=Cygnus Crystal Cube Pattern: %s
 item.incorporeal.master_cygnus_spark.name=Master Cygnus Spark
 item.incorporeal.cygnus_spark.name=Cygnus Spark
+item.incorporeal.cygnus_ticket.name=Cygnus Ticket
 
 tile.incorporeal.cygnus_crystal_cube.name=Cygnus Crystal Cube
 tile.incorporeal.cygnus_word.name=Cygnus Word
@@ -209,6 +210,11 @@ incorporeal.cygnus.condition.less_than=Less Than
 incorporeal.cygnus.condition.greater_than=Greater Than
 incorporeal.cygnus.condition.errored=Has Error
 
+incorporeal.cygnus.type.number=Number
+incorporeal.cygnus.type.corporea_request=Corporea Request
+incorporeal.cygnus.type.error=Error
+incorporeal.cygnus.type.stack=Cygnus Stack
+
 #Blah!!!
 
 incorporeal.fracturedSpace.savedPos=Crate remembered.
@@ -221,6 +227,10 @@ incorporeal.fracturedSpace.tooltipNotBound=Not bound to a crate
 incorporeal.fracturedSpace.tooltipWrongDimension=! Bound crate not of this realm
 incorporeal.fracturedSpace.debug.tooltipPos=Bound position: X %s, Y %s, Z %s
 incorporeal.fracturedSpace.debug.tooltipDim=Bound dimension: %s
+
+incorporeal.cygnus.ticket.none=Nothing stored.
+incorporeal.cygnus.ticket.some=A %s is described here.
+incorporeal.cygnus.ticket.some.vowel=An %s is described here.
 
 # if you try to request things from a corporea network that doesn't have your Corporea Soul Core:
 incorporeal.etc.noSoulCore=Your soul is not compatible with this Corporea Network.

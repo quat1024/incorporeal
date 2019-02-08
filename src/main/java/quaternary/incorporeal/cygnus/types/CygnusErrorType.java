@@ -1,21 +1,37 @@
 package quaternary.incorporeal.cygnus.types;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.cygnus.CygnusError;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class CygnusErrorType implements ICygnusDatatype<CygnusError> {
 	@Override
 	public Class<CygnusError> getTypeClass() {
 		return CygnusError.class;
+	}
+	
+	@Override
+	public String getTranslationKey() {
+		return "incorporeal.cygnus.type.error";
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public List<String> describe(CygnusError thing) {
+		return ImmutableList.of(TextFormatting.RED + toString(thing));
 	}
 	
 	@Override

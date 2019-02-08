@@ -21,6 +21,11 @@ public class CygnusBigIntegerType implements ICygnusDatatype<BigInteger> {
 	}
 	
 	@Override
+	public String getTranslationKey() {
+		return "incorporeal.cygnus.type.number";
+	}
+	
+	@Override
 	public void writeToNBT(NBTTagCompound nbt, BigInteger item) {
 		nbt.setByteArray("BigInt", item.toByteArray());
 	}
