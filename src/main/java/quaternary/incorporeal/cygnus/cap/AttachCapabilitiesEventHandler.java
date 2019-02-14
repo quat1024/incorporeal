@@ -132,7 +132,12 @@ public class AttachCapabilitiesEventHandler {
 		public boolean canGiveCygnusItem() {
 			return !crystalCube.getRequestTarget().isEmpty();
 		}
-		
+
+		@Override
+		public boolean canAcceptCygnusItem() {
+			return true;
+		}
+
 		@Nullable
 		@Override
 		public Object giveItemToCygnus() {
@@ -143,6 +148,16 @@ public class AttachCapabilitiesEventHandler {
 			int count = crystalCube.getItemCount();
 			
 			return new CorporeaRequest(item2, true, count);
+		}
+
+		@Override
+		public void acceptItemFromCygnus(Object item) {
+			if(item instanceof CorporeaRequest) {
+				CorporeaRequest request = (CorporeaRequest) item;
+				if(request.matcher instanceof ItemStack) {
+					crystalCube.setRequestTarget((ItemStack) request.matcher);
+				}
+			}
 		}
 	}
 	

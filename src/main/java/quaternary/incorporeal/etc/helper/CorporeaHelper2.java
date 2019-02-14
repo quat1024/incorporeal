@@ -60,25 +60,26 @@ public final class CorporeaHelper2 {
 	public static String requestToString(CorporeaRequest request) {
 		String count;
 		String item;
-		boolean pluralize = true;
+		boolean pluralize = false;
 		
 		if(request.matcher instanceof ItemStack) {
 			item = ((ItemStack)request.matcher).getDisplayName().toLowerCase();
 		} else item = request.matcher.toString();
 		
-		if(request.count == 1) {
+		if(request.count == 0) {
+			count = "0 ";
+		} else if(request.count == 1) {
 			count = "";
-			pluralize = false;
 		} else if(request.count == 64) {
 			count = "a stack of ";
-			pluralize = false;
 		} else if(request.count % 64 == 0) {
 			count = request.count / 64 + " stacks of ";
-			pluralize = false;
 		} else if(request.count == Integer.MAX_VALUE) {
 			count = "all ";
+			pluralize = true;
 		} else {
 			count = String.valueOf(request.count) + " ";
+			pluralize = true;
 		}
 		
 		if(item.charAt(item.length() - 1) == 's') {

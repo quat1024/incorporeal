@@ -62,13 +62,13 @@ public class ItemCygnusTicket extends Item {
 				String typeName = I18n.translateToLocal(type.getTranslationKey());
 				
 				tooltip.add(TextFormatting.GREEN + I18n.translateToLocalFormatted(
-					EtcHelpers.vowelizeTranslationKey("incorporeal.cygnus.ticket.some", typeName),
+					EtcHelpers.vowelizeTranslationKey("incorporeal.cygnus.retainer.some", typeName),
 					typeName
 				));
 				
 				tooltip.addAll(type.describeUnchecked(o));
 			} else {
-				tooltip.add(TextFormatting.RED + I18n.translateToLocal("incorporeal.cygnus.ticket.none"));
+				tooltip.add(TextFormatting.RED + I18n.translateToLocal("incorporeal.cygnus.retainer.none"));
 			}
 		}
 	}

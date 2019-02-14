@@ -7,6 +7,8 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.cygnus.CygnusStack;
@@ -23,6 +25,12 @@ public class EntityCygnusMasterSpark extends AbstractEntityCygnusSparkBase imple
 	}
 	
 	private static final DataParameter<CygnusStack> CYGNUS_STACK = EntityDataManager.createKey(EntityCygnusMasterSpark.class, CygnusStackDataSerializer.INST);
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public boolean isInRangeToRenderDist(double distance) {
+		return distance < 2048; //big render boi
+	}
 	
 	@Override
 	protected void entityInit() {

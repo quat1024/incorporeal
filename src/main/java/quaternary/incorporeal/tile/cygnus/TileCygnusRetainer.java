@@ -58,6 +58,11 @@ public class TileCygnusRetainer extends TileCygnusBase implements ICygnusFunnela
 		world.updateComparatorOutputLevel(pos, getBlockType());
 	}
 	
+	public void wand() {
+		retained = null;
+		updateStuff();
+	}
+	
 	public boolean hasRetainedObject() {
 		return retained != null;
 	}

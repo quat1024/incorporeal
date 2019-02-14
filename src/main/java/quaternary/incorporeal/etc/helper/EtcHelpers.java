@@ -63,6 +63,11 @@ public final class EtcHelpers {
 		} else return world.getTileEntity(pos);
 	}
 	
+	public static float rangeRemap(float value, float low1, float high1, float low2, float high2) {
+		float value2 = MathHelper.clamp(value, low1, high1);
+		return low2 + (value2 - low1) * (high2 - low2) / (high1 - low1);
+	}
+	
 	/**
 	 * Appends ".vowel" to the end of `key` if `stringToInsert` starts with a vowel sound in English.
 	 */

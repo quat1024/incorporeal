@@ -228,9 +228,9 @@ incorporeal.fracturedSpace.tooltipWrongDimension=! Bound crate not of this realm
 incorporeal.fracturedSpace.debug.tooltipPos=Bound position: X %s, Y %s, Z %s
 incorporeal.fracturedSpace.debug.tooltipDim=Bound dimension: %s
 
-incorporeal.cygnus.ticket.none=Nothing stored.
-incorporeal.cygnus.ticket.some=A %s is described here.
-incorporeal.cygnus.ticket.some.vowel=An %s is described here.
+incorporeal.cygnus.retainer.none=Nothing stored.
+incorporeal.cygnus.retainer.some=A %s is described here.
+incorporeal.cygnus.retainer.some.vowel=An %s is described here.
 
 # if you try to request things from a corporea network that doesn't have your Corporea Soul Core:
 incorporeal.etc.noSoulCore=Your soul is not compatible with this Corporea Network.
