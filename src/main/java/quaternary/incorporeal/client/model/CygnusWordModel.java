@@ -20,24 +20,20 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class CygnusWordModel implements IModel {
-	private static final ResourceLocation FRAME_MODEL = new ResourceLocation(Incorporeal.MODID, "block/cygnus/word/frame_word");
-	
 	public CygnusWordModel() {
 		initModelsIfNeeded();
 	}
 	
 	private static Set<ResourceLocation> actionResources;
 	private static Map<Consumer<ICygnusStack>, IModel> actionModels;
-	static Map<Consumer<ICygnusStack>, IBakedModel> actionBakedModels;
-	
-	private static IModel frameModel;
+	private static Map<Consumer<ICygnusStack>, IBakedModel> actionBakedModels;
 	
 	@Override
 	public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
 		initModelsIfNeeded();
 		bakeModelsIfNeeded(state, format, bakedTextureGetter);
 		
-		return new CygnusWordBakedModel(frameModel.bake(state, format, bakedTextureGetter), actionBakedModels);
+		return new CygnusWordBakedModel(actionBakedModels);
 	}
 	
 	@Override
@@ -48,10 +44,6 @@ public class CygnusWordModel implements IModel {
 	///
 	
 	public static void initModelsIfNeeded() {
-		if(frameModel == null) {
-			frameModel = ModelLoaderRegistry.getModelOrMissing(FRAME_MODEL);
-		}
-		
 		if(actionResources == null) {
 			actionResources = new HashSet<>();
 			actionModels = new HashMap<>();
@@ -83,7 +75,6 @@ public class CygnusWordModel implements IModel {
 	}
 	
 	public static void dumpModelCache() {
-		frameModel = null;
 		actionResources = null;
 		actionModels = null;
 		actionBakedModels = null;

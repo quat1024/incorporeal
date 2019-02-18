@@ -26,10 +26,10 @@ public abstract class ItemCygnusCard<T> extends Item {
 		this.defaultValue = defaultValue;
 	}
 	
-	private final ISimpleRegistry<T> registry;
-	private final String tagName;
-	private final String tagNameLower; //Used for the lang key
-	private final T defaultValue;
+	public final ISimpleRegistry<T> registry;
+	public final String tagName;
+	public final String tagNameLower; //Used for the lang key
+	public final T defaultValue;
 	
 	public T readValue(ItemStack stack) {
 		T thing = registry.get(readValueName(stack));

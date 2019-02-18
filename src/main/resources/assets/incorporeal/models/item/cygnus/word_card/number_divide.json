@@ -1,0 +1,7 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "incorporeal:cygnus/action/number_divide",
+		"layer1": "incorporeal:item/cygnus/word_card_base"
+	}
+}

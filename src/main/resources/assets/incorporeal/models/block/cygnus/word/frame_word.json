@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"tex": "incorporeal:block/cygnus/word/frame_word",
-		"particle": "incorporeal:block/cygnus/word/frame_word"
+		"tex": "incorporeal:block/cygnus/frame_word",
+		"particle": "incorporeal:block/cygnus/frame_word"
 	},
 	"elements": [
 		{
@@ -132,6 +132,20 @@
 				"east": {"uv": [0, 2, 2, 14], "texture": "#tex"},
 				"south": {"uv": [14, 2, 16, 14], "texture": "#tex"},
 				"west": {"uv": [12, 2, 14, 14], "texture": "#tex"}
+			}
+		},
+		{
+			"name": "inner",
+			"from": [3, 3, 3],
+			"to": [13, 13, 13],
+			"color": 7,
+			"faces": {
+				"north": {"uv": [3, 3, 13, 13], "texture": "#word"},
+				"east": {"uv": [3, 3, 13, 13], "texture": "#word"},
+				"south": {"uv": [3, 3, 13, 13], "texture": "#word"},
+				"west": {"uv": [3, 3, 13, 13], "texture": "#word"},
+				"up": {"uv": [3, 3, 13, 13], "texture": "#word"},
+				"down": {"uv": [3, 3, 13, 13], "texture": "#word"}
 			}
 		}
 	]

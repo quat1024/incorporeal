@@ -3,6 +3,8 @@ package quaternary.incorporeal.client.model;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemOverrideList;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.model.BakedModelWrapper;
 import net.minecraftforge.common.property.IExtendedBlockState;
@@ -16,8 +18,12 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 public class CygnusWordBakedModel extends BakedModelWrapper<IBakedModel> {
-	public CygnusWordBakedModel(IBakedModel frameModel, Map<Consumer<ICygnusStack>, IBakedModel> actionBakedModels) {
-		super(frameModel);
+	public CygnusWordBakedModel(Map<Consumer<ICygnusStack>, IBakedModel> actionBakedModels) {
+		//Pass one of these models to super
+		//bakedmodelwrapper takes care of e.g. particle textures and whatever
+		//I can assume they're all the same, i don't really care
+		super(actionBakedModels.values().iterator().next());
+		
 		this.actionBakedModels = actionBakedModels;
 	}
 	
@@ -25,15 +31,16 @@ public class CygnusWordBakedModel extends BakedModelWrapper<IBakedModel> {
 	
 	@Override
 	public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand) {
-		List<BakedQuad> quads = new LinkedList<>(super.getQuads(state, side, rand));
+		if(state instanceof IExtendedBlockState) {
+			IExtendedBlockState ext = (IExtendedBlockState) state;
+			
+			Consumer<ICygnusStack> action = ext.getValue(BlockCygnusWord.UNLISTED_ACTION);
+			IBakedModel actionBakedModel = actionBakedModels.get(action);
+			if(actionBakedModel != null) {
+				return actionBakedModel.getQuads(state, side, rand);
+			}
+		}
 		
-		if(!(state instanceof IExtendedBlockState)) return quads;
-		IExtendedBlockState ext = (IExtendedBlockState) state;
-		
-		Consumer<ICygnusStack> action = ext.getValue(BlockCygnusWord.UNLISTED_ACTION);
-		IBakedModel actionBakedModel = actionBakedModels.get(action);
-		if(actionBakedModel != null) quads.addAll(actionBakedModel.getQuads(state, side, rand));
-		
-		return quads;
+		return new LinkedList<>();
 	}
 }

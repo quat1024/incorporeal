@@ -22,22 +22,16 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.ISimpleRegistry;
-import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.block.IncorporeticBlocks;
-import quaternary.incorporeal.block.cygnus.BlockCygnusFunnel;
 import quaternary.incorporeal.block.cygnus.IncorporeticCygnusBlocks;
 import quaternary.incorporeal.client.entityrenderer.RenderEntityCygnusMasterSpark;
 import quaternary.incorporeal.client.entityrenderer.RenderEntityCygnusRegularSpark;
-import quaternary.incorporeal.client.model.CygnusCardModelLoader;
 import quaternary.incorporeal.client.model.CygnusWordModelLoader;
-import quaternary.incorporeal.client.model.MashedModelLoader;
 import quaternary.incorporeal.client.tesr.RenderItemSoulCore;
 import quaternary.incorporeal.client.tesr.RenderTileCorporeaSparkTinkerer;
 import quaternary.incorporeal.client.tesr.RenderTileSoulCore;
 import quaternary.incorporeal.client.tesr.cygnus.RenderTileCygnusRetainer;
 import quaternary.incorporeal.client.tesr.decorative.RenderTileUnstableCube;
-import quaternary.incorporeal.cygnus.CygnusRegistries;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusRegularSpark;
 import quaternary.incorporeal.flower.SubTileSanvocalia;
@@ -87,9 +81,8 @@ public final class ClientRegistryEvents {
 		setSimpleModel(IncorporeticCygnusItems.FUNNEL);
 		setSimpleModel(IncorporeticCygnusItems.RETAINER);
 		
-		//actually goes through custom model loaders owo
-		setSimpleModel(IncorporeticCygnusItems.WORD_CARD);
-		setSimpleModel(IncorporeticCygnusItems.CRYSTAL_CUBE_CARD);
+		setCygnusCardMeshDefinition(IncorporeticCygnusItems.WORD_CARD, "word_card");
+		setCygnusCardMeshDefinition(IncorporeticCygnusItems.CRYSTAL_CUBE_CARD, "crystal_cube_card");
 		
 		set16DataValuesPointingAtSameModel(IncorporeticItems.DECORATIVE_UNSTABLE_CUBE);
 		
@@ -147,8 +140,6 @@ public final class ClientRegistryEvents {
 		
 		//Block model loader things
 		ModelLoaderRegistry.registerLoader(new CygnusWordModelLoader());
-		ModelLoaderRegistry.registerLoader(new MashedModelLoader());
-		ModelLoaderRegistry.registerLoader(new CygnusCardModelLoader());
 	}
 	
 	private static void setSimpleModel(Item i) {
@@ -188,5 +179,25 @@ public final class ClientRegistryEvents {
 	private static void setFlowerModel(Class<? extends SubTileEntity> flower, String name) {
 		ModelResourceLocation mrl = new ModelResourceLocation(new ResourceLocation(Incorporeal.MODID, name), "normal");
 		BotaniaAPIClient.registerSubtileModel(flower, mrl);
+	}
+	
+	private static <T> void setCygnusCardMeshDefinition(ItemCygnusCard<T> card, String path) {
+		String path2 = "cygnus/" + path + "/";
+		
+		ModelLoader.setCustomMeshDefinition(card, stack -> {
+			ResourceLocation valueName = card.readValueName(stack);
+			return new ModelResourceLocation(
+				new ResourceLocation(
+					valueName.getNamespace(),
+					path2 + valueName.getPath()
+				), "inventory"
+			);
+		});
+		
+		ModelLoader.registerItemVariants(card,
+			card.registry.allKeys().stream()
+				.map(res -> new ResourceLocation(res.getNamespace(), path2 + res.getPath()))
+				.toArray(ResourceLocation[]::new)
+		);
 	}
 }

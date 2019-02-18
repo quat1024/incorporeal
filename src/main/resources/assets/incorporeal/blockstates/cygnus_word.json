@@ -5,11 +5,7 @@
 			"model": "incorporeal:magic/redirecting_cygnus_word"
 		},
 		"inventory": {
-			"model": "incorporeal:magic/mashed_model",
-			"custom": {
-				"main": "incorporeal:block/cygnus/word/frame_word",
-				"0": "incorporeal:block/cygnus/word/nothing"
-			}
+			"model": "incorporeal:cygnus/word/nothing"
 		}
 	}
 }

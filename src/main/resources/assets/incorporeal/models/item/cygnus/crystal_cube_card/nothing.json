@@ -1,0 +1,7 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "incorporeal:cygnus/condition/nothing",
+		"layer1": "incorporeal:item/cygnus/crystal_cube_card_base"
+	}
+}

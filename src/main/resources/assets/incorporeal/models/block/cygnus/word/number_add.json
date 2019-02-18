@@ -1,6 +1,6 @@
 {
-	"parent": "incorporeal:block/cygnus/word/word_base",
+	"parent": "incorporeal:block/cygnus/word/frame_word",
 	"textures": {
-		"word": "incorporeal:block/cygnus/word/number_add"
+		"word": "incorporeal:cygnus/action/number_add"
 	}
 }

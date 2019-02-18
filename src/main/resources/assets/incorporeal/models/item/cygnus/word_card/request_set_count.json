@@ -1,0 +1,7 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "incorporeal:cygnus/action/request_set_count",
+		"layer1": "incorporeal:item/cygnus/word_card_base"
+	}
+}
