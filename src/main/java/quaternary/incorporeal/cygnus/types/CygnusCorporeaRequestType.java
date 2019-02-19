@@ -31,7 +31,19 @@ public class CygnusCorporeaRequestType implements ICygnusDatatype<CorporeaReques
 	@SideOnly(Side.CLIENT)
 	@Override
 	public List<String> describe(CorporeaRequest thing) {
-		return ImmutableList.of(TextFormatting.ITALIC + "\"" + toString(thing) + "\"");
+		StringBuilder b = new StringBuilder();
+		if(thing.matcher instanceof ItemStack) {
+			b.append(TextFormatting.AQUA);
+		} else {
+			b.append(TextFormatting.ITALIC);
+		}
+		
+		b.append("\"");
+		b.append(toString(thing));
+		b.append("\"");
+		b.append(TextFormatting.RESET);
+		
+		return ImmutableList.of(b.toString());
 	}
 	
 	@Override

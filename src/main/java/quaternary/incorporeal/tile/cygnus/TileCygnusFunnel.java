@@ -35,7 +35,7 @@ public class TileCygnusFunnel extends TileEntity implements ITickable {
 	
 	@Override
 	public void update() {
-		if(world.getTotalWorldTime() % 20 == 0) {
+		if(!world.isRemote && world.getTotalWorldTime() % 20 == 0) {
 			updateArrowStatus(pos, world.getBlockState(pos).getValue(BlockCygnusFunnel.FACING));
 		}
 	}

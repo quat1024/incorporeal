@@ -17,12 +17,19 @@ import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import quaternary.incorporeal.item.cygnus.ItemCygnusTicket;
+import vazkii.botania.api.corporea.CorporeaHelper;
 import vazkii.botania.api.corporea.CorporeaRequest;
+import vazkii.botania.api.corporea.ICorporeaRequestor;
+import vazkii.botania.api.corporea.ICorporeaSpark;
+import vazkii.botania.common.block.tile.corporea.TileCorporeaBase;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaCrystalCube;
+import vazkii.botania.common.block.tile.corporea.TileCorporeaFunnel;
+import vazkii.botania.common.block.tile.corporea.TileCorporeaIndex;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaRetainer;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 
 @Mod.EventBusSubscriber
 public class AttachCapabilitiesEventHandler {
@@ -41,6 +48,16 @@ public class AttachCapabilitiesEventHandler {
 			e.addCapability(FUNNEL_HANDLER, new GenericCapabilityProvider<>(
 				IncorporeticCygnusCapabilities.FUNNEL_CAP,
 				new CorporeaCrystalCubeFunnelable((TileCorporeaCrystalCube) tile)
+			));
+		} else if(tile instanceof TileCorporeaFunnel) {
+			e.addCapability(FUNNEL_HANDLER, new GenericCapabilityProvider<>(
+				IncorporeticCygnusCapabilities.FUNNEL_CAP,
+				new CorporeaRequesterFunnelable<>((TileCorporeaFunnel) tile)
+			));
+		} else if(tile instanceof TileCorporeaIndex) {
+			e.addCapability(FUNNEL_HANDLER, new GenericCapabilityProvider<>(
+				IncorporeticCygnusCapabilities.FUNNEL_CAP,
+				new CorporeaRequesterFunnelable<>((TileCorporeaIndex) tile)
 			));
 		}
 	}
@@ -138,7 +155,6 @@ public class AttachCapabilitiesEventHandler {
 			return true;
 		}
 
-		@Nullable
 		@Override
 		public Object giveItemToCygnus() {
 			ItemStack item = crystalCube.getRequestTarget();
@@ -157,6 +173,28 @@ public class AttachCapabilitiesEventHandler {
 				if(request.matcher instanceof ItemStack) {
 					crystalCube.setRequestTarget((ItemStack) request.matcher);
 				}
+			}
+		}
+	}
+	
+	private static final class CorporeaRequesterFunnelable<T extends TileCorporeaBase & ICorporeaRequestor> implements ICygnusFunnelable {
+		public CorporeaRequesterFunnelable(T tile) {
+			this.tile = tile;
+		}
+		
+		private final T tile;
+		
+		@Override
+		public boolean canAcceptCygnusItem() {
+			return tile.getSpark() != null;
+		}
+		
+		@Override
+		public void acceptItemFromCygnus(Object item) {
+			if(item instanceof CorporeaRequest) {
+				CorporeaRequest request = (CorporeaRequest) item;
+				
+				tile.doCorporeaRequest(request.matcher, request.count, tile.getSpark());
 			}
 		}
 	}
