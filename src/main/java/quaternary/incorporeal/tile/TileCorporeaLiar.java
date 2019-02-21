@@ -8,9 +8,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.EmptyHandler;
 import quaternary.incorporeal.api.ICustomWrappedInventory;
 import quaternary.incorporeal.block.BlockCorporeaLiar;
-import quaternary.incorporeal.etc.DummyItemHandler;
 import quaternary.incorporeal.etc.LyingWrappedInventory;
 import vazkii.botania.api.corporea.ICorporeaSpark;
 import vazkii.botania.api.corporea.IWrappedInventory;
@@ -23,7 +23,7 @@ import java.util.List;
 
 public class TileCorporeaLiar extends TileCorporeaBase implements ICustomWrappedInventory {
 	private EnumFacing spoofingDirection;
-	private static final DummyItemHandler dummyHandler = new DummyItemHandler();
+	private static final IItemHandler dummyHandler = EmptyHandler.INSTANCE;
 	
 	public TileCorporeaLiar setDirection(EnumFacing whichWay) {
 		spoofingDirection = whichWay;

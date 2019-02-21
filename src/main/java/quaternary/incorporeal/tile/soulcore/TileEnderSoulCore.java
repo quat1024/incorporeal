@@ -6,14 +6,14 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.EmptyHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import quaternary.incorporeal.etc.DummyItemHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TileEnderSoulCore extends AbstractTileSoulCore implements ITickable {
-	private IItemHandler handler = new DummyItemHandler();
+	private IItemHandler handler = EmptyHandler.INSTANCE;
 	private boolean wasOnline = false;
 	
 	@Override
@@ -32,7 +32,7 @@ public class TileEnderSoulCore extends AbstractTileSoulCore implements ITickable
 		if(!wasOnline && isOnline) {
 			this.handler = new InvWrapper(owner.getInventoryEnderChest());
 		} else if (wasOnline && !isOnline){
-			this.handler = new DummyItemHandler();
+			this.handler = EmptyHandler.INSTANCE;
 		}
 		
 		wasOnline = isOnline;
