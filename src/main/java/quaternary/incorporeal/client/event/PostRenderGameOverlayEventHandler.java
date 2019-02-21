@@ -26,6 +26,7 @@ import quaternary.incorporeal.block.cygnus.BlockCygnusCrystalCube;
 import quaternary.incorporeal.cygnus.CygnusDatatypeHelpers;
 import quaternary.incorporeal.cygnus.CygnusRegistries;
 import quaternary.incorporeal.etc.helper.CygnusHelpers;
+import quaternary.incorporeal.etc.helper.EtcHelpers;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.item.ItemTicketConjurer;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
@@ -143,8 +144,13 @@ public final class PostRenderGameOverlayEventHandler {
 		if(tile.hasRetainedObject()) {
 			Object o = tile.getRetainedObject();
 			ICygnusDatatype<?> type = CygnusDatatypeHelpers.forClass(o.getClass());
+			String typeName = I18n.format(type.getTranslationKey());
 			
-			lines.add(TextFormatting.GREEN + I18n.format(type.getTranslationKey()));
+			lines.add(TextFormatting.GREEN + net.minecraft.util.text.translation.I18n.translateToLocalFormatted(
+				EtcHelpers.vowelizeTranslationKey("incorporeal.cygnus.retainer.some", typeName),
+				typeName
+			));
+			
 			lines.addAll(type.describeUnchecked(o));
 		} else {
 			lines.add(TextFormatting.RED + I18n.format("incorporeal.cygnus.retainer.none"));
