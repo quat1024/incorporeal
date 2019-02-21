@@ -14,19 +14,29 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.block.cygnus.BlockCygnusCrystalCube;
+import quaternary.incorporeal.cygnus.CygnusDatatypeHelpers;
 import quaternary.incorporeal.cygnus.CygnusRegistries;
+import quaternary.incorporeal.etc.helper.CygnusHelpers;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.item.ItemTicketConjurer;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
 import quaternary.incorporeal.tile.cygnus.TileCygnusCrystalCube;
+import quaternary.incorporeal.tile.cygnus.TileCygnusFunnel;
+import quaternary.incorporeal.tile.cygnus.TileCygnusRetainer;
+import quaternary.incorporeal.tile.cygnus.TileCygnusWord;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaIndex;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Incorporeal.MODID, value = Side.CLIENT)
 public final class PostRenderGameOverlayEventHandler {
@@ -58,6 +68,10 @@ public final class PostRenderGameOverlayEventHandler {
 				if(hitState != null) {
 					if(hitTile instanceof TileCygnusCrystalCube) {
 						drawCygnusCrystalCubeOverlay(res, (TileCygnusCrystalCube) hitTile);
+					} else if(hitTile instanceof TileCygnusRetainer) {
+						drawCygnusRetainerOverlay(res, (TileCygnusRetainer) hitTile);
+					} else if(hitTile instanceof TileCygnusWord) {
+						drawCygnusWordOverlay(res, (TileCygnusWord) hitTile);
 					}
 				}
 			}
@@ -98,7 +112,7 @@ public final class PostRenderGameOverlayEventHandler {
 		//copy paste from HudHander of course
 		Minecraft mc = Minecraft.getMinecraft();
 		Profiler profiler = mc.profiler;
-		profiler.startSection("crystalCube");
+		profiler.startSection("cygnusCrystalCubeOverlay");
 		
 		IncorporeticCygnusItems.CRYSTAL_CUBE_CARD.set(cygnusCrystalCubeCardStack, tile.getCondition());
 		ResourceLocation cond = CygnusRegistries.CONDITIONS.nameOf(tile.getCondition());
@@ -110,10 +124,82 @@ public final class PostRenderGameOverlayEventHandler {
 		int h = res.getScaledHeight();
 		Gui.drawRect(w / 2 + 8, h / 2 - 12, w / 2 + strlen + 32, h / 2 + 10, 0x44000000);
 		Gui.drawRect(w / 2 + 6, h / 2 - 14, w / 2 + strlen + 34, h / 2 + 12, 0x44000000);
-		mc.fontRenderer.drawStringWithShadow(name, (float) (w / 2 + 30), (float) (h / 2 - 10), 0x85c6cc);
+		mc.fontRenderer.drawStringWithShadow(name, (float) (w / 2 + 30), (float) (h / 2 - 6), 0x85c6cc);
 		RenderHelper.enableGUIStandardItemLighting();
 		GlStateManager.enableRescaleNormal();
 		mc.getRenderItem().renderItemAndEffectIntoGUI(cygnusCrystalCubeCardStack, w / 2 + 10, h / 2 - 10);
+		RenderHelper.disableStandardItemLighting();
+		
+		profiler.endSection();
+	}
+	
+	private static void drawCygnusRetainerOverlay(ScaledResolution res, TileCygnusRetainer tile) {
+		Minecraft mc = Minecraft.getMinecraft();
+		Profiler profiler = mc.profiler;
+		profiler.startSection("cygnusRetainerOverlay");
+		
+		List<String> lines = new ArrayList<>();
+		
+		if(tile.hasRetainedObject()) {
+			Object o = tile.getRetainedObject();
+			ICygnusDatatype<?> type = CygnusDatatypeHelpers.forClass(o.getClass());
+			
+			lines.add(TextFormatting.GREEN + I18n.format(type.getTranslationKey()));
+			lines.addAll(type.describeUnchecked(o));
+		} else {
+			lines.add(TextFormatting.RED + I18n.format("incorporeal.cygnus.retainer.none"));
+		}
+		
+		//find box w/h
+		int boxWidth = 0;
+		for(String s : lines) {
+			int swidth = mc.fontRenderer.getStringWidth(s);
+			if(swidth > boxWidth) boxWidth = swidth;
+		}
+		
+		//Take away 1 since the box starts a little above the crosshair
+		//Yeah idk it works don't @ me
+		int boxHeight = (lines.size() - 1) * 12;
+		
+		//draw box
+		int w = res.getScaledWidth();
+		int h = res.getScaledHeight();
+		//Magic Numbers. Do not touch
+		Gui.drawRect(w / 2 + 8, h / 2 - 12, w / 2 + boxWidth + 12, h / 2 + boxHeight, 0x44000000);
+		Gui.drawRect(w / 2 + 6, h / 2 - 14, w / 2 + boxWidth + 14, h / 2 + boxHeight + 2, 0x44000000);
+		
+		//draw text
+		int y = -10;
+		for(String s : lines) {
+			mc.fontRenderer.drawStringWithShadow(s, w / 2 + 10, h / 2 + y, 0xFFFFFF);
+			y += 12;
+		}
+		
+		profiler.endSection();
+	}
+	
+	private static final ItemStack cygnusWordCardStack = new ItemStack(IncorporeticCygnusItems.WORD_CARD);
+	
+	private static void drawCygnusWordOverlay(ScaledResolution res, TileCygnusWord tile) {
+		//copy paste from HudHander of course
+		Minecraft mc = Minecraft.getMinecraft();
+		Profiler profiler = mc.profiler;
+		profiler.startSection("cygnusWordOverlay");
+		
+		IncorporeticCygnusItems.WORD_CARD.set(cygnusWordCardStack, tile.getAction());
+		ResourceLocation cond = CygnusRegistries.ACTIONS.nameOf(tile.getAction());
+		//i need to standardize this
+		String name = I18n.format(cond.getNamespace() + ".cygnus.action." + cond.getPath());
+		
+		int strlen = mc.fontRenderer.getStringWidth(name);
+		int w = res.getScaledWidth();
+		int h = res.getScaledHeight();
+		Gui.drawRect(w / 2 + 8, h / 2 - 12, w / 2 + strlen + 32, h / 2 + 10, 0x44000000);
+		Gui.drawRect(w / 2 + 6, h / 2 - 14, w / 2 + strlen + 34, h / 2 + 12, 0x44000000);
+		mc.fontRenderer.drawStringWithShadow(name, (float) (w / 2 + 30), (float) (h / 2 - 6), 0x6fcc8e);
+		RenderHelper.enableGUIStandardItemLighting();
+		GlStateManager.enableRescaleNormal();
+		mc.getRenderItem().renderItemAndEffectIntoGUI(cygnusWordCardStack, w / 2 + 10, h / 2 - 10);
 		RenderHelper.disableStandardItemLighting();
 		
 		profiler.endSection();
