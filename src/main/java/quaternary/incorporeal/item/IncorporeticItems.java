@@ -41,9 +41,6 @@ public final class IncorporeticItems {
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_INHIBITOR)
 	public static final ItemBlock CORPOREA_INHIBITOR = EtcHelpers.definitelyIsntNullISwear();
 	
-	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_LIAR)
-	public static final ItemBlock CORPOREA_LIAR = EtcHelpers.definitelyIsntNullISwear();
-	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_SOLIDIFIER)
 	public static final ItemBlock CORPOREA_SOLIDIFIER = EtcHelpers.definitelyIsntNullISwear();
 	
@@ -81,7 +78,6 @@ public final class IncorporeticItems {
 		reg.register(createItem(new Item(), RegistryNames.SOUL_CORE_FRAME));
 		
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_INHIBITOR)));
-		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_LIAR)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_SOLIDIFIER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_SPARK_TINKERER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER)));

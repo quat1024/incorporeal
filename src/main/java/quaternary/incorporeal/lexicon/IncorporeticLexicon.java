@@ -41,7 +41,6 @@ public final class IncorporeticLexicon {
 	
 	//corporea blocks
 	public static LexiconEntry corporeaInhibitor;
-	public static LexiconEntry corporeaLiar;
 	public static LexiconEntry corporeaSolidifier;
 	public static LexiconEntry corporeaTinkerer;
 	public static LexiconEntry corporeaRetainerDecrementer;
@@ -75,7 +74,6 @@ public final class IncorporeticLexicon {
 		ticketConjurer = buildCraftingEntry(IncorporeticItems.TICKET_CONJURER, BotaniaAPI.categoryEnder, 2);
 		
 		corporeaInhibitor = buildCraftingEntry(IncorporeticBlocks.CORPOREA_INHIBITOR, BotaniaAPI.categoryEnder, 1);
-		corporeaLiar = buildCraftingEntry(IncorporeticBlocks.CORPOREA_LIAR, BotaniaAPI.categoryEnder, 2);
 		corporeaSolidifier = buildCraftingEntry(IncorporeticBlocks.CORPOREA_SOLIDIFIER, BotaniaAPI.categoryEnder, 2);
 		corporeaTinkerer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_SPARK_TINKERER, BotaniaAPI.categoryEnder, 2);
 		corporeaRetainerDecrementer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER, BotaniaAPI.categoryEnder, 2);

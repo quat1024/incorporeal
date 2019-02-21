@@ -1,18 +1,22 @@
 package quaternary.incorporeal.etc.event;
 
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
+import quaternary.incorporeal.item.IncorporeticItems;
 import vazkii.botania.common.item.ModItems;
 
 @Mod.EventBusSubscriber(modid = Incorporeal.MODID)
@@ -46,6 +50,24 @@ public final class CommonGameEvents {
 				if(!player.isCreative()) stack.shrink(1);
 				
 				player.swingArm(e.getHand());
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public static void missingBlocks(RegistryEvent.MissingMappings<Block> e) {
+		for(RegistryEvent.MissingMappings.Mapping<Block> map : e.getMappings()) {
+			if(map.key.getPath().equals("corporea_liar")) {
+				map.remap(IncorporeticBlocks.RED_STRING_LIAR);
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public static void missingItems(RegistryEvent.MissingMappings<Item> e) {
+		for(RegistryEvent.MissingMappings.Mapping<Item> map : e.getMappings()) {
+			if(map.key.getPath().equals("corporea_liar")) {
+				map.remap(IncorporeticItems.RED_STRING_LIAR);
 			}
 		}
 	}

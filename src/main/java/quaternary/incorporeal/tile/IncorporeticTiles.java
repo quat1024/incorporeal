@@ -16,7 +16,6 @@ public final class IncorporeticTiles {
 	private IncorporeticTiles() { }
 	
 	public static void registerTileEntities() {
-		reg(TileCorporeaLiar.class, "liar");
 		reg(TileCorporeaSolidifier.class, "solidifier");
 		reg(TileCorporeaSparkTinkerer.class, "corporea_tinkerer");
 		reg(TileEnderSoulCore.class, "ender_soul_core");
