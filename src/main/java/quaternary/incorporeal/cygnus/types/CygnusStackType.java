@@ -31,7 +31,7 @@ public class CygnusStackType implements ICygnusDatatype<CygnusStack> {
 		List<String> desc = new ArrayList<>(thing.depth());
 		
 		for(int i = 0; i < thing.depth(); i++) {
-			final int displayedIndex = thing.depth() - i; //Arrays start at 1
+			final int displayedIndex = i + 1; //Arrays start at 1
 			
 			thing.peek(i).ifPresent(entry -> {
 				for(String entryDesc : CygnusDatatypeHelpers.forClass(entry.getClass()).describeUnchecked(entry)) {
