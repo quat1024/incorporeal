@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TileEnderSoulCore extends AbstractTileSoulCore implements ITickable {
-	private IItemHandler handler;
+	private IItemHandler handler = new DummyItemHandler();
 	private boolean wasOnline = false;
 	
 	@Override
