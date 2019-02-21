@@ -2,6 +2,7 @@ package quaternary.incorporeal.api;
 
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
+import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -42,4 +43,11 @@ public interface IIncorporealAPI {
 	 * @return A registry of Cygnus conditions; things that tell a true-false piece of information about a Cygnus stack.
 	 */
 	ISimpleRegistry<Predicate<ICygnusStack>> getCygnusStackConditionRegistry();
+	
+	/**
+	 * Register a loose cygnus funnelable.
+	 * Don't use these 
+	 * @param loose
+	 */
+	void registerLooseFunnelable(ILooseCygnusFunnelable loose);
 }

@@ -5,6 +5,7 @@ import quaternary.incorporeal.api.INaturalDeviceRegistry;
 import quaternary.incorporeal.api.ISimpleRegistry;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
+import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
 import quaternary.incorporeal.cygnus.CygnusRegistries;
 
 import java.util.function.Consumer;
@@ -36,5 +37,10 @@ public class IncorporealAPI implements IIncorporealAPI {
 	@Override
 	public ISimpleRegistry<Predicate<ICygnusStack>> getCygnusStackConditionRegistry() {
 		return CygnusRegistries.CONDITIONS;
+	}
+	
+	@Override
+	public void registerLooseFunnelable(ILooseCygnusFunnelable loose) {
+		CygnusRegistries.LOOSE_FUNNELABLES.add(loose);
 	}
 }

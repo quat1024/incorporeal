@@ -7,9 +7,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -20,6 +22,7 @@ import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.api.IIncorporealAPI;
 import quaternary.incorporeal.api.impl.IncorporealAPI;
 import quaternary.incorporeal.block.IncorporeticBlocks;
+import quaternary.incorporeal.compat.infraredstone.InfraRedstoneCompat;
 import quaternary.incorporeal.cygnus.CygnusDatatypeHelpers;
 import quaternary.incorporeal.cygnus.CygnusRegistries;
 import quaternary.incorporeal.cygnus.IncorporeticCygnusActions;
@@ -30,6 +33,8 @@ import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
 import quaternary.incorporeal.etc.IncorporeticNaturalDevices;
 import quaternary.incorporeal.etc.IncorporeticRuneRecipes;
+import quaternary.incorporeal.etc.LooseRedstoneDustCygnusFunnelable;
+import quaternary.incorporeal.etc.LooseRedstoneRepeaterCygnusFunnelable;
 import quaternary.incorporeal.etc.helper.DespacitoHelper;
 import quaternary.incorporeal.etc.proxy.ServerProxy;
 import quaternary.incorporeal.flower.IncorporeticFlowers;
@@ -86,12 +91,17 @@ public final class Incorporeal {
 		IncorporeticCygnusDatatypes.registerCygnusDatatypes();
 		
 		PROXY.preinit();
+		
+		if(IncorporeticConfig.Compat.INFRAREDSTONE && Loader.isModLoaded("infraredstone")) {
+			InfraRedstoneCompat.preinit(e);
+		}
 	}
 	
 	@Mod.EventHandler
 	public static void init(FMLInitializationEvent e) {
 		DespacitoHelper.init();
 		
+		//TODO can this be moved to postinit?
 		CygnusRegistries.freezeRegistries();
 		CygnusDatatypeHelpers.init();
 		
@@ -103,7 +113,18 @@ public final class Incorporeal {
 		
 		IncorporeticLexicon.init();
 		
+		//TODO find a better home for this?
+		CygnusRegistries.LOOSE_FUNNELABLES.add(new LooseRedstoneDustCygnusFunnelable());
+		CygnusRegistries.LOOSE_FUNNELABLES.add(new LooseRedstoneRepeaterCygnusFunnelable());
+		
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(ModItems.manaResource, new DispenserBehaviorRedstoneRoot());
+	}
+	
+	@Mod.EventHandler
+	public static void postinit(FMLPostInitializationEvent e) {
+		if(IncorporeticConfig.Compat.INFRAREDSTONE && Loader.isModLoaded("infraredstone")) {
+			InfraRedstoneCompat.postinit(e);
+		}
 	}
 	
 	@Mod.EventBusSubscriber(modid = Incorporeal.MODID)

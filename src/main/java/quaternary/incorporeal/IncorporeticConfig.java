@@ -22,6 +22,12 @@ public final class IncorporeticConfig {
 		public static boolean EVERYONE_ANYONE = true;
 	}
 	
+	public static final class Compat {
+		private Compat() {}
+		
+		public static boolean INFRAREDSTONE = true;
+	}
+	
 	public static Configuration config;
 	
 	static void preinit(FMLPreInitializationEvent e) {
@@ -35,6 +41,8 @@ public final class IncorporeticConfig {
 		Sanvocalia.EVERYONE_HEARS_MESSAGES = config.getBoolean("everyoneHearsMessages", "sanvocalia", true, "Easter egg spoiler: when the Sanvocalia isn't near any corporea indices but receives a corporea ticket, it will just dump the corporea request into chat, to reference the all-too-often occurrence of players accidentally standing too far away from their corporea indexes in multiplayer and telling everyone \"5 stone\".\n\nIf this is false, only the person who placed the Sanvocalia will see these messages.");
 		
 		SoulCore.EVERYONE_ANYONE = config.getBoolean("anyoneCanPlaceAnyones", "soulcore", true, "If false, players can only place soul cores around their own skull; if true, anyone can place soul cores around anyone's skull.");
+		
+		Compat.INFRAREDSTONE = config.getBoolean("infraredstone", "compat", true, "If InfraRedstone is available, special features will be made available.");
 		
 		//TODO config versioning system to remove etc.variableRetainerStrength since it was merged into 356
 		

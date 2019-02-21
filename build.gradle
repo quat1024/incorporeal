@@ -41,10 +41,16 @@ repositories {
     maven {
         url "http://maven.blamejared.com"
     }
+    
+    maven {
+        url "https://minecraft.curseforge.com/api/maven"
+    }
 }
 
 dependencies {
     deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
+    
+    deobfCompile "infraredstone:InfraRedstone:1.2.1"
 }
 
 minecraft {

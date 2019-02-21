@@ -1,7 +1,6 @@
 package quaternary.incorporeal.tile.cygnus;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -16,12 +15,14 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
+import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
 import quaternary.incorporeal.block.cygnus.BlockCygnusFunnel;
+import quaternary.incorporeal.cygnus.CygnusRegistries;
 import quaternary.incorporeal.cygnus.CygnusStack;
 import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
-import quaternary.incorporeal.etc.RedstoneDustCygnusFunnelable;
-import quaternary.incorporeal.etc.RedstoneRepeaterCygnusFunnelable;
+import quaternary.incorporeal.etc.LooseRedstoneDustCygnusFunnelable;
+import quaternary.incorporeal.etc.LooseRedstoneRepeaterCygnusFunnelable;
 import quaternary.incorporeal.etc.helper.CygnusHelpers;
 
 import javax.annotation.Nullable;
@@ -47,10 +48,10 @@ public class TileCygnusFunnel extends TileEntity implements ITickable {
 		boolean oldBackLit = backLit;
 		boolean oldFrontLit = frontLit;
 		
-		ICygnusFunnelable backFunnelable = getCygnusFunnelable(world, fromPos);
+		ICygnusFunnelable backFunnelable = getCygnusFunnelable(world, fromPos, facing);
 		backLit = backFunnelable != null && backFunnelable.canGiveCygnusItem();
 		
-		ICygnusFunnelable frontFunnelable = getCygnusFunnelable(world, toPos);
+		ICygnusFunnelable frontFunnelable = getCygnusFunnelable(world, toPos, facing.getOpposite());
 		frontLit = frontFunnelable != null && frontFunnelable.canAcceptCygnusItem();
 		
 		if(oldBackLit != backLit || oldFrontLit != frontLit) {
@@ -71,8 +72,8 @@ public class TileCygnusFunnel extends TileEntity implements ITickable {
 				BlockPos fromPos = pos.offset(facing.getOpposite());
 				BlockPos toPos = pos.offset(facing);
 				
-				ICygnusFunnelable source = getCygnusFunnelable(world, fromPos);
-				ICygnusFunnelable sink = getCygnusFunnelable(world, toPos);
+				ICygnusFunnelable source = getCygnusFunnelable(world, fromPos, facing);
+				ICygnusFunnelable sink = getCygnusFunnelable(world, toPos, facing.getOpposite());
 				
 				//while i have this data, might as well update the arrows :P
 				backLit = source != null;
@@ -146,32 +147,40 @@ public class TileCygnusFunnel extends TileEntity implements ITickable {
 	}
 	
 	@Nullable
-	private static ICygnusFunnelable getCygnusFunnelable(World world, BlockPos pos) {
+	private static ICygnusFunnelable getCygnusFunnelable(World world, BlockPos pos, EnumFacing face) {
 		//Is it a block (as an interface?)
 		IBlockState state = world.getBlockState(pos);
 		Block b = state.getBlock();
 		if(b instanceof ICygnusFunnelable) {
 			return (ICygnusFunnelable) b;
-		} else if(b == Blocks.REDSTONE_WIRE) {
-			//Not my block to slap an interface on to, let's just hardcode it lmao
-			return RedstoneDustCygnusFunnelable.forLevel(state.getValue(BlockRedstoneWire.POWER));
-		} else if(b == Blocks.POWERED_REPEATER || b == Blocks.UNPOWERED_REPEATER) {
-			//Same here. Yeahh not really a better solution to this other than map lookups or asm
-			return new RedstoneRepeaterCygnusFunnelable(world, pos);
 		}
 		
 		//Is it a tile entity capability?
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile != null) {
+			//try null
 			ICygnusFunnelable capMaybe = tile.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, null);
+			if(capMaybe != null) return capMaybe;
+			//try facing
+			capMaybe = tile.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, face);
 			if(capMaybe != null) return capMaybe;
 		}
 		
 		//Is it an entity capability?
 		List<Entity> entities = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos));
 		for(Entity e : entities) {
+			//try null
 			ICygnusFunnelable capMaybe = e.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, null);
 			if(capMaybe != null) return capMaybe;
+			//try facing
+			capMaybe = e.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, face);
+			if(capMaybe != null) return capMaybe;
+		}
+		
+		//Maybe it's a loose funnelable? (last resort)
+		for(ILooseCygnusFunnelable loose : CygnusRegistries.LOOSE_FUNNELABLES) {
+			ICygnusFunnelable f = loose.getFor(world, pos, state, face);
+			if(f != null) return f;
 		}
 		
 		//Idk where it is!

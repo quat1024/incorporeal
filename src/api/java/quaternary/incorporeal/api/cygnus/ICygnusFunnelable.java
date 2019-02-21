@@ -4,7 +4,9 @@ import javax.annotation.Nullable;
 
 /**
  * Something with special interactions with the Cygnus funnel.
- * Can be applied to Entities or TileEntities as a capabilty.
+ * Can be applied to Entities or TileEntities as a capabilty, or to blocks as an interface.
+ * 
+ * @see ILooseCygnusFunnelable
  * 
  * @since 1.1
  * @author quaternary

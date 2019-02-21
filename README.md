@@ -54,6 +54,20 @@ However, the buildscript also contains a few handy lines that allow you to set y
 
 * Save, and launch the game through the usual methods
 
+## Coding Style
+
+Since this mod is my biggest, I'm trying to care more about style than I usually do.
+
+I'll write up more later, but the usual rules apply:
+
+* Tabs, not spaces
+* Either use braces or put everything on one line, never a mix
+* Avoid side effects in constructors and if-clauses
+* Obsess over ObjectHolders
+* Use comments on long methods with multiple steps
+* Use comments when either the meaning or the purpose is unclear
+* Don't shy away from long class and method names when they are needed
+
 ## License information
 
 **All source files in `src/main/java/quaternary/incorporeal/` except `SpookyClassWriter.java`:**
@@ -67,3 +81,7 @@ This is from Gotta Go Fast by Thiakil, MIT license. Its license is reproduced in
 **All files in `src/main/java/quaternary/incorporealapi/`:**
 
 CC0, public domain. Repackaging them in your mods is very much encouraged.
+
+**Files in `src/main/java/quaternary/compat/infraredstone`**
+
+This is where Incorporeal's compatibility with InfraRedstone, an LGPL mod, lives. I believe this sort of dependency categorizes Incorporeal as an "Application" under the LGPL, and as such, InRed's license is reproduced in OTHER_LICENSES.md and its uses are marked with a comment at the top of each source file.
