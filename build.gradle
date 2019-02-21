@@ -49,7 +49,7 @@ repositories {
 
 dependencies {
     deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
-    
+    deobfCompile "vazkii.botania:Botania:r1.10-361.50"
     deobfCompile "infraredstone:InfraRedstone:1.2.1"
 }
 
