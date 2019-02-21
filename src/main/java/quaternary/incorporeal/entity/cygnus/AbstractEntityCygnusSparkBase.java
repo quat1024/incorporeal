@@ -13,6 +13,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import quaternary.incorporeal.etc.EnumDyeColorDataSerializer;
 import vazkii.botania.common.item.ItemTwigWand;
@@ -44,6 +45,11 @@ public abstract class AbstractEntityCygnusSparkBase extends Entity {
 	
 	public AbstractEntityCygnusSparkBase(World world) {
 		super(world);
+	}
+	
+	@Override
+	public ItemStack getPickedResult(RayTraceResult target) {
+		return getAssociatedItemStack().copy();
 	}
 	
 	@Override
@@ -117,8 +123,6 @@ public abstract class AbstractEntityCygnusSparkBase extends Entity {
 		
 		return false;
 	}
-	
-	
 	
 	@Override
 	public boolean canBeCollidedWith() {
