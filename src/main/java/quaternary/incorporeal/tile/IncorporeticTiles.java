@@ -22,6 +22,7 @@ public final class IncorporeticTiles {
 		reg(TileEnderSoulCore.class, "ender_soul_core");
 		reg(TileCorporeaSoulCore.class, "corporea_soul_core");
 		reg(TileUnstableCube.class, "unstable_cube");
+		reg(TileRedStringLiar.class, "red_string_liar");
 		
 		reg(TileCygnusCrystalCube.class, "cygnus_crystal_cube");
 		reg(TileCygnusRetainer.class, "cygnus_retainer");

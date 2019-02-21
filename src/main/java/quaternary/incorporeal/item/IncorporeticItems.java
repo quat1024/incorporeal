@@ -62,6 +62,9 @@ public final class IncorporeticItems {
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_SOUL_CORE)
 	public static final ItemSoulCore CORPOREA_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
 	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.RED_STRING_LIAR)
+	public static final ItemBlock RED_STRING_LIAR = EtcHelpers.definitelyIsntNullISwear();
+	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.NATURAL_REPEATER)
 	public static final ItemBlock NATURAL_REPEATER = EtcHelpers.definitelyIsntNullISwear();
 	
@@ -86,6 +89,8 @@ public final class IncorporeticItems {
 		
 		reg.register(createItemBlock(new ItemSoulCore(IncorporeticBlocks.ENDER_SOUL_CORE)));
 		reg.register(createItemBlock(new ItemSoulCore(IncorporeticBlocks.CORPOREA_SOUL_CORE)));
+		
+		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.RED_STRING_LIAR)));
 		
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.NATURAL_REPEATER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.NATURAL_COMPARATOR)));

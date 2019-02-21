@@ -1,8 +1,10 @@
 package quaternary.incorporeal.etc.helper;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -11,6 +13,9 @@ import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.registries.IForgeRegistryEntry;
+import quaternary.incorporeal.Incorporeal;
 import vazkii.botania.api.state.BotaniaStateProps;
 import vazkii.botania.api.state.enums.CrateVariant;
 import vazkii.botania.common.block.ModBlocks;
@@ -86,5 +91,13 @@ public final class EtcHelpers {
 			default:
 				return key;
 		}
+	}
+	
+	//I hate mods that setregname in the constructor!!!!!!
+	//I can't extend any botania blocks without this method!!!!
+	public static void fixRegistryNameDespacito(IForgeRegistryEntry.Impl<?> lmao) {
+		ResourceLocation name = ReflectionHelper.getPrivateValue(IForgeRegistryEntry.Impl.class, lmao, "registryName");
+		ResourceLocation nameBetter = new ResourceLocation(Incorporeal.MODID, name.getPath());
+		ReflectionHelper.setPrivateValue(IForgeRegistryEntry.Impl.class, lmao, nameBetter, "registryName");
 	}
 }

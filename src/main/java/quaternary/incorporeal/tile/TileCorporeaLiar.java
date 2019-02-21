@@ -35,7 +35,7 @@ public class TileCorporeaLiar extends TileCorporeaBase implements ICustomWrapped
 	}
 	
 	//Basically copied from TileCorporeaFunnel; doing a similar thing to it anyways.
-	public List<ItemStack> getSpoofedStack() {
+	public List<ItemStack> getSpoofedStacks() {
 		List<ItemStack> stacks = new ArrayList<>();
 		
 		for(EnumFacing whichWay : EnumFacing.HORIZONTALS) {
@@ -77,6 +77,6 @@ public class TileCorporeaLiar extends TileCorporeaBase implements ICustomWrapped
 	
 	@Override
 	public IWrappedInventory wrap(InvWithLocation inv, ICorporeaSpark spork) {
-		return new LyingWrappedInventory(inv, spork);
+		return new LyingWrappedInventory(inv, spork, getSpoofedStacks());
 	}
 }

@@ -14,6 +14,8 @@ import quaternary.incorporeal.block.soulcore.BlockCorporeaSoulCore;
 import quaternary.incorporeal.block.soulcore.BlockEnderSoulCore;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
 
+import java.util.Objects;
+
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
 @SuppressWarnings("unused")
 public final class IncorporeticBlocks {
@@ -31,6 +33,8 @@ public final class IncorporeticBlocks {
 		
 		public static final String ENDER_SOUL_CORE = "ender_soul_core";
 		public static final String CORPOREA_SOUL_CORE = "corporea_soul_core";
+		
+		public static final String RED_STRING_LIAR = "red_string_liar";
 		
 		public static final String REDSTONE_ROOT_CROP = "redstone_root_crop";
 		public static final String NATURAL_REPEATER = "natural_repeater";
@@ -63,6 +67,9 @@ public final class IncorporeticBlocks {
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_SOUL_CORE)
 	public static final BlockCorporeaSoulCore CORPOREA_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
 	
+	@GameRegistry.ObjectHolder(RegistryNames.RED_STRING_LIAR)
+	public static final BlockRedStringLiar RED_STRING_LIAR = EtcHelpers.definitelyIsntNullISwear();
+	
 	@GameRegistry.ObjectHolder(RegistryNames.REDSTONE_ROOT_CROP)
 	public static final BlockNaturalDeviceCrop REDSTONE_ROOT_CROP = EtcHelpers.definitelyIsntNullISwear();
 	
@@ -86,6 +93,8 @@ public final class IncorporeticBlocks {
 		reg.register(createBlock(new BlockEnderSoulCore(), RegistryNames.ENDER_SOUL_CORE));
 		reg.register(createBlock(new BlockCorporeaSoulCore(), RegistryNames.CORPOREA_SOUL_CORE));
 		
+		reg.register(createSpecialSnowflakeBlock(new BlockRedStringLiar(RegistryNames.RED_STRING_LIAR)));
+		
 		reg.register(createBlock(new BlockNaturalDeviceCrop(), RegistryNames.REDSTONE_ROOT_CROP));
 		reg.register(createBlock(new BlockNaturalRepeater(), RegistryNames.NATURAL_REPEATER));
 		reg.register(createBlock(new BlockNaturalComparator(), RegistryNames.NATURAL_COMPARATOR));
@@ -99,6 +108,15 @@ public final class IncorporeticBlocks {
 	private static <T extends Block> T createBlock(T block, String name) {
 		block.setRegistryName(new ResourceLocation(Incorporeal.MODID, name));
 		block.setTranslationKey(Incorporeal.MODID + "." + name);
+		block.setCreativeTab(Incorporeal.TAB);
+		return block;
+	}
+	
+	//For the few occasions where i need to extend a botania block and they setregname in the ctor
+	private static <T extends Block> T createSpecialSnowflakeBlock(T block) {
+		EtcHelpers.fixRegistryNameDespacito(block);
+		ResourceLocation xd = Objects.requireNonNull(block.getRegistryName());
+		block.setTranslationKey(xd.getNamespace() + "." + xd.getPath());
 		block.setCreativeTab(Incorporeal.TAB);
 		return block;
 	}

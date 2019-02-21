@@ -21,26 +21,18 @@ import java.util.List;
 //TODO the PR allows extending WrappedIInventory now~
 	//I dont feel like dealing with these messy functions though lmaO
 public class LyingWrappedInventory extends WrappedInventoryBase {
-	private final InvWithLocation inv;
-	
-	public LyingWrappedInventory(InvWithLocation inv, ICorporeaSpark spark) {
+	public LyingWrappedInventory(InvWithLocation inv, ICorporeaSpark spark, List<ItemStack> spoofedStacks) {
 		super(spark);
 		this.inv = inv;
+		this.spoofedStacks = spoofedStacks;
 	}
+	
+	private final InvWithLocation inv;
+	private final List<ItemStack> spoofedStacks;
 	
 	@Override
 	public InvWithLocation getWrappedObject() {
 		return inv;
-	}
-	
-	private List<ItemStack> getSpoofedStacks() {
-		World w = inv.world;
-		BlockPos p = inv.pos;
-		TileEntity te = w.getTileEntity(p);
-		if(te instanceof TileCorporeaLiar) {
-			return ((TileCorporeaLiar)te).getSpoofedStack();
-		}
-		return ImmutableList.of(ItemStack.EMPTY);
 	}
 	
 	@Override
@@ -56,12 +48,14 @@ public class LyingWrappedInventory extends WrappedInventoryBase {
 	private List<ItemStack> doMockedRequest(CorporeaRequest req) {
 		List<ItemStack> stacks = new ArrayList<>();
 		
-		for(ItemStack spoof : getSpoofedStacks()) {
+		for(ItemStack spoof : spoofedStacks) {
 			if(!isMatchingItemStack(req.matcher, req.checkNBT, spoof)) continue;
 			
 			for(int i = 0; i < inv.handler.getSlots(); i++) {
 				ItemStack stackAt = inv.handler.getStackInSlot(i);
 				if(!stackAt.isEmpty()) {
+					//Actually return as if it was a spoofed stack lol
+					//Pulled a little sneaky on ya
 					ItemStack copy = new ItemStack(spoof.getItem(), stackAt.getCount(), spoof.getMetadata());
 					
 					req.extractedItems += Math.min(stackAt.getCount(), req.count == -1 ? stackAt.getCount() : req.count);
@@ -79,7 +73,7 @@ public class LyingWrappedInventory extends WrappedInventoryBase {
 	private List<ItemStack> doRealRequest(CorporeaRequest req) {
 		List<ItemStack> stacks = new ArrayList<>();
 		
-		for(ItemStack spoof : getSpoofedStacks()) {
+		for(ItemStack spoof : spoofedStacks) {
 			if(!isMatchingItemStack(req.matcher, req.checkNBT, spoof)) continue;
 			
 			for(int i = inv.handler.getSlots() - 1; i >= 0; i--) {
