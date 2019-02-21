@@ -1,5 +1,6 @@
 package quaternary.incorporeal.entity.cygnus;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -58,6 +59,11 @@ public class EntityCygnusMasterSpark extends AbstractEntityCygnusSparkBase imple
 	@Override
 	protected ItemStack getAssociatedItemStack() {
 		return new ItemStack(IncorporeticCygnusItems.MASTER_CYGNUS_SPARK);
+	}
+	
+	@Override
+	protected void traceNetwork(EntityPlayer player) {
+		//TODO.
 	}
 	
 	@Override

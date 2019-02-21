@@ -27,9 +27,14 @@ import java.util.List;
 //on the network access the same exact stack.
 //Therefore, their structure is a little different.
 public abstract class AbstractEntityCygnusSparkBase extends Entity {
+	//Can this spark stay put on this block?
 	protected abstract boolean canStay();
+	//What is the item used to place this spark?
 	protected abstract ItemStack getAssociatedItemStack();
+	//Draw out the network with particles, since the player is asking for that
+	protected abstract void traceNetwork(EntityPlayer player);
 	
+	//What is the master spark on your network?
 	public abstract EntityCygnusMasterSpark getMasterSpark();
 	
 	public static final int SEARCH_RADIUS = 8;
@@ -73,11 +78,26 @@ public abstract class AbstractEntityCygnusSparkBase extends Entity {
 	
 	@Override
 	public boolean processInitialInteract(EntityPlayer player, EnumHand hand) {
+		boolean ret = processInitialInteractInner(player, hand);
+		
+		if(ret) {
+			//Was noticing a pattern.
+			player.swingArm(hand);
+		}
+		
+		return ret;
+	}
+	
+	protected boolean processInitialInteractInner(EntityPlayer player, EnumHand hand) {
 		ItemStack held = player.getHeldItem(hand);
 		
-		if(held.getItem() instanceof ItemTwigWand && player.isSneaking()) {
-			player.swingArm(hand);
-			drop();
+		if(held.getItem() instanceof ItemTwigWand) {
+			if(player.isSneaking()) {
+				drop();
+			} else {
+				traceNetwork(player);
+			}
+			
 			return true;
 		}
 		
@@ -86,19 +106,19 @@ public abstract class AbstractEntityCygnusSparkBase extends Entity {
 			if(getTint() != dyeTint) {
 				if(!player.isCreative()) held.shrink(1);
 				setTint(dyeTint);
-				player.swingArm(hand);
 				return true;
 			}
 		}
 		
 		if(held.getItem() == ModItems.phantomInk) {
 			setPhantomInked(true);
-			player.swingArm(hand);
 			return true;
 		}
 		
 		return false;
 	}
+	
+	
 	
 	@Override
 	public boolean canBeCollidedWith() {

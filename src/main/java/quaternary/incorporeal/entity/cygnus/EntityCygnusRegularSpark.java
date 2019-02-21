@@ -1,10 +1,13 @@
 package quaternary.incorporeal.entity.cygnus;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import quaternary.incorporeal.etc.helper.CygnusHelpers;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
+import vazkii.botania.common.Botania;
+import vazkii.botania.common.entity.EntitySpark;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;
@@ -115,6 +118,23 @@ public class EntityCygnusRegularSpark extends AbstractEntityCygnusSparkBase {
 	@Override
 	protected ItemStack getAssociatedItemStack() {
 		return new ItemStack(IncorporeticCygnusItems.CYGNUS_SPARK);
+	}
+	
+	@Override
+	protected void traceNetwork(EntityPlayer player) {
+		if(uplinkToMaster == null) return;
+		
+		//Trace out the path to the master spark
+		//This doesn't trace the whole network. Work on that.
+		AbstractEntityCygnusSparkBase a = this;
+		AbstractEntityCygnusSparkBase b = this.uplinkToMaster;
+		while(true) {
+			EntitySpark.particleBeam(player, a, b);
+			a = b;
+			if(b instanceof EntityCygnusRegularSpark) {
+				b = ((EntityCygnusRegularSpark) b).uplinkToMaster;
+			} else break;
+		}
 	}
 	
 	@Override
