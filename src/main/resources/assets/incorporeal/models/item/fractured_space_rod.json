@@ -1,6 +1,6 @@
 {
 	"parent": "minecraft:item/handheld",
 	"textures": {
-		"layer0": "incorporeal:wip"
+		"layer0": "incorporeal:item/fractured_space_rod/tex"
 	}
 }

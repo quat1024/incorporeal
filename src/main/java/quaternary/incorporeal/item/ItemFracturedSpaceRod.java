@@ -104,7 +104,6 @@ public class ItemFracturedSpaceRod extends Item implements IManaUsingItem, ILexi
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag mistake) {
-		tooltip.add(TextFormatting.DARK_GRAY + "" + TextFormatting.ITALIC + I18n.translateToLocal("incorporeal.etc.onlyTextureWip")); //<distant shame bells>
 		NBTTagCompound cratePosCmp = ItemNBTHelper.getCompound(stack, CRATE_POS_KEY, true);
 		if(cratePosCmp == null) {
 			tooltip.add(TextFormatting.RED + I18n.translateToLocal("incorporeal.fracturedSpace.tooltipNotBound"));
