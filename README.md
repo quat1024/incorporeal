@@ -84,4 +84,8 @@ CC0, public domain. Repackaging them in your mods is very much encouraged.
 
 **Files in `src/main/java/quaternary/compat/infraredstone`**
 
-This is where Incorporeal's compatibility with InfraRedstone, an LGPL mod, lives. I believe this sort of dependency categorizes Incorporeal as an "Application" under the LGPL, and as such, InRed's license is reproduced in OTHER_LICENSES.md and its uses are marked with a comment at the top of each source file.
+This is where Incorporeal's compatibility with InfraRedstone, an LGPL mod, lives. I believe this sort of dependency categorizes Incorporeal as a "Combined Work" under the LGPL.
+
+As such, InRed's license is reproduced in OTHER_LICENSES.md and its uses are marked with a comment at the top of each source file.
+
+As far as section 4d of the LGPL, since the dependency is "soft" and I don't repackage anything InfraRedstone, that counts as a "shared-library mechanism".

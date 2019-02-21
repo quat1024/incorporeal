@@ -1,3 +1,8 @@
+//This links against InfraRedstone, which is covered under the
+//GNU Lesser General Public License.
+//You can find its source here: https://github.com/elytra/InfraRedstone
+//So... keep that in mind!
+
 package quaternary.incorporeal.compat.infraredstone;
 
 import com.elytradev.infraredstone.InfraRedstone;
