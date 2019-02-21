@@ -30,6 +30,7 @@ import quaternary.incorporeal.client.model.CygnusWordModelLoader;
 import quaternary.incorporeal.client.tesr.RenderItemSoulCore;
 import quaternary.incorporeal.client.tesr.RenderTileCorporeaSparkTinkerer;
 import quaternary.incorporeal.client.tesr.RenderTileSoulCore;
+import quaternary.incorporeal.client.tesr.cygnus.RenderTileCygnusCrystalCube;
 import quaternary.incorporeal.client.tesr.cygnus.RenderTileCygnusRetainer;
 import quaternary.incorporeal.client.tesr.decorative.RenderTileUnstableCube;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
@@ -41,6 +42,7 @@ import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
 import quaternary.incorporeal.item.cygnus.ItemCygnusCard;
 import quaternary.incorporeal.item.cygnus.ItemCygnusWordCard;
 import quaternary.incorporeal.tile.TileCorporeaSparkTinkerer;
+import quaternary.incorporeal.tile.cygnus.TileCygnusCrystalCube;
 import quaternary.incorporeal.tile.cygnus.TileCygnusRetainer;
 import quaternary.incorporeal.tile.decorative.TileUnstableCube;
 import quaternary.incorporeal.tile.soulcore.TileCorporeaSoulCore;
@@ -99,7 +101,6 @@ public final class ClientRegistryEvents {
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_SOUL_CORE);
 		setIgnoreAllStateMapper(IncorporeticBlocks.DECORATIVE_UNSTABLE_CUBE);
 		setIgnoreAllStateMapper(IncorporeticCygnusBlocks.WORD);
-		setIgnoreAllStateMapper(IncorporeticCygnusBlocks.CRYSTAL_CUBE);
 		
 		//Tile Entity Special Renderers
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCorporeaSparkTinkerer.class, new RenderTileCorporeaSparkTinkerer());
@@ -112,10 +113,13 @@ public final class ClientRegistryEvents {
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCygnusRetainer.class, new RenderTileCygnusRetainer());
 		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileCygnusCrystalCube.class, new RenderTileCygnusCrystalCube());
+		
 		//Teisrs
 		setTEISRModel(IncorporeticItems.ENDER_SOUL_CORE, new RenderItemSoulCore(enderRender));
 		setTEISRModel(IncorporeticItems.CORPOREA_SOUL_CORE, new RenderItemSoulCore(corporeaRender));
 		setTEISRModel(IncorporeticItems.SOUL_CORE_FRAME, new RenderItemSoulCore(new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/entity/soul_core_frame.png"))));
+		//setTEISRModel(IncorporeticCygnusItems.CRYSTAL_CUBE, new RenderTileCygnusCrystalCube());
 	}
 	
 	@SubscribeEvent

@@ -13,6 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.ISimpleRegistry;
+import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -51,6 +52,11 @@ public abstract class ItemCygnusCard<T> extends Item {
 		ResourceLocation thingName = readValueName(stack);
 		
 		return thingName.getNamespace() + ".cygnus." + tagNameLower + "." + thingName.getPath();
+	}
+	
+	public ItemStack set(ItemStack stack, T thing) {
+		ItemNBTHelper.setString(stack, tagName, registry.nameOf(thing).toString());
+		return stack;
 	}
 	
 	@Override
