@@ -4,8 +4,10 @@ import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.IncorporeticConfig;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.etc.IncorporeticRuneRecipes;
 import quaternary.incorporeal.flower.IncorporeticPetalRecipes;
@@ -19,14 +21,16 @@ import vazkii.botania.api.recipe.RecipePetals;
 import vazkii.botania.common.item.ModItems;
 import vazkii.botania.common.item.block.ItemBlockSpecialFlower;
 import vazkii.botania.common.lexicon.CompatLexiconEntry;
+import vazkii.botania.common.lexicon.LexiconData;
 import vazkii.botania.common.lexicon.page.PageCraftingRecipe;
 import vazkii.botania.common.lexicon.page.PagePetalRecipe;
 import vazkii.botania.common.lexicon.page.PageRuneRecipe;
 import vazkii.botania.common.lexicon.page.PageText;
 
 public final class IncorporeticLexicon {
-	private IncorporeticLexicon() {
-	}
+	private IncorporeticLexicon() {}
+	
+	public static LexiconCategory categoryCorporetic = null;
 	
 	//PRE-ELVEN
 	public static LexiconEntry frameTinkerer;
@@ -51,6 +55,27 @@ public final class IncorporeticLexicon {
 	public static LexiconEntry redStringLiar;
 	
 	public static void init() {
+		//init stuff
+		if(IncorporeticConfig.General.CORPOREA_KNOWLEDGE_TYPE) {
+			categoryCorporetic = new LexiconCategory("incorporeal.category.corporea")
+				.setPriority(3)
+				.setIcon(new ResourceLocation(Incorporeal.MODID, "textures/lexicon/categories/corporea.png"))
+			;
+			BotaniaAPI.addCategory(categoryCorporetic);
+			
+			//move vanilla corporea-related items into this category
+			for(LexiconEntry e : new LexiconEntry[]{
+				LexiconData.corporea, LexiconData.corporeaCrystalCube, LexiconData.corporeaFunnel, LexiconData.corporeaIndex, LexiconData.corporeaInterceptor, LexiconData.corporeaRetainer
+			}) {
+				BotaniaAPI.addEntry(e, categoryCorporetic);
+				BotaniaAPI.categoryEnder.entries.remove(e);
+			}
+			
+			LexiconData.corporea.setPriority();
+		} else {
+			categoryCorporetic = BotaniaAPI.categoryEnder;
+		}
+		
 		/////
 		newEntryType = BotaniaAPI.basicKnowledge; //Basic Knowledge entries
 		/////
@@ -72,14 +97,14 @@ public final class IncorporeticLexicon {
 		/////
 		
 		fracturedSpace = buildCraftingEntry(IncorporeticItems.FRACTURED_SPACE_ROD, BotaniaAPI.categoryTools, 2);
-		ticketConjurer = buildCraftingEntry(IncorporeticItems.TICKET_CONJURER, BotaniaAPI.categoryEnder, 2);
+		ticketConjurer = buildCraftingEntry(IncorporeticItems.TICKET_CONJURER, categoryCorporetic, 2);
 		
-		corporeaInhibitor = buildCraftingEntry(IncorporeticBlocks.CORPOREA_INHIBITOR, BotaniaAPI.categoryEnder, 1);
-		corporeaSolidifier = buildCraftingEntry(IncorporeticBlocks.CORPOREA_SOLIDIFIER, BotaniaAPI.categoryEnder, 2);
-		corporeaTinkerer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_SPARK_TINKERER, BotaniaAPI.categoryEnder, 2);
-		corporeaRetainerDecrementer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER, BotaniaAPI.categoryEnder, 2);
+		corporeaInhibitor = buildCraftingEntry(IncorporeticBlocks.CORPOREA_INHIBITOR, categoryCorporetic, 1);
+		corporeaSolidifier = buildCraftingEntry(IncorporeticBlocks.CORPOREA_SOLIDIFIER, categoryCorporetic, 2);
+		corporeaTinkerer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_SPARK_TINKERER, categoryCorporetic, 2);
+		corporeaRetainerDecrementer = buildCraftingEntry(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER, categoryCorporetic, 2);
 		
-		soulCores = new CompatLexiconEntry("incorporeal.soulCores", BotaniaAPI.categoryEnder, Incorporeal.NAME);
+		soulCores = new CompatLexiconEntry("incorporeal.soulCores", categoryCorporetic, Incorporeal.NAME);
 		soulCores.setLexiconPages(
 						new PageText("0"),
 						new PageRuneRecipe(".flavor0", IncorporeticRuneRecipes.soulCoreFrame),
@@ -95,7 +120,7 @@ public final class IncorporeticLexicon {
 		
 		sanvocalia = buildFlowerEntry("sanvocalia", IncorporeticPetalRecipes.sanvocalia, BotaniaAPI.categoryFunctionalFlowers, 1);
 		
-		redStringLiar = buildCraftingEntry(IncorporeticBlocks.RED_STRING_LIAR, BotaniaAPI.categoryEnder, 2);
+		redStringLiar = buildCraftingEntry(IncorporeticBlocks.RED_STRING_LIAR, categoryCorporetic, 2);
 	}
 	
 	private static LexiconEntry buildCraftingEntry(IForgeRegistryEntry subject, LexiconCategory category, int pageCount) {

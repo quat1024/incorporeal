@@ -28,6 +28,12 @@ public final class IncorporeticConfig {
 		public static boolean INFRAREDSTONE = true;
 	}
 	
+	public static final class General {
+		private General() {}
+		
+		public static boolean CORPOREA_KNOWLEDGE_TYPE = true;
+	}
+	
 	public static Configuration config;
 	
 	static void preinit(FMLPreInitializationEvent e) {
@@ -43,6 +49,8 @@ public final class IncorporeticConfig {
 		SoulCore.EVERYONE_ANYONE = config.getBoolean("anyoneCanPlaceAnyones", "soulcore", true, "If false, players can only place soul cores around their own skull; if true, anyone can place soul cores around anyone's skull.");
 		
 		Compat.INFRAREDSTONE = config.getBoolean("infraredstone", "compat", true, "If InfraRedstone is available, special features will be made available.");
+		
+		General.CORPOREA_KNOWLEDGE_TYPE = config.getBoolean("corporeaKnowledgeType", "general", true, "Should Incorporeal move corporea into its own knowledge type? This is because the Ender Artefacts chapter was pretty much taken over by corporea-related things, and it was getting a little out of hand.");
 		
 		//TODO config versioning system to remove etc.variableRetainerStrength since it was merged into 356
 		

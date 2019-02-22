@@ -80,6 +80,9 @@ tile.botania:flower.sweet_alexum.name=Sweet Alexum
 tile.botania:flower.sweet_alexum_chibi.name=Sweet Alexum Petite
 
 ###############################Lexicon!!!
+
+incorporeal.category.corporea=Corporea
+
 ########PRE-ELVEN
 
 botania.entry.incorporeal.frame_tinkerer=Frame Tinkerer

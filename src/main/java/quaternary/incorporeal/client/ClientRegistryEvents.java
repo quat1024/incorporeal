@@ -118,7 +118,6 @@ public final class ClientRegistryEvents {
 		setTEISRModel(IncorporeticItems.ENDER_SOUL_CORE, new RenderItemSoulCore(enderRender));
 		setTEISRModel(IncorporeticItems.CORPOREA_SOUL_CORE, new RenderItemSoulCore(corporeaRender));
 		setTEISRModel(IncorporeticItems.SOUL_CORE_FRAME, new RenderItemSoulCore(new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/entity/soul_core_frame.png"))));
-		//setTEISRModel(IncorporeticCygnusItems.CRYSTAL_CUBE, new RenderTileCygnusCrystalCube());
 	}
 	
 	@SubscribeEvent
