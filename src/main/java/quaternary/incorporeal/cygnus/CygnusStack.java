@@ -59,8 +59,8 @@ public class CygnusStack implements ICygnusStack {
 		if(popDepth == 0) return;
 		
 		for(int i = 0; i < popDepth; i++) {
-			stack[cursor] = null;
 			cursor--;
+			stack[cursor] = null;
 		}
 		
 		dirty = true;
