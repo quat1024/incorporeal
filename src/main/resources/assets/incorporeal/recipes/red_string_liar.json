@@ -3,25 +3,20 @@
 		"item": "incorporeal:red_string_liar"
 	},
 	"pattern": [
-		" S ",
-		"NBN",
-		" E "
+		"RRR",
+		"RCS",
+		"RRR"
 	],
 	"type": "forge:ore_shaped",
 	"key": {
-		"E": {
-			"item": "botania:foresteye"
-		},
-		"B": {
-			"item": "botania:biomestoneb",
-			"data": 3
-		},
-		"N": {
-			"item": "minecraft:ender_eye"
+		"R": {
+			"item": "#LIVINGROCK"
 		},
 		"S": {
-			"item": "botania:corporeaspark",
-			"data": 0
+			"item": "#BREDSTRING"
+		},
+		"C": {
+			"item": "botania:foresteye"
 		}
 	}
 }

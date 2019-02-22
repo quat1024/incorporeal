@@ -48,6 +48,7 @@ public final class IncorporeticLexicon {
 	
 	//etc
 	public static LexiconEntry sanvocalia;
+	public static LexiconEntry redStringLiar;
 	
 	public static void init() {
 		/////
@@ -93,6 +94,8 @@ public final class IncorporeticLexicon {
 		soulCores.setIcon(new ItemStack(IncorporeticItems.CORPOREA_SOUL_CORE));
 		
 		sanvocalia = buildFlowerEntry("sanvocalia", IncorporeticPetalRecipes.sanvocalia, BotaniaAPI.categoryFunctionalFlowers, 1);
+		
+		redStringLiar = buildCraftingEntry(IncorporeticBlocks.RED_STRING_LIAR, BotaniaAPI.categoryEnder, 2);
 	}
 	
 	private static LexiconEntry buildCraftingEntry(IForgeRegistryEntry subject, LexiconCategory category, int pageCount) {
