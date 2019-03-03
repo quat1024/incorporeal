@@ -1,15 +1,15 @@
 Incorporeal
 ===========
 
-A Botania addon that adds more toys for your corporea system. Designed for managing large-scale systems and expanding what is possible with corporea without trivializing it.
+A Botania addon that adds more toys for your corporea system. Designed for managing large-scale systems and expanding what is possible with corporea, without trivializing it.
 
-Development status - first version is out, now thinking of more things to add to it ;)
+Development status - WHO FUCKIN KNOWS ANYMORE???????????
 
 ## Sounds cool what does it add
 
 * A Corporea Spark Tinkerer to swap out spark networks
 * An Item Frame Tinkerer to switch items on Item Frames
-* Corporea Prevaricator to lie to your system about the contents of a chest
+* Red String Liar to lie to your system about the contents of a chest
 * Corporea Solidifier to store corporea requests as *corporea tickets*
 * Ticket Conjurer to create tickets on the go
 * Sanvocalia flower to read those tickets off to corporea indexes
@@ -19,6 +19,9 @@ Development status - first version is out, now thinking of more things to add to
 * Plant redstone roots to grow natural redstone circuitry
 * Corporea Retainer Evaporator, allowing for richer control of interceptor-retainer pairs
 * Lexica Botania integration for ~~all~~most of this, of course
+* Cursed despacito flower
+
+* Soon: the Cygnus network, a corporea-flavored math and logic system
 
 * 1 coremod boio
 
@@ -33,11 +36,8 @@ Development status - first version is out, now thinking of more things to add to
 
 ### What's planned for the next update?
 
-* ~~Corporea spark augment x d~~too hard and hacky, pr that
-* More options for corporea sparks?
-* "Data boxes"
-* The little worldgen structure thingie.
-* MORE COREMODDING????!??!!
+* Worldgen.
+* Some secret stuff :eyes:
 
 ## Build instructions
 
@@ -56,9 +56,9 @@ However, the buildscript also contains a few handy lines that allow you to set y
 
 ## Coding Style
 
-Since this mod is my biggest, I'm trying to care more about style than I usually do.
+Since this mod is my biggest, I'm trying to care more about style than I usually do????
 
-I'll write up more later, but the usual rules apply:
+The usual rules apply:
 
 * Tabs, not spaces
 * Either use braces or put everything on one line, never a mix

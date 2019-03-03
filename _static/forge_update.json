@@ -1,6 +1,7 @@
 {
 	"homepage": "https://github.com/quat1024/incorporeal/releases",
 	"1.12.2": {
+		"1.0.4": "Prerelease for 1.1. Lots of bugfixes and tweaks, new art, the return of the Unstable Cube, new Red String Liar, and the beta for the Cygnus Network, a corporea-flavored math and logic system",
 		"1.0.3": "Add Chinese translation by SPRshachuku!",
 		"1.0.2": "Fix the retainer comparator tweak not working, fix alchemy catalysts acting as trash cans",
 		"1.0.1": "Fix a startup crash outside of dev environment, whoops",
