@@ -57,6 +57,10 @@ public final class IncorporeticLexicon {
 	public static void init() {
 		//init stuff
 		if(IncorporeticConfig.General.CORPOREA_KNOWLEDGE_TYPE) {
+			//todo make this not crap
+			//-can i hide the category when it's not elven? (there's nothing in it)
+			//-knowledge type?
+			//-seem to be getting duped index searches?
 			categoryCorporetic = new LexiconCategory("incorporeal.category.corporea")
 				.setPriority(3)
 				.setIcon(new ResourceLocation(Incorporeal.MODID, "textures/lexicon/categories/corporea.png"))

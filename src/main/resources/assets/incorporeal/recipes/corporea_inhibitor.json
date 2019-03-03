@@ -1,6 +1,7 @@
 {
 	"result": {
-		"item": "incorporeal:corporea_inhibitor"
+		"item": "incorporeal:corporea_inhibitor",
+		"count": 8
 	},
 	"pattern": [
 		"GGG",
@@ -10,7 +11,7 @@
 	"type": "forge:ore_shaped",
 	"key": {
 		"G": {
-			"item": "botania:elfglasspane"
+			"item": "botania:managlasspane"
 		},
 		"C": {
 			"item": "botania:corporeaspark",
