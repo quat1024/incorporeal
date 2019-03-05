@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.cygnus.cap.AttachCapabilitiesEventHandler;
 import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
+import quaternary.incorporeal.etc.LazyGenericCapabilityProvider;
 import quaternary.incorporeal.tile.cygnus.TileCygnusFunnel;
 
 import javax.annotation.Nonnull;
@@ -39,7 +40,7 @@ public class InRedAttachCapabilitiesEventHandler {
 		//This just makes inred cables point towards cygnus funnels
 		//Which makes it possible for them to read their value
 		if(tile instanceof TileCygnusFunnel) {
-			e.addCapability(INRED_CABLE_HANDLER, new LazierCapabilityProvider<>(
+			e.addCapability(INRED_CABLE_HANDLER, new LazyGenericCapabilityProvider<>(
 				INFRA_READABLE_CAP,
 				() -> InfraRedstoneHandler.ALWAYS_OFF
 			));
@@ -48,7 +49,7 @@ public class InRedAttachCapabilitiesEventHandler {
 		}
 		
 		if(tile instanceof TileEntityDiode) {
-			e.addCapability(FUNNEL_HANDLER, new LazierCapabilityProvider<>(
+			e.addCapability(FUNNEL_HANDLER, new LazyGenericCapabilityProvider<>(
 				IncorporeticCygnusCapabilities.FUNNEL_CAP,
 				() -> new InfraDiodeFunnelable((TileEntityDiode) tile)
 			));
@@ -57,39 +58,12 @@ public class InRedAttachCapabilitiesEventHandler {
 		}
 		
 		if(tile.hasCapability(INFRA_READABLE_CAP, null)) {
-			e.addCapability(FUNNEL_HANDLER, new LazierCapabilityProvider<>(
+			e.addCapability(FUNNEL_HANDLER, new LazyGenericCapabilityProvider<>(
 				IncorporeticCygnusCapabilities.FUNNEL_CAP,
 				() -> new InfraReadableFunnelable(tile.getCapability(INFRA_READABLE_CAP, null))
 			));
 			
 			return;
-		}
-	}
-	
-	//TODO: Extend this lambdish cap provider to the regular one, too, and just use it.
-	//Fixes problems with getCap NPEing sometimes on other tiles since the ACE is fired way too early.
-	public static class LazierCapabilityProvider<C> implements ICapabilityProvider {
-		public LazierCapabilityProvider(Capability<C> cap, Supplier<C> implFactory) {
-			this.cap = cap;
-			this.implFactory = implFactory;
-		}
-		
-		private final Capability<C> cap;
-		private final Supplier<C> implFactory;
-		private C impl = null;
-		
-		@Override
-		public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
-			return capability == cap;
-		}
-		
-		@Nullable
-		@Override
-		public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-			if(capability == cap) {
-				if(impl == null) impl = implFactory.get();
-				return (T) impl;
-			} else return null;
 		}
 	}
 	

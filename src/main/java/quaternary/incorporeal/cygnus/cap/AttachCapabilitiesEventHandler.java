@@ -15,12 +15,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
+import quaternary.incorporeal.etc.LazyGenericCapabilityProvider;
 import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import quaternary.incorporeal.item.cygnus.ItemCygnusTicket;
-import vazkii.botania.api.corporea.CorporeaHelper;
 import vazkii.botania.api.corporea.CorporeaRequest;
 import vazkii.botania.api.corporea.ICorporeaRequestor;
-import vazkii.botania.api.corporea.ICorporeaSpark;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaBase;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaCrystalCube;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaFunnel;
@@ -29,7 +28,7 @@ import vazkii.botania.common.block.tile.corporea.TileCorporeaRetainer;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.List;
+import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber
 public class AttachCapabilitiesEventHandler {
@@ -40,24 +39,24 @@ public class AttachCapabilitiesEventHandler {
 		TileEntity tile = e.getObject();
 		
 		if(tile instanceof TileCorporeaRetainer) {
-			e.addCapability(FUNNEL_HANDLER, new GenericCapabilityProvider<>(
+			e.addCapability(FUNNEL_HANDLER, new LazyGenericCapabilityProvider<>(
 				IncorporeticCygnusCapabilities.FUNNEL_CAP,
-				new CorporeaRetainerFunnelable((TileCorporeaRetainer) tile)
+				() -> new CorporeaRetainerFunnelable((TileCorporeaRetainer) tile)
 			));
 		} else if(tile instanceof TileCorporeaCrystalCube) {
-			e.addCapability(FUNNEL_HANDLER, new GenericCapabilityProvider<>(
+			e.addCapability(FUNNEL_HANDLER, new LazyGenericCapabilityProvider<>(
 				IncorporeticCygnusCapabilities.FUNNEL_CAP,
-				new CorporeaCrystalCubeFunnelable((TileCorporeaCrystalCube) tile)
+				() -> new CorporeaCrystalCubeFunnelable((TileCorporeaCrystalCube) tile)
 			));
 		} else if(tile instanceof TileCorporeaFunnel) {
-			e.addCapability(FUNNEL_HANDLER, new GenericCapabilityProvider<>(
+			e.addCapability(FUNNEL_HANDLER, new LazyGenericCapabilityProvider<>(
 				IncorporeticCygnusCapabilities.FUNNEL_CAP,
-				new CorporeaRequesterFunnelable<>((TileCorporeaFunnel) tile)
+				() -> new CorporeaRequesterFunnelable<>((TileCorporeaFunnel) tile)
 			));
 		} else if(tile instanceof TileCorporeaIndex) {
-			e.addCapability(FUNNEL_HANDLER, new GenericCapabilityProvider<>(
+			e.addCapability(FUNNEL_HANDLER, new LazyGenericCapabilityProvider<>(
 				IncorporeticCygnusCapabilities.FUNNEL_CAP,
-				new CorporeaRequesterFunnelable<>((TileCorporeaIndex) tile)
+				() -> new CorporeaRequesterFunnelable<>((TileCorporeaIndex) tile)
 			));
 		}
 	}
@@ -67,38 +66,15 @@ public class AttachCapabilitiesEventHandler {
 		Entity ent = e.getObject();
 		
 		if(ent instanceof EntityItem) {
-			e.addCapability(FUNNEL_HANDLER, new GenericCapabilityProvider<>(
+			e.addCapability(FUNNEL_HANDLER, new LazyGenericCapabilityProvider<>(
 				IncorporeticCygnusCapabilities.FUNNEL_CAP,
-				new ItemEntityFunnelable((EntityItem) ent)
+				() -> new ItemEntityFunnelable((EntityItem) ent)
 			));
 		} else if(ent instanceof EntityItemFrame) {
-			e.addCapability(FUNNEL_HANDLER, new GenericCapabilityProvider<>(
+			e.addCapability(FUNNEL_HANDLER, new LazyGenericCapabilityProvider<>(
 				IncorporeticCygnusCapabilities.FUNNEL_CAP,
-				new ItemFrameFunnelable((EntityItemFrame) ent)
+				() -> new ItemFrameFunnelable((EntityItemFrame) ent)
 			));
-		}
-	}
-	
-	//Just for saving typing ;)
-	public static final class GenericCapabilityProvider<C> implements ICapabilityProvider {
-		public GenericCapabilityProvider(Capability<C> cap, C impl) {
-			this.cap = cap;
-			this.impl = impl;
-		}
-		
-		private final Capability<C> cap;
-		private final C impl;
-		
-		@Override
-		public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
-			return capability == cap;
-		}
-		
-		@Nullable
-		@Override
-		@SuppressWarnings("unchecked")
-		public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-			return capability == cap ? (T) impl : null;
 		}
 	}
 	

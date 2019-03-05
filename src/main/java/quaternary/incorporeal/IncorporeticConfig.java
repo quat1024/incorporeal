@@ -31,7 +31,7 @@ public final class IncorporeticConfig {
 	public static final class General {
 		private General() {}
 		
-		public static boolean CORPOREA_KNOWLEDGE_TYPE = true;
+		public static boolean CORPOREA_KNOWLEDGE_TYPE = false;
 	}
 	
 	public static Configuration config;
