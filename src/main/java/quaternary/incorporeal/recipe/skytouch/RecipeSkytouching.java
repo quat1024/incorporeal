@@ -47,7 +47,7 @@ public class RecipeSkytouching {
 		//calculate the height bonus
 		double bonus = EtcHelpers.rangeRemap(entY, minY, maxY, 1, multiplier);
 		//figure out how many items to dispense
-		int itemsToDispense = (int) Math.round(supplied.getCount() * out.getCount() * bonus);
+		int itemsToDispense = supplied.getCount() * ((int) Math.round(out.getCount() * bonus));
 		
 		//does it fit in one itemstack?
 		if(itemsToDispense <= out.getMaxStackSize()) {
