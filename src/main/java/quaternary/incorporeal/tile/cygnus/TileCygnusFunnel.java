@@ -1,10 +1,8 @@
 package quaternary.incorporeal.tile.cygnus;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -21,8 +19,6 @@ import quaternary.incorporeal.cygnus.CygnusRegistries;
 import quaternary.incorporeal.cygnus.CygnusStack;
 import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
-import quaternary.incorporeal.etc.LooseRedstoneDustCygnusFunnelable;
-import quaternary.incorporeal.etc.LooseRedstoneRepeaterCygnusFunnelable;
 import quaternary.incorporeal.etc.helper.CygnusHelpers;
 
 import javax.annotation.Nullable;

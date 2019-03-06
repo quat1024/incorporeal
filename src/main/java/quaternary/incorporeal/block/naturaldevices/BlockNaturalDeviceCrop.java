@@ -13,7 +13,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.impl.IncorporealNaturalDeviceRegistry;
 import vazkii.botania.common.item.ModItems;
 
 import java.util.ListIterator;

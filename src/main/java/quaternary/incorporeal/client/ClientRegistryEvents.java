@@ -3,7 +3,6 @@ package quaternary.incorporeal.client;
 import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -40,7 +39,6 @@ import quaternary.incorporeal.flower.SubTileSweetAlexum;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
 import quaternary.incorporeal.item.cygnus.ItemCygnusCard;
-import quaternary.incorporeal.item.cygnus.ItemCygnusWordCard;
 import quaternary.incorporeal.tile.TileCorporeaSparkTinkerer;
 import quaternary.incorporeal.tile.cygnus.TileCygnusCrystalCube;
 import quaternary.incorporeal.tile.cygnus.TileCygnusRetainer;
@@ -50,9 +48,6 @@ import quaternary.incorporeal.tile.soulcore.TileEnderSoulCore;
 import vazkii.botania.api.BotaniaAPIClient;
 import vazkii.botania.api.state.BotaniaStateProps;
 import vazkii.botania.api.subtile.SubTileEntity;
-
-import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = Incorporeal.MODID, value = Side.CLIENT)
 public final class ClientRegistryEvents {

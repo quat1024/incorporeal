@@ -18,7 +18,6 @@ import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Locale;
 
 public class ItemCygnusTicket extends Item {
 	public ItemCygnusTicket() {

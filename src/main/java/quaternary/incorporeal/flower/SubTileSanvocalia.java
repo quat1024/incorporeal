@@ -39,7 +39,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import java.util.function.Predicate;
 
 //A horrible pun based off of the real life Sanvitalia flower
 public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable {

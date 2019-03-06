@@ -7,7 +7,6 @@ package quaternary.incorporeal.compat.infraredstone;
 
 import com.elytradev.infraredstone.block.CableInRedScaffold;
 import com.elytradev.infraredstone.block.CableInfraRedstone;
-import com.elytradev.infraredstone.block.ModBlocks;
 import com.elytradev.infraredstone.logic.InRedLogic;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;

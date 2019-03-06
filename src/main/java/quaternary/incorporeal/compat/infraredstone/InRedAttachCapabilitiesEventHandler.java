@@ -10,10 +10,8 @@ import com.elytradev.infraredstone.api.IInfraRedstone;
 import com.elytradev.infraredstone.logic.impl.InfraRedstoneHandler;
 import com.elytradev.infraredstone.tile.TileEntityDiode;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
@@ -22,10 +20,8 @@ import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.etc.LazyGenericCapabilityProvider;
 import quaternary.incorporeal.tile.cygnus.TileCygnusFunnel;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.math.BigInteger;
-import java.util.function.Supplier;
 
 public class InRedAttachCapabilitiesEventHandler {
 	public static final Capability<IInfraRedstone> INFRA_READABLE_CAP = InfraRedstone.CAPABILITY_IR;

@@ -1,6 +1,5 @@
 package quaternary.incorporeal.cygnus.types;
 
-import com.google.common.collect.ImmutableList;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.MathHelper;

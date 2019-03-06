@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import quaternary.incorporeal.etc.helper.CygnusHelpers;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
-import vazkii.botania.common.Botania;
 import vazkii.botania.common.entity.EntitySpark;
 
 import javax.annotation.Nullable;

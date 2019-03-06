@@ -5,11 +5,9 @@ import com.google.common.collect.HashBiMap;
 import net.minecraft.util.ResourceLocation;
 import quaternary.incorporeal.api.ISimpleRegistry;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Set;
 
 public class SimpleRegistry<T> implements ISimpleRegistry<T> {

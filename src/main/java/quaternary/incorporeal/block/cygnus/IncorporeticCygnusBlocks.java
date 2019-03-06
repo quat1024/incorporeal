@@ -5,18 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
-import quaternary.incorporeal.cygnus.CygnusError;
-import quaternary.incorporeal.cygnus.CygnusStack;
-import quaternary.incorporeal.etc.helper.CorporeaHelper2;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
-import vazkii.botania.api.corporea.CorporeaRequest;
-
-import java.math.BigInteger;
-import java.util.Optional;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
 public final class IncorporeticCygnusBlocks {

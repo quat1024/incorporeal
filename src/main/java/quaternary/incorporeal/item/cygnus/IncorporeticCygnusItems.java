@@ -7,8 +7,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.block.cygnus.BlockCygnusCrystalCube;
-import quaternary.incorporeal.block.cygnus.BlockCygnusWord;
 import quaternary.incorporeal.block.cygnus.IncorporeticCygnusBlocks;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
 

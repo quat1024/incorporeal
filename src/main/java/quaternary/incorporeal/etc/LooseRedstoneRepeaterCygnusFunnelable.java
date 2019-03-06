@@ -2,7 +2,6 @@ package quaternary.incorporeal.etc;
 
 import net.minecraft.block.BlockRedstoneRepeater;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -10,7 +9,6 @@ import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
 
 import javax.annotation.Nullable;
-import java.lang.ref.WeakReference;
 import java.math.BigInteger;
 
 public class LooseRedstoneRepeaterCygnusFunnelable implements ILooseCygnusFunnelable {

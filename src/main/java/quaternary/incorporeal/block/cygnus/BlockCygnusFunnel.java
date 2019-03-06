@@ -1,7 +1,6 @@
 package quaternary.incorporeal.block.cygnus;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -20,7 +19,6 @@ import vazkii.botania.api.state.BotaniaStateProps;
 
 import javax.annotation.Nullable;
 import java.util.Locale;
-import java.util.Random;
 
 public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkable {
 	public static final PropertyEnum<EnumFacing> FACING = BotaniaStateProps.FACING;

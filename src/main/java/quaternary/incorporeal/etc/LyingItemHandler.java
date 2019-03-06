@@ -3,7 +3,6 @@ package quaternary.incorporeal.etc;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
-import scala.actors.threadpool.Arrays;
 
 import javax.annotation.Nonnull;
 import java.util.List;

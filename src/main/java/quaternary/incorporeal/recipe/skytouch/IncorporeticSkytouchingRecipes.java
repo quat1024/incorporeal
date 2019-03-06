@@ -1,7 +1,6 @@
 package quaternary.incorporeal.recipe.skytouch;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
