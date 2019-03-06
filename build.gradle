@@ -45,12 +45,19 @@ repositories {
     maven {
         url "https://minecraft.curseforge.com/api/maven"
     }
+    
+    maven {
+        url = "http://dvs1.progwml6.com/files/maven"
+    }
 }
 
 dependencies {
     deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
     deobfCompile "vazkii.botania:Botania:r1.10-361.50"
     deobfCompile "infraredstone:InfraRedstone:1.2.1"
+    
+    deobfProvided "mezz.jei:jei_1.12.2:4.15.0.268:api"
+    runtime "mezz.jei:jei_1.12.2:4.15.0.268"
 }
 
 minecraft {

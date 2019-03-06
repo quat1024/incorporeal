@@ -242,6 +242,9 @@ incorporeal.etc.holdingTicketConjurer0=Holding Ticket Conjurer!
 incorporeal.etc.holdingTicketConjurer1=Anything you say will
 incorporeal.etc.holdingTicketConjurer2=create a Corporea Ticket
 
+# JEI stuff
+incorporeal.jei.category.skytouch=Skytouching
+
 #don't translate this xd
 incorporeal.cygnus.wip1=No recipe or docs - very WIP! sorry!
 incorporeal.cygnus.wip2=(come help test in creative!)

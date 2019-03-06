@@ -3,6 +3,8 @@ package quaternary.incorporeal.etc.event;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -14,10 +16,17 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.item.IncorporeticItems;
+import quaternary.incorporeal.net.IncorporeticPacketHandler;
+import quaternary.incorporeal.net.MessageSkytouchingEffect;
+import quaternary.incorporeal.recipe.skytouch.IncorporeticSkytouchingRecipes;
+import quaternary.incorporeal.recipe.skytouch.RecipeSkytouching;
 import vazkii.botania.common.item.ModItems;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Incorporeal.MODID)
 public final class CommonGameEvents {
@@ -50,6 +59,36 @@ public final class CommonGameEvents {
 				if(!player.isCreative()) stack.shrink(1);
 				
 				player.swingArm(e.getHand());
+			}
+		}
+	}
+	
+	@SubscribeEvent
+	public static void worldTick(TickEvent.WorldTickEvent e) {
+		if(e.phase != TickEvent.Phase.START) return;
+		World world = e.world;
+		if(world.isRemote) return;
+		
+		List<EntityItem> items = world.getEntities(EntityItem.class, i -> {
+			return
+				i != null &&
+				!i.isDead &&
+				i.prevPosY >= RecipeSkytouching.LOWEST_SKYTOUCHING_RECIPE_Y &&
+				i.posY < i.prevPosY; //needs to be falling
+		});
+		
+		for(EntityItem ent : items) {
+			for(RecipeSkytouching recipe : IncorporeticSkytouchingRecipes.ALL) {
+				if(recipe.matches(ent.getItem(), ent.prevPosY)) {
+					for(ItemStack out : recipe.getOutputs(ent.getItem(), ent.prevPosY)) {
+						world.spawnEntity(new EntityItem(world, ent.posX, ent.posY, ent.posZ, out));
+					}
+					
+					IncorporeticPacketHandler.sendToAllTracking(new MessageSkytouchingEffect(ent.posX, ent.posY, ent.posZ), world, ent.getPosition());
+					ent.setDead();
+					
+					break;
+				}
 			}
 		}
 	}

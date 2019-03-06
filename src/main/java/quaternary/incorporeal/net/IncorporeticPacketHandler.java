@@ -17,6 +17,7 @@ public final class IncorporeticPacketHandler {
 		NET = new SimpleNetworkWrapper(Incorporeal.MODID);
 		
 		NET.registerMessage(MessageSparkleLine.Handler.class, MessageSparkleLine.class, 0, Side.CLIENT);
+		NET.registerMessage(MessageSkytouchingEffect.Handler.class, MessageSkytouchingEffect.class, 1, Side.CLIENT);
 	}
 	
 	public static void sendToAllTracking(IIncorporeticMessage message, World world, BlockPos point) {

@@ -32,16 +32,17 @@ import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
 import quaternary.incorporeal.etc.IncorporeticNaturalDevices;
-import quaternary.incorporeal.etc.IncorporeticRuneRecipes;
+import quaternary.incorporeal.recipe.IncorporeticRuneRecipes;
 import quaternary.incorporeal.etc.LooseRedstoneDustCygnusFunnelable;
 import quaternary.incorporeal.etc.LooseRedstoneRepeaterCygnusFunnelable;
 import quaternary.incorporeal.etc.helper.DespacitoHelper;
 import quaternary.incorporeal.etc.proxy.ServerProxy;
 import quaternary.incorporeal.flower.IncorporeticFlowers;
-import quaternary.incorporeal.flower.IncorporeticPetalRecipes;
+import quaternary.incorporeal.recipe.IncorporeticPetalRecipes;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import quaternary.incorporeal.net.IncorporeticPacketHandler;
+import quaternary.incorporeal.recipe.skytouch.IncorporeticSkytouchingRecipes;
 import quaternary.incorporeal.tile.IncorporeticTiles;
 import vazkii.botania.common.item.ModItems;
 
@@ -109,6 +110,8 @@ public final class Incorporeal {
 		
 		IncorporeticPetalRecipes.init();
 		IncorporeticRuneRecipes.init();
+		IncorporeticSkytouchingRecipes.init();
+		
 		IncorporeticNaturalDevices.init();
 		
 		IncorporeticLexicon.init();

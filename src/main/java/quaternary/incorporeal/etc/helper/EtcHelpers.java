@@ -73,6 +73,12 @@ public final class EtcHelpers {
 		return low2 + (value2 - low1) * (high2 - low2) / (high1 - low1);
 	}
 	
+	public static double rangeRemap(double value, double low1, double high1, double low2, double high2) {
+		//hey look mathhelper clamo only works on floats
+		double clamped = (value < low1) ? low1 : (value > high1 ? high1 : value);
+		return low2 + (clamped - low1) * (high2 - low2) / (high1 - low1);
+	}
+	
 	/**
 	 * Appends ".vowel" to the end of `key` if `stringToInsert` starts with a vowel sound in English.
 	 */

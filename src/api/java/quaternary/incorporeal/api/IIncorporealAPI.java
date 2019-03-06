@@ -1,5 +1,6 @@
 package quaternary.incorporeal.api;
 
+import net.minecraft.item.ItemStack;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
@@ -46,8 +47,32 @@ public interface IIncorporealAPI {
 	
 	/**
 	 * Register a loose cygnus funnelable.
-	 * Don't use these 
-	 * @param loose
+	 * Don't use these if a regular funnelable would suffice.
 	 */
 	void registerLooseFunnelable(ILooseCygnusFunnelable loose);
+	
+	/**
+	 * Register a skytouching recipe.
+	 * Call this in init.
+	 *
+	 * @param out The item that will be crafted.
+	 * @param in The item that needs to be thrown into the air.
+	 * @param minY The minimum Y-height the item needs to be thrown to.
+	 * @param maxY The Y-height that will return the maximum bonus.
+	 * @param multiplier The output multiplier that players will earn for sending an item all the way up to maxY. 
+	 */
+	void registerSkytouchingRecipe(ItemStack out, ItemStack in, int minY, int maxY, int multiplier);
+	
+	/**
+	 * Register a skytouching recipe.
+	 * Call this in init.
+	 * 
+	 * The default parameters will be used. These are:
+	 *  - minimum Y: 260
+	 *  - maximum Y: 300
+	 *  - maximum multiplier: 4x
+	 * @param out The item that will be crafted.
+	 * @param in The item that needs to be thrown into the air.
+	 */
+	void registerSkytouchingRecipe(ItemStack out, ItemStack in);
 }
