@@ -22,6 +22,7 @@ import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.api.IIncorporealAPI;
 import quaternary.incorporeal.api.impl.IncorporealAPI;
 import quaternary.incorporeal.block.IncorporeticBlocks;
+import quaternary.incorporeal.compat.crafttweaker.CTSkytouching;
 import quaternary.incorporeal.compat.infraredstone.InfraRedstoneCompat;
 import quaternary.incorporeal.cygnus.CygnusDatatypeHelpers;
 import quaternary.incorporeal.cygnus.CygnusRegistries;
@@ -127,6 +128,10 @@ public final class Incorporeal {
 	public static void postinit(FMLPostInitializationEvent e) {
 		if(IncorporeticConfig.Compat.INFRAREDSTONE && Loader.isModLoaded("infraredstone")) {
 			InfraRedstoneCompat.postinit(e);
+		}
+		
+		if(Loader.isModLoaded("crafttweaker")) {
+			CTSkytouching.postinit();
 		}
 	}
 	

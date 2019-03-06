@@ -47,21 +47,30 @@ repositories {
     }
     
     maven {
-        url = "http://dvs1.progwml6.com/files/maven"
+        url "http://dvs1.progwml6.com/files/maven"
     }
 }
 
 dependencies {
+    //bubbles
     deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
+    //botania
     deobfCompile "vazkii.botania:Botania:r1.10-361.50"
+    
+    //(soft dep) infraredstone (from curse maven)
     deobfCompile "infraredstone:InfraRedstone:1.2.1"
     
+    //(soft dep) crafttweaker thingie
+    deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.15.527"
+    deobfCompile "com.blamejared:MTLib:3.0.4.8"
+    
+    //(soft dep) jei
     deobfProvided "mezz.jei:jei_1.12.2:4.15.0.268:api"
     runtime "mezz.jei:jei_1.12.2:4.15.0.268"
 }
 
 minecraft {
-    version = "1.12.2-14.23.4.2718"
+    version = "1.12.2-14.23.5.2768"
     runDir = "run"
     
     mappings = "stable_39"
