@@ -11,7 +11,6 @@ import java.util.List;
 public final class IncorporeticSkytouchingRecipes {
 	private IncorporeticSkytouchingRecipes() {}
 	
-	//TODO throw this in an API???
 	public static List<RecipeSkytouching> ALL = new LinkedList<>();
 	
 	public static RecipeSkytouching cygnusSpark;

@@ -244,6 +244,7 @@ incorporeal.etc.holdingTicketConjurer2=create a Corporea Ticket
 
 # JEI stuff
 incorporeal.jei.category.skytouch=Skytouching
+incorporeal.jei.skytouch.heightlimit=Height Limit
 
 #don't translate this xd
 incorporeal.cygnus.wip1=No recipe or docs - very WIP! sorry!
