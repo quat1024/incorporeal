@@ -30,4 +30,6 @@ public interface ISimpleRegistry<T> {
 	Set<ResourceLocation> allKeys();
 	Set<T> allValues();
 	BiMap<ResourceLocation, T> backingMap();
+	T next(T cur);
+	T prev(T cur);
 }

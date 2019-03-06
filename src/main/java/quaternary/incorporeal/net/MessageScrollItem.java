@@ -1,0 +1,50 @@
+package quaternary.incorporeal.net;
+
+import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.network.simpleimpl.*;
+import quaternary.incorporeal.api.IScrollableItem;
+
+public class MessageScrollItem implements IncorporeticPacketHandler.IIncorporeticMessage {
+	public MessageScrollItem() {}
+	
+	public MessageScrollItem(int dwheel) {
+		this.dwheel = dwheel;
+	}
+	
+	public int dwheel;
+	
+	@Override
+	public void toBytes(ByteBuf buf) {
+		buf.writeInt(dwheel);
+	}
+	
+	@Override
+	public void fromBytes(ByteBuf buf) {
+		dwheel = buf.readInt();
+	}
+	
+	public static class Handler implements IMessageHandler<MessageScrollItem, IMessage> {
+		@Override
+		public IMessage onMessage(MessageScrollItem m, MessageContext ctx) {
+			EntityPlayerMP playerMP = ctx.getServerHandler().player;
+			playerMP.getServerWorld().addScheduledTask(() -> {
+				InventoryPlayer inv = playerMP.inventory;
+				
+				int currentIndex = inv.currentItem;
+				ItemStack currentStack = inv.getCurrentItem();
+				
+				if(currentStack.getItem() instanceof IScrollableItem) {
+					ItemStack newStack = ((IScrollableItem)currentStack.getItem()).scrollChange(currentStack, m.dwheel);
+					inv.setInventorySlotContents(currentIndex, newStack);
+					inv.markDirty();
+				}
+			});
+			
+			return null;
+		}
+	}
+}

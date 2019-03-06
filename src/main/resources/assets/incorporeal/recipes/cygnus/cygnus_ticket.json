@@ -1,0 +1,14 @@
+{
+	"result": {
+		"item": "incorporeal:cygnus_ticket"
+	},
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "incorporeal:cygnus_spark"
+		},
+		{
+			"item": "minecraft:paper"
+		}
+	]
+}

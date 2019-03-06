@@ -1,0 +1,16 @@
+{
+	"result": {
+		"item": "incorporeal:cygnus_crystal_cube_card"
+	},
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"type": "forge:ore_dict",
+			"ore": "dyeCyan"
+		},
+		{
+			"item": "botania:manaresource",
+			"data": 11
+		}
+	]
+}

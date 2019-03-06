@@ -1,0 +1,16 @@
+{
+	"result": {
+		"item": "incorporeal:cygnus_word_card"
+	},
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"type": "forge:ore_dict",
+			"ore": "dyeGreen"
+		},
+		{
+			"item": "botania:manaresource",
+			"data": 11
+		}
+	]
+}
