@@ -2,6 +2,7 @@ package quaternary.incorporeal.tile.soulcore;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
@@ -10,13 +11,16 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
+import quaternary.incorporeal.block.soulcore.AbstractBlockSoulCore;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
+import vazkii.botania.api.internal.VanillaPacketDispatcher;
 import vazkii.botania.api.mana.IManaReceiver;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 public abstract class AbstractTileSoulCore extends TileEntity implements ITickable, IManaReceiver {
-	private GameProfile ownerProfile;
+	protected GameProfile ownerProfile;
 	protected int mana;
 	
 	protected abstract int getMaxMana();
@@ -25,23 +29,42 @@ public abstract class AbstractTileSoulCore extends TileEntity implements ITickab
 		return ownerProfile != null;
 	}
 	
-	@Nullable
-	public GameProfile getOwnerProfile() {
-		return ownerProfile;
+	public Optional<GameProfile> getOwnerProfile() {
+		return Optional.ofNullable(ownerProfile);
 	}
 	
-	public void setOwnerProfile(GameProfile ownerProfile) {
-		this.ownerProfile = ownerProfile;
+	public void changeOwnerProfile(GameProfile newProfile) {
+		if(newProfile != null && newProfile.equals(ownerProfile)) return;
+		
+		findPlayer().ifPresent(oldOwner -> oldOwner.attackEntityFrom(AbstractBlockSoulCore.SOUL, 5f));
+		
+		ownerProfile = newProfile;
+		
 		markDirty();
+		VanillaPacketDispatcher.dispatchTEToNearbyPlayers(this);
+	}
+	
+	public Optional<EntityPlayer> findPlayer() {
+		if(!hasOwnerProfile()) return Optional.empty();
+		
+		for(EntityPlayer playerEnt : world.playerEntities) {
+			if(playerEnt.getGameProfile().equals(getOwnerProfile())) {
+				return Optional.of(playerEnt);
+			}
+		}
+		
+		return Optional.empty();
 	}
 	
 	public void receiveInitialMana() {
-		mana = getMaxMana() / 2;
+		int n = getMaxMana() / 2;
+		if(mana < n) mana = n;
 	}
 	
 	public void drainMana(int manaPoof) {
 		mana -= manaPoof;
 		if(mana <= 0) mana = 0;
+		markDirty();
 	}
 	
 	@Override
@@ -51,9 +74,9 @@ public abstract class AbstractTileSoulCore extends TileEntity implements ITickab
 		
 		if(world.isRemote) return;
 		
-		if(mana <= 0) {
+		if(mana <= 0 && hasOwnerProfile()) {
 			//Wuh oh
-			setOwnerProfile(null);
+			changeOwnerProfile(null);
 			world.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.5f, 1.2f);
 		}
 	}
@@ -71,6 +94,7 @@ public abstract class AbstractTileSoulCore extends TileEntity implements ITickab
 	@Override
 	public void recieveMana(int moreMana) {
 		mana = Math.min(mana + moreMana, getMaxMana());
+		markDirty();
 	}
 	
 	@Override

@@ -25,7 +25,6 @@ public interface IRecipeSkytouching {
 	 */
 	List<ItemStack> getOutputs(EntityItem ent);
 	
-	
 	/**
 	 * @return A "generic" form of the recipe's input items. Used for JEI, crafttweaker remove, etc.
 	 * List is available because of things like ore dictionary inputs.

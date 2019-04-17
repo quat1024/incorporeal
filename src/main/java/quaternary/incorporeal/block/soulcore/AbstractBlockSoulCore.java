@@ -17,7 +17,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import quaternary.incorporeal.tile.soulcore.AbstractTileSoulCore;
 import vazkii.botania.api.lexicon.ILexiconable;
@@ -39,12 +38,11 @@ public abstract class AbstractBlockSoulCore extends Block implements ILexiconabl
 		if(!(placer instanceof EntityPlayer)) return;
 		
 		EntityPlayer player = (EntityPlayer) placer;
-		
 		TileEntity tile = world.getTileEntity(pos);
 		
 		if(tile instanceof AbstractTileSoulCore) {
 			AbstractTileSoulCore abs = (AbstractTileSoulCore) tile; 
-			setOwner(abs, player, player.getGameProfile());
+			abs.changeOwnerProfile(player.getGameProfile());
 			abs.receiveInitialMana();
 		}
 	}
@@ -54,21 +52,12 @@ public abstract class AbstractBlockSoulCore extends Block implements ILexiconabl
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile instanceof AbstractTileSoulCore) {
 			AbstractTileSoulCore abs = (AbstractTileSoulCore) tile;
-			setOwner(abs, player, player.getGameProfile());
+			abs.changeOwnerProfile(player.getGameProfile());
+			abs.receiveInitialMana();
 			return true;
 		}
 		
 		return false;
-	}
-	
-	private boolean setOwner(AbstractTileSoulCore tile, EntityPlayer player, GameProfile prof) {
-		boolean shouldSet = !tile.hasOwnerProfile() || !prof.getId().equals(tile.getOwnerProfile().getId());
-		if(shouldSet) {
-			tile.setOwnerProfile(prof);
-			player.attackEntityFrom(SOUL, 5.0f);
-			//Particles or something, idk.
-			return true;
-		} else return false;
 	}
 	
 	@Override

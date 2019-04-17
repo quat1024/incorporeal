@@ -241,6 +241,9 @@ incorporeal.cygnus.retainer.some.vowel=An %s is described here.
 # if you try to request things from a corporea network that doesn't have your Corporea Soul Core:
 incorporeal.etc.noSoulCore=Your soul is not compatible with this Corporea Network.
 
+# if you die from damage from placing a soul core
+death.attack.incorporeal.soul=%s's soul was too weak
+
 #make sure to double-check the line length of this in-game
 incorporeal.etc.holdingTicketConjurer0=Holding Ticket Conjurer!
 incorporeal.etc.holdingTicketConjurer1=Anything you say will

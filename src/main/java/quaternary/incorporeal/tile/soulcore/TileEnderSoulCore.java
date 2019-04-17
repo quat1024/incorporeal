@@ -13,12 +13,11 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 public class TileEnderSoulCore extends AbstractTileSoulCore {
 	private IItemHandler handler = EmptyHandler.INSTANCE;
 	private boolean wasOnline = false;
-	
-	@Nullable private EntityPlayer owner = null;
 	
 	@Override
 	protected int getMaxMana() {
@@ -30,20 +29,11 @@ public class TileEnderSoulCore extends AbstractTileSoulCore {
 		super.update();
 		if(world.isRemote) return;
 		
-		boolean isOnline = false;
-		
-		if(hasOwnerProfile()) {
-			for(EntityPlayer playerEnt : world.playerEntities) {
-				if(playerEnt.getGameProfile().equals(getOwnerProfile())) {
-					isOnline = true;
-					owner = playerEnt;
-					break;
-				}
-			}
-		}
+		Optional<EntityPlayer> opPlayer = findPlayer();
+		boolean isOnline = opPlayer.isPresent();
 		
 		if(!wasOnline && isOnline) {
-			this.handler = new ManaDrainingInvWrapper(owner.getInventoryEnderChest());
+			this.handler = new ManaDrainingInvWrapper(opPlayer.get().getInventoryEnderChest());
 		} else if (wasOnline && !isOnline){
 			this.handler = EmptyHandler.INSTANCE;
 		}
