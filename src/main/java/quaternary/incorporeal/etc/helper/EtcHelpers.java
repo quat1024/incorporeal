@@ -100,6 +100,7 @@ public final class EtcHelpers {
 	//I hate mods that setregname in the constructor!!!!!!
 	//I can't extend any botania blocks without this method!!!!
 	public static void fixRegistryNameDespacito(IForgeRegistryEntry.Impl<?> lmao) {
+		Incorporeal.LOGGER.info("Ignore that forge warning lalalala");
 		ResourceLocation name = ReflectionHelper.getPrivateValue(IForgeRegistryEntry.Impl.class, lmao, "registryName");
 		ResourceLocation nameBetter = new ResourceLocation(Incorporeal.MODID, name.getPath());
 		ReflectionHelper.setPrivateValue(IForgeRegistryEntry.Impl.class, lmao, nameBetter, "registryName");
