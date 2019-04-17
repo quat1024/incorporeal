@@ -6,6 +6,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.cygnus.IncorporeticCygnusBlocks;
+import quaternary.incorporeal.block.decorative.BlockCorporeaDeco;
+import quaternary.incorporeal.block.decorative.BlockRedStringDeco;
 import quaternary.incorporeal.block.decorative.BlockUnstableCube;
 import quaternary.incorporeal.block.naturaldevices.BlockNaturalComparator;
 import quaternary.incorporeal.block.naturaldevices.BlockNaturalDeviceCrop;
@@ -40,6 +42,8 @@ public final class IncorporeticBlocks {
 		public static final String NATURAL_COMPARATOR = "natural_comparator";
 		
 		public static final String DECORATIVE_UNSTABLE_CUBE = "unstable_cube";
+		public static final String DECORATIVE_RED_STRING = "red_string_deco";
+		public static final String DECORATIVE_CORPOREA = "corporea_deco";
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_INHIBITOR)
@@ -78,6 +82,12 @@ public final class IncorporeticBlocks {
 	@GameRegistry.ObjectHolder(RegistryNames.DECORATIVE_UNSTABLE_CUBE)
 	public static final BlockUnstableCube DECORATIVE_UNSTABLE_CUBE = EtcHelpers.definitelyIsntNullISwear();
 	
+	@GameRegistry.ObjectHolder(RegistryNames.DECORATIVE_RED_STRING)
+	public static final BlockRedStringDeco DECORATIVE_RED_STRING = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(RegistryNames.DECORATIVE_CORPOREA)
+	public static final BlockCorporeaDeco DECORATIVE_CORPOREA = EtcHelpers.definitelyIsntNullISwear();
+	
 	public static void registerBlocks(IForgeRegistry<Block> reg) {
 		reg.register(createBlock(new BlockCorporeaInhibitor(), RegistryNames.CORPOREA_INHIBITOR));
 		reg.register(createBlock(new BlockCorporeaSolidifier(), RegistryNames.CORPOREA_SOLIDIFIER));
@@ -95,6 +105,8 @@ public final class IncorporeticBlocks {
 		reg.register(createBlock(new BlockNaturalComparator(), RegistryNames.NATURAL_COMPARATOR));
 		
 		reg.register(createBlock(new BlockUnstableCube(), RegistryNames.DECORATIVE_UNSTABLE_CUBE));
+		reg.register(createBlock(new BlockRedStringDeco(), RegistryNames.DECORATIVE_RED_STRING));
+		reg.register(createBlock(new BlockCorporeaDeco(), RegistryNames.DECORATIVE_CORPOREA));
 		
 		//These have pretty big constructors so they are broken out into their own class
 		IncorporeticCygnusBlocks.registerBlocks(reg);

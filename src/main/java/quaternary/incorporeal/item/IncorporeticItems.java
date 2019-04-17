@@ -9,6 +9,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
+import quaternary.incorporeal.block.decorative.BlockCorporeaDeco;
+import quaternary.incorporeal.block.decorative.BlockRedStringDeco;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
 
@@ -71,6 +73,12 @@ public final class IncorporeticItems {
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.DECORATIVE_UNSTABLE_CUBE)
 	public static final ItemBlock DECORATIVE_UNSTABLE_CUBE = EtcHelpers.definitelyIsntNullISwear();
 	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.DECORATIVE_RED_STRING)
+	public static final ItemBlock DECORATIVE_RED_STRING = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.DECORATIVE_CORPOREA)
+	public static final ItemBlock DECORATIVE_CORPOREA = EtcHelpers.definitelyIsntNullISwear();
+	
 	public static void registerItems(IForgeRegistry<Item> reg) {
 		reg.register(createItem(new ItemTicketConjurer(), RegistryNames.TICKET_CONJURER));
 		reg.register(createItem(new ItemCorporeaTicket(), RegistryNames.CORPOREA_TICKET));
@@ -92,6 +100,8 @@ public final class IncorporeticItems {
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.NATURAL_COMPARATOR)));
 		
 		reg.register(createItemBlock(new ItemCloth(IncorporeticBlocks.DECORATIVE_UNSTABLE_CUBE)));
+		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.DECORATIVE_RED_STRING)));
+		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.DECORATIVE_CORPOREA)));
 		
 		IncorporeticCygnusItems.registerItems(reg);
 	}

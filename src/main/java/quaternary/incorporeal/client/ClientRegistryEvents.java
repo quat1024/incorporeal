@@ -68,6 +68,9 @@ public final class ClientRegistryEvents {
 		setSimpleModel(IncorporeticItems.TICKET_CONJURER);
 		setSimpleModel(IncorporeticItems.FRACTURED_SPACE_ROD);
 		
+		setSimpleModel(IncorporeticItems.DECORATIVE_RED_STRING);
+		setSimpleModel(IncorporeticItems.DECORATIVE_CORPOREA);
+		
 		setSimpleModel(IncorporeticCygnusItems.MASTER_CYGNUS_SPARK);
 		setSimpleModel(IncorporeticCygnusItems.CYGNUS_SPARK);
 		setSimpleModel(IncorporeticCygnusItems.CYGNUS_TICKET);
