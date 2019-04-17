@@ -5,6 +5,7 @@ import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
+import quaternary.incorporeal.api.recipe.IRecipeSkytouching;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
 import quaternary.incorporeal.recipe.skytouch.IncorporeticSkytouchingRecipes;
 import quaternary.incorporeal.recipe.skytouch.RecipeSkytouching;
@@ -24,7 +25,7 @@ public class IncorporealJeiPlugin implements IModPlugin {
 	
 	@Override
 	public void register(IModRegistry reg) {
-		reg.handleRecipes(RecipeSkytouching.class, SkytouchRecipeWrapper::new, SkytouchRecipeCategory.UID);
+		reg.handleRecipes(IRecipeSkytouching.class, SkytouchRecipeWrapper::new, SkytouchRecipeCategory.UID);
 		reg.addRecipes(IncorporeticSkytouchingRecipes.ALL, SkytouchRecipeCategory.UID);
 	}
 }

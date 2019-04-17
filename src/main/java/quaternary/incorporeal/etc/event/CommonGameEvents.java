@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.api.recipe.IRecipeSkytouching;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.net.IncorporeticPacketHandler;
@@ -72,14 +73,14 @@ public final class CommonGameEvents {
 			return
 				i != null &&
 				!i.isDead &&
-				i.prevPosY >= RecipeSkytouching.LOWEST_SKYTOUCHING_RECIPE_Y &&
+				i.prevPosY >= IncorporeticSkytouchingRecipes.LOWEST_SKYTOUCH_Y &&
 				i.posY < i.prevPosY; //needs to be falling
 		});
 		
 		for(EntityItem ent : items) {
-			for(RecipeSkytouching recipe : IncorporeticSkytouchingRecipes.ALL) {
-				if(recipe.matches(ent.getItem(), ent.prevPosY)) {
-					for(ItemStack out : recipe.getOutputs(ent.getItem(), ent.prevPosY)) {
+			for(IRecipeSkytouching recipe : IncorporeticSkytouchingRecipes.ALL) {
+				if(recipe.matches(ent)) {
+					for(ItemStack out : recipe.getOutputs(ent)) {
 						world.spawnEntity(new EntityItem(world, ent.posX, ent.posY, ent.posZ, out));
 					}
 					

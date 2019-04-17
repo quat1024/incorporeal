@@ -122,16 +122,16 @@ public final class Incorporeal {
 		CygnusRegistries.LOOSE_FUNNELABLES.add(new LooseRedstoneRepeaterCygnusFunnelable());
 		
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(ModItems.manaResource, new DispenserBehaviorRedstoneRoot());
+		
+		if(Loader.isModLoaded("crafttweaker")) {
+			CTSkytouching.init();
+		}
 	}
 	
 	@Mod.EventHandler
 	public static void postinit(FMLPostInitializationEvent e) {
 		if(IncorporeticConfig.Compat.INFRAREDSTONE && Loader.isModLoaded("infraredstone")) {
 			InfraRedstoneCompat.postinit(e);
-		}
-		
-		if(Loader.isModLoaded("crafttweaker")) {
-			CTSkytouching.postinit();
 		}
 	}
 	

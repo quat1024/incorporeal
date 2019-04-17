@@ -1,14 +1,14 @@
 package quaternary.incorporeal.compat.crafttweaker;
 
-import com.blamejared.mtlib.helpers.InputHelper;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
 import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
+import crafttweaker.api.minecraft.CraftTweakerMC;
 import net.minecraft.item.ItemStack;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.recipe.skytouch.IncorporeticSkytouchingRecipes;
+import quaternary.incorporeal.recipe.skytouch.RecipeSkytouching;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -23,29 +23,67 @@ public class CTSkytouching {
 	//zen stuff
 	
 	@ZenMethod
-	public static void addRecipe(IItemStack out, IItemStack in) {
-		ACTIONS.add(new AddAction(InputHelper.toStack(out), InputHelper.toStack(in), 260, 300, 4));
+	public static void addRecipe(IItemStack out, IIngredient in) {
+		addRecipe(out, in, RecipeSkytouching.DEFAULT_MINY, RecipeSkytouching.DEFAULT_MAXY, RecipeSkytouching.DEFAULT_MULTIPLIER);
 	}
 	
 	@ZenMethod
-	public static void addRecipe(IItemStack out, IItemStack in, int minY, int maxY, int multiplier) {
-		ACTIONS.add(new AddAction(InputHelper.toStack(out), InputHelper.toStack(in), minY, maxY, multiplier));
+	public static void addRecipe(IItemStack out, IIngredient in, int minY, int maxY, int multiplier) {
+		act(() -> {
+			IncorporeticSkytouchingRecipes.register(new RecipeSkytouchingCT(out, in, minY, maxY, multiplier));
+		},
+			"adding new skytouching recipe:",
+			"output:", out.toCommandString(),
+			"input:", in.toCommandString(),
+			"minY:", minY,
+			"maxY:", maxY,
+			"multiplier:", multiplier
+		);
 	}
 	
 	@ZenMethod
 	public static void remove(IItemStack removalTarget) {
-		ACTIONS.add(new RemoveForAction(InputHelper.toStack(removalTarget)));
+		act(() -> {
+			IncorporeticSkytouchingRecipes.removeIf(r -> {
+				for(ItemStack inStack : r.getGenericInputs()) {
+					if(CraftTweakerMC.matches(removalTarget, inStack)) return true;
+				}
+				
+				return false;
+			});
+		}, "removing recipes that match", removalTarget.toCommandString());
 	}
 	
 	@ZenMethod
 	public static void removeAll() {
-		ACTIONS.add(new NukeAllAction());
+		act(IncorporeticSkytouchingRecipes::clear, "clearing all skytouching recipes >:D");
+	}
+	
+	private static void act(Runnable action, Object... message) {
+		ACTIONS.add(new IAction() {
+			@Override
+			public void apply() {
+				action.run();
+			}
+			
+			@Override
+			public String describe() {
+				StringBuilder wow = new StringBuilder();
+				
+				for(int i = 0; i < message.length; i++) {
+					wow.append(message[i].toString());
+					if(i != message.length - 1) wow.append(' ');
+				}
+				
+				return wow.toString();
+			}
+		});
 	}
 	
 	//internal stuff
 	public static List<IAction> ACTIONS = new LinkedList<>();
 	
-	public static void postinit() {
+	public static void init() {
 		try {
 			ACTIONS.forEach(CraftTweakerAPI::apply);
 		} catch(Exception e) {
@@ -53,74 +91,6 @@ public class CTSkytouching {
 			StringWriter out = new StringWriter();
 			e.printStackTrace(new PrintWriter(out));
 			CraftTweakerAPI.logError(out.toString());
-		}
-	}
-	
-	public static class AddAction implements IAction {
-		public AddAction(ItemStack out, ItemStack in, int minY, int maxY, int multiplier) {
-			this.out = out;
-			this.in = in;
-			this.minY = minY;
-			this.maxY = maxY;
-			this.multiplier = multiplier;
-		}
-		
-		private final ItemStack out;
-		private final ItemStack in;
-		private final int minY;
-		private final int maxY;
-		private final int multiplier;
-		
-		@Override
-		public void apply() {
-			Incorporeal.API.registerSkytouchingRecipe(out, in, minY, maxY, multiplier);
-		}
-		
-		@Override
-		public String describe() {
-			return new ToStringBuilder(this)
-				.append("adding new skytouching recipe: ")
-				.append("out", out)
-				.append("in", in)
-				.append("minY", minY)
-				.append("maxY", maxY)
-				.append("multiplier", multiplier)
-				.build();
-		}
-	}
-	
-	public static class RemoveForAction implements IAction {
-		public RemoveForAction(ItemStack removalTarget) {
-			this.removalTarget = removalTarget;
-		}
-		
-		private final ItemStack removalTarget;
-		
-		@Override
-		public void apply() {
-			IncorporeticSkytouchingRecipes.ALL.removeIf(r -> {
-				return ItemStack.areItemsEqualIgnoreDurability(r.out, removalTarget);
-			});
-		}
-		
-		@Override
-		public String describe() {
-			return new ToStringBuilder(this)
-				.append("removing skytouching recipe for: ")
-				.append("removalTarget", removalTarget)
-				.build();
-		}
-	}
-	
-	public static class NukeAllAction implements IAction {
-		@Override
-		public void apply() {
-			IncorporeticSkytouchingRecipes.ALL.clear();
-		}
-		
-		@Override
-		public String describe() {
-			return "removing all of the skytouching recipes >:D";
 		}
 	}
 }

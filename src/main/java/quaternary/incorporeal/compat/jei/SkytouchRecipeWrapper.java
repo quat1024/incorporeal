@@ -6,19 +6,20 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.resources.I18n;
+import quaternary.incorporeal.api.recipe.IRecipeSkytouching;
 import quaternary.incorporeal.recipe.skytouch.RecipeSkytouching;
 
 public class SkytouchRecipeWrapper implements IRecipeWrapper {
-	public SkytouchRecipeWrapper(RecipeSkytouching recipe) {
+	public SkytouchRecipeWrapper(IRecipeSkytouching recipe) {
 		this.recipe = recipe;
 	}
 	
-	public final RecipeSkytouching recipe;
+	public final IRecipeSkytouching recipe;
 	
 	@Override
 	public void getIngredients(IIngredients ing) {
-		ing.setInput(VanillaTypes.ITEM, recipe.in);
-		ing.setOutput(VanillaTypes.ITEM, recipe.out);
+		ing.setInputs(VanillaTypes.ITEM, recipe.getGenericInputs());
+		ing.setOutput(VanillaTypes.ITEM, recipe.getGenericOutput());
 	}
 	
 	@Override
