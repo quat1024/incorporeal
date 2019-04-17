@@ -16,11 +16,6 @@ public class TileCorporeaSoulCore extends AbstractTileSoulCore {
 	}
 	
 	@Override
-	protected int manaDrainPerTick() {
-		return 0;
-	}
-	
-	@Override
 	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return true;
 		else return super.hasCapability(capability, facing);
