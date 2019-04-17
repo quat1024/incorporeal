@@ -56,10 +56,10 @@ public final class IncorporeticItems {
 	public static final ItemBlock FRAME_TINKERER = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.ENDER_SOUL_CORE)
-	public static final ItemSoulCore ENDER_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
+	public static final ItemBlock ENDER_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.CORPOREA_SOUL_CORE)
-	public static final ItemSoulCore CORPOREA_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
+	public static final ItemBlock CORPOREA_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.RED_STRING_LIAR)
 	public static final ItemBlock RED_STRING_LIAR = EtcHelpers.definitelyIsntNullISwear();
@@ -91,8 +91,8 @@ public final class IncorporeticItems {
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.FRAME_TINKERER)));
 		
-		reg.register(createItemBlock(new ItemSoulCore(IncorporeticBlocks.ENDER_SOUL_CORE)));
-		reg.register(createItemBlock(new ItemSoulCore(IncorporeticBlocks.CORPOREA_SOUL_CORE)));
+		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.ENDER_SOUL_CORE)));
+		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.CORPOREA_SOUL_CORE)));
 		
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.RED_STRING_LIAR)));
 		

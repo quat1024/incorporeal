@@ -46,9 +46,9 @@ public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEnti
 		float verticalBob = EtcHelpers.sinDegrees((hash + ticks) * 4);
 		GlStateManager.translate(0, 0.1 * verticalBob, 0);
 		
-		if(te == null) {
+		if(te == null) { //Rendering a TEISR
 			GlStateManager.scale(0.9, 0.9, 0.9);
-		} else {
+		} else { //Rendering an actual tile entity
 			GlStateManager.pushMatrix();
 			
 			float wobble = (hash + ticks) * 5;
@@ -67,10 +67,11 @@ public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEnti
 			GlStateManager.disableCull();
 			GlStateManager.enableAlpha();
 			
-			ResourceLocation skullLocation = getSkullLocation(te);
-			bindTexture(skullLocation);
-			
-			head.render(null, 0, 0, 0, 0, 0, 1 / 16f);
+			if(te.hasOwnerProfile()) {
+				ResourceLocation skullLocation = getSkullLocation(te);
+				bindTexture(skullLocation);
+				head.render(null, 0, 0, 0, 0, 0, 1 / 16f);
+			}
 			
 			GlStateManager.popMatrix();
 		}
@@ -157,15 +158,13 @@ public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEnti
 						
 		if(te != null) {
 			GameProfile skullProfile = te.getOwnerProfile();
-			if(skullProfile != null) {
-				Minecraft mc = Minecraft.getMinecraft();
-				Map<MinecraftProfileTexture.Type, MinecraftProfileTexture> skin = mc.getSkinManager().loadSkinFromCache(skullProfile);
+			Minecraft mc = Minecraft.getMinecraft();
+			Map<MinecraftProfileTexture.Type, MinecraftProfileTexture> skin = mc.getSkinManager().loadSkinFromCache(skullProfile);
 				
-				if(skin.containsKey(MinecraftProfileTexture.Type.SKIN)) {
+			if(skin.containsKey(MinecraftProfileTexture.Type.SKIN)) {
 					skullLocation = mc.getSkinManager().loadSkin(skin.get(MinecraftProfileTexture.Type.SKIN), MinecraftProfileTexture.Type.SKIN);
-				} else {
-					skullLocation = DefaultPlayerSkin.getDefaultSkin(skullProfile.getId());
-				}
+			} else {
+				skullLocation = DefaultPlayerSkin.getDefaultSkin(skullProfile.getId());
 			}
 		}
 		

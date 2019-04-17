@@ -1,6 +1,8 @@
 package quaternary.incorporeal.tile.soulcore;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
@@ -12,25 +14,36 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class TileEnderSoulCore extends AbstractTileSoulCore implements ITickable {
+public class TileEnderSoulCore extends AbstractTileSoulCore {
 	private IItemHandler handler = EmptyHandler.INSTANCE;
 	private boolean wasOnline = false;
 	
+	@Nullable private EntityPlayer owner = null;
+	
+	@Override
+	protected int getMaxMana() {
+		return 5000;
+	}
+	
 	@Override
 	public void update() {
-		boolean isOnline = false;
-		EntityPlayer owner = null;
+		super.update();
+		if(world.isRemote) return;
 		
-		for(EntityPlayer playerEnt : world.playerEntities) {
-			if(playerEnt.getGameProfile().equals(getOwnerProfile())) {
-				isOnline = true;
-				owner = playerEnt;
-				break;
+		boolean isOnline = false;
+		
+		if(hasOwnerProfile()) {
+			for(EntityPlayer playerEnt : world.playerEntities) {
+				if(playerEnt.getGameProfile().equals(getOwnerProfile())) {
+					isOnline = true;
+					owner = playerEnt;
+					break;
+				}
 			}
 		}
 		
 		if(!wasOnline && isOnline) {
-			this.handler = new InvWrapper(owner.getInventoryEnderChest());
+			this.handler = new ManaDrainingInvWrapper(owner.getInventoryEnderChest());
 		} else if (wasOnline && !isOnline){
 			this.handler = EmptyHandler.INSTANCE;
 		}
@@ -50,5 +63,20 @@ public class TileEnderSoulCore extends AbstractTileSoulCore implements ITickable
 	public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
 		if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return (T) handler;
 		else return super.getCapability(capability, facing);
+	}
+	
+	//non-static inner class
+	public class ManaDrainingInvWrapper extends InvWrapper {
+		public ManaDrainingInvWrapper(IInventory inv) {
+			super(inv);
+		}
+		
+		@Nonnull
+		@Override
+		public ItemStack extractItem(int slot, int amount, boolean simulate) {
+			ItemStack sup = super.extractItem(slot, amount, simulate);
+			if(!simulate) drainMana(5 * sup.getCount());
+			return sup;
+		}
 	}
 }
