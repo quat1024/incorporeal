@@ -1,0 +1,17 @@
+{
+	"result": {
+		"item": "incorporeal:corporea_deco",
+		"count": 8
+	},
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "botania:livingrock",
+			"data": 1
+		},
+		{
+			"item": "botania:corporeaspark",
+			"data": 0
+		}
+	]
+}

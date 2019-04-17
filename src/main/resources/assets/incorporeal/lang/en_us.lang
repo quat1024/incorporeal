@@ -32,7 +32,10 @@ tile.incorporeal.corporea_soul_core.name=Corporetic Soul Core
 tile.incorporeal.natural_repeater.name=Earthen Repeater
 tile.incorporeal.natural_comparator.name=Earthen Comparator
 
-# Unstable cubes
+# Decorative items
+tile.incorporeal.red_string_deco.name=Red String Tile
+tile.incorporeal.corporea_deco.name=Corporea Tile
+
 tile.incorporeal.unstable_cube.black.name=Black Unstable Cube
 tile.incorporeal.unstable_cube.red.name=Red Unstable Cube
 tile.incorporeal.unstable_cube.green.name=Green Unstable Cube
@@ -238,9 +241,12 @@ incorporeal.cygnus.retainer.some.vowel=An %s is described here.
 # if you try to request things from a corporea network that doesn't have your Corporea Soul Core:
 incorporeal.etc.noSoulCore=Your soul is not compatible with this Corporea Network.
 
+#make sure to double-check the line length of this in-game
 incorporeal.etc.holdingTicketConjurer0=Holding Ticket Conjurer!
 incorporeal.etc.holdingTicketConjurer1=Anything you say will
 incorporeal.etc.holdingTicketConjurer2=create a Corporea Ticket
+
+incorporeal.etc.safeForDecoration=Safe for decoration
 
 # JEI stuff
 incorporeal.jei.category.skytouch=Skytouching
