@@ -110,7 +110,8 @@ public abstract class AbstractTileSoulCore extends TileEntity implements ITickab
 	}
 	
 	public int getComparatorValue() {
-		return Math.round(EtcHelpers.rangeRemap(mana, 0, getMaxMana(), 0, 15));
+		if(getMaxMana() == 0) return 0;
+		else return Math.round(EtcHelpers.rangeRemap(mana, 0, getMaxMana(), 0, 15));
 	}
 	
 	@Override
