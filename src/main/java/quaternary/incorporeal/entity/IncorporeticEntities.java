@@ -16,27 +16,34 @@ public final class IncorporeticEntities {
 		int id = 0;
 		
 		reg.register(EntityEntryBuilder.create()
-						.entity(EntityFracturedSpaceCollector.class)
-						.id(new ResourceLocation(Incorporeal.MODID, "fractured_space_collector"), id++)
-						.tracker(64, 2, false)
-						.name(Incorporeal.MODID + '.' + "fractured_space_collector")
-						.build()
+			.entity(EntityFracturedSpaceCollector.class)
+			.id(new ResourceLocation(Incorporeal.MODID, "fractured_space_collector"), id++)
+			.tracker(64, 2, false)
+			.name(Incorporeal.MODID + '.' + "fractured_space_collector")
+			.build()
 		);
 		
 		reg.register(EntityEntryBuilder.create()
-						.entity(EntityCygnusMasterSpark.class)
-						.id(new ResourceLocation(Incorporeal.MODID, "master_cygnus_spark"), id++)
-						.tracker(64, 10, false) //TODO recheck these tracker settings. It's stationary
-						.name(Incorporeal.MODID + '.' + "master_cygnus_spark")
-						.build()
+			.entity(EntityCygnusMasterSpark.class)
+			.id(new ResourceLocation(Incorporeal.MODID, "master_cygnus_spark"), id++)
+			.tracker(64, 10, false) //TODO recheck these tracker settings. It's stationary
+			.name(Incorporeal.MODID + '.' + "master_cygnus_spark")
+			.build()
 		);
 		
 		reg.register(EntityEntryBuilder.create()
-						.entity(EntityCygnusRegularSpark.class)
-						.id(new ResourceLocation(Incorporeal.MODID, "cygnus_spark"), id++)
-						.tracker(64, 10, false)
-						.name(Incorporeal.MODID + '.' + "cygnus_spark")
-						.build()
+			.entity(EntityCygnusRegularSpark.class)
+			.id(new ResourceLocation(Incorporeal.MODID, "cygnus_spark"), id++)
+			.tracker(64, 10, false)
+			.name(Incorporeal.MODID + '.' + "cygnus_spark")
+			.build()
 		);
+		
+		reg.register(EntityEntryBuilder.create()
+			.entity(EntityPotionSoulCoreCollector.class)
+			.id(new ResourceLocation(Incorporeal.MODID, "potion_soul_core_collector"), id++)
+			.tracker(10, 20, false)
+			.name(Incorporeal.MODID + '.' + "potion_soul_core_collector")
+			.build());
 	}
 }
