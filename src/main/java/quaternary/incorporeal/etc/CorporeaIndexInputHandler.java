@@ -29,7 +29,9 @@ public final class CorporeaIndexInputHandler {
 		for(InvWithLocation inv : CorporeaHelper.getInventoriesOnNetwork(e.indexSpark)) {
 			TileEntity tile = world.getTileEntity(inv.pos);
 			if(tile instanceof TileCorporeaSoulCore) {
-				soulCoreProfiles.add(((TileCorporeaSoulCore)tile).getOwnerProfile());
+				TileCorporeaSoulCore csoul = (TileCorporeaSoulCore) tile;
+				GameProfile prof = csoul.getOwnerProfile();
+				if(prof != null) soulCoreProfiles.add(prof);
 			}
 		}
 		

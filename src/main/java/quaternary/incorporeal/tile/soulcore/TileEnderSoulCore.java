@@ -10,6 +10,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.EmptyHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
+import quaternary.incorporeal.Incorporeal;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -66,6 +67,14 @@ public class TileEnderSoulCore extends AbstractTileSoulCore {
 		public ItemStack extractItem(int slot, int amount, boolean simulate) {
 			ItemStack sup = super.extractItem(slot, amount, simulate);
 			if(!simulate) drainMana(5 * sup.getCount());
+			return sup;
+		}
+		
+		@Nonnull
+		@Override
+		public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+			ItemStack sup = super.insertItem(slot, stack, simulate);
+			if(!simulate) drainMana(5 * (stack.getCount() - sup.getCount()));
 			return sup;
 		}
 	}

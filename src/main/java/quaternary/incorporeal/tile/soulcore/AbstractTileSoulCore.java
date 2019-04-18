@@ -2,19 +2,28 @@ package quaternary.incorporeal.tile.soulcore;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
-import quaternary.incorporeal.block.soulcore.AbstractBlockSoulCore;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
 import vazkii.botania.api.internal.VanillaPacketDispatcher;
 import vazkii.botania.api.mana.IManaReceiver;
+import vazkii.botania.client.core.handler.HUDHandler;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -23,32 +32,32 @@ public abstract class AbstractTileSoulCore extends TileEntity implements ITickab
 	protected GameProfile ownerProfile;
 	protected int mana;
 	
+	public static final DamageSource SOUL = new DamageSource("incorporeal.soul").setMagicDamage();
+	
 	protected abstract int getMaxMana();
 	
 	public boolean hasOwnerProfile() {
 		return ownerProfile != null;
 	}
 	
-	public Optional<GameProfile> getOwnerProfile() {
-		return Optional.ofNullable(ownerProfile);
+	public GameProfile getOwnerProfile() {
+		return ownerProfile;
 	}
 	
-	public void changeOwnerProfile(GameProfile newProfile) {
-		if(newProfile != null && newProfile.equals(ownerProfile)) return;
-		
-		findPlayer().ifPresent(oldOwner -> oldOwner.attackEntityFrom(AbstractBlockSoulCore.SOUL, 5f));
-		
+	public boolean setOwnerProfile(GameProfile newProfile) {
+		if(newProfile != null && newProfile.equals(ownerProfile)) return false;
 		ownerProfile = newProfile;
-		
 		markDirty();
 		VanillaPacketDispatcher.dispatchTEToNearbyPlayers(this);
+		return true;
 	}
 	
 	public Optional<EntityPlayer> findPlayer() {
 		if(!hasOwnerProfile()) return Optional.empty();
+		GameProfile prof = getOwnerProfile();
 		
 		for(EntityPlayer playerEnt : world.playerEntities) {
-			if(playerEnt.getGameProfile().equals(getOwnerProfile())) {
+			if(playerEnt.getGameProfile().equals(prof)) {
 				return Optional.of(playerEnt);
 			}
 		}
@@ -56,27 +65,46 @@ public abstract class AbstractTileSoulCore extends TileEntity implements ITickab
 		return Optional.empty();
 	}
 	
+	public boolean click(EntityPlayer player) {
+		boolean isDifferent = setOwnerProfile(player.getGameProfile());
+		if(isDifferent) {
+			if(!world.isRemote) {
+				player.attackEntityFrom(SOUL, 5f);
+				receiveInitialMana();
+			}
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public void receiveInitialMana() {
 		int n = getMaxMana() / 2;
 		if(mana < n) mana = n;
+		
+		markDirty();
+		VanillaPacketDispatcher.dispatchTEToNearbyPlayers(this);
 	}
 	
 	public void drainMana(int manaPoof) {
+		if(manaPoof < 0) manaPoof = 0;
 		mana -= manaPoof;
 		if(mana <= 0) mana = 0;
+		
 		markDirty();
+		VanillaPacketDispatcher.dispatchTEToNearbyPlayers(this);
 	}
 	
 	@Override
 	public void update() {
 		//looks like mana usage is disabled for this one...
 		if(getMaxMana() == 0) return;
-		
 		if(world.isRemote) return;
 		
 		if(mana <= 0 && hasOwnerProfile()) {
 			//Wuh oh
-			changeOwnerProfile(null);
+			findPlayer().ifPresent(owningPlayer -> owningPlayer.attackEntityFrom(SOUL, 5f));
+			setOwnerProfile(null);
 			world.playSound(null, pos, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 0.5f, 1.2f);
 		}
 	}
@@ -105,6 +133,14 @@ public abstract class AbstractTileSoulCore extends TileEntity implements ITickab
 	@Override
 	public int getCurrentMana() {
 		return 0;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void renderHUD(Minecraft mc, ScaledResolution res, World world, BlockPos pos) {
+		Item i = Item.getItemFromBlock(getBlockType());
+		String name = I18n.format(i.getTranslationKey() + ".name"); //:thonkjang:
+		
+		HUDHandler.drawSimpleManaHUD(0xee4444, mana, getMaxMana(), name, res);
 	}
 	
 	@Nullable

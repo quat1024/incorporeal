@@ -1,60 +1,47 @@
 package quaternary.incorporeal.block.soulcore;
 
-import com.mojang.authlib.GameProfile;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import quaternary.incorporeal.tile.soulcore.AbstractTileSoulCore;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
+import vazkii.botania.api.wand.IWandHUD;
+import vazkii.botania.client.core.handler.HUDHandler;
+import vazkii.botania.common.entity.EntityDoppleganger;
 
 import javax.annotation.Nullable;
 
-public abstract class AbstractBlockSoulCore extends Block implements ILexiconable {
+public abstract class AbstractBlockSoulCore extends Block implements ILexiconable, IWandHUD {
 	protected AbstractBlockSoulCore() {
 		super(Material.CIRCUITS);
 		setHardness(1f);
 		setSoundType(SoundType.METAL);
 	}
 	
-	public static final DamageSource SOUL = new DamageSource("incorporeal.soul").setMagicDamage();
-	
-	@Override
-	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-		if(!(placer instanceof EntityPlayer)) return;
-		
-		EntityPlayer player = (EntityPlayer) placer;
-		TileEntity tile = world.getTileEntity(pos);
-		
-		if(tile instanceof AbstractTileSoulCore) {
-			AbstractTileSoulCore abs = (AbstractTileSoulCore) tile; 
-			abs.changeOwnerProfile(player.getGameProfile());
-			abs.receiveInitialMana();
-		}
-	}
-	
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if(!EntityDoppleganger.isTruePlayer(player)) return false;
+		
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile instanceof AbstractTileSoulCore) {
-			AbstractTileSoulCore abs = (AbstractTileSoulCore) tile;
-			abs.changeOwnerProfile(player.getGameProfile());
-			abs.receiveInitialMana();
-			return true;
+			return ((AbstractTileSoulCore) tile).click(player);
 		}
 		
 		return false;
@@ -71,6 +58,17 @@ public abstract class AbstractBlockSoulCore extends Block implements ILexiconabl
 		if(tile instanceof AbstractTileSoulCore) {
 			return ((AbstractTileSoulCore) tile).getComparatorValue();
 		} else return 0;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void renderHUD(Minecraft mc, ScaledResolution res, World world, BlockPos pos) {
+		TileEntity tile = world.getTileEntity(pos);
+		if(tile instanceof AbstractTileSoulCore) {
+			((AbstractTileSoulCore) tile).renderHUD(mc, res, world, pos);
+		} else {
+			HUDHandler.drawSimpleManaHUD(0xFF0000, 1, 1, "Missing TileEntity?", res);
+		}
 	}
 	
 	@Override
