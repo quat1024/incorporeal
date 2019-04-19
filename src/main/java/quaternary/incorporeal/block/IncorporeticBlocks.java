@@ -14,6 +14,7 @@ import quaternary.incorporeal.block.naturaldevices.BlockNaturalDeviceCrop;
 import quaternary.incorporeal.block.naturaldevices.BlockNaturalRepeater;
 import quaternary.incorporeal.block.soulcore.BlockCorporeaSoulCore;
 import quaternary.incorporeal.block.soulcore.BlockEnderSoulCore;
+import quaternary.incorporeal.block.soulcore.BlockPotionSoulCore;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
 
 import java.util.Objects;
@@ -34,6 +35,7 @@ public final class IncorporeticBlocks {
 		
 		public static final String ENDER_SOUL_CORE = "ender_soul_core";
 		public static final String CORPOREA_SOUL_CORE = "corporea_soul_core";
+		public static final String POTION_SOUL_CORE = "potion_soul_core";
 		
 		public static final String RED_STRING_LIAR = "red_string_liar";
 		
@@ -67,6 +69,9 @@ public final class IncorporeticBlocks {
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_SOUL_CORE)
 	public static final BlockCorporeaSoulCore CORPOREA_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
 	
+	@GameRegistry.ObjectHolder(RegistryNames.POTION_SOUL_CORE)
+	public static final BlockPotionSoulCore POTION_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
+	
 	@GameRegistry.ObjectHolder(RegistryNames.RED_STRING_LIAR)
 	public static final BlockRedStringLiar RED_STRING_LIAR = EtcHelpers.definitelyIsntNullISwear();
 	
@@ -97,6 +102,7 @@ public final class IncorporeticBlocks {
 		
 		reg.register(createBlock(new BlockEnderSoulCore(), RegistryNames.ENDER_SOUL_CORE));
 		reg.register(createBlock(new BlockCorporeaSoulCore(), RegistryNames.CORPOREA_SOUL_CORE));
+		reg.register(createBlock(new BlockPotionSoulCore(), RegistryNames.POTION_SOUL_CORE));
 		
 		reg.register(createSpecialSnowflakeBlock(new BlockRedStringLiar(RegistryNames.RED_STRING_LIAR)));
 		

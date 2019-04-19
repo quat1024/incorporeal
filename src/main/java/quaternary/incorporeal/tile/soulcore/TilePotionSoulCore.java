@@ -15,14 +15,17 @@ public class TilePotionSoulCore extends AbstractTileSoulCore {
 	@Override
 	public void update() {
 		super.update();
+		if(world.isRemote) return;
 		
 		List<EntityPotionSoulCoreCollector> nearbyCollectors = world.getEntitiesWithinAABB(EntityPotionSoulCoreCollector.class, new AxisAlignedBB(pos));
-		if(nearbyCollectors.size() > 2) {
-			//How on earth did this happen? Panic and get rid of them
+		boolean hasPlayer = findPlayer().isPresent();
+		
+		if(nearbyCollectors.size() > 2 || !hasPlayer) {
 			nearbyCollectors.forEach(Entity::setDead);
+			nearbyCollectors.clear();
 		}
 		
-		if(nearbyCollectors.isEmpty()) {
+		if(nearbyCollectors.isEmpty() && hasPlayer) {
 			EntityPotionSoulCoreCollector epscc = new EntityPotionSoulCoreCollector(world);
 			epscc.setPosition(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5);
 			world.spawnEntity(epscc);

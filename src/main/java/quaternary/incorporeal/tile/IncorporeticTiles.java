@@ -11,6 +11,7 @@ import quaternary.incorporeal.tile.cygnus.TileCygnusWord;
 import quaternary.incorporeal.tile.decorative.TileUnstableCube;
 import quaternary.incorporeal.tile.soulcore.TileCorporeaSoulCore;
 import quaternary.incorporeal.tile.soulcore.TileEnderSoulCore;
+import quaternary.incorporeal.tile.soulcore.TilePotionSoulCore;
 
 public final class IncorporeticTiles {
 	private IncorporeticTiles() { }
@@ -20,6 +21,7 @@ public final class IncorporeticTiles {
 		reg(TileCorporeaSparkTinkerer.class, "corporea_tinkerer");
 		reg(TileEnderSoulCore.class, "ender_soul_core");
 		reg(TileCorporeaSoulCore.class, "corporea_soul_core");
+		reg(TilePotionSoulCore.class, "potion_soul_core");
 		reg(TileUnstableCube.class, "unstable_cube");
 		reg(TileRedStringLiar.class, "red_string_liar");
 		

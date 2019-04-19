@@ -21,10 +21,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.IncorporeticConfig;
 import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.block.cygnus.IncorporeticCygnusBlocks;
 import quaternary.incorporeal.client.entityrenderer.RenderEntityCygnusMasterSpark;
 import quaternary.incorporeal.client.entityrenderer.RenderEntityCygnusRegularSpark;
+import quaternary.incorporeal.client.entityrenderer.RenderEntityNothing;
 import quaternary.incorporeal.client.model.CygnusWordModelLoader;
 import quaternary.incorporeal.client.tesr.RenderItemSoulCore;
 import quaternary.incorporeal.client.tesr.RenderTileCorporeaSparkTinkerer;
@@ -32,6 +34,8 @@ import quaternary.incorporeal.client.tesr.RenderTileSoulCore;
 import quaternary.incorporeal.client.tesr.cygnus.RenderTileCygnusCrystalCube;
 import quaternary.incorporeal.client.tesr.cygnus.RenderTileCygnusRetainer;
 import quaternary.incorporeal.client.tesr.decorative.RenderTileUnstableCube;
+import quaternary.incorporeal.entity.EntityFracturedSpaceCollector;
+import quaternary.incorporeal.entity.EntityPotionSoulCoreCollector;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusRegularSpark;
 import quaternary.incorporeal.flower.SubTileSanvocalia;
@@ -45,6 +49,7 @@ import quaternary.incorporeal.tile.cygnus.TileCygnusRetainer;
 import quaternary.incorporeal.tile.decorative.TileUnstableCube;
 import quaternary.incorporeal.tile.soulcore.TileCorporeaSoulCore;
 import quaternary.incorporeal.tile.soulcore.TileEnderSoulCore;
+import quaternary.incorporeal.tile.soulcore.TilePotionSoulCore;
 import vazkii.botania.api.BotaniaAPIClient;
 import vazkii.botania.api.state.BotaniaStateProps;
 import vazkii.botania.api.subtile.SubTileEntity;
@@ -105,8 +110,11 @@ public final class ClientRegistryEvents {
 		
 		RenderTileSoulCore<TileEnderSoulCore> enderRender = new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/entity/ender_soul_core.png"));
 		RenderTileSoulCore<TileCorporeaSoulCore> corporeaRender = new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/entity/corporea_soul_core.png"));
+		RenderTileSoulCore<TilePotionSoulCore> potionRender = new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/entity/potion_soul_core.png"));
+		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEnderSoulCore.class, enderRender);
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCorporeaSoulCore.class, corporeaRender);
+		ClientRegistry.bindTileEntitySpecialRenderer(TilePotionSoulCore.class, potionRender);
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCygnusRetainer.class, new RenderTileCygnusRetainer());
 		
@@ -115,6 +123,7 @@ public final class ClientRegistryEvents {
 		//Teisrs
 		setTEISRModel(IncorporeticItems.ENDER_SOUL_CORE, new RenderItemSoulCore(enderRender));
 		setTEISRModel(IncorporeticItems.CORPOREA_SOUL_CORE, new RenderItemSoulCore(corporeaRender));
+		setTEISRModel(IncorporeticItems.POTION_SOUL_CORE, new RenderItemSoulCore(potionRender));
 		setTEISRModel(IncorporeticItems.SOUL_CORE_FRAME, new RenderItemSoulCore(new RenderTileSoulCore<>(new ResourceLocation(Incorporeal.MODID, "textures/entity/soul_core_frame.png"))));
 	}
 	
@@ -137,6 +146,12 @@ public final class ClientRegistryEvents {
 	public static void preinit() {
 		RenderingRegistry.registerEntityRenderingHandler(EntityCygnusRegularSpark.class, RenderEntityCygnusRegularSpark::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityCygnusMasterSpark.class, RenderEntityCygnusMasterSpark::new);
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityFracturedSpaceCollector.class, RenderEntityNothing::new);
+		
+		if(!IncorporeticConfig.SoulCore.DEBUG_BLOODCORE_ENTITIES) {
+			RenderingRegistry.registerEntityRenderingHandler(EntityPotionSoulCoreCollector.class, RenderEntityNothing::new);
+		}
 		
 		//Block model loader things
 		ModelLoaderRegistry.registerLoader(new CygnusWordModelLoader());

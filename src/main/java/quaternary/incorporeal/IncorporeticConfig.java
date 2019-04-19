@@ -19,7 +19,7 @@ public final class IncorporeticConfig {
 	public static final class SoulCore {
 		private SoulCore() {}
 		
-		public static boolean EVERYONE_ANYONE = true;
+		public static boolean DEBUG_BLOODCORE_ENTITIES = false;
 	}
 	
 	public static final class Compat {
@@ -37,8 +37,15 @@ public final class IncorporeticConfig {
 	public static Configuration config;
 	
 	static void preinit(FMLPreInitializationEvent e) {
-		config = new Configuration(e.getSuggestedConfigurationFile(), "1");
+		config = new Configuration(e.getSuggestedConfigurationFile(), "2");
 		config.load();
+		
+		if("1".equals(config.getLoadedConfigVersion())) {
+			//Too lazy to make a proper updater...
+			config.removeCategory(config.getCategory("soulcore"));
+			config.removeCategory(config.getCategory("etc"));
+			config.removeCategory(config.getCategory("general"));
+		}
 		
 		readConfig();
 	}
@@ -46,14 +53,12 @@ public final class IncorporeticConfig {
 	private static void readConfig() {
 		Sanvocalia.EVERYONE_HEARS_MESSAGES = config.getBoolean("everyoneHearsMessages", "sanvocalia", true, "Easter egg spoiler: when the Sanvocalia isn't near any corporea indices but receives a corporea ticket, it will just dump the corporea request into chat, to reference the all-too-often occurrence of players accidentally standing too far away from their corporea indexes in multiplayer and telling everyone \"5 stone\".\n\nIf this is false, only the person who placed the Sanvocalia will see these messages.");
 		
-		SoulCore.EVERYONE_ANYONE = config.getBoolean("anyoneCanPlaceAnyones", "soulcore", true, "If false, players can only place soul cores around their own skull; if true, anyone can place soul cores around anyone's skull.");
+		SoulCore.DEBUG_BLOODCORE_ENTITIES = config.getBoolean("debugBloodcoreEntities", "soulcores", false, "If this is enabled, the invisible \"incorporeal:potion_soul_core_collector\" entities that Blood Soul Cores create to absorb thrown potion effects will appear as a small white box. If you see these lingering after you remove a bloodcore, let me know. Client-only.");
 		
 		Compat.INFRAREDSTONE = config.getBoolean("infraredstone", "compat", true, "If InfraRedstone is available, special features will be made available.");
 		
 		//default this to false since it's WIP
-		General.CORPOREA_KNOWLEDGE_TYPE = config.getBoolean("corporeaKnowledgeType", "general", false, "Should Incorporeal move corporea into its own knowledge type? This is because the Ender Artefacts chapter was pretty much taken over by corporea-related things, and it was getting a little out of hand.");
-		
-		//TODO config versioning system to remove etc.variableRetainerStrength since it was merged into 356
+		//General.CORPOREA_KNOWLEDGE_TYPE = config.getBoolean("corporeaKnowledgeType", "general", false, "Should Incorporeal move corporea into its own knowledge type? This is because the Ender Artefacts chapter was pretty much taken over by corporea-related things, and it was getting a little out of hand.");
 		
 		if(config.hasChanged()) config.save();
 	}

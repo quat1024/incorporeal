@@ -110,12 +110,15 @@ public final class IncorporeticLexicon {
 		
 		soulCores = new CompatLexiconEntry("incorporeal.soulCores", categoryCorporetic, Incorporeal.NAME);
 		soulCores.setLexiconPages(
-						new PageText("0"),
-						new PageRuneRecipe(".flavor0", IncorporeticRuneRecipes.soulCoreFrame),
-						new PageText("1"),
-						new PageRuneRecipe(".flavor1", IncorporeticRuneRecipes.enderSoulCore),
-						new PageText("2"),
-						new PageRuneRecipe(".flavor2", IncorporeticRuneRecipes.corporeaSoulCore)
+			new PageText("0"),
+			new PageText("1"),
+			new PageRuneRecipe(".flavor2", IncorporeticRuneRecipes.soulCoreFrame),
+			new PageText("3"),
+			new PageRuneRecipe(".flavor3", IncorporeticRuneRecipes.enderSoulCore),
+			new PageText("4"),
+			new PageRuneRecipe(".flavor4", IncorporeticRuneRecipes.corporeaSoulCore),
+			new PageText("5"),
+			new PageRuneRecipe(".flavor5", IncorporeticRuneRecipes.potionSoulCore)
 		);
 		soulCores.setKnowledgeType(newEntryType);
 		soulCores.addExtraDisplayedRecipe(new ItemStack(IncorporeticItems.CORPOREA_SOUL_CORE));
