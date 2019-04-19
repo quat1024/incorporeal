@@ -23,12 +23,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.lexicon.IncorporeticLexicon;
 import quaternary.incorporeal.tile.decorative.TileUnstableCube;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.state.BotaniaStateProps;
 
 import javax.annotation.Nullable;
 
-public class BlockUnstableCube extends Block {
+public class BlockUnstableCube extends Block implements ILexiconable {
 	public BlockUnstableCube() {
 		super(Material.IRON);
 		setHardness(5);
@@ -139,5 +142,10 @@ public class BlockUnstableCube extends Block {
 	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		return MapColor.getBlockColor(state.getValue(BotaniaStateProps.COLOR));
+	}
+	
+	@Override
+	public LexiconEntry getEntry(World world, BlockPos pos, EntityPlayer player, ItemStack lexicon) {
+		return IncorporeticLexicon.unstableCubes;
 	}
 }

@@ -2,6 +2,7 @@ package quaternary.incorporeal.lexicon;
 
 import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -24,8 +25,12 @@ import vazkii.botania.common.lexicon.CompatLexiconEntry;
 import vazkii.botania.common.lexicon.LexiconData;
 import vazkii.botania.common.lexicon.page.PageCraftingRecipe;
 import vazkii.botania.common.lexicon.page.PagePetalRecipe;
+import vazkii.botania.common.lexicon.page.PageRecipe;
 import vazkii.botania.common.lexicon.page.PageRuneRecipe;
 import vazkii.botania.common.lexicon.page.PageText;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public final class IncorporeticLexicon {
 	private IncorporeticLexicon() {}
@@ -35,6 +40,7 @@ public final class IncorporeticLexicon {
 	//PRE-ELVEN
 	public static LexiconEntry frameTinkerer;
 	public static LexiconEntry naturalDevices;
+	public static LexiconEntry unstableCubes;
 	
 	public static LexiconEntry sweetAlexum;
 	
@@ -92,6 +98,16 @@ public final class IncorporeticLexicon {
 		naturalDevices.addExtraDisplayedRecipe(new ItemStack(IncorporeticItems.NATURAL_REPEATER));
 		naturalDevices.addExtraDisplayedRecipe(new ItemStack(ModItems.manaResource, 1, 6));
 		naturalDevices.setKnowledgeType(newEntryType);
+		
+		unstableCubes = new CompatLexiconEntry("incorporeal.unstableCubes", BotaniaAPI.categoryMisc, Incorporeal.NAME).setLexiconPages(
+			new PageText("0"),
+			new PageCraftingRecipe(".flavor", 
+				Arrays.stream(EnumDyeColor.values())
+				.map(color -> "decorative/unstable_cube/unstable_cube_" + color.getDyeColorName())
+				.map(str -> new ResourceLocation(Incorporeal.MODID, str))
+				.collect(Collectors.toList())
+			)
+		);
 		//anyhoo
 		
 		sweetAlexum = buildFlowerEntry("sweet_alexum", IncorporeticPetalRecipes.sweetAlexum, BotaniaAPI.categoryFunctionalFlowers, 2);

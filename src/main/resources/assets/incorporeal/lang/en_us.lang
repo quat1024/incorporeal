@@ -101,6 +101,11 @@ botania.page.incorporeal.naturalDevices0=&1Redstone Roots&0 can be planted, and 
 botania.page.incorporeal.naturalDevices1=&1Earthen Repeaters&0 are repeaters that last exactly one second, over twice as long as the maximum-delay traditional repeater. They are the most common device that a &1Redstone Root&0 will grow into.
 botania.page.incorporeal.naturalDevices2=&1Earthen Comparators&0 also have a one-second response and delay time. While they cannot compare redstone signal strengths, and don't have a subtraction mode, they can properly read from chests, item frames, and other comparator-attuned blocks, and will always output either a signal strength of 15 or 0.
 
+botania.entry.incorporeal.unstableCubes=Unstable Cubes
+botania.tagline.incorporeal.unstableCubes=A decorative relic from a bygone era
+botania.page.incorporeal.unstableCubes0=&1Unstable Cubes&0 are curious little critters. They cracke pleasantly and spin in a satisfying way when touched, but other than that, don't seem to do anything useful.
+botania.page.incorporeal.unstableCubes.flavor=Throwback Thursday, every day!
+
 #TODO add an Incorporeal lang key prefix to these if at all possible
 botania.entry.sweet_alexum=Sweet Alexum
 botania.tagline.sweet_alexum=Plays a beautiful(...?) song
@@ -121,7 +126,7 @@ botania.page.incorporeal.fractured_space_rod.flavor=Ease, don't teleport
 
 botania.entry.incorporeal.ticket_conjurer=Ticket Conjurer
 botania.tagline.incorporeal.ticket_conjurer=Create corporea tickets on the go
-botania.page.incorporeal.ticket_conjurer0=The &1Ticket Conjurer&0 assists in the creation of arbitrary &1Corproea Tickets&0, for use with the &1Sanvocalia&0 flower. Other than the fact that it's an item, not a block, it acts identically to a &1Corporea Index&0. Simply hold it in either hand, speak a &4Corporea Request&0, and a &1Corporea Ticket&0 will be created for it.
+botania.page.incorporeal.ticket_conjurer0=The &1Ticket Conjurer&0 assists in the creation of arbitrary &1Corporea Tickets&0, for use with the &1Sanvocalia&0 flower. Other than the fact that it's an item, not a block, it acts identically to a &1Corporea Index&0. Simply hold it in either hand, speak a &4Corporea Request&0, and a &1Corporea Ticket&0 will be created for it.
 botania.page.incorporeal.ticket_conjurer1=The only other difference between it and a &1Corporea Index&0 is in the behavior of the word "this", which will refer to the item in your off-hand when you hold the &1Ticket Conjurer&0 in your main hand, and vice versa.
 # note | uksrt8 reference
 botania.page.incorporeal.ticket_conjurer.flavor=Dying Breath of Stokesia
@@ -157,16 +162,16 @@ botania.page.incorporeal.corporea_retainer_decrementer.flavor=Cha os [Chal len g
 botania.entry.incorporeal.soulCores=Soul Cores
 botania.tagline.incorporeal.soulCores=Spirit-specific interactions
 botania.page.incorporeal.soulCores0=&1Soul Cores&0 surround and envelop a &4Player's Soul&0 in a light &4Mana&0 solution, ever-so-slightly reanimating it. The &4Soul&0 is stabilized as a disembodied head, and while not capable of too much remaining brain function, is somehow entangled with the real, live &4Player&0. Provided that they're in the same &4Dimension&0.
-botania.page.incorporeal.soulCores1=To inform a &1Soul Core&0 of your precense, right click it. The process of binding and unbinding a &4Soul&0 from a &1Core&0 has been known to sting a bit...<br>If a &1Soul Core&0 runs out of mana, it will lose the link to the &4Soul&0 it's bound to; right clicking again will re-establish it.
+botania.page.incorporeal.soulCores1=To inform a &1Soul Core&0 of your presence, right click it. The process of binding and unbinding a &4Soul&0 from a &1Core&0 has been known to sting a bit...<br>If a &1Soul Core&0 runs out of mana, it will lose the link to the &4Soul&0 it's bound to; right clicking again will re-establish it.
 # note | a type of pattern from modded dance games
 botania.page.incorporeal.soulCores.flavor2=Driven Drop
-botania.page.incorporeal.soulCores3=The &1Ender Soul Core&0, at the cost of &4Mana&0, provides block-level access to the &1Ender Chest&0 inventory of the bound &1Player&0. As long as the &1Player&0's soul is present in the dimension, the &1Ender Soul Core&0's inventory will mirror the contents of their &1Ender Chest&0. All the usual interactions work; hoppers, corporea sparks...
+botania.page.incorporeal.soulCores3=The &1Ender Soul Core&0, at the cost of &4Mana&0, provides block-level access to the &1Ender Chest&0 inventory of the bound &4Player&0. As long as the &4Player&0 is present in the dimension, the &1Ender Soul Core&0's inventory will mirror the contents of their &1Ender Chest&0. All the usual interactions work; hoppers, corporea sparks...
 # note | some reference idk
 botania.page.incorporeal.soulCores.flavor3=You Would Not Believe This Random Hecking Nonsense
-botania.page.incorporeal.soulCores4=The &1Corporea Soul Core&0 is a simple privacy system for &4Corporea Networks&0. &1Players&0 are not able to use a &4Corporea Index&0 on the same network as a &1Corporea Soul Core&0, unless one of the &1Corporea Soul Core&0s contains their &4Soul&0.<br>It does not use &4Mana&0.
+botania.page.incorporeal.soulCores4=The &1Corporea Soul Core&0 is a simple privacy system for &4Corporea Networks&0. &4Players&0 are not able to use a &1Corporea Index&0 on the same network as a &1Corporea Soul Core&0, unless one of the &1Corporea Soul Core&0s on it contains their &4Soul&0.<br>It does not use &4Mana&0.
 # note | song reference to "line delta" by nitro, it's a sample in the song
 botania.page.incorporeal.soulCores.flavor4=Now let me see you &2DANCE&0
-botania.page.incorporeal.soulCores5=The &1Blood Soul Core&0, at the cost of &4Mana&0, injects all potion effects received via &1Splash Potions&0 into the bloodstream of the bound &1Player&0.<br>Since the &4Soul&0 suspended in a &1Soul Core&0 is technically undead, this process will cause the usual effect inversions to occur (instant health will damage the bound &1Player&0, for example.)
+botania.page.incorporeal.soulCores5=The &1Blood Soul Core&0, at the cost of &4Mana&0, injects all potion effects received via &1Splash Potions&0 into the bloodstream of the bound &4Player&0.<br>Since the &4Soul&0 suspended in a &1Soul Core&0 is technically undead, this process will cause the usual effect inversions to occur (instant health will damage the bound &1Player&0, for example.)
 # note | hey guess what it's a song reference yet again
 botania.page.incorporeal.soulCores.flavor5=Pictured as Perfect
 
