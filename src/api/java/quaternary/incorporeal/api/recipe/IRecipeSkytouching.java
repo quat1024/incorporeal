@@ -9,6 +9,9 @@ import java.util.List;
  * A "skytouching recipe".
  * You put the thing above the height limit and it turns into something else.
  * How about that.
+ * 
+ * @author quaternary
+ * @since 1.1
  */
 public interface IRecipeSkytouching {
 	/**
