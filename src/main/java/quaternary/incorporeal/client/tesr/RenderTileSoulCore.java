@@ -18,6 +18,7 @@ import quaternary.incorporeal.etc.helper.EtcHelpers;
 import quaternary.incorporeal.tile.soulcore.AbstractTileSoulCore;
 import vazkii.botania.client.core.handler.ClientTickHandler;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 
 public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEntitySpecialRenderer<T> {
@@ -33,36 +34,19 @@ public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEnti
 		//Fix weird bug w/ the soul core frame teisr, TODO what is actually causing this? that it's not actually a block/tile?
 		if(rendererDispatcher == null) setRendererDispatcher(TileEntityRendererDispatcher.instance);
 		
-		int hash = te == null ? 0 : MathHelper.hash(MathHelper.hash(te.getPos().hashCode())) % 1500000;
+		int hash = positionalHash(te);
 		float ticks = ClientTickHandler.ticksInGame + partialTicks;
 		
 		GlStateManager.pushMatrix();
-		GlStateManager.translate(x + .5, y + .5, z + .5);
 		
-		//Wibble wobble
-		float rotateY = (hash + ticks) * 2 % 360;
-		GlStateManager.rotate(rotateY, 0, 1, 0);
-		
-		float verticalBob = EtcHelpers.sinDegrees((hash + ticks) * 4);
-		GlStateManager.translate(0, 0.1 * verticalBob, 0);
+		transformInitialWobble(hash, ticks, x, y, z);
 		
 		if(te == null) { //Rendering a TEISR
 			GlStateManager.scale(0.9, 0.9, 0.9);
 		} else { //Rendering an actual tile entity
 			GlStateManager.pushMatrix();
 			
-			float wobble = (hash + ticks) * 5;
-			float wobbleSin = EtcHelpers.sinDegrees(wobble);
-			float wobbleCos = EtcHelpers.cosDegrees(wobble);
-			float wobbleAmountDegrees = 10f;
-			GlStateManager.rotate(wobbleCos * wobbleAmountDegrees, 1, 0, 0);
-			GlStateManager.rotate(wobbleSin * wobbleAmountDegrees, 1, 0, 0);
-			GlStateManager.rotate(-wobbleCos * wobbleAmountDegrees, 0, 0, 1);
-			GlStateManager.rotate(-wobbleSin * wobbleAmountDegrees, 0, 0, 1);
-			
-			//Draw skull doot
-			GlStateManager.translate(0, -1 / 4f, 0);
-			GlStateManager.scale(-1.0F, -1.0F, 1.0F);
+			transformSkull(hash, ticks);
 			GlStateManager.enableRescaleNormal();
 			GlStateManager.disableCull();
 			GlStateManager.enableAlpha();
@@ -79,17 +63,7 @@ public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEnti
 		//Draw cubes
 		bindTexture(cubesLocation);
 		
-		GlStateManager.rotate(((-ticks + hash) / 5f) % 360, 0, 1, 0);
-		GlStateManager.rotate(MathHelper.sin((ticks + hash) / 50f) * 40, 0, 1, 0);
-		
-		float wobble2 = (hash + ticks) * 3;
-		float wobble2Sin = EtcHelpers.sinDegrees(wobble2);
-		float wobble2Cos = EtcHelpers.cosDegrees(wobble2);
-		float wobble2AmountDegrees = 10f;
-		GlStateManager.rotate(-wobble2Cos * wobble2AmountDegrees, 1, 0, 0);
-		GlStateManager.rotate(-wobble2Sin * wobble2AmountDegrees, 1, 0, 0);
-		GlStateManager.rotate(wobble2Cos * wobble2AmountDegrees, 0, 0, 1);
-		GlStateManager.rotate(wobble2Sin * wobble2AmountDegrees, 0, 0, 1);
+		transformCubesWobble(hash, ticks);
 		
 		GlStateManager.enableRescaleNormal();
 		GlStateManager.disableLighting();
@@ -97,6 +71,7 @@ public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEnti
 		Tessellator t = Tessellator.getInstance();
 		BufferBuilder b = t.getBuffer();
 		
+		//this made sense at the time
 		for(int i = 0; i < 8; i++) {
 			drawBox(t, b, 0.1f, 0.1f, 0.1f, 0.35f);
 			GlStateManager.scale(1, -1, -1);
@@ -151,6 +126,59 @@ public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEnti
 		b.pos(x2, y1, z2).tex(0, 1).endVertex();
 		
 		t.draw();
+	}
+	
+	public static void performHighlightTransformations(AbstractTileSoulCore te, float partial, double x, double y, double z) {
+		//Called from BlockHighlightEventHandler to set up the custom block highlight.
+		int hash = positionalHash(te);
+		float ticks = ClientTickHandler.ticksInGame + partial;
+		transformInitialWobble(hash, ticks, x, y, z);
+		transformCubesWobble(hash, ticks);
+	}
+	
+	private static void transformInitialWobble(int hash, float ticks, double x, double y, double z) {
+		GlStateManager.translate(x + .5, y + .5, z + .5);
+		
+		//Wibble wobble
+		float rotateY = (hash + ticks) * 2 % 360;
+		GlStateManager.rotate(rotateY, 0, 1, 0);
+		
+		float verticalBob = EtcHelpers.sinDegrees((hash + ticks) * 4);
+		GlStateManager.translate(0, 0.1 * verticalBob, 0);
+	}
+	
+	private static void transformSkull(int hash, float ticks) {
+		float wobble = (hash + ticks) * 5;
+		float wobbleSin = EtcHelpers.sinDegrees(wobble);
+		float wobbleCos = EtcHelpers.cosDegrees(wobble);
+		float wobbleAmountDegrees = 10f;
+		GlStateManager.rotate(wobbleCos * wobbleAmountDegrees, 1, 0, 0);
+		GlStateManager.rotate(wobbleSin * wobbleAmountDegrees, 1, 0, 0);
+		GlStateManager.rotate(-wobbleCos * wobbleAmountDegrees, 0, 0, 1);
+		GlStateManager.rotate(-wobbleSin * wobbleAmountDegrees, 0, 0, 1);
+		
+		GlStateManager.translate(0, -1 / 4f, 0);
+		GlStateManager.scale(-1.0F, -1.0F, 1.0F);
+	}
+	
+	private static void transformCubesWobble(int hash, float ticks) {
+		GlStateManager.rotate(((-ticks + hash) / 5f) % 360, 0, 1, 0);
+		GlStateManager.rotate(MathHelper.sin((ticks + hash) / 50f) * 40, 0, 1, 0);
+		
+		float wobble2 = (hash + ticks) * 3;
+		float wobble2Sin = EtcHelpers.sinDegrees(wobble2);
+		float wobble2Cos = EtcHelpers.cosDegrees(wobble2);
+		float wobble2AmountDegrees = 10f;
+		GlStateManager.rotate(-wobble2Cos * wobble2AmountDegrees, 1, 0, 0);
+		GlStateManager.rotate(-wobble2Sin * wobble2AmountDegrees, 1, 0, 0);
+		GlStateManager.rotate(wobble2Cos * wobble2AmountDegrees, 0, 0, 1);
+		GlStateManager.rotate(wobble2Sin * wobble2AmountDegrees, 0, 0, 1);
+	}
+	
+	private static int positionalHash(@Nullable AbstractTileSoulCore te) {
+		//A relatively random number that's always the same for the same positioned tile.
+		//Or, 0 if it's not a tile at all, for the inventory icon.
+		return te == null ? 0 : MathHelper.hash(MathHelper.hash(te.getPos().hashCode())) % 1500000;
 	}
 	
 	private ResourceLocation getSkullLocation(T te) {
