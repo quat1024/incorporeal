@@ -103,7 +103,7 @@ public final class IncorporeticLexicon {
 			new PageText("0"),
 			new PageCraftingRecipe(".flavor", 
 				Arrays.stream(EnumDyeColor.values())
-				.map(color -> "decorative/unstable_cube/unstable_cube_" + color.getDyeColorName())
+				.map(color -> "decorative/unstable_cube/unstable_cube_" + color.getName())
 				.map(str -> new ResourceLocation(Incorporeal.MODID, str))
 				.collect(Collectors.toList())
 			)

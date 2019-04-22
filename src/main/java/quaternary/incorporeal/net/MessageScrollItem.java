@@ -32,16 +32,20 @@ public class MessageScrollItem implements IncorporeticPacketHandler.IIncorporeti
 		@Override
 		public IMessage onMessage(MessageScrollItem m, MessageContext ctx) {
 			EntityPlayerMP playerMP = ctx.getServerHandler().player;
-			playerMP.getServerWorld().addScheduledTask(() -> {
-				InventoryPlayer inv = playerMP.inventory;
-				
-				int currentIndex = inv.currentItem;
-				ItemStack currentStack = inv.getCurrentItem();
-				
-				if(currentStack.getItem() instanceof IScrollableItem) {
-					ItemStack newStack = ((IScrollableItem)currentStack.getItem()).scrollChange(currentStack, m.dwheel);
-					inv.setInventorySlotContents(currentIndex, newStack);
-					inv.markDirty();
+			//noinspection Convert2Lambda
+			playerMP.getServerWorld().addScheduledTask(new Runnable() {
+				@Override
+				public void run() {
+					InventoryPlayer inv = playerMP.inventory;
+					
+					int currentIndex = inv.currentItem;
+					ItemStack currentStack = inv.getCurrentItem();
+					
+					if(currentStack.getItem() instanceof IScrollableItem) {
+						ItemStack newStack = ((IScrollableItem) currentStack.getItem()).scrollChange(currentStack, m.dwheel);
+						inv.setInventorySlotContents(currentIndex, newStack);
+						inv.markDirty();
+					}
 				}
 			});
 			
