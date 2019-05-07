@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/cube_all",
+	"textures": {
+		"all": "incorporeal:block/decorative/lokiw/hd_32x_lokiw"
+	}
+}

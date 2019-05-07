@@ -75,6 +75,10 @@ public final class ClientRegistryEvents {
 		
 		setSimpleModel(IncorporeticItems.DECORATIVE_RED_STRING);
 		setSimpleModel(IncorporeticItems.DECORATIVE_CORPOREA);
+		setSimpleModel(IncorporeticItems.DECORATIVE_RED_STRING_FROST);
+		setSimpleModel(IncorporeticItems.DECORATIVE_CORPOREA_BRICK);
+		setSimpleModel(IncorporeticItems.FORGOTTEN_SHRINE);
+		setSimpleModel(IncorporeticItems.DECORATIVE_LOKIW);
 		
 		setSimpleModel(IncorporeticCygnusItems.MASTER_CYGNUS_SPARK);
 		setSimpleModel(IncorporeticCygnusItems.CYGNUS_SPARK);

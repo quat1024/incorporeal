@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:item/generated",
+	"textures": {
+		"layer0": "incorporeal:block/decorative/lokiw/hd_32x_lokiw"
+	}
+}

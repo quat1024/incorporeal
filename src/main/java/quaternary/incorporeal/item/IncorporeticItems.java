@@ -9,8 +9,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.IncorporeticBlocks;
-import quaternary.incorporeal.block.decorative.BlockCorporeaDeco;
-import quaternary.incorporeal.block.decorative.BlockRedStringDeco;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
 
@@ -82,6 +80,18 @@ public final class IncorporeticItems {
 	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.DECORATIVE_CORPOREA)
 	public static final ItemBlock DECORATIVE_CORPOREA = EtcHelpers.definitelyIsntNullISwear();
 	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.DECORATIVE_RED_STRING_FROST)
+	public static final ItemBlock DECORATIVE_RED_STRING_FROST = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.DECORATIVE_CORPOREA_BRICK)
+	public static final ItemBlock DECORATIVE_CORPOREA_BRICK = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.FORGOTTEN_SHRINE)
+	public static final ItemBlock FORGOTTEN_SHRINE = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(IncorporeticBlocks.RegistryNames.DECORATIVE_LOKIW)
+	public static final ItemBlock DECORATIVE_LOKIW = EtcHelpers.definitelyIsntNullISwear();
+	
 	public static void registerItems(IForgeRegistry<Item> reg) {
 		reg.register(createItem(new ItemTicketConjurer(), RegistryNames.TICKET_CONJURER));
 		reg.register(createItem(new ItemCorporeaTicket(), RegistryNames.CORPOREA_TICKET));
@@ -106,6 +116,10 @@ public final class IncorporeticItems {
 		reg.register(createItemBlock(new ItemCloth(IncorporeticBlocks.DECORATIVE_UNSTABLE_CUBE)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.DECORATIVE_RED_STRING)));
 		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.DECORATIVE_CORPOREA)));
+		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.DECORATIVE_RED_STRING_BRICK)));
+		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.DECORATIVE_CORPOREA_BRICK)));
+		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.FORGOTTEN_SHRINE)));
+		reg.register(createItemBlock(new ItemBlock(IncorporeticBlocks.DECORATIVE_LOKIW)));
 		
 		IncorporeticCygnusItems.registerItems(reg);
 	}

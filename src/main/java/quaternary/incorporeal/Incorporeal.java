@@ -6,6 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -17,6 +18,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.api.IIncorporealAPI;
@@ -33,6 +35,7 @@ import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.entity.IncorporeticEntities;
 import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
 import quaternary.incorporeal.etc.IncorporeticNaturalDevices;
+import quaternary.incorporeal.etc.IncorporeticSounds;
 import quaternary.incorporeal.etc.LooseRedstoneDustCygnusFunnelable;
 import quaternary.incorporeal.etc.LooseRedstoneRepeaterCygnusFunnelable;
 import quaternary.incorporeal.etc.helper.DespacitoHelper;
@@ -155,6 +158,11 @@ public final class Incorporeal {
 		@SubscribeEvent
 		public static void entityEntries(RegistryEvent.Register<EntityEntry> e) {
 			IncorporeticEntities.registerEntityEntries(e.getRegistry());
+		}
+		
+		@SubscribeEvent
+		public static void sounds(RegistryEvent.Register<SoundEvent> e) {
+			IncorporeticSounds.registerSounds(e.getRegistry());
 		}
 	}
 }

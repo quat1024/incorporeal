@@ -3,6 +3,7 @@ package quaternary.incorporeal.recipe;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import quaternary.incorporeal.etc.helper.EtcHelpers;
 import quaternary.incorporeal.item.IncorporeticItems;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.recipe.RecipeRuneAltar;
@@ -16,6 +17,8 @@ public final class IncorporeticRuneRecipes {
 	public static RecipeRuneAltar enderSoulCore;
 	public static RecipeRuneAltar corporeaSoulCore;
 	public static RecipeRuneAltar potionSoulCore;
+	
+	public static RecipeRuneAltar lokiW;
 	
 	public static void init() {
 		soulCoreFrame = BotaniaAPI.registerRuneAltarRecipe(
@@ -38,6 +41,11 @@ public final class IncorporeticRuneRecipes {
 		corporeaSoulCore = createStandardSoulCoreRecipe(300, IncorporeticItems.CORPOREA_SOUL_CORE, new ItemStack(ModItems.corporeaSpark, 1, 0));
 		
 		potionSoulCore = createStandardSoulCoreRecipe(25000, IncorporeticItems.POTION_SOUL_CORE, new ItemStack(ModItems.bloodPendant));
+		
+		lokiW = BotaniaAPI.registerRuneAltarRecipe(new ItemStack(IncorporeticItems.DECORATIVE_LOKIW), 12000, (Object[]) EtcHelpers.fill(
+			new ItemStack[10],
+			(i) -> EtcHelpers.skullOf("Loki270")
+		));
 	}
 	
 	private static RecipeRuneAltar createStandardSoulCoreRecipe(int price, Item out, ItemStack special) {

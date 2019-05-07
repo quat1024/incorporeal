@@ -2,6 +2,9 @@ package quaternary.incorporeal.etc.helper;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -21,6 +24,10 @@ import vazkii.botania.common.block.tile.TileCraftCrate;
 import vazkii.botania.common.block.tile.TileOpenCrate;
 
 import javax.annotation.Nonnull;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public final class EtcHelpers {
 	private EtcHelpers() {}
@@ -104,5 +111,22 @@ public final class EtcHelpers {
 		ResourceLocation name = ReflectionHelper.getPrivateValue(IForgeRegistryEntry.Impl.class, lmao, "registryName");
 		ResourceLocation nameBetter = new ResourceLocation(Incorporeal.MODID, name.getPath());
 		ReflectionHelper.setPrivateValue(IForgeRegistryEntry.Impl.class, lmao, nameBetter, "registryName");
+	}
+	
+	public static <T> T[] fill(T[] arr, Function<Integer, T> instFactory) {
+		for(int i = 0; i < arr.length; i++) {
+			arr[i] = instFactory.apply(i);
+		}
+		return arr;
+	}
+	
+	public static ItemStack skullOf(String name) {
+		ItemStack stack = new ItemStack(Items.SKULL, 1, 3);
+		
+		NBTTagCompound yeet = new NBTTagCompound();
+		yeet.setString("SkullOwner", name);
+		stack.setTagCompound(yeet);
+		
+		return stack;
 	}
 }

@@ -1,0 +1,6 @@
+{
+	"shrine": {
+		"sounds": ["incorporeal:shrine"],
+		"subtitle": "incorporeal.subtitle.shrine"
+	}
+}

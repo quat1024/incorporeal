@@ -8,6 +8,7 @@ import quaternary.incorporeal.tile.cygnus.TileCygnusCrystalCube;
 import quaternary.incorporeal.tile.cygnus.TileCygnusFunnel;
 import quaternary.incorporeal.tile.cygnus.TileCygnusRetainer;
 import quaternary.incorporeal.tile.cygnus.TileCygnusWord;
+import quaternary.incorporeal.tile.decorative.TileSpiritShrineExt;
 import quaternary.incorporeal.tile.decorative.TileUnstableCube;
 import quaternary.incorporeal.tile.soulcore.TileCorporeaSoulCore;
 import quaternary.incorporeal.tile.soulcore.TileEnderSoulCore;
@@ -23,6 +24,7 @@ public final class IncorporeticTiles {
 		reg(TileCorporeaSoulCore.class, "corporea_soul_core");
 		reg(TilePotionSoulCore.class, "potion_soul_core");
 		reg(TileUnstableCube.class, "unstable_cube");
+		reg(TileSpiritShrineExt.class, "forgotten_shrine");
 		reg(TileRedStringLiar.class, "red_string_liar");
 		
 		reg(TileCygnusCrystalCube.class, "cygnus_crystal_cube");

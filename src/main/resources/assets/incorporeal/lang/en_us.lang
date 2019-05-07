@@ -36,6 +36,9 @@ tile.incorporeal.natural_comparator.name=Earthen Comparator
 # Decorative items
 tile.incorporeal.red_string_deco.name=Red String Tile
 tile.incorporeal.corporea_deco.name=Corporea Tile
+tile.incorporeal.red_string_frost_deco.name=Frosted Red String
+tile.incorporeal.corporea_brick_deco.name=Corporea Bricks
+tile.incorporeal.lokiw.name=LokiW
 
 tile.incorporeal.unstable_cube.black.name=Black Unstable Cube
 tile.incorporeal.unstable_cube.red.name=Red Unstable Cube
@@ -260,6 +263,7 @@ incorporeal.etc.holdingTicketConjurer1=Anything you say will
 incorporeal.etc.holdingTicketConjurer2=create a Corporea Ticket
 
 incorporeal.etc.safeForDecoration=Safe for decoration
+incorporeal.etc.holyblock=very blessed block
 
 # JEI stuff
 incorporeal.jei.category.skytouch=Skytouching

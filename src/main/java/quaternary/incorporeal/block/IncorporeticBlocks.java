@@ -7,7 +7,10 @@ import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.cygnus.IncorporeticCygnusBlocks;
 import quaternary.incorporeal.block.decorative.BlockCorporeaDeco;
+import quaternary.incorporeal.block.decorative.BlockForgottenShrine;
+import quaternary.incorporeal.block.decorative.BlockLokiW;
 import quaternary.incorporeal.block.decorative.BlockRedStringDeco;
+import quaternary.incorporeal.block.decorative.BlockRedStringFrost;
 import quaternary.incorporeal.block.decorative.BlockUnstableCube;
 import quaternary.incorporeal.block.naturaldevices.BlockNaturalComparator;
 import quaternary.incorporeal.block.naturaldevices.BlockNaturalDeviceCrop;
@@ -46,6 +49,11 @@ public final class IncorporeticBlocks {
 		public static final String DECORATIVE_UNSTABLE_CUBE = "unstable_cube";
 		public static final String DECORATIVE_RED_STRING = "red_string_deco";
 		public static final String DECORATIVE_CORPOREA = "corporea_deco";
+		public static final String DECORATIVE_RED_STRING_FROST = "red_string_frost_deco";
+		public static final String DECORATIVE_CORPOREA_BRICK = "corporea_brick_deco";
+		public static final String FORGOTTEN_SHRINE = "forgotten_shrine";
+		
+		public static final String DECORATIVE_LOKIW = "lokiw";
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_INHIBITOR)
@@ -93,6 +101,18 @@ public final class IncorporeticBlocks {
 	@GameRegistry.ObjectHolder(RegistryNames.DECORATIVE_CORPOREA)
 	public static final BlockCorporeaDeco DECORATIVE_CORPOREA = EtcHelpers.definitelyIsntNullISwear();
 	
+	@GameRegistry.ObjectHolder(RegistryNames.DECORATIVE_RED_STRING_FROST)
+	public static final BlockRedStringDeco DECORATIVE_RED_STRING_BRICK = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(RegistryNames.DECORATIVE_CORPOREA_BRICK)
+	public static final BlockCorporeaDeco DECORATIVE_CORPOREA_BRICK = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(RegistryNames.FORGOTTEN_SHRINE)
+	public static final BlockForgottenShrine FORGOTTEN_SHRINE = EtcHelpers.definitelyIsntNullISwear();
+	
+	@GameRegistry.ObjectHolder(RegistryNames.DECORATIVE_LOKIW)
+	public static final BlockLokiW DECORATIVE_LOKIW = EtcHelpers.definitelyIsntNullISwear();
+	
 	public static void registerBlocks(IForgeRegistry<Block> reg) {
 		reg.register(createBlock(new BlockCorporeaInhibitor(), RegistryNames.CORPOREA_INHIBITOR));
 		reg.register(createBlock(new BlockCorporeaSolidifier(), RegistryNames.CORPOREA_SOLIDIFIER));
@@ -113,6 +133,12 @@ public final class IncorporeticBlocks {
 		reg.register(createBlock(new BlockUnstableCube(), RegistryNames.DECORATIVE_UNSTABLE_CUBE));
 		reg.register(createBlock(new BlockRedStringDeco(), RegistryNames.DECORATIVE_RED_STRING));
 		reg.register(createBlock(new BlockCorporeaDeco(), RegistryNames.DECORATIVE_CORPOREA));
+		reg.register(createBlock(new BlockRedStringFrost(), RegistryNames.DECORATIVE_RED_STRING_FROST));
+		reg.register(createBlock(new BlockCorporeaDeco(), RegistryNames.DECORATIVE_CORPOREA_BRICK));
+		
+		reg.register(createBlock(new BlockForgottenShrine(), RegistryNames.FORGOTTEN_SHRINE));
+		
+		reg.register(createBlock(new BlockLokiW(), RegistryNames.DECORATIVE_LOKIW));
 		
 		//These have pretty big constructors so they are broken out into their own class
 		IncorporeticCygnusBlocks.registerBlocks(reg);
