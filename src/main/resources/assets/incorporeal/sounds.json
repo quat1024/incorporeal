@@ -2,5 +2,10 @@
 	"shrine": {
 		"sounds": ["incorporeal:shrine"],
 		"subtitle": "incorporeal.subtitle.shrine"
+	},
+	"unstable": {
+		"sounds": ["incorporeal:shrine"],
+		"pitch": 1,
+		"subtitle": "incorporeal.subtitle.unstable"
 	}
 }

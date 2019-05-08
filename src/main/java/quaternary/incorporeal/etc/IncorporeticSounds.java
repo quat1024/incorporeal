@@ -9,9 +9,10 @@ public final class IncorporeticSounds {
 	private IncorporeticSounds() {}
 	
 	public static final SoundEvent SHRINE = make("shrine");
+	public static final SoundEvent UNSTABLE = make("unstable");
 	
 	public static void registerSounds(IForgeRegistry<SoundEvent> reg) {
-		reg.register(SHRINE);
+		reg.registerAll(SHRINE, UNSTABLE);
 	}
 	
 	private static SoundEvent make(String name) {

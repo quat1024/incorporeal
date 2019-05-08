@@ -6,8 +6,12 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.decorative.BlockUnstableCube;
+import quaternary.incorporeal.etc.IncorporeticSounds;
 import vazkii.botania.api.state.BotaniaStateProps;
 import vazkii.botania.common.Botania;
 import vazkii.botania.common.core.helper.Vector3;
@@ -19,6 +23,26 @@ public class TileUnstableCube extends TileEntity implements ITickable {
 	public float rotationSpeed;
 	
 	private long nextLightningTick = 0;
+	
+	private float[] basePitches = new float[]{
+		1f,
+		1.1f,
+		1.15f,
+		1.2f,
+		1.25f,
+		1.3f,
+		1.35f,
+		1.4f,
+		0.9f,
+		0.85f,
+		0.8f,
+		0.75f,
+		0.7f,
+		0.65f,
+		0.6f,
+		0.55f,
+		0.5f
+	};
 	
 	@Override
 	public void update() {
@@ -42,18 +66,25 @@ public class TileUnstableCube extends TileEntity implements ITickable {
 				Vector3 end = start.add(world.rand.nextDouble() * 2 - 1, world.rand.nextDouble() * 2 - 1, world.rand.nextDouble() * 2 - 1);
 				Botania.proxy.lightningFX(start, end, 5f, colorDarker, color);
 				
-				if(rotationSpeed > 1) {
+				if(rotationSpeed > 1.1) {
 					nextLightningTick = world.getTotalWorldTime() + (int) (60 - Math.min(60, rotationSpeed)) + 3;
 				} else {
-					nextLightningTick = world.getTotalWorldTime() + world.rand.nextInt(10) + 50;	
+					nextLightningTick = world.getTotalWorldTime() + world.rand.nextInt(60) + 50;	
 				}
+				
+				float volume = rotationSpeed > 1.1 ? rotationSpeed / 200f : 0.03f;
+				if(volume > 0.7f) volume = 0.7f;
+				float basePitch = basePitches[state.getValue(BotaniaStateProps.COLOR).getMetadata()];
+				float pitch = basePitch + (rotationSpeed / 800f);
+				
+				world.playSound(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, IncorporeticSounds.UNSTABLE, SoundCategory.BLOCKS, volume, pitch, false);
 			}
 		}
 	}
 	
 	public void punch() {
-		rotationSpeed += 20;
-		if(rotationSpeed > 70) rotationSpeed = 70;
+		rotationSpeed += 15;
+		if(rotationSpeed > 200) rotationSpeed = 200;
 		nextLightningTick = world.getTotalWorldTime();
 		world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 3);
 	}

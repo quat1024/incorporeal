@@ -279,3 +279,5 @@ incorporeal.cygnus.wip2=(come help test in creative!)
 # it's invisible, but translate this anyways for WAILA purposes!
 entity.incorporeal.fractured_space_collector.name=Fractured Space (collector)
 entity.incorporeal.potion_soul_core_collector.name=Blood Soul Core (collector)
+
+incorporeal.subtitle.shrine=Forgotten Shrime chimes
