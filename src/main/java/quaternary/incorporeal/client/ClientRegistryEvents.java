@@ -23,7 +23,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.IncorporeticConfig;
 import quaternary.incorporeal.block.IncorporeticBlocks;
+import quaternary.incorporeal.block.IncorporeticFluffBlocks;
 import quaternary.incorporeal.block.cygnus.IncorporeticCygnusBlocks;
+import quaternary.incorporeal.block.decorative.StairSlabManager;
 import quaternary.incorporeal.client.entityrenderer.RenderEntityCygnusMasterSpark;
 import quaternary.incorporeal.client.entityrenderer.RenderEntityCygnusRegularSpark;
 import quaternary.incorporeal.client.entityrenderer.RenderEntityNothing;
@@ -40,6 +42,7 @@ import quaternary.incorporeal.entity.cygnus.EntityCygnusMasterSpark;
 import quaternary.incorporeal.entity.cygnus.EntityCygnusRegularSpark;
 import quaternary.incorporeal.flower.SubTileSanvocalia;
 import quaternary.incorporeal.flower.SubTileSweetAlexum;
+import quaternary.incorporeal.item.IncorporeticFluffItems;
 import quaternary.incorporeal.item.IncorporeticItems;
 import quaternary.incorporeal.item.cygnus.IncorporeticCygnusItems;
 import quaternary.incorporeal.item.cygnus.ItemCygnusCard;
@@ -60,7 +63,8 @@ public final class ClientRegistryEvents {
 	
 	@SubscribeEvent
 	public static void models(ModelRegistryEvent e) {
-		//Item models
+		//Item models:
+		//Normal stuff
 		setSimpleModel(IncorporeticItems.FRAME_TINKERER);
 		setSimpleModel(IncorporeticItems.CORPOREA_INHIBITOR);
 		setSimpleModel(IncorporeticItems.CORPOREA_SPARK_TINKERER);
@@ -73,13 +77,21 @@ public final class ClientRegistryEvents {
 		setSimpleModel(IncorporeticItems.TICKET_CONJURER);
 		setSimpleModel(IncorporeticItems.FRACTURED_SPACE_ROD);
 		
-		setSimpleModel(IncorporeticItems.DECORATIVE_RED_STRING);
-		setSimpleModel(IncorporeticItems.DECORATIVE_CORPOREA);
-		setSimpleModel(IncorporeticItems.DECORATIVE_RED_STRING_FROST);
-		setSimpleModel(IncorporeticItems.DECORATIVE_CORPOREA_BRICK);
+		set16DataValuesPointingAtSameModel(IncorporeticItems.UNSTABLE_CUBE);
+		setSimpleModel(IncorporeticItems.RED_STRING_TILE);
+		setSimpleModel(IncorporeticItems.CORPOREA_TILE);
+		setSimpleModel(IncorporeticItems.RED_STRING_FROST);
+		setSimpleModel(IncorporeticItems.CORPOREA_BRICKS);
 		setSimpleModel(IncorporeticItems.FORGOTTEN_SHRINE);
-		setSimpleModel(IncorporeticItems.DECORATIVE_LOKIW);
+		setSimpleModel(IncorporeticItems.LOKIW);
 		
+		//Flowers
+		setFlowerModel(SubTileSanvocalia.class, "sanvocalia");
+		setFlowerModel(SubTileSanvocalia.Mini.class, "sanvocalia_chibi");
+		setFlowerModel(SubTileSweetAlexum.class, "sweet_alexum");
+		setFlowerModel(SubTileSweetAlexum.Mini.class, "sweet_alexum_chibi");
+		
+		//Cygnus stuff
 		setSimpleModel(IncorporeticCygnusItems.MASTER_CYGNUS_SPARK);
 		setSimpleModel(IncorporeticCygnusItems.CYGNUS_SPARK);
 		setSimpleModel(IncorporeticCygnusItems.CYGNUS_TICKET);
@@ -92,12 +104,15 @@ public final class ClientRegistryEvents {
 		setCygnusCardMeshDefinition(IncorporeticCygnusItems.WORD_CARD, "word_card");
 		setCygnusCardMeshDefinition(IncorporeticCygnusItems.CRYSTAL_CUBE_CARD, "crystal_cube_card");
 		
-		set16DataValuesPointingAtSameModel(IncorporeticItems.DECORATIVE_UNSTABLE_CUBE);
-		
-		setFlowerModel(SubTileSanvocalia.class, "sanvocalia");
-		setFlowerModel(SubTileSanvocalia.Mini.class, "sanvocalia_chibi");
-		setFlowerModel(SubTileSweetAlexum.class, "sweet_alexum");
-		setFlowerModel(SubTileSweetAlexum.Mini.class, "sweet_alexum_chibi");
+		//Fluff
+		setSimpleModel(IncorporeticFluffItems.CORPOREA_TILE_STAIRS);
+		setSimpleModel(IncorporeticFluffItems.CORPOREA_TILE_SLAB);
+		setSimpleModel(IncorporeticFluffItems.CORPOREA_BRICKS_STAIRS);
+		setSimpleModel(IncorporeticFluffItems.CORPOREA_BRICKS_SLAB);
+		setSimpleModel(IncorporeticFluffItems.RED_STRING_TILE_STAIRS);
+		setSimpleModel(IncorporeticFluffItems.RED_STRING_TILE_SLAB);
+		setSimpleModel(IncorporeticFluffItems.LOKIW_STAIRS);
+		setSimpleModel(IncorporeticFluffItems.LOKIW_SLAB);
 		
 		//Statemappers
 		setIgnoreAllStateMapper(IncorporeticBlocks.FRAME_TINKERER);
@@ -105,8 +120,17 @@ public final class ClientRegistryEvents {
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_RETAINER_DECREMENTER);
 		setIgnoreAllStateMapper(IncorporeticBlocks.ENDER_SOUL_CORE);
 		setIgnoreAllStateMapper(IncorporeticBlocks.CORPOREA_SOUL_CORE);
-		setIgnoreAllStateMapper(IncorporeticBlocks.DECORATIVE_UNSTABLE_CUBE);
+		setIgnoreAllStateMapper(IncorporeticBlocks.UNSTABLE_CUBE);
 		setIgnoreAllStateMapper(IncorporeticCygnusBlocks.WORD);
+		
+		setIgnoreAllStateMapper(IncorporeticFluffBlocks.CORPOREA_TILE_DOUBLE_SLAB);
+		setIgnoringStateMapper(IncorporeticFluffBlocks.CORPOREA_TILE_SINGLE_SLAB, StairSlabManager.DUMMY_VARIANT);
+		setIgnoreAllStateMapper(IncorporeticFluffBlocks.CORPOREA_BRICKS_DOUBLE_SLAB);
+		setIgnoringStateMapper(IncorporeticFluffBlocks.CORPOREA_BRICKS_SINGLE_SLAB, StairSlabManager.DUMMY_VARIANT);
+		setIgnoreAllStateMapper(IncorporeticFluffBlocks.RED_STRING_TILE_DOUBLE_SLAB);
+		setIgnoringStateMapper(IncorporeticFluffBlocks.RED_STRING_TILE_SINGLE_SLAB, StairSlabManager.DUMMY_VARIANT);
+		setIgnoreAllStateMapper(IncorporeticFluffBlocks.LOKIW_DOUBLE_SLAB);
+		setIgnoringStateMapper(IncorporeticFluffBlocks.LOKIW_SINGLE_SLAB, StairSlabManager.DUMMY_VARIANT);
 		
 		//Tile Entity Special Renderers
 		ClientRegistry.bindTileEntitySpecialRenderer(TileCorporeaSparkTinkerer.class, new RenderTileCorporeaSparkTinkerer());
@@ -136,7 +160,7 @@ public final class ClientRegistryEvents {
 		BlockColors bc = e.getBlockColors();
 		bc.registerBlockColorHandler(((state, world, pos, tintIndex) -> {
 			return tintIndex == 0 ? state.getValue(BotaniaStateProps.COLOR).colorValue : 0xFFFFFF;
-		}), IncorporeticBlocks.DECORATIVE_UNSTABLE_CUBE);
+		}), IncorporeticBlocks.UNSTABLE_CUBE);
 	}
 	
 	@SubscribeEvent
@@ -144,7 +168,7 @@ public final class ClientRegistryEvents {
 		ItemColors ic = e.getItemColors();
 		ic.registerItemColorHandler((stack, tintIndex) -> {
 			return tintIndex == 0 ? EnumDyeColor.byMetadata(stack.getMetadata()).colorValue : 0xFFFFFF;
-		}, IncorporeticItems.DECORATIVE_UNSTABLE_CUBE);
+		}, IncorporeticItems.UNSTABLE_CUBE);
 	}
 	
 	public static void preinit() {

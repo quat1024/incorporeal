@@ -6,15 +6,15 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.util.ResourceLocation;
 
-public class IgnoreAllStateMapper extends StateMapperBase {
-	public IgnoreAllStateMapper(Block b) {
-		this.res = b.getRegistryName();
+public class RewritingStateMapper extends StateMapperBase {
+	public RewritingStateMapper(Block b) {
+		res = b.getRegistryName();
 	}
 	
 	private final ResourceLocation res;
 	
 	@Override
 	protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-		return new ModelResourceLocation(res, "normal");
+		return new ModelResourceLocation(res, getPropertyString(state.getProperties()));
 	}
 }

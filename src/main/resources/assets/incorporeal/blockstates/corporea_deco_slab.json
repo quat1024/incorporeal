@@ -1,0 +1,19 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "minecraft:half_slab",
+		"textures": {
+			"bottom": "incorporeal:block/decorative/corporea/plain",
+			"top": "incorporeal:block/decorative/corporea/plain",
+			"side": "incorporeal:block/decorative/corporea/slab"
+		}
+	},
+	"variants": {
+		"half=top": [{
+			"x": 180,
+			"uvlock": true
+		}],
+		"half=bottom": [{}],
+		"inventory": [{}]
+	}
+}

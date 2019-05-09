@@ -1,0 +1,16 @@
+{
+	"result": {
+		"item": "incorporeal:corporea_brick_deco_slab",
+		"count": 6,
+		"data": 0
+	},
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "incorporeal:corporea_brick_deco"
+		}
+	}
+}

@@ -5,12 +5,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.block.IncorporeticBlocks;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
 
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
-public final class IncorporeticCygnusBlocks {
-	private IncorporeticCygnusBlocks() {}
-	
+public class IncorporeticCygnusBlocks extends IncorporeticBlocks {
 	public static final class RegistryNames {
 		private RegistryNames() {}
 		
@@ -22,30 +21,23 @@ public final class IncorporeticCygnusBlocks {
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.WORD)
-	public static final BlockCygnusWord WORD = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockCygnusWord WORD = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CRYSTAL_CUBE)
-	public static final BlockCygnusCrystalCube CRYSTAL_CUBE = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockCygnusCrystalCube CRYSTAL_CUBE = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.FUNNEL)
-	public static final BlockCygnusFunnel FUNNEL = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockCygnusFunnel FUNNEL = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.RETAINER)
-	public static final BlockCygnusRetainer RETAINER = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockCygnusRetainer RETAINER = EtcHelpers.definitelyIsntNullISwear();
 	
 	public static void registerBlocks(IForgeRegistry<Block> reg) {
-		registerBlock(new BlockCygnusWord(), RegistryNames.WORD, reg);
-		registerBlock(new BlockCygnusCrystalCube(), RegistryNames.CRYSTAL_CUBE, reg);
-		
-		registerBlock(new BlockCygnusFunnel(), RegistryNames.FUNNEL, reg);
-		registerBlock(new BlockCygnusRetainer(), RegistryNames.RETAINER, reg);
-	}
-	
-	private static void registerBlock(Block block, String name, IForgeRegistry<Block> reg) {
-		block.setRegistryName(new ResourceLocation(Incorporeal.MODID, name));
-		block.setTranslationKey(Incorporeal.MODID + "." + name);
-		block.setCreativeTab(Incorporeal.TAB);
-		
-		reg.register(block);
+		reg.registerAll(
+			WORD = createBlock(new BlockCygnusWord(), RegistryNames.WORD),
+			CRYSTAL_CUBE = createBlock(new BlockCygnusCrystalCube(), RegistryNames.CRYSTAL_CUBE),
+			FUNNEL = createBlock(new BlockCygnusFunnel(), RegistryNames.FUNNEL),
+			RETAINER = createBlock(new BlockCygnusRetainer(), RegistryNames.RETAINER)
+		);
 	}
 }

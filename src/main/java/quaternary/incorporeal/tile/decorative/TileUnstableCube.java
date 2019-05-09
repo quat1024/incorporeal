@@ -40,8 +40,7 @@ public class TileUnstableCube extends TileEntity implements ITickable {
 		0.7f,
 		0.65f,
 		0.6f,
-		0.55f,
-		0.5f
+		0.55f
 	};
 	
 	@Override
@@ -72,7 +71,7 @@ public class TileUnstableCube extends TileEntity implements ITickable {
 					nextLightningTick = world.getTotalWorldTime() + world.rand.nextInt(60) + 50;	
 				}
 				
-				float volume = rotationSpeed > 1.1 ? rotationSpeed / 200f : 0.03f;
+				float volume = rotationSpeed > 1.1 ? rotationSpeed / 200f : 0.06f;
 				if(volume > 0.7f) volume = 0.7f;
 				float basePitch = basePitches[state.getValue(BotaniaStateProps.COLOR).getMetadata()];
 				float pitch = basePitch + (rotationSpeed / 800f);

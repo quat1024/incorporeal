@@ -42,7 +42,7 @@ public final class IncorporeticRuneRecipes {
 		
 		potionSoulCore = createStandardSoulCoreRecipe(25000, IncorporeticItems.POTION_SOUL_CORE, new ItemStack(ModItems.bloodPendant));
 		
-		lokiW = BotaniaAPI.registerRuneAltarRecipe(new ItemStack(IncorporeticItems.DECORATIVE_LOKIW), 12000, (Object[]) EtcHelpers.fill(
+		lokiW = BotaniaAPI.registerRuneAltarRecipe(new ItemStack(IncorporeticItems.LOKIW), 12000, (Object[]) EtcHelpers.fill(
 			new ItemStack[10],
 			(i) -> EtcHelpers.skullOf("Loki270")
 		));

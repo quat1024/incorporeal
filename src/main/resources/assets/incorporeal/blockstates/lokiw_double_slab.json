@@ -1,0 +1,14 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "minecraft:cube_column",
+		"textures": {
+			"end": "incorporeal:block/decorative/lokiw/hd_32x_lokiw",
+			"side": "incorporeal:block/decorative/lokiw/hd_32x_lokiw"
+		}
+	},
+	"variants": {
+		"normal": [{}],
+		"inventory": [{}]
+	}
+}

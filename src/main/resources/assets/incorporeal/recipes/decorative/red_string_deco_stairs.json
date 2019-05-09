@@ -1,0 +1,17 @@
+{
+	"result": {
+		"item": "incorporeal:red_string_deco_stairs",
+		"count": 4
+	},
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"#  ",
+		"## ",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "incorporeal:red_string_deco"
+		}
+	}
+}

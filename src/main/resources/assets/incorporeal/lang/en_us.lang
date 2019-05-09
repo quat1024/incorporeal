@@ -40,6 +40,16 @@ tile.incorporeal.red_string_frost_deco.name=Frosted Red String
 tile.incorporeal.corporea_brick_deco.name=Corporea Bricks
 tile.incorporeal.lokiw.name=LokiW
 
+tile.incorporeal.red_string_deco.slab.name=Red String Tile Slab
+tile.incorporeal.corporea_deco.slab.name=Corporea Tile Slab
+tile.incorporeal.corporea_brick_deco.slab.name=Corporea Brick Slab
+tile.incorporeal.lokiw.slab.name=LokiW Slab
+
+tile.incorporeal.red_string_deco_stairs.name=Red String Tile Stairs
+tile.incorporeal.corporea_deco_stairs.name=Corporea Tile Stairs
+tile.incorporeal.corporea_brick_deco_stairs.name=Corporea Brick Stairs
+tile.incorporeal.lokiw_stairs.name=LokiW Stairs
+
 tile.incorporeal.unstable_cube.black.name=Black Unstable Cube
 tile.incorporeal.unstable_cube.red.name=Red Unstable Cube
 tile.incorporeal.unstable_cube.green.name=Green Unstable Cube
@@ -280,4 +290,5 @@ incorporeal.cygnus.wip2=(come help test in creative!)
 entity.incorporeal.fractured_space_collector.name=Fractured Space (collector)
 entity.incorporeal.potion_soul_core_collector.name=Blood Soul Core (collector)
 
-incorporeal.subtitle.shrine=Forgotten Shrime chimes
+incorporeal.subtitle.shrine=Forgotten Shrine chimes
+incorporeal.subtitle.unstable=Unstable Cube chimes

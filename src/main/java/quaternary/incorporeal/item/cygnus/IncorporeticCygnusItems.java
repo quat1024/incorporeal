@@ -9,11 +9,10 @@ import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.block.cygnus.IncorporeticCygnusBlocks;
 import quaternary.incorporeal.etc.helper.EtcHelpers;
+import quaternary.incorporeal.item.IncorporeticItems;
 
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
-public final class IncorporeticCygnusItems {
-	private IncorporeticCygnusItems() {}
-	
+public class IncorporeticCygnusItems extends IncorporeticItems {
 	public static final class RegistryNames {
 		private RegistryNames() {}
 		
@@ -27,58 +26,47 @@ public final class IncorporeticCygnusItems {
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.WORD_CARD)
-	public static final ItemCygnusWordCard WORD_CARD = EtcHelpers.definitelyIsntNullISwear();
+	public static ItemCygnusWordCard WORD_CARD = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CRYSTAL_CUBE_CARD)
-	public static final ItemCygnusCrystalCubeCard CRYSTAL_CUBE_CARD = EtcHelpers.definitelyIsntNullISwear();
+	public static ItemCygnusCrystalCubeCard CRYSTAL_CUBE_CARD = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.MASTER_CYGNUS_SPARK)
-	public static final ItemCygnusSpark MASTER_CYGNUS_SPARK = EtcHelpers.definitelyIsntNullISwear();
+	public static ItemCygnusSpark MASTER_CYGNUS_SPARK = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CYGNUS_SPARK)
-	public static final ItemCygnusSpark CYGNUS_SPARK = EtcHelpers.definitelyIsntNullISwear();
+	public static ItemCygnusSpark CYGNUS_SPARK = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CYGNUS_TICKET)
-	public static final ItemCygnusTicket CYGNUS_TICKET = EtcHelpers.definitelyIsntNullISwear();
+	public static ItemCygnusTicket CYGNUS_TICKET = EtcHelpers.definitelyIsntNullISwear();
 	
 	//Itemblocks
 	@GameRegistry.ObjectHolder(IncorporeticCygnusBlocks.RegistryNames.WORD)
-	public static final ItemBlock WORD = EtcHelpers.definitelyIsntNullISwear();
+	public static ItemBlock WORD = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticCygnusBlocks.RegistryNames.CRYSTAL_CUBE)
-	public static final ItemBlock CRYSTAL_CUBE = EtcHelpers.definitelyIsntNullISwear();
+	public static ItemBlock CRYSTAL_CUBE = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticCygnusBlocks.RegistryNames.FUNNEL)
-	public static final ItemBlock FUNNEL = EtcHelpers.definitelyIsntNullISwear();
+	public static ItemBlock FUNNEL = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(IncorporeticCygnusBlocks.RegistryNames.RETAINER)
-	public static final ItemBlock RETAINER = EtcHelpers.definitelyIsntNullISwear();
+	public static ItemBlock RETAINER = EtcHelpers.definitelyIsntNullISwear();
 	
 	public static void registerItems(IForgeRegistry<Item> reg) {
-		registerItem(new ItemCygnusWordCard(), RegistryNames.WORD_CARD, reg);
-		registerItem(new ItemCygnusCrystalCubeCard(), RegistryNames.CRYSTAL_CUBE_CARD, reg);
+		reg.registerAll(
+			WORD_CARD = createItem(new ItemCygnusWordCard(), RegistryNames.WORD_CARD),
+			CRYSTAL_CUBE_CARD = createItem(new ItemCygnusCrystalCubeCard(), RegistryNames.CRYSTAL_CUBE_CARD),
 		
-		registerItem(new ItemCygnusSpark(true), RegistryNames.MASTER_CYGNUS_SPARK, reg);
-		registerItem(new ItemCygnusSpark(false), RegistryNames.CYGNUS_SPARK, reg);
+			MASTER_CYGNUS_SPARK = createItem(new ItemCygnusSpark(true), RegistryNames.MASTER_CYGNUS_SPARK),
+			CYGNUS_SPARK = createItem(new ItemCygnusSpark(false), RegistryNames.CYGNUS_SPARK),
 		
-		registerItem(new ItemCygnusTicket(), RegistryNames.CYGNUS_TICKET, reg);
+			CYGNUS_TICKET = createItem(new ItemCygnusTicket(), RegistryNames.CYGNUS_TICKET),
 		
-		registerItemBlock(new ItemBlock(IncorporeticCygnusBlocks.WORD), reg);
-		registerItemBlock(new ItemBlock(IncorporeticCygnusBlocks.CRYSTAL_CUBE), reg);
-		registerItemBlock(new ItemBlock(IncorporeticCygnusBlocks.FUNNEL), reg);
-		registerItemBlock(new ItemBlock(IncorporeticCygnusBlocks.RETAINER), reg);
-	}
-	
-	private static void registerItem(Item item, String name, IForgeRegistry<Item> reg) {
-		item.setRegistryName(new ResourceLocation(Incorporeal.MODID, name));
-		item.setTranslationKey(Incorporeal.MODID + "." + name);
-		item.setCreativeTab(Incorporeal.TAB);
-		reg.register(item);
-	}
-	
-	private static void registerItemBlock(ItemBlock itemBlock, IForgeRegistry<Item> reg) {
-		itemBlock.setRegistryName(Preconditions.checkNotNull(itemBlock.getBlock().getRegistryName()));
-		itemBlock.setCreativeTab(Incorporeal.TAB);
-		reg.register(itemBlock);
+			WORD = createItemBlock(new ItemBlock(IncorporeticCygnusBlocks.WORD)),
+			CRYSTAL_CUBE = createItemBlock(new ItemBlock(IncorporeticCygnusBlocks.CRYSTAL_CUBE)),
+			FUNNEL = createItemBlock(new ItemBlock(IncorporeticCygnusBlocks.FUNNEL)),
+			RETAINER = createItemBlock(new ItemBlock(IncorporeticCygnusBlocks.RETAINER))
+		);
 	}
 }

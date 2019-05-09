@@ -24,9 +24,7 @@ import java.util.Objects;
 
 @GameRegistry.ObjectHolder(Incorporeal.MODID)
 @SuppressWarnings("unused")
-public final class IncorporeticBlocks {
-	private IncorporeticBlocks() {}
-	
+public class IncorporeticBlocks {
 	public static final class RegistryNames {
 		private RegistryNames() {}
 		
@@ -46,105 +44,107 @@ public final class IncorporeticBlocks {
 		public static final String NATURAL_REPEATER = "natural_repeater";
 		public static final String NATURAL_COMPARATOR = "natural_comparator";
 		
-		public static final String DECORATIVE_UNSTABLE_CUBE = "unstable_cube";
-		public static final String DECORATIVE_RED_STRING = "red_string_deco";
-		public static final String DECORATIVE_CORPOREA = "corporea_deco";
-		public static final String DECORATIVE_RED_STRING_FROST = "red_string_frost_deco";
-		public static final String DECORATIVE_CORPOREA_BRICK = "corporea_brick_deco";
+		public static final String UNSTABLE_CUBE = "unstable_cube";
+		public static final String RED_STRING_TILE = "red_string_deco";
+		public static final String CORPOREA_TILE = "corporea_deco";
+		public static final String RED_STRING_FROST = "red_string_frost_deco";
+		public static final String CORPOREA_BRICKS = "corporea_brick_deco";
 		public static final String FORGOTTEN_SHRINE = "forgotten_shrine";
 		
-		public static final String DECORATIVE_LOKIW = "lokiw";
+		public static final String LOKIW = "lokiw";
 	}
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_INHIBITOR)
-	public static final BlockCorporeaInhibitor CORPOREA_INHIBITOR = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockCorporeaInhibitor CORPOREA_INHIBITOR = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_SOLIDIFIER)
-	public static final BlockCorporeaSolidifier CORPOREA_SOLIDIFIER = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockCorporeaSolidifier CORPOREA_SOLIDIFIER = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_SPARK_TINKERER)
-	public static final BlockCorporeaSparkTinkerer CORPOREA_SPARK_TINKERER = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockCorporeaSparkTinkerer CORPOREA_SPARK_TINKERER = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_RETAINER_DECREMENTER)
-	public static final BlockCorporeaRetainerDecrementer CORPOREA_RETAINER_DECREMENTER = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockCorporeaRetainerDecrementer CORPOREA_RETAINER_DECREMENTER = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.FRAME_TINKERER)
-	public static final BlockFrameTinkerer FRAME_TINKERER = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockFrameTinkerer FRAME_TINKERER = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.ENDER_SOUL_CORE)
-	public static final BlockEnderSoulCore ENDER_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockEnderSoulCore ENDER_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_SOUL_CORE)
-	public static final BlockCorporeaSoulCore CORPOREA_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockCorporeaSoulCore CORPOREA_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.POTION_SOUL_CORE)
-	public static final BlockPotionSoulCore POTION_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockPotionSoulCore POTION_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.RED_STRING_LIAR)
-	public static final BlockRedStringLiar RED_STRING_LIAR = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockRedStringLiar RED_STRING_LIAR = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.REDSTONE_ROOT_CROP)
-	public static final BlockNaturalDeviceCrop REDSTONE_ROOT_CROP = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockNaturalDeviceCrop REDSTONE_ROOT_CROP = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.NATURAL_REPEATER)
-	public static final BlockNaturalRepeater NATURAL_REPEATER = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockNaturalRepeater NATURAL_REPEATER = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.NATURAL_COMPARATOR)
-	public static final BlockNaturalComparator NATURAL_COMPARATOR = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockNaturalComparator NATURAL_COMPARATOR = EtcHelpers.definitelyIsntNullISwear();
 	
-	@GameRegistry.ObjectHolder(RegistryNames.DECORATIVE_UNSTABLE_CUBE)
-	public static final BlockUnstableCube DECORATIVE_UNSTABLE_CUBE = EtcHelpers.definitelyIsntNullISwear();
+	@GameRegistry.ObjectHolder(RegistryNames.UNSTABLE_CUBE)
+	public static BlockUnstableCube UNSTABLE_CUBE = EtcHelpers.definitelyIsntNullISwear();
 	
-	@GameRegistry.ObjectHolder(RegistryNames.DECORATIVE_RED_STRING)
-	public static final BlockRedStringDeco DECORATIVE_RED_STRING = EtcHelpers.definitelyIsntNullISwear();
+	@GameRegistry.ObjectHolder(RegistryNames.RED_STRING_TILE)
+	public static BlockRedStringDeco RED_STRING_TILE = EtcHelpers.definitelyIsntNullISwear();
 	
-	@GameRegistry.ObjectHolder(RegistryNames.DECORATIVE_CORPOREA)
-	public static final BlockCorporeaDeco DECORATIVE_CORPOREA = EtcHelpers.definitelyIsntNullISwear();
+	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_TILE)
+	public static BlockCorporeaDeco CORPOREA_TILE = EtcHelpers.definitelyIsntNullISwear();
 	
-	@GameRegistry.ObjectHolder(RegistryNames.DECORATIVE_RED_STRING_FROST)
-	public static final BlockRedStringDeco DECORATIVE_RED_STRING_BRICK = EtcHelpers.definitelyIsntNullISwear();
+	@GameRegistry.ObjectHolder(RegistryNames.RED_STRING_FROST)
+	public static BlockRedStringDeco RED_STRING_FROST = EtcHelpers.definitelyIsntNullISwear();
 	
-	@GameRegistry.ObjectHolder(RegistryNames.DECORATIVE_CORPOREA_BRICK)
-	public static final BlockCorporeaDeco DECORATIVE_CORPOREA_BRICK = EtcHelpers.definitelyIsntNullISwear();
+	@GameRegistry.ObjectHolder(RegistryNames.CORPOREA_BRICKS)
+	public static BlockCorporeaDeco CORPOREA_BRICKS = EtcHelpers.definitelyIsntNullISwear();
 	
 	@GameRegistry.ObjectHolder(RegistryNames.FORGOTTEN_SHRINE)
-	public static final BlockForgottenShrine FORGOTTEN_SHRINE = EtcHelpers.definitelyIsntNullISwear();
+	public static BlockForgottenShrine FORGOTTEN_SHRINE = EtcHelpers.definitelyIsntNullISwear();
 	
-	@GameRegistry.ObjectHolder(RegistryNames.DECORATIVE_LOKIW)
-	public static final BlockLokiW DECORATIVE_LOKIW = EtcHelpers.definitelyIsntNullISwear();
+	@GameRegistry.ObjectHolder(RegistryNames.LOKIW)
+	public static BlockLokiW LOKIW = EtcHelpers.definitelyIsntNullISwear();
 	
 	public static void registerBlocks(IForgeRegistry<Block> reg) {
-		reg.register(createBlock(new BlockCorporeaInhibitor(), RegistryNames.CORPOREA_INHIBITOR));
-		reg.register(createBlock(new BlockCorporeaSolidifier(), RegistryNames.CORPOREA_SOLIDIFIER));
-		reg.register(createBlock(new BlockCorporeaSparkTinkerer(), RegistryNames.CORPOREA_SPARK_TINKERER));
-		reg.register(createBlock(new BlockCorporeaRetainerDecrementer(), RegistryNames.CORPOREA_RETAINER_DECREMENTER));
-		reg.register(createBlock(new BlockFrameTinkerer(), RegistryNames.FRAME_TINKERER));
+		reg.registerAll(
+			CORPOREA_INHIBITOR = createBlock(new BlockCorporeaInhibitor(), RegistryNames.CORPOREA_INHIBITOR),
+			CORPOREA_SOLIDIFIER = createBlock(new BlockCorporeaSolidifier(), RegistryNames.CORPOREA_SOLIDIFIER),
+			CORPOREA_SPARK_TINKERER = createBlock(new BlockCorporeaSparkTinkerer(), RegistryNames.CORPOREA_SPARK_TINKERER),
+			CORPOREA_RETAINER_DECREMENTER = createBlock(new BlockCorporeaRetainerDecrementer(), RegistryNames.CORPOREA_RETAINER_DECREMENTER),
+			FRAME_TINKERER = createBlock(new BlockFrameTinkerer(), RegistryNames.FRAME_TINKERER),
+			
+			ENDER_SOUL_CORE = createBlock(new BlockEnderSoulCore(), RegistryNames.ENDER_SOUL_CORE),
+			CORPOREA_SOUL_CORE = createBlock(new BlockCorporeaSoulCore(), RegistryNames.CORPOREA_SOUL_CORE),
+			POTION_SOUL_CORE = createBlock(new BlockPotionSoulCore(), RegistryNames.POTION_SOUL_CORE),
+			
+			RED_STRING_LIAR = createSpecialSnowflakeBlock(new BlockRedStringLiar(RegistryNames.RED_STRING_LIAR)),
+			
+			REDSTONE_ROOT_CROP = createBlock(new BlockNaturalDeviceCrop(), RegistryNames.REDSTONE_ROOT_CROP),
+			NATURAL_REPEATER = createBlock(new BlockNaturalRepeater(), RegistryNames.NATURAL_REPEATER),
+			NATURAL_COMPARATOR = createBlock(new BlockNaturalComparator(), RegistryNames.NATURAL_COMPARATOR),
+			
+			UNSTABLE_CUBE = createBlock(new BlockUnstableCube(), RegistryNames.UNSTABLE_CUBE),
+			RED_STRING_TILE = createBlock(new BlockRedStringDeco(), RegistryNames.RED_STRING_TILE),
+			CORPOREA_TILE = createBlock(new BlockCorporeaDeco(), RegistryNames.CORPOREA_TILE),
+			RED_STRING_FROST = createBlock(new BlockRedStringFrost(), RegistryNames.RED_STRING_FROST),
+			CORPOREA_BRICKS = createBlock(new BlockCorporeaDeco(), RegistryNames.CORPOREA_BRICKS),
+			
+			FORGOTTEN_SHRINE = createBlock(new BlockForgottenShrine(), RegistryNames.FORGOTTEN_SHRINE),
+			
+			LOKIW = createBlock(new BlockLokiW(), RegistryNames.LOKIW)
+		);
 		
-		reg.register(createBlock(new BlockEnderSoulCore(), RegistryNames.ENDER_SOUL_CORE));
-		reg.register(createBlock(new BlockCorporeaSoulCore(), RegistryNames.CORPOREA_SOUL_CORE));
-		reg.register(createBlock(new BlockPotionSoulCore(), RegistryNames.POTION_SOUL_CORE));
-		
-		reg.register(createSpecialSnowflakeBlock(new BlockRedStringLiar(RegistryNames.RED_STRING_LIAR)));
-		
-		reg.register(createBlock(new BlockNaturalDeviceCrop(), RegistryNames.REDSTONE_ROOT_CROP));
-		reg.register(createBlock(new BlockNaturalRepeater(), RegistryNames.NATURAL_REPEATER));
-		reg.register(createBlock(new BlockNaturalComparator(), RegistryNames.NATURAL_COMPARATOR));
-		
-		reg.register(createBlock(new BlockUnstableCube(), RegistryNames.DECORATIVE_UNSTABLE_CUBE));
-		reg.register(createBlock(new BlockRedStringDeco(), RegistryNames.DECORATIVE_RED_STRING));
-		reg.register(createBlock(new BlockCorporeaDeco(), RegistryNames.DECORATIVE_CORPOREA));
-		reg.register(createBlock(new BlockRedStringFrost(), RegistryNames.DECORATIVE_RED_STRING_FROST));
-		reg.register(createBlock(new BlockCorporeaDeco(), RegistryNames.DECORATIVE_CORPOREA_BRICK));
-		
-		reg.register(createBlock(new BlockForgottenShrine(), RegistryNames.FORGOTTEN_SHRINE));
-		
-		reg.register(createBlock(new BlockLokiW(), RegistryNames.DECORATIVE_LOKIW));
-		
-		//These have pretty big constructors so they are broken out into their own class
 		IncorporeticCygnusBlocks.registerBlocks(reg);
+		IncorporeticFluffBlocks.registerBlocks(reg);
 	}
 	
-	private static <T extends Block> T createBlock(T block, String name) {
+	protected static <T extends Block> T createBlock(T block, String name) {
 		block.setRegistryName(new ResourceLocation(Incorporeal.MODID, name));
 		block.setTranslationKey(Incorporeal.MODID + "." + name);
 		block.setCreativeTab(Incorporeal.TAB);
@@ -152,7 +152,7 @@ public final class IncorporeticBlocks {
 	}
 	
 	//For the few occasions where i need to extend a botania block and they setregname in the ctor
-	private static <T extends Block> T createSpecialSnowflakeBlock(T block) {
+	protected static <T extends Block> T createSpecialSnowflakeBlock(T block) {
 		EtcHelpers.fixRegistryNameDespacito(block);
 		ResourceLocation xd = Objects.requireNonNull(block.getRegistryName());
 		block.setTranslationKey(xd.getNamespace() + "." + xd.getPath());

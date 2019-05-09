@@ -1,0 +1,15 @@
+{
+	"result": {
+		"item": "incorporeal:red_string_frost_deco",
+		"count": 2
+	},
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "minecraft:ice"
+		},
+		{
+			"item": "incorporeal:red_string_deco"
+		}
+	]
+}
