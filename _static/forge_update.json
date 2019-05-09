@@ -1,6 +1,7 @@
 {
 	"homepage": "https://github.com/quat1024/incorporeal/releases",
 	"1.12.2": {
+		"1.1.2": "Add slab and stair variants for decorative blocks, new sounds for the Unstable Cube, and some other things!",
 		"1.1.1": "Fix server crash",
 		"1.1.0": "The Soul Coreverhaul. Also: new soulcore, new decorative blocks, Cygnus items are craftable, bug fixes, stuff like that you know?",
 		"1.0.4": "Prerelease for 1.1. Lots of bugfixes and tweaks, new art, the return of the Unstable Cube, new Red String Liar, and the beta for the Cygnus Network, a corporea-flavored math and logic system",
