@@ -154,22 +154,22 @@ public class TileCygnusFunnel extends TileEntity implements ITickable {
 		//Is it a tile entity capability?
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile != null) {
-			//try null
-			ICygnusFunnelable capMaybe = tile.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, null);
+			//try face
+			ICygnusFunnelable capMaybe = tile.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, face);
 			if(capMaybe != null) return capMaybe;
-			//try facing
-			capMaybe = tile.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, face);
+			//try null
+			capMaybe = tile.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, null);
 			if(capMaybe != null) return capMaybe;
 		}
 		
 		//Is it an entity capability?
 		List<Entity> entities = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos));
 		for(Entity e : entities) {
-			//try null
-			ICygnusFunnelable capMaybe = e.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, null);
+			//try face
+			ICygnusFunnelable capMaybe = e.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, face);
 			if(capMaybe != null) return capMaybe;
-			//try facing
-			capMaybe = e.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, face);
+			//try null
+			capMaybe = e.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, null);
 			if(capMaybe != null) return capMaybe;
 		}
 		

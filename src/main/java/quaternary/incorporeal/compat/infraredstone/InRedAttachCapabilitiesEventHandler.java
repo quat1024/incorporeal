@@ -10,8 +10,10 @@ import com.elytradev.infraredstone.api.IInfraRedstone;
 import com.elytradev.infraredstone.logic.impl.InfraRedstoneHandler;
 import com.elytradev.infraredstone.tile.TileEntityDiode;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
@@ -20,14 +22,17 @@ import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.etc.LazyGenericCapabilityProvider;
 import quaternary.incorporeal.tile.cygnus.TileCygnusFunnel;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.math.BigInteger;
+import java.util.EnumMap;
 
 public class InRedAttachCapabilitiesEventHandler {
 	public static final Capability<IInfraRedstone> INFRA_READABLE_CAP = InfraRedstone.CAPABILITY_IR;
 	
 	private static final ResourceLocation FUNNEL_HANDLER = AttachCapabilitiesEventHandler.FUNNEL_HANDLER;
 	private static final ResourceLocation INRED_CABLE_HANDLER = new ResourceLocation("incorporeal", "inred_compat_cable");
+	private static final ResourceLocation CATCHALL_FUNNEL_HANDLER = new ResourceLocation("incorporeal", "catchall_funnel_handler");
 	
 	@SubscribeEvent
 	public static void tileCaps(AttachCapabilitiesEvent<TileEntity> e) {
@@ -44,6 +49,7 @@ public class InRedAttachCapabilitiesEventHandler {
 			return;
 		}
 		
+		//Infraredstone diodes
 		if(tile instanceof TileEntityDiode) {
 			e.addCapability(FUNNEL_HANDLER, new LazyGenericCapabilityProvider<>(
 				IncorporeticCygnusCapabilities.FUNNEL_CAP,
@@ -53,14 +59,25 @@ public class InRedAttachCapabilitiesEventHandler {
 			return;
 		}
 		
-		if(tile.hasCapability(INFRA_READABLE_CAP, null)) {
-			e.addCapability(FUNNEL_HANDLER, new LazyGenericCapabilityProvider<>(
-				IncorporeticCygnusCapabilities.FUNNEL_CAP,
-				() -> new InfraReadableFunnelable(tile.getCapability(INFRA_READABLE_CAP, null))
-			));
+		//Since you can't call hasCapability in the AttachCapabilitiesEvent, I cast a wide net here
+		e.addCapability(CATCHALL_FUNNEL_HANDLER, new ICapabilityProvider() {
+			@Override
+			public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+				if(capability == IncorporeticCygnusCapabilities.FUNNEL_CAP) {
+					return tile.hasCapability(InfraRedstone.CAPABILITY_IR, facing);
+				} else return false;
+			}
 			
-			return;
-		}
+			@Nullable
+			@Override
+			public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
+				if(capability == IncorporeticCygnusCapabilities.FUNNEL_CAP) {
+					IInfraRedstone ir = tile.getCapability(InfraRedstone.CAPABILITY_IR, facing);
+					//noinspection unchecked
+					return (T) new InfraReadableFunnelable(ir); //TODO cache...?
+				} else return null;
+			}
+		});
 	}
 	
 	private static class InfraReadableFunnelable implements ICygnusFunnelable {
