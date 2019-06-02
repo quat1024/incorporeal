@@ -4,12 +4,13 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializer;
 import net.minecraft.network.datasync.DataSerializers;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import quaternary.incorporeal.cygnus.CygnusStack;
 
 public class CygnusStackDataSerializer implements DataSerializer<CygnusStack> {
 	public static final CygnusStackDataSerializer INST = new CygnusStackDataSerializer();
 	
-	static {
+	public static void preinit(FMLPreInitializationEvent e) {
 		DataSerializers.registerSerializer(INST);
 	}
 	

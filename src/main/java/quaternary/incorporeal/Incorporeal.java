@@ -33,7 +33,9 @@ import quaternary.incorporeal.cygnus.IncorporeticCygnusConditions;
 import quaternary.incorporeal.cygnus.IncorporeticCygnusDatatypes;
 import quaternary.incorporeal.cygnus.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.entity.IncorporeticEntities;
+import quaternary.incorporeal.etc.CygnusStackDataSerializer;
 import quaternary.incorporeal.etc.DispenserBehaviorRedstoneRoot;
+import quaternary.incorporeal.etc.EnumDyeColorDataSerializer;
 import quaternary.incorporeal.etc.IncorporeticNaturalDevices;
 import quaternary.incorporeal.etc.IncorporeticSounds;
 import quaternary.incorporeal.etc.LooseRedstoneDustCygnusFunnelable;
@@ -94,6 +96,9 @@ public final class Incorporeal {
 		IncorporeticCygnusActions.registerCygnusActions();
 		IncorporeticCygnusConditions.registerCygnusConditions();
 		IncorporeticCygnusDatatypes.registerCygnusDatatypes();
+		
+		CygnusStackDataSerializer.preinit(e); //yeet
+		EnumDyeColorDataSerializer.preinit(e); //ya yeet
 		
 		PROXY.preinit();
 		

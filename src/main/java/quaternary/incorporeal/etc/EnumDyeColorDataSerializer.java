@@ -5,11 +5,12 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializer;
 import net.minecraft.network.datasync.DataSerializers;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class EnumDyeColorDataSerializer implements DataSerializer<EnumDyeColor> {
 	public static final EnumDyeColorDataSerializer INST = new EnumDyeColorDataSerializer();
 	
-	static {
+	public static void preinit(FMLPreInitializationEvent e) {
 		DataSerializers.registerSerializer(INST);
 	}
 	

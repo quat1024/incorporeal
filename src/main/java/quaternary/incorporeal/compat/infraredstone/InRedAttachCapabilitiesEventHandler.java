@@ -73,8 +73,9 @@ public class InRedAttachCapabilitiesEventHandler {
 			public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
 				if(capability == IncorporeticCygnusCapabilities.FUNNEL_CAP) {
 					IInfraRedstone ir = tile.getCapability(InfraRedstone.CAPABILITY_IR, facing);
+					if(ir == null) return null;
 					//noinspection unchecked
-					return (T) new InfraReadableFunnelable(ir); //TODO cache...?
+					else return (T) new InfraReadableFunnelable(ir); //TODO cache...?
 				} else return null;
 			}
 		});
