@@ -109,8 +109,6 @@ public final class Incorporeal {
 	
 	@Mod.EventHandler
 	public static void init(FMLInitializationEvent e) {
-		DespacitoHelper.init();
-		
 		//TODO can this be moved to postinit?
 		CygnusRegistries.freezeRegistries();
 		CygnusDatatypeHelpers.init();

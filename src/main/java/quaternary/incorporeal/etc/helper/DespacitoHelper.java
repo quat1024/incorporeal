@@ -15,7 +15,7 @@ import java.util.Map;
 public final class DespacitoHelper {
 	private DespacitoHelper() {}
 	
-	private static Map[] despacito;
+	private static final Map[] despacito;
 	
 	private static final int[] EMPTY = new int[0];
 	public static int[] getNotesForTick(int tick, Instrument inst) {
@@ -44,7 +44,7 @@ public final class DespacitoHelper {
 		return ret;
 	}
 	
-	public static void init() {
+	static {
 		despacito = new Map[]{
 						ImmutableMap.of(Instrument.FLUTE, new int[]{8}, Instrument.BASSDRUM, new int[]{10, 6}),
 						null,
