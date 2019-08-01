@@ -28,12 +28,6 @@ public final class IncorporeticConfig {
 		public static boolean INFRAREDSTONE = true;
 	}
 	
-	public static final class General {
-		private General() {}
-		
-		public static boolean CORPOREA_KNOWLEDGE_TYPE = false;
-	}
-	
 	public static Configuration config;
 	
 	static void preinit(FMLPreInitializationEvent e) {
@@ -51,14 +45,33 @@ public final class IncorporeticConfig {
 	}
 	
 	private static void readConfig() {
-		Sanvocalia.EVERYONE_HEARS_MESSAGES = config.getBoolean("everyoneHearsMessages", "sanvocalia", true, "Easter egg spoiler: when the Sanvocalia isn't near any corporea indices but receives a corporea ticket, it will just dump the corporea request into chat, to reference the all-too-often occurrence of players accidentally standing too far away from their corporea indexes in multiplayer and telling everyone \"5 stone\".\n\nIf this is false, only the person who placed the Sanvocalia will see these messages.");
+		//features
+		IncorporeticFeatures.forEachIncludingDisabled(f -> {
+			if(!f.canDisable()) return;
+			
+			String name = f.name();
+			
+			String category = "features";
+			if(!f.subcategory().isEmpty()) category += '.' + f.subcategory();
+			
+			String description = f.description();
+			if(!f.requiredModIDs().isEmpty()) {
+				StringBuilder oof = new StringBuilder("\nRequires: ");
+				for(String modID : f.requiredModIDs()) {
+					oof.append(modID);
+					oof.append(' ');
+				}
+				description += oof.toString();
+			}
+			
+			boolean isEnabled = config.get(category, name, description).setRequiresMcRestart(true).getBoolean();
+			
+			if(isEnabled) IncorporeticFeatures.enableFeature(f);
+		});
 		
-		SoulCore.DEBUG_BLOODCORE_ENTITIES = config.getBoolean("debugBloodcoreEntities", "soulcores", false, "If this is enabled, the invisible \"incorporeal:potion_soul_core_collector\" entities that Blood Soul Cores create to absorb thrown potion effects will appear as a small white box. If you see these lingering after you remove a bloodcore, let me know. Client-only.");
+		Sanvocalia.EVERYONE_HEARS_MESSAGES = config.getBoolean("everyoneHearsMessages", IncorporeticFeatures.CORPORETICS.name(), true, "Easter egg spoiler: when the Sanvocalia isn't near any corporea indices but receives a corporea ticket, it will just dump the corporea request into chat, to reference the all-too-often occurrence of players accidentally standing too far away from their corporea indexes in multiplayer and telling everyone \"5 stone\".\n\nIf this is false, only the person who placed the Sanvocalia will see these messages.");
 		
-		Compat.INFRAREDSTONE = config.getBoolean("infraredstone", "compat", true, "If InfraRedstone is available, special features will be made available.");
-		
-		//default this to false since it's WIP
-		//General.CORPOREA_KNOWLEDGE_TYPE = config.getBoolean("corporeaKnowledgeType", "general", false, "Should Incorporeal move corporea into its own knowledge type? This is because the Ender Artefacts chapter was pretty much taken over by corporea-related things, and it was getting a little out of hand.");
+		SoulCore.DEBUG_BLOODCORE_ENTITIES = config.getBoolean("debugBloodcoreEntities", IncorporeticFeatures.SOUL_CORES.name(), false, "If this is enabled, the invisible \"incorporeal:potion_soul_core_collector\" entities that Blood Soul Cores create to absorb thrown potion effects will appear as a small white box. If you see these lingering after you remove a bloodcore, let me know. Client-only.");
 		
 		if(config.hasChanged()) config.save();
 	}

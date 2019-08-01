@@ -7,9 +7,9 @@ import quaternary.incorporeal.api.ISimpleRegistry;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
-import quaternary.incorporeal.cygnus.CygnusRegistries;
-import quaternary.incorporeal.recipe.skytouch.IncorporeticSkytouchingRecipes;
-import quaternary.incorporeal.recipe.skytouch.RecipeSkytouching;
+import quaternary.incorporeal.feature.cygnusnetwork.CygnusRegistries;
+import quaternary.incorporeal.feature.skytouching.recipe.IncorporeticSkytouchingRecipes;
+import quaternary.incorporeal.feature.skytouching.recipe.RecipeSkytouching;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
