@@ -32,7 +32,8 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public final class IncorporeticLexicon {
-	private IncorporeticLexicon() {}
+	private IncorporeticLexicon() {
+	}
 	
 	public static LexiconCategory categoryCorporetic = null;
 	
@@ -78,11 +79,11 @@ public final class IncorporeticLexicon {
 		
 		unstableCubes = new CompatLexiconEntry("incorporeal.unstableCubes", BotaniaAPI.categoryMisc, Incorporeal.NAME).setLexiconPages(
 			new PageText("0"),
-			new PageCraftingRecipe(".flavor", 
+			new PageCraftingRecipe(".flavor",
 				Arrays.stream(EnumDyeColor.values())
-				.map(color -> "decorative/unstable_cube/unstable_cube_" + color.getName())
-				.map(str -> new ResourceLocation(Incorporeal.MODID, str))
-				.collect(Collectors.toList())
+					.map(color -> "decorative/unstable_cube/unstable_cube_" + color.getName())
+					.map(str -> new ResourceLocation(Incorporeal.MODID, str))
+					.collect(Collectors.toList())
 			)
 		);
 		//anyhoo
@@ -129,7 +130,7 @@ public final class IncorporeticLexicon {
 		
 		if(subject instanceof Block) {
 			icon = new ItemStack((Block) subject);
-		} else if (subject instanceof Item) {
+		} else if(subject instanceof Item) {
 			icon = new ItemStack((Item) subject);
 		} else {
 			throw new IllegalArgumentException("Can't determine the lexicon page item for " + subject + " if you see this quat is a big stupid");
@@ -152,9 +153,9 @@ public final class IncorporeticLexicon {
 	//Only tiny potato can judge me
 	private static KnowledgeType newEntryType = BotaniaAPI.basicKnowledge;
 	
-	private static LexiconEntry buildEntryInternal(String name, ItemStack icon, LexiconCategory category, int pageCount, LexiconPage terminalPage) {		
+	private static LexiconEntry buildEntryInternal(String name, ItemStack icon, LexiconCategory category, int pageCount, LexiconPage terminalPage) {
 		LexiconEntry entry = new CompatLexiconEntry(name, category, Incorporeal.NAME);
-		for(int i=0; i < pageCount; i++) {
+		for(int i = 0; i < pageCount; i++) {
 			//Just using addPage is tempting but for some reason the
 			//unlocalized name gets hacked into shape in BasicLexiconEntry
 			//But only if you don't use addPage ¯\_(ツ)_/¯

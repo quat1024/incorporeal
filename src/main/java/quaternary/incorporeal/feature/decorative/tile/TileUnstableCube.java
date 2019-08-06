@@ -22,7 +22,7 @@ public class TileUnstableCube extends TileEntity implements ITickable {
 	
 	private long nextLightningTick = 0;
 	
-	private float[] basePitches = new float[]{
+	private final float[] basePitches = new float[] {
 		1f,
 		1.1f,
 		1.15f,
@@ -66,7 +66,7 @@ public class TileUnstableCube extends TileEntity implements ITickable {
 				if(rotationSpeed > 1.1) {
 					nextLightningTick = world.getTotalWorldTime() + (int) (60 - Math.min(60, rotationSpeed)) + 3;
 				} else {
-					nextLightningTick = world.getTotalWorldTime() + world.rand.nextInt(60) + 50;	
+					nextLightningTick = world.getTotalWorldTime() + world.rand.nextInt(60) + 50;
 				}
 				
 				float volume = rotationSpeed > 1.1 ? rotationSpeed / 200f : 0.06f;

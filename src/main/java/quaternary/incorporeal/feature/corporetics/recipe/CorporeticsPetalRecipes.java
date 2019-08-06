@@ -16,7 +16,8 @@ import static vazkii.botania.common.crafting.ModPetalRecipes.white;
 import static vazkii.botania.common.crafting.ModPetalRecipes.yellow;
 
 public final class CorporeticsPetalRecipes {
-	private CorporeticsPetalRecipes() {}
+	private CorporeticsPetalRecipes() {
+	}
 	
 	public static RecipePetals sanvocalia;
 	public static RecipePetals sweetAlexum;

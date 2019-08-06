@@ -7,10 +7,12 @@ import quaternary.incorporeal.core.ItemsModule;
 import quaternary.incorporeal.feature.corporetics.block.CorporeticsBlocks;
 
 public final class CorporeticsItems extends ItemsModule {
-	private CorporeticsItems() {}
+	private CorporeticsItems() {
+	}
 	
 	public static final class RegistryNames {
-		private RegistryNames() {}
+		private RegistryNames() {
+		}
 		
 		public static final String TICKET_CONJURER = "ticket_conjurer";
 		public static final String CORPOREA_TICKET = "corporea_ticket";
@@ -18,16 +20,16 @@ public final class CorporeticsItems extends ItemsModule {
 	}
 	
 	
-	public static ItemTicketConjurer TICKET_CONJURER = totallyNotNull();
-	public static ItemCorporeaTicket CORPOREA_TICKET = totallyNotNull();
-	public static ItemFracturedSpaceRod FRACTURED_SPACE_ROD = totallyNotNull();
+	public static ItemTicketConjurer TICKET_CONJURER = null;
+	public static ItemCorporeaTicket CORPOREA_TICKET = null;
+	public static ItemFracturedSpaceRod FRACTURED_SPACE_ROD = null;
 	
-	public static ItemBlock CORPOREA_INHIBITOR = totallyNotNull();
-	public static ItemBlock CORPOREA_SOLIDIFIER = totallyNotNull();
-	public static ItemBlock CORPOREA_SPARK_TINKERER = totallyNotNull();
-	public static ItemBlock CORPOREA_RETAINER_DECREMENTER = totallyNotNull();
-	public static ItemBlock FRAME_TINKERER = totallyNotNull();
-	public static ItemBlock RED_STRING_LIAR = totallyNotNull();
+	public static ItemBlock CORPOREA_INHIBITOR = null;
+	public static ItemBlock CORPOREA_SOLIDIFIER = null;
+	public static ItemBlock CORPOREA_SPARK_TINKERER = null;
+	public static ItemBlock CORPOREA_RETAINER_DECREMENTER = null;
+	public static ItemBlock FRAME_TINKERER = null;
+	public static ItemBlock RED_STRING_LIAR = null;
 	
 	public static void registerItems(IForgeRegistry<Item> items) {
 		items.registerAll(

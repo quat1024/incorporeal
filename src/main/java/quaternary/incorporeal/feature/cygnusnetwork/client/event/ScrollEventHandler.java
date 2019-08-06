@@ -1,20 +1,23 @@
-package quaternary.incorporeal.core.client.event;
+package quaternary.incorporeal.feature.cygnusnetwork.client.event;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.MouseEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.IScrollableItem;
-import quaternary.incorporeal.core.sortme.IncorporeticPacketHandler;
+import quaternary.incorporeal.core.IncorporeticPacketHandler;
 import quaternary.incorporeal.feature.cygnusnetwork.net.MessageScrollItem;
 
-//TODO don't register this unless the cygnus module is enabled.
-@Mod.EventBusSubscriber(modid = Incorporeal.MODID, value = Side.CLIENT)
-public class ScrollEventHandler {
+public final class ScrollEventHandler {
+	private ScrollEventHandler() {
+	}
+	
+	public static void register() {
+		MinecraftForge.EVENT_BUS.register(ScrollEventHandler.class);
+	}
+	
 	@SubscribeEvent
 	public static void mouseInput(MouseEvent e) {
 		Minecraft mc = Minecraft.getMinecraft();

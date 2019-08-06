@@ -1,4 +1,4 @@
-package quaternary.incorporeal.core.etc;
+package quaternary.incorporeal.feature.corporetics.event;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.tileentity.TileEntity;
@@ -6,7 +6,7 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import quaternary.incorporeal.feature.soulcores.tile.TileCorporeaSoulCore;
 import vazkii.botania.api.corporea.CorporeaHelper;
@@ -16,9 +16,13 @@ import vazkii.botania.api.corporea.InvWithLocation;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod.EventBusSubscriber
 public final class CorporeaIndexInputHandler {
-	private CorporeaIndexInputHandler() {}
+	private CorporeaIndexInputHandler() {
+	}
+	
+	public static void register() {
+		MinecraftForge.EVENT_BUS.register(CorporeaIndexInputHandler.class);
+	}
 	
 	@SubscribeEvent
 	public static void corporeaInput(CorporeaIndexRequestEvent e) {

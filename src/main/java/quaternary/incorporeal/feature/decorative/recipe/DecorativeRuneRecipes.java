@@ -7,7 +7,8 @@ import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.recipe.RecipeRuneAltar;
 
 public final class DecorativeRuneRecipes {
-	private DecorativeRuneRecipes() {}
+	private DecorativeRuneRecipes() {
+	}
 	
 	public static RecipeRuneAltar lokiW;
 	

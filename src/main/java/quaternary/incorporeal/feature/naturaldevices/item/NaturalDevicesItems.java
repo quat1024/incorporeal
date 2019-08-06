@@ -6,11 +6,12 @@ import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.core.ItemsModule;
 import quaternary.incorporeal.feature.naturaldevices.block.NaturalDevicesBlocks;
 
-public class NaturalDevicesItems extends ItemsModule {
-	private NaturalDevicesItems() {}
+public final class NaturalDevicesItems extends ItemsModule {
+	private NaturalDevicesItems() {
+	}
 	
-	public static ItemBlock NATURAL_REPEATER = totallyNotNull();
-	public static ItemBlock NATURAL_COMPARATOR = totallyNotNull();
+	public static ItemBlock NATURAL_REPEATER = null;
+	public static ItemBlock NATURAL_COMPARATOR = null;
 	
 	public static void registerItems(IForgeRegistry<Item> items) {
 		items.registerAll(

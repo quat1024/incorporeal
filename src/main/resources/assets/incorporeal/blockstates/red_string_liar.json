@@ -1,10 +1,27 @@
 {
 	"variants": {
-		"facing=north": { "model": "incorporeal:red_string_liar" },
-		"facing=south": { "model": "incorporeal:red_string_liar", "y": 180 },
-		"facing=west": { "model": "incorporeal:red_string_liar", "y": 270 },
-		"facing=east": { "model": "incorporeal:red_string_liar", "y": 90 },
-		"facing=up": { "model": "incorporeal:red_string_liar", "x": 270 },
-		"facing=down": { "model": "incorporeal:red_string_liar", "x": 90 }
+		"facing=north": {
+			"model": "incorporeal:red_string_liar"
+		},
+		"facing=south": {
+			"model": "incorporeal:red_string_liar",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "incorporeal:red_string_liar",
+			"y": 270
+		},
+		"facing=east": {
+			"model": "incorporeal:red_string_liar",
+			"y": 90
+		},
+		"facing=up": {
+			"model": "incorporeal:red_string_liar",
+			"x": 270
+		},
+		"facing=down": {
+			"model": "incorporeal:red_string_liar",
+			"x": 90
+		}
 	}
 }

@@ -29,7 +29,7 @@ public class InventoryWrapTweak extends AbstractTweak {
 				
 				//search backwards for the ifnonnull instruction
 				int searchIndex = instructions.size() - 1;
-				for(; instructions.get(searchIndex).getOpcode() != IFNONNULL; searchIndex--);
+				for(; instructions.get(searchIndex).getOpcode() != IFNONNULL; searchIndex--) ;
 				
 				//jump to the aload above this instruction
 				searchIndex--;

@@ -29,7 +29,7 @@ public class ItemCorporeaTicket extends Item implements ILexiconable {
 		stack.setTagInfo("RequestAmount", new NBTTagInt(requestedCount));
 		if(request instanceof ItemStack) {
 			stack.setTagInfo("RequestItem", ((ItemStack) request).writeToNBT(new NBTTagCompound()));
-		} else if (request instanceof String) {
+		} else if(request instanceof String) {
 			stack.setTagInfo("RequestString", new NBTTagString((String) request));
 		} else throw new IllegalArgumentException("Corporea request not a String or ItemStack?????????");
 		

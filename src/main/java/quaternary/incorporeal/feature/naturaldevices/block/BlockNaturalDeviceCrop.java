@@ -18,13 +18,13 @@ import vazkii.botania.common.item.ModItems;
 import java.util.ListIterator;
 import java.util.Random;
 
-public class BlockNaturalDeviceCrop extends BlockCrops {	
+public class BlockNaturalDeviceCrop extends BlockCrops {
 	public static final AxisAlignedBB[] AABBS = new AxisAlignedBB[7];
 	
 	static {
 		for(int i = 0; i < 7; i++) {
 			double uhh = (7 - i) / 32d;
-			AABBS[i] = new AxisAlignedBB(uhh, 0, uhh, 1 - uhh, 3/16d, 1 - uhh);
+			AABBS[i] = new AxisAlignedBB(uhh, 0, uhh, 1 - uhh, 3 / 16d, 1 - uhh);
 		}
 	}
 	
@@ -39,21 +39,21 @@ public class BlockNaturalDeviceCrop extends BlockCrops {
 		//emulate the super's super call
 		checkAndDropBlock(world, pos, state);
 		
-		if (!world.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-		if (world.getLightFromNeighbors(pos.up()) >= 9) {
+		if(!world.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+		if(world.getLightFromNeighbors(pos.up()) >= 9) {
 			int i = this.getAge(state);
 			
-			if (i < this.getMaxAge()) {
+			if(i < this.getMaxAge()) {
 				float f = getGrowthChance(this, world, pos);
 				
-				if(net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world, pos, state, rand.nextInt((int)(25.0F / f) + 1) == 0)) {
+				if(net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world, pos, state, rand.nextInt((int) (25.0F / f) + 1) == 0)) {
 					//basically copy from bonemeal but with a fixed +1, not a bonemeal age thing
 					int newAge = this.getAge(state) + 1;
 					int maxAge = this.getMaxAge();
 					
 					IBlockState newState;
 					boolean causeBlockUpdate;
-					if (newAge >= maxAge) {
+					if(newAge >= maxAge) {
 						causeBlockUpdate = true;
 						newState = Incorporeal.API.getNaturalDeviceRegistry().pullRandomDevice(world.rand);
 					} else {
@@ -79,7 +79,7 @@ public class BlockNaturalDeviceCrop extends BlockCrops {
 		
 		IBlockState newState;
 		boolean causeBlockUpdate;
-		if (newAge >= maxAge) {
+		if(newAge >= maxAge) {
 			causeBlockUpdate = true;
 			newState = Incorporeal.API.getNaturalDeviceRegistry().pullRandomDevice(world.rand);
 		} else {

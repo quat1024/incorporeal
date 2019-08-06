@@ -8,10 +8,11 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import quaternary.incorporeal.api.IScrollableItem;
-import quaternary.incorporeal.core.sortme.IncorporeticPacketHandler;
+import quaternary.incorporeal.core.IncorporeticPacketHandler;
 
 public class MessageScrollItem implements IncorporeticPacketHandler.IIncorporeticMessage {
-	public MessageScrollItem() {}
+	public MessageScrollItem() {
+	}
 	
 	public MessageScrollItem(int dwheel) {
 		this.dwheel = dwheel;

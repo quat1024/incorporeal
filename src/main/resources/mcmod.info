@@ -1,16 +1,16 @@
 [
-{
-  "modid": "incorporeal",
-  "name": "Incorporeal",
-  "description": "Botania addon. More tools for large-scale corporea systems.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "https://github.com/quat1024/incorporeal/",
-  "updateUrl": "https://github.com/quat1024/incorporeal/releases",
-  "authorList": ["quaternary"],
-  "credits": "Thank mr vazker doot doot. Thanks to Dudblockman and SnazzGass for art!",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
-}
+	{
+		"modid": "incorporeal",
+		"name": "Incorporeal",
+		"description": "Botania addon. More tools for large-scale corporea systems.",
+		"version": "${version}",
+		"mcversion": "${mcversion}",
+		"url": "https://github.com/quat1024/incorporeal/",
+		"updateUrl": "https://github.com/quat1024/incorporeal/releases",
+		"authorList": ["quaternary"],
+		"credits": "Thank mr vazker doot doot. Thanks to Dudblockman and SnazzGass for art!",
+		"logoFile": "",
+		"screenshots": [],
+		"dependencies": []
+	}
 ]

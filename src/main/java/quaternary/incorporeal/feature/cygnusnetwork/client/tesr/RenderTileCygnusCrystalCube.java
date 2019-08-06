@@ -20,11 +20,11 @@ public class RenderTileCygnusCrystalCube extends TileEntitySpecialRenderer<TileC
 	
 	private EntityItem entity = null;
 	private RenderEntityItem itemRenderer = null;
-	private ItemStack stack = new ItemStack(CygnusNetworkItems.CRYSTAL_CUBE_CARD);
+	private final ItemStack stack = new ItemStack(CygnusNetworkItems.CRYSTAL_CUBE_CARD);
 	
 	@Override
 	public void render(TileCygnusCrystalCube cube, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-		if (cube != null) {
+		if(cube != null) {
 			if(entity == null)
 				entity = new EntityItem(cube.getWorld(), cube.getPos().getX(), cube.getPos().getY(), cube.getPos().getZ(), stack);
 			
@@ -55,7 +55,7 @@ public class RenderTileCygnusCrystalCube extends TileEntitySpecialRenderer<TileC
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GlStateManager.color(1F, 1F, 1F, 1F);
-		GlStateManager.translate(x + 0.5f, y + 0.56f, z + 10/16f); //Magic Constant. Do not touch
+		GlStateManager.translate(x + 0.5f, y + 0.56f, z + 10 / 16f); //Magic Constant. Do not touch
 		if(!stack.isEmpty()) {
 			GlStateManager.pushMatrix();
 			GlStateManager.rotate(270f, 1f, 0f, 0f);

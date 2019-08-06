@@ -7,7 +7,7 @@ import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import net.minecraft.item.ItemStack;
-import quaternary.incorporeal.feature.skytouching.recipe.IncorporeticSkytouchingRecipes;
+import quaternary.incorporeal.feature.skytouching.recipe.SkytouchingRecipes;
 import quaternary.incorporeal.feature.skytouching.recipe.RecipeSkytouching;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -19,7 +19,9 @@ import java.util.List;
 
 @ZenRegister
 @ZenClass("mods.incorporeal.Skytouching")
-public class CTSkytouching {
+public final class CTSkytouching {
+	private CTSkytouching() {
+	}
 	//zen stuff
 	
 	@ZenMethod
@@ -30,8 +32,8 @@ public class CTSkytouching {
 	@ZenMethod
 	public static void addRecipe(IItemStack out, IIngredient in, int minY, int maxY, int multiplier) {
 		act(() -> {
-			IncorporeticSkytouchingRecipes.register(new RecipeSkytouchingCT(out, in, minY, maxY, multiplier));
-		},
+				SkytouchingRecipes.register(new RecipeSkytouchingCT(out, in, minY, maxY, multiplier));
+			},
 			"adding new skytouching recipe:",
 			"output:", out.toCommandString(),
 			"input:", in.toCommandString(),
@@ -44,7 +46,7 @@ public class CTSkytouching {
 	@ZenMethod
 	public static void remove(IItemStack removalTarget) {
 		act(() -> {
-			IncorporeticSkytouchingRecipes.removeIf(r -> {
+			SkytouchingRecipes.removeIf(r -> {
 				for(ItemStack inStack : r.getGenericInputs()) {
 					if(CraftTweakerMC.matches(removalTarget, inStack)) return true;
 				}
@@ -56,7 +58,7 @@ public class CTSkytouching {
 	
 	@ZenMethod
 	public static void removeAll() {
-		act(IncorporeticSkytouchingRecipes::clear, "clearing all skytouching recipes >:D");
+		act(SkytouchingRecipes::clear, "clearing all skytouching recipes >:D");
 	}
 	
 	private static void act(Runnable action, Object... message) {
@@ -86,7 +88,7 @@ public class CTSkytouching {
 	public static void init() {
 		try {
 			ACTIONS.forEach(CraftTweakerAPI::apply);
-		} catch(Exception e) {
+		} catch(RuntimeException e) {
 			CraftTweakerAPI.logError("There was a problem applying an Incorporeal action");
 			StringWriter out = new StringWriter();
 			e.printStackTrace(new PrintWriter(out));

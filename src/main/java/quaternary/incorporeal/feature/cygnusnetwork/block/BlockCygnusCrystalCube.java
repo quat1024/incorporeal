@@ -20,7 +20,7 @@ import quaternary.incorporeal.feature.cygnusnetwork.tile.TileCygnusCrystalCube;
 import javax.annotation.Nullable;
 
 public class BlockCygnusCrystalCube extends BlockCygnusBase implements ICygnusSparkable {
-	private static final AxisAlignedBB AABB = new AxisAlignedBB(3/16d, 0, 3/16d, 13/16d, 12/16d, 13/16d);
+	private static final AxisAlignedBB AABB = new AxisAlignedBB(3 / 16d, 0, 3 / 16d, 13 / 16d, 12 / 16d, 13 / 16d);
 	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {

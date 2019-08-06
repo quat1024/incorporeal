@@ -35,7 +35,7 @@ public abstract class AbstractBlockNaturalDevice extends Block implements ILexic
 	public static final int TICK_DELAY = 20;
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 	public static final PropertyBool LIT = PropertyBool.create("lit");
-	public static final AxisAlignedBB AABB = new AxisAlignedBB(0, 1/16d, 0, 1, 3/16d, 1);
+	public static final AxisAlignedBB AABB = new AxisAlignedBB(0, 1 / 16d, 0, 1, 3 / 16d, 1);
 	
 	public AbstractBlockNaturalDevice() {
 		super(Material.CIRCUITS, MapColor.BROWN);

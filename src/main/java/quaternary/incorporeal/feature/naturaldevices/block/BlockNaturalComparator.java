@@ -31,7 +31,7 @@ public class BlockNaturalComparator extends AbstractBlockNaturalDevice {
 			return behind.getValue(BlockRedstoneWire.POWER) > 0;
 		} else if(world.getRedstonePower(behindPos, comparatorFacing) > 0) {
 			return true;
-		} else if(behind.isNormalCube()){
+		} else if(behind.isNormalCube()) {
 			BlockPos behind2Pos = pos.offset(comparatorFacing, 2);
 			IBlockState behind2 = world.getBlockState(behind2Pos);
 			if(behind2.hasComparatorInputOverride()) {
@@ -48,7 +48,7 @@ public class BlockNaturalComparator extends AbstractBlockNaturalDevice {
 	//CopyPaste from BlockRedstoneComparator
 	@Nullable
 	private EntityItemFrame findItemFrame(World world, final EnumFacing facing, BlockPos pos) {
-		List<EntityItemFrame> list = world.getEntitiesWithinAABB(EntityItemFrame.class, new AxisAlignedBB((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), (double)(pos.getX() + 1), (double)(pos.getY() + 1), (double)(pos.getZ() + 1)), doot -> doot != null && doot.getHorizontalFacing() == facing);
+		List<EntityItemFrame> list = world.getEntitiesWithinAABB(EntityItemFrame.class, new AxisAlignedBB((double) pos.getX(), (double) pos.getY(), (double) pos.getZ(), (double) (pos.getX() + 1), (double) (pos.getY() + 1), (double) (pos.getZ() + 1)), doot -> doot != null && doot.getHorizontalFacing() == facing);
 		return list.size() == 1 ? list.get(0) : null;
 	}
 }

@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.core.etc.helper.DespacitoHelper;
 import quaternary.incorporeal.core.sortme.IncorporeticLexicon;
-import quaternary.incorporeal.core.sortme.IncorporeticPacketHandler;
+import quaternary.incorporeal.core.IncorporeticPacketHandler;
 import quaternary.incorporeal.feature.corporetics.net.MessageSparkleLine;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -130,7 +130,7 @@ public class SubTileSweetAlexum extends SubTileFunctional implements ILexiconabl
 				}
 			}
 			
-			if(dirtyMana)	sync();
+			if(dirtyMana) sync();
 		}
 	}
 	

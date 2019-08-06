@@ -13,7 +13,10 @@ import quaternary.incorporeal.Incorporeal;
 import vazkii.botania.api.BotaniaAPIClient;
 import vazkii.botania.api.subtile.SubTileEntity;
 
-public class ClientHelpers {
+public final class ClientHelpers {
+	private ClientHelpers() {
+	}
+	
 	public static void setSimpleModel(Item i) {
 		ResourceLocation res = Preconditions.checkNotNull(i.getRegistryName());
 		ModelResourceLocation mrl = new ModelResourceLocation(res, "inventory");

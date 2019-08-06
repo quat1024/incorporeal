@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import quaternary.incorporeal.core.sortme.IncorporeticPacketHandler;
+import quaternary.incorporeal.core.IncorporeticPacketHandler;
 import vazkii.botania.common.Botania;
 
 public class MessageSkytouchingEffect implements IncorporeticPacketHandler.IIncorporeticMessage {

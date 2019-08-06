@@ -1,4 +1,4 @@
-package quaternary.incorporeal.core.etc;
+package quaternary.incorporeal.feature.cygnusnetwork.etc;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Set;
 
 public class SimpleRegistry<T> implements ISimpleRegistry<T> {
-	private BiMap<ResourceLocation, T> registry = HashBiMap.create();
+	private final BiMap<ResourceLocation, T> registry = HashBiMap.create();
 	//used for next/previous operations like scrolling a cygnus card
 	//yes this is dumb
-	private List<T> valuesOrdered = new LinkedList<>();
+	private final List<T> valuesOrdered = new LinkedList<>();
 	private boolean frozen = false;
 	
 	@Override

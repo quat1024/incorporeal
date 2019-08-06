@@ -183,14 +183,14 @@ public class RenderTileSoulCore<T extends AbstractTileSoulCore> extends TileEnti
 	
 	private ResourceLocation getSkullLocation(T te) {
 		ResourceLocation skullLocation = DefaultPlayerSkin.getDefaultSkinLegacy();
-						
+		
 		if(te != null && te.hasOwnerProfile()) {
 			GameProfile skullProfile = te.getOwnerProfile();
 			Minecraft mc = Minecraft.getMinecraft();
 			Map<MinecraftProfileTexture.Type, MinecraftProfileTexture> skin = mc.getSkinManager().loadSkinFromCache(skullProfile);
-				
+			
 			if(skin.containsKey(MinecraftProfileTexture.Type.SKIN)) {
-					skullLocation = mc.getSkinManager().loadSkin(skin.get(MinecraftProfileTexture.Type.SKIN), MinecraftProfileTexture.Type.SKIN);
+				skullLocation = mc.getSkinManager().loadSkin(skin.get(MinecraftProfileTexture.Type.SKIN), MinecraftProfileTexture.Type.SKIN);
 			} else {
 				skullLocation = DefaultPlayerSkin.getDefaultSkin(skullProfile.getId());
 			}

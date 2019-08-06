@@ -26,7 +26,8 @@ public class TileRedStringLiar extends TileRedString implements ICustomWrappedIn
 	public boolean acceptBlock(BlockPos pos) {
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile == null) return false;
-		else return tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null) || tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, getOrientation().getOpposite());
+		else
+			return tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null) || tile.hasCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, getOrientation().getOpposite());
 	}
 	
 	@Override
@@ -62,7 +63,7 @@ public class TileRedStringLiar extends TileRedString implements ICustomWrappedIn
 		List<ItemStack> stacks = new ArrayList<>();
 		
 		for(EnumFacing whichWay : EnumFacing.HORIZONTALS) {
-			List<EntityItemFrame> frames = world.getEntitiesWithinAABB(EntityItemFrame.class, new AxisAlignedBB(pos.offset(whichWay), pos.offset(whichWay).add(1,1,1)));
+			List<EntityItemFrame> frames = world.getEntitiesWithinAABB(EntityItemFrame.class, new AxisAlignedBB(pos.offset(whichWay), pos.offset(whichWay).add(1, 1, 1)));
 			for(EntityItemFrame frame : frames) {
 				EnumFacing orientation = frame.facingDirection;
 				if(orientation == whichWay) {

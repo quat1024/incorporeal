@@ -3,7 +3,7 @@ package quaternary.incorporeal.feature.cygnusnetwork.client.entityrenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import quaternary.incorporeal.core.client.IncorporeticClientIcons;
+import quaternary.incorporeal.feature.cygnusnetwork.client.event.CorporeticIcons;
 import quaternary.incorporeal.feature.cygnusnetwork.entity.EntityCygnusRegularSpark;
 import vazkii.botania.client.core.handler.MiscellaneousIcons;
 import vazkii.botania.client.render.entity.RenderSparkBase;
@@ -15,7 +15,7 @@ public class RenderEntityCygnusRegularSpark extends RenderSparkBase<EntityCygnus
 	
 	@Override
 	protected TextureAtlasSprite getBaseIcon(EntityCygnusRegularSpark entity) {
-		return IncorporeticClientIcons.cygnusSpark;
+		return CorporeticIcons.cygnusSpark;
 	}
 	
 	@Override

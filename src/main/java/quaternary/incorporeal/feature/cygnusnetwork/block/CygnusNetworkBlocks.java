@@ -5,10 +5,12 @@ import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.core.BlocksModule;
 
 public final class CygnusNetworkBlocks extends BlocksModule {
-	private CygnusNetworkBlocks() {}
+	private CygnusNetworkBlocks() {
+	}
 	
 	public static final class RegistryNames {
-		private RegistryNames() {}
+		private RegistryNames() {
+		}
 		
 		public static final String WORD = "cygnus_word";
 		public static final String CRYSTAL_CUBE = "cygnus_crystal_cube";
@@ -16,10 +18,10 @@ public final class CygnusNetworkBlocks extends BlocksModule {
 		public static final String RETAINER = "cygnus_retainer";
 	}
 	
-	public static BlockCygnusWord WORD = totallyNotNull();
-	public static BlockCygnusCrystalCube CRYSTAL_CUBE = totallyNotNull();
-	public static BlockCygnusFunnel FUNNEL = totallyNotNull();
-	public static BlockCygnusRetainer RETAINER = totallyNotNull();
+	public static BlockCygnusWord WORD = null;
+	public static BlockCygnusCrystalCube CRYSTAL_CUBE = null;
+	public static BlockCygnusFunnel FUNNEL = null;
+	public static BlockCygnusRetainer RETAINER = null;
 	
 	public static void registerBlocks(IForgeRegistry<Block> blocks) {
 		blocks.registerAll(

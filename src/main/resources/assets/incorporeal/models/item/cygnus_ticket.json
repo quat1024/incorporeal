@@ -3,10 +3,12 @@
 	"textures": {
 		"layer0": "incorporeal:item/cygnus/ticket/blank"
 	},
-	"overrides": [{
-		"predicate": {
-			"incorporeal:written_ticket": 1
-		},
-		"model": "incorporeal:item/cygnus_ticket_written"
-	}]
+	"overrides": [
+		{
+			"predicate": {
+				"incorporeal:written_ticket": 1
+			},
+			"model": "incorporeal:item/cygnus_ticket_written"
+		}
+	]
 }

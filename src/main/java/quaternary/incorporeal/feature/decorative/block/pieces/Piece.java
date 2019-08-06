@@ -18,6 +18,7 @@ import java.util.function.Consumer;
 //kinda sketchy "pieces" system to quickly add new stairs/slabs/cruft, inspired a bit by extrapieces
 public abstract class Piece<B extends Block, I extends Item> {
 	public abstract void forEachBlock(Consumer<? super B> func);
+	
 	public abstract void forEachItem(Consumer<? super I> func);
 	
 	public Piece(Block derivedBlock, String type) {
@@ -39,7 +40,7 @@ public abstract class Piece<B extends Block, I extends Item> {
 	
 	//must override if you don't use itemblocks
 	public void nameItems() {
-		forEachItem(i -> ItemsModule.itemBlock((ItemBlock)i));
+		forEachItem(i -> ItemsModule.itemBlock((ItemBlock) i));
 	}
 	
 	public static class Wall extends Piece<BlockWall, ItemBlock> {
@@ -47,6 +48,7 @@ public abstract class Piece<B extends Block, I extends Item> {
 			super(block, "wall");
 			
 			wallBlock = new BlockWall(block);
+			wallItem = new ItemBlock(wallBlock);
 		}
 		
 		public BlockWall wallBlock;
@@ -94,8 +96,8 @@ public abstract class Piece<B extends Block, I extends Item> {
 		
 		@Override
 		public void nameBlocks() {
-			BlocksModule.name(fenceBlock, parentName() + "fence");
-			BlocksModule.name(fenceGateBlock, parentName() + "fence_gate");
+			BlocksModule.name(fenceBlock, parentName() + "_fence");
+			BlocksModule.name(fenceGateBlock, parentName() + "_fence_gate");
 		}
 	}
 	

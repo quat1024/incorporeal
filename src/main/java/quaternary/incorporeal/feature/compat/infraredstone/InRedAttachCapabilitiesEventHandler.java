@@ -7,7 +7,6 @@ package quaternary.incorporeal.feature.compat.infraredstone;
 
 import com.elytradev.infraredstone.InfraRedstone;
 import com.elytradev.infraredstone.api.IInfraRedstone;
-import com.elytradev.infraredstone.logic.impl.InfraRedstoneHandler;
 import com.elytradev.infraredstone.tile.TileEntityDiode;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -17,19 +16,21 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
-import quaternary.incorporeal.feature.cygnusnetwork.cap.AttachCapabilitiesEventHandler;
-import quaternary.incorporeal.feature.cygnusnetwork.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.core.etc.LazyGenericCapabilityProvider;
-import quaternary.incorporeal.feature.cygnusnetwork.tile.TileCygnusFunnel;
+import quaternary.incorporeal.feature.cygnusnetwork.cap.CygnusAttachCapabilitiesEventHandler;
+import quaternary.incorporeal.feature.cygnusnetwork.cap.IncorporeticCygnusCapabilities;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.math.BigInteger;
 
-public class InRedAttachCapabilitiesEventHandler {
+public final class InRedAttachCapabilitiesEventHandler {
+	private InRedAttachCapabilitiesEventHandler() {
+	}
+	
 	public static final Capability<IInfraRedstone> INFRA_READABLE_CAP = InfraRedstone.CAPABILITY_IR;
 	
-	private static final ResourceLocation FUNNEL_HANDLER = AttachCapabilitiesEventHandler.FUNNEL_HANDLER;
+	private static final ResourceLocation FUNNEL_HANDLER = CygnusAttachCapabilitiesEventHandler.FUNNEL_HANDLER;
 	private static final ResourceLocation INRED_CABLE_HANDLER = new ResourceLocation("incorporeal", "inred_compat_cable");
 	private static final ResourceLocation CATCHALL_FUNNEL_HANDLER = new ResourceLocation("incorporeal", "catchall_funnel_handler");
 	
@@ -37,6 +38,7 @@ public class InRedAttachCapabilitiesEventHandler {
 	public static void tileCaps(AttachCapabilitiesEvent<TileEntity> e) {
 		TileEntity tile = e.getObject();
 		
+		/*
 		//This just makes inred cables point towards cygnus funnels
 		//Which makes it possible for them to read their value
 		if(tile instanceof TileCygnusFunnel) {
@@ -47,6 +49,7 @@ public class InRedAttachCapabilitiesEventHandler {
 			
 			return;
 		}
+		*/
 		
 		//Infraredstone diodes
 		if(tile instanceof TileEntityDiode) {
@@ -69,11 +72,11 @@ public class InRedAttachCapabilitiesEventHandler {
 			
 			@Nullable
 			@Override
+			@SuppressWarnings("unchecked")
 			public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
 				if(capability == IncorporeticCygnusCapabilities.FUNNEL_CAP) {
 					IInfraRedstone ir = tile.getCapability(InfraRedstone.CAPABILITY_IR, facing);
 					if(ir == null) return null;
-					//noinspection unchecked
 					else return (T) new InfraReadableFunnelable(ir); //TODO cache...?
 				} else return null;
 			}
@@ -127,7 +130,7 @@ public class InRedAttachCapabilitiesEventHandler {
 			if(item instanceof BigInteger) {
 				//Amusingly there isn't a way to just set the mask on a diode.
 				//Apart from individually triggering every switch! :D
-				int newMask = Math.abs(((BigInteger)item).intValue()) & 0b11_1111;
+				int newMask = Math.abs(((BigInteger) item).intValue()) & 0b11_1111;
 				int mask = diode.getMask();
 				
 				int bitId = 0;

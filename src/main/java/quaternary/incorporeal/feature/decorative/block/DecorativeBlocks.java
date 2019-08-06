@@ -3,14 +3,17 @@ package quaternary.incorporeal.feature.decorative.block;
 import net.minecraft.block.Block;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.core.BlocksModule;
+import quaternary.incorporeal.core.etc.helper.EtcHelpers;
 import quaternary.incorporeal.feature.decorative.block.pieces.PieceBuilder;
 import quaternary.incorporeal.feature.decorative.block.pieces.PieceManager;
 
 public final class DecorativeBlocks extends BlocksModule {
-	private DecorativeBlocks() {}
+	private DecorativeBlocks() {
+	}
 	
 	public static final class RegistryNames {
-		private RegistryNames() {}
+		private RegistryNames() {
+		}
 		
 		public static final String UNSTABLE_CUBE = "unstable_cube";
 		public static final String RED_STRING_TILE = "red_string_deco";
@@ -22,14 +25,14 @@ public final class DecorativeBlocks extends BlocksModule {
 		public static final String LOKIW = "lokiw";
 	}
 	
-	public static BlockUnstableCube UNSTABLE_CUBE = totallyNotNull();
+	public static BlockUnstableCube UNSTABLE_CUBE = null;
 	
-	public static BlockRedStringDeco RED_STRING_TILE = totallyNotNull();
-	public static BlockCorporeaDeco CORPOREA_TILE = totallyNotNull();
-	public static BlockRedStringDeco RED_STRING_FROST = totallyNotNull();
-	public static BlockCorporeaDeco CORPOREA_BRICKS = totallyNotNull();
+	public static BlockRedStringDeco RED_STRING_TILE = null;
+	public static BlockCorporeaDeco CORPOREA_TILE = null;
+	public static BlockRedStringDeco RED_STRING_FROST = null;
+	public static BlockCorporeaDeco CORPOREA_BRICKS = null;
 	
-	public static BlockForgottenShrine FORGOTTEN_SHRINE = totallyNotNull();
+	public static BlockForgottenShrine FORGOTTEN_SHRINE = null;
 	
 	public static PieceManager redStringTilePieces;
 	public static PieceManager corporeaBrickPieces;
@@ -37,7 +40,7 @@ public final class DecorativeBlocks extends BlocksModule {
 	public static PieceManager lokiwPieces;
 	
 	//holy artifact
-	public static BlockLokiW LOKIW = totallyNotNull();
+	public static BlockLokiW LOKIW = null;
 	
 	public static void registerBlocks(IForgeRegistry<Block> blocks) {
 		blocks.registerAll(
@@ -53,17 +56,13 @@ public final class DecorativeBlocks extends BlocksModule {
 		);
 		
 		redStringTilePieces = new PieceBuilder(RED_STRING_TILE).addStair().addSlab().build();
-		corporeaBrickPieces = new PieceBuilder(CORPOREA_TILE).addStair().addSlab().addWall().build();
+		corporeaBrickPieces = new PieceBuilder(CORPOREA_BRICKS).addStair().addSlab().addWall().build();
 		corporeaTilePieces = new PieceBuilder(CORPOREA_TILE).addStair().addSlab().build();
 		lokiwPieces = new PieceBuilder(LOKIW).addStair().addSlab().addFence().addWall().build();
 		
-		finishManagers(blocks, redStringTilePieces, corporeaBrickPieces, corporeaTilePieces, lokiwPieces);
-	}
-	
-	private static void finishManagers(IForgeRegistry<Block> blocks, PieceManager... mgrs) {
-		for(PieceManager mgr : mgrs) {
-			mgr.nameBlocks();
-			mgr.forEachBlock(blocks::register);
-		}
+		EtcHelpers.forEach((m) -> {
+			m.nameBlocks();
+			m.forEachBlock(blocks::register);
+		}, redStringTilePieces, corporeaBrickPieces, corporeaTilePieces, lokiwPieces);
 	}
 }

@@ -3,13 +3,14 @@ package quaternary.incorporeal.feature.corporetics.block;
 import net.minecraft.block.Block;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.core.BlocksModule;
-import quaternary.incorporeal.core.etc.helper.EtcHelpers;
 
 public final class CorporeticsBlocks extends BlocksModule {
-	private CorporeticsBlocks() {}
+	private CorporeticsBlocks() {
+	}
 	
 	public static final class RegistryNames {
-		private RegistryNames() {}
+		private RegistryNames() {
+		}
 		
 		public static final String CORPOREA_INHIBITOR = "corporea_inhibitor";
 		public static final String CORPOREA_SOLIDIFIER = "corporea_solidifier";
@@ -19,12 +20,12 @@ public final class CorporeticsBlocks extends BlocksModule {
 		public static final String RED_STRING_LIAR = "red_string_liar";
 	}
 	
-	public static BlockCorporeaInhibitor CORPOREA_INHIBITOR = totallyNotNull();
-	public static BlockCorporeaSolidifier CORPOREA_SOLIDIFIER = totallyNotNull();
-	public static BlockCorporeaSparkTinkerer CORPOREA_SPARK_TINKERER = totallyNotNull();
-	public static BlockCorporeaRetainerDecrementer CORPOREA_RETAINER_DECREMENTER = totallyNotNull();
-	public static BlockFrameTinkerer FRAME_TINKERER = totallyNotNull();
-	public static BlockRedStringLiar RED_STRING_LIAR = totallyNotNull();
+	public static BlockCorporeaInhibitor CORPOREA_INHIBITOR = null;
+	public static BlockCorporeaSolidifier CORPOREA_SOLIDIFIER = null;
+	public static BlockCorporeaSparkTinkerer CORPOREA_SPARK_TINKERER = null;
+	public static BlockCorporeaRetainerDecrementer CORPOREA_RETAINER_DECREMENTER = null;
+	public static BlockFrameTinkerer FRAME_TINKERER = null;
+	public static BlockRedStringLiar RED_STRING_LIAR = null;
 	
 	public static void registerBlocks(IForgeRegistry<Block> blocks) {
 		blocks.registerAll(

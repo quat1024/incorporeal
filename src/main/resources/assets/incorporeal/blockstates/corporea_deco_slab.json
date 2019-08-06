@@ -9,10 +9,12 @@
 		}
 	},
 	"variants": {
-		"half=top": [{
-			"x": 180,
-			"uvlock": true
-		}],
+		"half=top": [
+			{
+				"x": 180,
+				"uvlock": true
+			}
+		],
 		"half=bottom": [{}],
 		"inventory": [{}]
 	}

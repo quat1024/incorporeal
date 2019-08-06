@@ -1,4 +1,4 @@
-package quaternary.incorporeal.core.etc;
+package quaternary.incorporeal.feature.cygnusnetwork.etc;
 
 import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.block.state.IBlockState;

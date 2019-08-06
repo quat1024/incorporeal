@@ -9,7 +9,8 @@ import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 
 public final class CygnusDatatypeHelpers {
-	private CygnusDatatypeHelpers() {}
+	private CygnusDatatypeHelpers() {
+	}
 	
 	//A map of the class a datatype represents to the datatype.
 	private static final BiMap<Class, ICygnusDatatype<?>> typesByClass = HashBiMap.create();
@@ -20,7 +21,7 @@ public final class CygnusDatatypeHelpers {
 	
 	private static BiMap<ResourceLocation, ICygnusDatatype<?>> typesByResourceLocation;
 	
-	public static void init() {
+	public static void register() {
 		if(!typesByClass.isEmpty()) throw new IllegalStateException("Already initialized");
 		
 		typesByResourceLocation = Incorporeal.API.getCygnusDatatypeRegistry().backingMap();

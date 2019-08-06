@@ -16,16 +16,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
+import quaternary.incorporeal.core.etc.helper.EtcHelpers;
 import quaternary.incorporeal.feature.corporetics.item.CorporeticsItems;
+import quaternary.incorporeal.feature.corporetics.item.ItemTicketConjurer;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusDatatypeHelpers;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusRegistries;
-import quaternary.incorporeal.core.etc.helper.EtcHelpers;
-import quaternary.incorporeal.feature.corporetics.item.ItemTicketConjurer;
 import quaternary.incorporeal.feature.cygnusnetwork.item.CygnusNetworkItems;
 import quaternary.incorporeal.feature.cygnusnetwork.tile.TileCygnusCrystalCube;
 import quaternary.incorporeal.feature.cygnusnetwork.tile.TileCygnusRetainer;
@@ -35,9 +33,21 @@ import vazkii.botania.common.block.tile.corporea.TileCorporeaIndex;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod.EventBusSubscriber(modid = Incorporeal.MODID, value = Side.CLIENT)
+//TODO: split this up into modules? I don't think it's worth it
+//Call ensureRegistered from preinit in all modules using this event,
+//Modules using this class: Corporetics, Cygnus
 public final class PostRenderGameOverlayEventHandler {
-	private PostRenderGameOverlayEventHandler() {}
+	private PostRenderGameOverlayEventHandler() {
+	}
+	
+	private static boolean registered = false;
+	
+	public static void ensureRegistered() {
+		if(!registered) {
+			MinecraftForge.EVENT_BUS.register(PostRenderGameOverlayEventHandler.class);
+			registered = true;
+		}
+	}
 	
 	@SubscribeEvent
 	public static void onDrawScreen(RenderGameOverlayEvent.Post e) {
@@ -47,22 +57,23 @@ public final class PostRenderGameOverlayEventHandler {
 			ItemStack heldOff = mc.player.getHeldItemOffhand();
 			ScaledResolution res = e.getResolution();
 			
+			//Corporetics
 			if(mc.currentScreen instanceof GuiChat && (heldMain.getItem() instanceof ItemTicketConjurer || heldOff.getItem() instanceof ItemTicketConjurer)) {
 				drawConjurerOverlay(mc, res);
 			}
 			
 			RayTraceResult trace = mc.objectMouseOver;
 			if(trace != null) {
-				BlockPos hitPos = null;
 				IBlockState hitState = null;
 				TileEntity hitTile = null;
 				if(trace.typeOfHit == RayTraceResult.Type.BLOCK) {
-					hitPos = trace.getBlockPos();
+					BlockPos hitPos = trace.getBlockPos();
 					hitState = mc.world.getBlockState(hitPos);
 					hitTile = mc.world.getTileEntity(hitPos);
 				}
 				
 				if(hitState != null) {
+					//Cygnus
 					if(hitTile instanceof TileCygnusCrystalCube) {
 						drawCygnusCrystalCubeOverlay(res, (TileCygnusCrystalCube) hitTile);
 					} else if(hitTile instanceof TileCygnusRetainer) {
@@ -103,7 +114,7 @@ public final class PostRenderGameOverlayEventHandler {
 		mc.fontRenderer.drawStringWithShadow(txt2, x + 20, y + 24, 0xFFFFFF);
 	}
 	
-	private static ItemStack cygnusCrystalCubeCardStack = new ItemStack(CygnusNetworkItems.CRYSTAL_CUBE_CARD);
+	private static final ItemStack cygnusCrystalCubeCardStack = new ItemStack(CygnusNetworkItems.CRYSTAL_CUBE_CARD);
 	
 	private static void drawCygnusCrystalCubeOverlay(ScaledResolution res, TileCygnusCrystalCube tile) {
 		//copy paste from HudHander of course

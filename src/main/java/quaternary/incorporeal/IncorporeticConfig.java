@@ -1,37 +1,35 @@
 package quaternary.incorporeal;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod.EventBusSubscriber
 public final class IncorporeticConfig {
-	private IncorporeticConfig() {}
+	private IncorporeticConfig() {
+	}
 	
 	public static final class Sanvocalia {
-		private Sanvocalia() {}
+		private Sanvocalia() {
+		}
 		
 		public static boolean EVERYONE_HEARS_MESSAGES = true;
 	}
 	
 	public static final class SoulCore {
-		private SoulCore() {}
+		private SoulCore() {
+		}
 		
 		public static boolean DEBUG_BLOODCORE_ENTITIES = false;
-	}
-	
-	public static final class Compat {
-		private Compat() {}
-		
-		public static boolean INFRAREDSTONE = true;
 	}
 	
 	public static Configuration config;
 	
 	static void preinit(FMLPreInitializationEvent e) {
-		config = new Configuration(e.getSuggestedConfigurationFile(), "2");
+		MinecraftForge.EVENT_BUS.register(IncorporeticConfig.class);
+		
+		config = new Configuration(e.getSuggestedConfigurationFile(), "3");
 		config.load();
 		
 		if("1".equals(config.getLoadedConfigVersion())) {
@@ -39,6 +37,9 @@ public final class IncorporeticConfig {
 			config.removeCategory(config.getCategory("soulcore"));
 			config.removeCategory(config.getCategory("etc"));
 			config.removeCategory(config.getCategory("general"));
+		} else if("2".equals(config.getLoadedConfigVersion())) {
+			//Moved to module system
+			config.removeCategory(config.getCategory("compat"));
 		}
 		
 		readConfig();
@@ -64,7 +65,7 @@ public final class IncorporeticConfig {
 				description += oof.toString();
 			}
 			
-			boolean isEnabled = config.get(category, name, description).setRequiresMcRestart(true).getBoolean();
+			boolean isEnabled = config.get(category, name, true, description).setRequiresMcRestart(true).getBoolean();
 			
 			if(isEnabled) IncorporeticFeatures.enableFeature(f);
 		});

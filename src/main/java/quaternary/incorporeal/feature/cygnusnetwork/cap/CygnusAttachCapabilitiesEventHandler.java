@@ -7,8 +7,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
@@ -25,8 +25,14 @@ import vazkii.botania.common.block.tile.corporea.TileCorporeaRetainer;
 
 import javax.annotation.Nullable;
 
-@Mod.EventBusSubscriber
-public class AttachCapabilitiesEventHandler {
+public final class CygnusAttachCapabilitiesEventHandler {
+	private CygnusAttachCapabilitiesEventHandler() {
+	}
+	
+	public static void register() {
+		MinecraftForge.EVENT_BUS.register(CygnusAttachCapabilitiesEventHandler.class);
+	}
+	
 	public static final ResourceLocation FUNNEL_HANDLER = new ResourceLocation(Incorporeal.MODID, "cygnus_funnel_handler");
 	
 	@SubscribeEvent
@@ -120,12 +126,12 @@ public class AttachCapabilitiesEventHandler {
 		public boolean canGiveCygnusItem() {
 			return !crystalCube.getRequestTarget().isEmpty();
 		}
-
+		
 		@Override
 		public boolean canAcceptCygnusItem() {
 			return true;
 		}
-
+		
 		@Override
 		public Object giveItemToCygnus() {
 			ItemStack item = crystalCube.getRequestTarget();
@@ -136,7 +142,7 @@ public class AttachCapabilitiesEventHandler {
 			
 			return new CorporeaRequest(item2, true, count);
 		}
-
+		
 		@Override
 		public void acceptItemFromCygnus(Object item) {
 			if(item instanceof CorporeaRequest) {
@@ -173,6 +179,7 @@ public class AttachCapabilitiesEventHandler {
 	//a helper used for the item entity & item frame funnelables since they are similar
 	private static abstract class AbstractItemStackFunnelable implements ICygnusFunnelable {
 		protected abstract ItemStack getStack();
+		
 		protected abstract void setStack(ItemStack stack);
 		
 		private ItemCygnusTicket asTicket() {

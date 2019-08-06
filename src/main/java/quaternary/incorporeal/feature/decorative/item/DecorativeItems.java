@@ -5,19 +5,20 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemCloth;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.core.ItemsModule;
+import quaternary.incorporeal.core.etc.helper.EtcHelpers;
 import quaternary.incorporeal.feature.decorative.block.DecorativeBlocks;
-import quaternary.incorporeal.feature.decorative.block.pieces.PieceManager;
 
-public class DecorativeItems extends ItemsModule {
-	private DecorativeItems() {}
+public final class DecorativeItems extends ItemsModule {
+	private DecorativeItems() {
+	}
 	
-	public static ItemBlock UNSTABLE_CUBE = totallyNotNull();
-	public static ItemBlock RED_STRING_TILE = totallyNotNull();
-	public static ItemBlock CORPOREA_TILE = totallyNotNull();
-	public static ItemBlock RED_STRING_FROST = totallyNotNull();
-	public static ItemBlock CORPOREA_BRICKS = totallyNotNull();
-	public static ItemBlock FORGOTTEN_SHRINE = totallyNotNull();
-	public static ItemBlock LOKIW = totallyNotNull();
+	public static ItemBlock UNSTABLE_CUBE = null;
+	public static ItemBlock RED_STRING_TILE = null;
+	public static ItemBlock CORPOREA_TILE = null;
+	public static ItemBlock RED_STRING_FROST = null;
+	public static ItemBlock CORPOREA_BRICKS = null;
+	public static ItemBlock FORGOTTEN_SHRINE = null;
+	public static ItemBlock LOKIW = null;
 	
 	public static void registerItems(IForgeRegistry<Item> items) {
 		items.registerAll(
@@ -31,18 +32,9 @@ public class DecorativeItems extends ItemsModule {
 		);
 		
 		//probably a better place to home these so i'm not having to borrow from the blocks class...ah well
-		finishManagers(items,
-			DecorativeBlocks.redStringTilePieces,
-			DecorativeBlocks.corporeaBrickPieces,
-			DecorativeBlocks.corporeaTilePieces,
-			DecorativeBlocks.lokiwPieces
-		);
-	}
-	
-	private static void finishManagers(IForgeRegistry<Item> items, PieceManager...mgrs) {
-		for(PieceManager mgr : mgrs) {
-			mgr.nameItems();
-			mgr.forEachItem(items::register);
-		}
+		EtcHelpers.forEach((m) -> {
+			m.nameItems();
+			m.forEachItem(items::register);
+		}, DecorativeBlocks.redStringTilePieces, DecorativeBlocks.corporeaBrickPieces, DecorativeBlocks.corporeaTilePieces, DecorativeBlocks.lokiwPieces);
 	}
 }

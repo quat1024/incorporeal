@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public final class CorporeaHelper2 {
-	private CorporeaHelper2() {}
+	private CorporeaHelper2() { }
 	
 	public static EntityCorporeaSpark getSparkEntityForBlock(World world, BlockPos pos) {
 		List<EntityCorporeaSpark> sparks = world.getEntitiesWithinAABB(EntityCorporeaSpark.class, new AxisAlignedBB(pos.up(), pos.add(1, 2, 1)));
@@ -49,7 +49,7 @@ public final class CorporeaHelper2 {
 			EntityItem ent = new EntityItem(w);
 			ent.setItem(stack);
 			ent.setPosition(spawningPos.x, spawningPos.y, spawningPos.z);
-			w.spawnEntity(ent);			
+			w.spawnEntity(ent);
 		}
 	}
 	
@@ -63,7 +63,11 @@ public final class CorporeaHelper2 {
 		boolean pluralize = false;
 		
 		if(request.matcher instanceof ItemStack) {
-			item = ((ItemStack)request.matcher).getDisplayName().toLowerCase();
+			//This string is already localized in the user's display language.
+			//I don't think there's a way to get a java locale from a Minecraft language,
+			//so I'm just guessing that it's probably similar to their computer's locale.
+			//noinspection StringToUpperCaseOrToLowerCaseWithoutLocale
+			item = ((ItemStack) request.matcher).getDisplayName().toLowerCase();
 		} else item = request.matcher.toString();
 		
 		if(request.count == 0) {
@@ -110,11 +114,11 @@ public final class CorporeaHelper2 {
 			Object matcher = ReflectionHelper.getPrivateValue(TileCorporeaRetainer.class, retainer, "request");
 			if(matcher == null) return null;
 			else return new CorporeaRequest(
-							matcher,
-							false,
-							ReflectionHelper.getPrivateValue(TileCorporeaRetainer.class, retainer, "requestCount")
+				matcher,
+				false,
+				ReflectionHelper.getPrivateValue(TileCorporeaRetainer.class, retainer, "requestCount")
 			);
-		} catch (RuntimeException oof) {
+		} catch(RuntimeException oof) {
 			throw new RuntimeException("There was a problem doing hacky reflective access on a corporea retainer!", oof);
 		}
 	}
@@ -123,7 +127,7 @@ public final class CorporeaHelper2 {
 		try {
 			clearRetainer(retainer);
 			retainer.setPendingRequest(ReflectionHelper.getPrivateValue(TileCorporeaRetainer.class, retainer, "requestPos"), request.matcher, request.count);
-		} catch (RuntimeException oof) {
+		} catch(RuntimeException oof) {
 			throw new RuntimeException("There was a problem doing hacky reflective access on a corporea retainer!", oof);
 		}
 	}
@@ -134,7 +138,7 @@ public final class CorporeaHelper2 {
 			ReflectionHelper.setPrivateValue(TileCorporeaRetainer.class, retainer, 0, "compValue");
 			ReflectionHelper.setPrivateValue(TileCorporeaRetainer.class, retainer, null, "request");
 			retainer.getWorld().updateComparatorOutputLevel(retainer.getPos(), retainer.getBlockType());
-		} catch (RuntimeException oof) {
+		} catch(RuntimeException oof) {
 			throw new RuntimeException("There was a problem doing hacky reflective access on a corporea retainer!", oof);
 		}
 	}

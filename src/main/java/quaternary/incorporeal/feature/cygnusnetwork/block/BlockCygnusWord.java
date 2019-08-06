@@ -16,8 +16,8 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 import quaternary.incorporeal.api.cygnus.ICygnusSparkable;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.core.IncorporeticStateProps;
-import quaternary.incorporeal.feature.cygnusnetwork.entity.EntityCygnusMasterSpark;
 import quaternary.incorporeal.core.etc.helper.CygnusHelpers;
+import quaternary.incorporeal.feature.cygnusnetwork.entity.EntityCygnusMasterSpark;
 import quaternary.incorporeal.feature.cygnusnetwork.item.ItemCygnusWordCard;
 import quaternary.incorporeal.feature.cygnusnetwork.tile.TileCygnusWord;
 import vazkii.botania.api.state.BotaniaStateProps;
@@ -55,7 +55,7 @@ public class BlockCygnusWord extends BlockCygnusBase implements ICygnusSparkable
 			EntityCygnusMasterSpark master = CygnusHelpers.getMasterSparkForSparkAt(world, pos);
 			TileEntity tile = world.getTileEntity(pos);
 			if(master != null && tile instanceof TileCygnusWord) {
-				((TileCygnusWord)tile).accept(master.getCygnusStack());
+				((TileCygnusWord) tile).accept(master.getCygnusStack());
 			}
 		}
 	}
@@ -108,7 +108,7 @@ public class BlockCygnusWord extends BlockCygnusBase implements ICygnusSparkable
 		IExtendedBlockState stateExt = (IExtendedBlockState) state;
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile instanceof TileCygnusWord) {
-			stateExt = stateExt.withProperty(UNLISTED_ACTION, ((TileCygnusWord)tile).getAction());
+			stateExt = stateExt.withProperty(UNLISTED_ACTION, ((TileCygnusWord) tile).getAction());
 		}
 		return stateExt;
 	}

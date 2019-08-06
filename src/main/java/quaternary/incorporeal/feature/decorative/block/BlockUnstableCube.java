@@ -44,6 +44,7 @@ public class BlockUnstableCube extends Block implements ILexiconable {
 	//This is to account for the visual rotation of it not usually matching up with an AABB very well
 	//It felt weird to be able to click the corners of it but still click through the block.
 	public static final AxisAlignedBB AABB = new AxisAlignedBB(.2, .2, .2, .8, .8, .8);
+	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return AABB;
@@ -63,7 +64,7 @@ public class BlockUnstableCube extends Block implements ILexiconable {
 	private static void punch(World world, BlockPos pos) {
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile instanceof TileUnstableCube) {
-			((TileUnstableCube)tile).punch();
+			((TileUnstableCube) tile).punch();
 		}
 	}
 	

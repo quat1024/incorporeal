@@ -8,8 +8,9 @@ import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.recipe.RecipeRuneAltar;
 import vazkii.botania.common.item.ModItems;
 
-public class SoulCoresRuneRecipes {
-	private SoulCoresRuneRecipes() {}
+public final class SoulCoresRuneRecipes {
+	private SoulCoresRuneRecipes() {
+	}
 	
 	public static RecipeRuneAltar soulCoreFrame;
 	public static RecipeRuneAltar enderSoulCore;
@@ -41,14 +42,14 @@ public class SoulCoresRuneRecipes {
 	
 	public static RecipeRuneAltar createStandardSoulCoreRecipe(int price, Item out, ItemStack special) {
 		return BotaniaAPI.registerRuneAltarRecipe(
-						new ItemStack(out),
-						price,
-						new ItemStack(SoulCoresItems.SOUL_CORE_FRAME),
-						new ItemStack(ModItems.manaResource, 1, 9), //dragonstone
-						new ItemStack(ModItems.manaResource, 1, 9), //dragonstone
-						new ItemStack(ModItems.manaResource, 1, 22), //manaweave cloth
-						new ItemStack(ModItems.manaResource, 1, 22), //manaweave cloth
-						special
+			new ItemStack(out),
+			price,
+			new ItemStack(SoulCoresItems.SOUL_CORE_FRAME),
+			new ItemStack(ModItems.manaResource, 1, 9), //dragonstone
+			new ItemStack(ModItems.manaResource, 1, 9), //dragonstone
+			new ItemStack(ModItems.manaResource, 1, 22), //manaweave cloth
+			new ItemStack(ModItems.manaResource, 1, 22), //manaweave cloth
+			special
 		);
 	}
 }

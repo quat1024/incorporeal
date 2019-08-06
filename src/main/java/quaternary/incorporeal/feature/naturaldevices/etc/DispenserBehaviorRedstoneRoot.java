@@ -1,4 +1,4 @@
-package quaternary.incorporeal.core.etc;
+package quaternary.incorporeal.feature.naturaldevices.etc;
 
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
 import net.minecraft.dispenser.IBlockSource;
@@ -13,7 +13,7 @@ public class DispenserBehaviorRedstoneRoot extends BehaviourSeeds {
 		super(NaturalDevicesBlocks.REDSTONE_ROOT_CROP);
 	}
 	
-	BehaviorDefaultDispenseItem defaultBehavior = new BehaviorDefaultDispenseItem();
+	private final BehaviorDefaultDispenseItem defaultBehavior = new BehaviorDefaultDispenseItem();
 	
 	@Nonnull
 	@Override

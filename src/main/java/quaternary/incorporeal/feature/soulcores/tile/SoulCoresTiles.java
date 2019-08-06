@@ -3,7 +3,8 @@ package quaternary.incorporeal.feature.soulcores.tile;
 import quaternary.incorporeal.core.TilesModule;
 
 public final class SoulCoresTiles extends TilesModule {
-	private SoulCoresTiles() {}
+	private SoulCoresTiles() {
+	}
 	
 	public static void registerTiles() {
 		reg(TileEnderSoulCore.class, "ender_soul_core");

@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 //An optional with two items.
 //Either one can be available, or both.
 //Is this overkill? Yeah, probably.
-public class BiOptional<A, B> {
+public final class BiOptional<A, B> {
 	private BiOptional(A a, B b) {
 		this.a = a;
 		this.b = b;

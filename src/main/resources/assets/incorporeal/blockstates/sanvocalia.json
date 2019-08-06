@@ -1,18 +1,22 @@
 {
 	"forge_marker": 1,
 	"variants": {
-		"normal": [{
-			"model": "botania:shapes/cross_tinted",
-			"textures": {
-				"cross": "incorporeal:block/sanvocalia/bigboi"
+		"normal": [
+			{
+				"model": "botania:shapes/cross_tinted",
+				"textures": {
+					"cross": "incorporeal:block/sanvocalia/bigboi"
+				}
 			}
-		}],
-		"inventory": [{
-			"model": "builtin/generated",
-			"transform": "forge:default-item",
-			"textures": {
-				"layer0": "incorporeal:block/sanvocalia/bigboi"
+		],
+		"inventory": [
+			{
+				"model": "builtin/generated",
+				"transform": "forge:default-item",
+				"textures": {
+					"layer0": "incorporeal:block/sanvocalia/bigboi"
+				}
 			}
-		}]
+		]
 	}
 }

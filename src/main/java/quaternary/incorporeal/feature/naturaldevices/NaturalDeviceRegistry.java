@@ -1,4 +1,4 @@
-package quaternary.incorporeal.api.impl;
+package quaternary.incorporeal.feature.naturaldevices;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -10,9 +10,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
 
-public final class IncorporealNaturalDeviceRegistry implements INaturalDeviceRegistry {
-	IncorporealNaturalDeviceRegistry() {}
-	
+public final class NaturalDeviceRegistry implements INaturalDeviceRegistry {
 	private final List<Pair<Function<Random, IBlockState>, Double>> devices = new ArrayList<>();
 	private double totalWeight = 0;
 	

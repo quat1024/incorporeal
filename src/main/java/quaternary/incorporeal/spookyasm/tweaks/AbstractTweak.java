@@ -8,10 +8,13 @@ import java.util.List;
 
 public abstract class AbstractTweak implements Opcodes {
 	protected abstract String describe(String transformedName);
+	
 	protected abstract List<String> computeAffectedClassNames();
+	
 	protected abstract void patch(ClassNode node, String transformedName);
 	
 	private List<String> cache = null;
+	
 	public List<String> getAffectedClassNames() {
 		if(cache == null) cache = computeAffectedClassNames();
 		return cache;

@@ -1,4 +1,4 @@
-package quaternary.incorporeal.core.etc;
+package quaternary.incorporeal.feature.cygnusnetwork.etc;
 
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.datasync.DataParameter;
@@ -10,7 +10,7 @@ import quaternary.incorporeal.feature.cygnusnetwork.CygnusStack;
 public class CygnusStackDataSerializer implements DataSerializer<CygnusStack> {
 	public static final CygnusStackDataSerializer INST = new CygnusStackDataSerializer();
 	
-	public static void preinit(FMLPreInitializationEvent e) {
+	public static void register(FMLPreInitializationEvent e) {
 		DataSerializers.registerSerializer(INST);
 	}
 	

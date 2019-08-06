@@ -2,10 +2,12 @@ package quaternary.incorporeal;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -21,22 +23,22 @@ import org.apache.logging.log4j.Logger;
 import quaternary.incorporeal.api.IIncorporealAPI;
 import quaternary.incorporeal.api.feature.IFeature;
 import quaternary.incorporeal.api.impl.IncorporealAPI;
-import quaternary.incorporeal.core.etc.EnumDyeColorDataSerializer;
+import quaternary.incorporeal.core.FlowersModule;
+import quaternary.incorporeal.core.IncorporeticPacketHandler;
 import quaternary.incorporeal.core.etc.proxy.ServerProxy;
+import quaternary.incorporeal.core.event.MigrationEvents;
 import quaternary.incorporeal.core.sortme.IncorporeticLexicon;
-import quaternary.incorporeal.core.sortme.IncorporeticPacketHandler;
-import quaternary.incorporeal.feature.corporetics.flower.IncorporeticFlowers;
 import quaternary.incorporeal.feature.corporetics.item.CorporeticsItems;
 
 @Mod(
-				modid = Incorporeal.MODID,
-				name = Incorporeal.NAME,
-				version = Incorporeal.VERSION,
-				dependencies = Incorporeal.DEPENDENCIES,
-				guiFactory = "quaternary.incorporeal.core.etc.configjunk.IncorporeticGuiFactory",
-				updateJSON = "https://raw.githubusercontent.com/quat1024/incorporeal/master/_static/forge_update.json"
+	modid = Incorporeal.MODID,
+	name = Incorporeal.NAME,
+	version = Incorporeal.VERSION,
+	dependencies = Incorporeal.DEPENDENCIES,
+	guiFactory = "quaternary.incorporeal.core.etc.configjunk.IncorporeticGuiFactory",
+	updateJSON = "https://raw.githubusercontent.com/quat1024/incorporeal/master/_static/forge_update.json"
 )
-public final class Incorporeal {	
+public final class Incorporeal {
 	public static final String MODID = "incorporeal";
 	public static final String NAME = "Incorporeal";
 	public static final String VERSION = "GRADLE:VERSION";
@@ -44,7 +46,6 @@ public final class Incorporeal {
 	
 	public static final Logger LOGGER = LogManager.getLogger(NAME);
 	
-	//TODO make sure the API is good for
 	public static final IIncorporealAPI API = new IncorporealAPI();
 	
 	@SidedProxy(clientSide = "quaternary.incorporeal.core.etc.proxy.ClientProxy", serverSide = "quaternary.incorporeal.core.etc.proxy.ServerProxy")
@@ -54,14 +55,18 @@ public final class Incorporeal {
 		@SideOnly(Side.CLIENT)
 		@Override
 		public ItemStack createIcon() {
-			return new ItemStack(CorporeticsItems.TICKET_CONJURER);
+			if(IncorporeticFeatures.isEnabled(IncorporeticFeatures.CORPORETICS)) {
+				return new ItemStack(CorporeticsItems.TICKET_CONJURER);
+			} else {
+				return new ItemStack(Blocks.RED_FLOWER); //lol
+			}
 		}
 		
 		@SideOnly(Side.CLIENT)
 		@Override
 		public void displayAllRelevantItems(NonNullList<ItemStack> list) {
 			super.displayAllRelevantItems(list);
-			list.addAll(IncorporeticFlowers.getAllIncorporeticFlowerStacks());
+			list.addAll(FlowersModule.getAllIncorporeticFlowerStacks());
 		}
 	};
 	
@@ -70,8 +75,9 @@ public final class Incorporeal {
 		IncorporeticConfig.preinit(e); //load the config and configure enabled features.
 		IncorporeticFeatures.forEach(f -> f.preinit(e));
 		
-		//TODO: find out what this depends on, maybe move it into corporetics feature
-		EnumDyeColorDataSerializer.preinit(e); //ya yeet
+		MigrationEvents.register();
+		MinecraftForge.EVENT_BUS.register(CommonEvents.class);
+		
 		PROXY.preinit();
 	}
 	
@@ -79,11 +85,11 @@ public final class Incorporeal {
 	public static void init(FMLInitializationEvent e) {
 		IncorporeticPacketHandler.init();
 		
-		IncorporeticLexicon.init(); //TODO make sure this is the right home
-		
 		IncorporeticFeatures.forEach(f -> f.init(e));
 		IncorporeticFeatures.forEach(IFeature::petalRecipes);
 		IncorporeticFeatures.forEach(IFeature::runeRecipes);
+		
+		IncorporeticLexicon.init(); //TODO make sure this is the right home
 	}
 	
 	@Mod.EventHandler
@@ -91,9 +97,9 @@ public final class Incorporeal {
 		IncorporeticFeatures.forEach(f -> f.postinit(e));
 	}
 	
-	@Mod.EventBusSubscriber(modid = Incorporeal.MODID)
 	public static final class CommonEvents {
-		private CommonEvents() {}
+		private CommonEvents() {
+		}
 		
 		@SubscribeEvent
 		public static void blocks(RegistryEvent.Register<Block> e) {
@@ -104,8 +110,6 @@ public final class Incorporeal {
 		@SubscribeEvent
 		public static void items(RegistryEvent.Register<Item> e) {
 			IncorporeticFeatures.forEach(f -> f.items(e.getRegistry()));
-			
-			IncorporeticFlowers.registerFlowers(); //TODO move
 		}
 		
 		@SubscribeEvent

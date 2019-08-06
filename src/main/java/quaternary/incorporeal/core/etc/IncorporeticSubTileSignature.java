@@ -1,4 +1,4 @@
-package quaternary.incorporeal.feature.corporetics.flower;
+package quaternary.incorporeal.core.etc;
 
 import net.minecraft.item.ItemStack;
 import vazkii.botania.api.subtile.signature.BasicSignature;

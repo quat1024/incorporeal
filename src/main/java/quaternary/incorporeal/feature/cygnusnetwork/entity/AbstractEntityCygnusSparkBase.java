@@ -15,7 +15,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import quaternary.incorporeal.core.etc.EnumDyeColorDataSerializer;
 import vazkii.botania.common.item.ItemTwigWand;
 import vazkii.botania.common.item.ModItems;
 import vazkii.botania.common.item.material.ItemDye;
@@ -30,8 +29,10 @@ import java.util.List;
 public abstract class AbstractEntityCygnusSparkBase extends Entity {
 	//Can this spark stay put on this block?
 	protected abstract boolean canStay();
+	
 	//What is the item used to place this spark?
 	protected abstract ItemStack getAssociatedItemStack();
+	
 	//Draw out the network with particles, since the player is asking for that
 	protected abstract void traceNetwork(EntityPlayer player);
 	
@@ -40,7 +41,7 @@ public abstract class AbstractEntityCygnusSparkBase extends Entity {
 	
 	public static final int SEARCH_RADIUS = 8;
 	
-	private static final DataParameter<EnumDyeColor> TINT = EntityDataManager.createKey(AbstractEntityCygnusSparkBase.class, EnumDyeColorDataSerializer.INST);
+	private static final DataParameter<Byte> TINT = EntityDataManager.createKey(AbstractEntityCygnusSparkBase.class, DataSerializers.BYTE);
 	private static final DataParameter<Boolean> PHANTOM = EntityDataManager.createKey(AbstractEntityCygnusSparkBase.class, DataSerializers.BOOLEAN);
 	
 	public AbstractEntityCygnusSparkBase(World world) {
@@ -56,7 +57,7 @@ public abstract class AbstractEntityCygnusSparkBase extends Entity {
 	protected void entityInit() {
 		isImmuneToFire = true;
 		setSize(.2f, .5f); //Bigger than corporea sparks because those fuckers are hard to click LMAO
-		dataManager.register(TINT, EnumDyeColor.WHITE);
+		dataManager.register(TINT, (byte) EnumDyeColor.WHITE.getMetadata());
 		dataManager.register(PHANTOM, false);
 	}
 	
@@ -135,11 +136,11 @@ public abstract class AbstractEntityCygnusSparkBase extends Entity {
 	}
 	
 	public EnumDyeColor getTint() {
-		return dataManager.get(TINT);
+		return EnumDyeColor.byMetadata(dataManager.get(TINT));
 	}
 	
 	public void setTint(EnumDyeColor tint) {
-		dataManager.set(TINT, tint);
+		dataManager.set(TINT, (byte) tint.getMetadata());
 		dataManager.setDirty(TINT);
 	}
 	

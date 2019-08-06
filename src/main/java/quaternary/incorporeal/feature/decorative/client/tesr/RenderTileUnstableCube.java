@@ -9,8 +9,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.math.MathHelper;
-import quaternary.incorporeal.feature.decorative.block.BlockUnstableCube;
 import quaternary.incorporeal.core.etc.helper.EtcHelpers;
+import quaternary.incorporeal.feature.decorative.block.BlockUnstableCube;
 import quaternary.incorporeal.feature.decorative.tile.TileUnstableCube;
 import vazkii.botania.client.core.handler.ClientTickHandler;
 

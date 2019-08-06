@@ -20,16 +20,16 @@ public class CygnusNetworkItems extends ItemsModule {
 		public static final String CYGNUS_TICKET = "cygnus_ticket";
 	}
 	
-	public static ItemCygnusWordCard WORD_CARD = totallyNotNull();
-	public static ItemCygnusCrystalCubeCard CRYSTAL_CUBE_CARD = totallyNotNull();
-	public static ItemCygnusSpark MASTER_CYGNUS_SPARK = totallyNotNull();
-	public static ItemCygnusSpark CYGNUS_SPARK = totallyNotNull();
-	public static ItemCygnusTicket CYGNUS_TICKET = totallyNotNull();
+	public static ItemCygnusWordCard WORD_CARD = null;
+	public static ItemCygnusCrystalCubeCard CRYSTAL_CUBE_CARD = null;
+	public static ItemCygnusSpark MASTER_CYGNUS_SPARK = null;
+	public static ItemCygnusSpark CYGNUS_SPARK = null;
+	public static ItemCygnusTicket CYGNUS_TICKET = null;
 	
-	public static ItemBlock WORD = totallyNotNull();
-	public static ItemBlock CRYSTAL_CUBE = totallyNotNull();
-	public static ItemBlock FUNNEL = totallyNotNull();
-	public static ItemBlock RETAINER = totallyNotNull();
+	public static ItemBlock WORD = null;
+	public static ItemBlock CRYSTAL_CUBE = null;
+	public static ItemBlock FUNNEL = null;
+	public static ItemBlock RETAINER = null;
 	
 	public static void registerItems(IForgeRegistry<Item> reg) {
 		reg.registerAll(

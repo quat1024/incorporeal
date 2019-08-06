@@ -18,8 +18,10 @@ public class EntityCygnusRegularSpark extends AbstractEntityCygnusSparkBase {
 		super(world);
 	}
 	
-	@Nullable EntityCygnusMasterSpark knownMaster;
-	@Nullable AbstractEntityCygnusSparkBase uplinkToMaster;
+	@Nullable
+	EntityCygnusMasterSpark knownMaster;
+	@Nullable
+	AbstractEntityCygnusSparkBase uplinkToMaster;
 	
 	@Override
 	public void onUpdate() {
@@ -82,8 +84,8 @@ public class EntityCygnusRegularSpark extends AbstractEntityCygnusSparkBase {
 						//Here it is!!!
 						ok = true;
 						break;
-					} else if (uplink instanceof EntityCygnusRegularSpark) {
-						uplink = ((EntityCygnusRegularSpark)uplink).uplinkToMaster;
+					} else if(uplink instanceof EntityCygnusRegularSpark) {
+						uplink = ((EntityCygnusRegularSpark) uplink).uplinkToMaster;
 					} else {
 						throw new RuntimeException("Found a spark that's not a master or nonmaster spark? wot?");
 					}

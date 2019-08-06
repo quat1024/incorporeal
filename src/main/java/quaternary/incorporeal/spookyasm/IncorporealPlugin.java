@@ -11,7 +11,7 @@ import java.util.Map;
 public class IncorporealPlugin implements IFMLLoadingPlugin {
 	@Override
 	public String[] getASMTransformerClass() {
-		return new String[]{"quaternary.incorporeal.spookyasm.IncorporealTransformer"};
+		return new String[] {"quaternary.incorporeal.spookyasm.IncorporealTransformer"};
 	}
 	
 	@Override

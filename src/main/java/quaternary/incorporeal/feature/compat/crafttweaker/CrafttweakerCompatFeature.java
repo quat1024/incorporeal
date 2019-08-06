@@ -15,6 +15,6 @@ public class CrafttweakerCompatFeature implements IFeature {
 	
 	@Override
 	public String subcategory() {
-		return "config";
+		return "compat";
 	}
 }

@@ -10,7 +10,8 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 public final class IncorporeticCygnusConditions {
-	private IncorporeticCygnusConditions() {}
+	private IncorporeticCygnusConditions() {
+	}
 	
 	public static Predicate<ICygnusStack> NOTHING;
 	
@@ -46,7 +47,7 @@ public final class IncorporeticCygnusConditions {
 		});
 		
 		reg.register(new ResourceLocation(Incorporeal.MODID, "less_than"), stack -> {
-			return compareTopTwo(stack) < 0; 
+			return compareTopTwo(stack) < 0;
 		});
 		
 		reg.register(new ResourceLocation(Incorporeal.MODID, "greater_than"), stack -> {

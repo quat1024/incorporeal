@@ -4,8 +4,10 @@ import net.minecraft.launchwrapper.Launch;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 
-/** A ClassWriter that works around weird classloading bugs caused by getCommonSuperClass. 
- * Adapted from GottaGoFast by Thiakil. MIT License. */
+/**
+ * A ClassWriter that works around weird classloading bugs caused by getCommonSuperClass.
+ * Adapted from GottaGoFast by Thiakil. MIT License.
+ */
 public class SpookyClassWriter extends ClassWriter {
 	public SpookyClassWriter(int flags) {
 		super(flags);
@@ -21,21 +23,21 @@ public class SpookyClassWriter extends ClassWriter {
 		try {
 			c = Class.forName(type1.replace('/', '.'), false, classLoader);
 			d = Class.forName(type2.replace('/', '.'), false, classLoader);
-		} catch (ClassNotFoundException e) {
+		} catch(ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		}
-		if (c.isAssignableFrom(d)) {
+		if(c.isAssignableFrom(d)) {
 			return type1;
 		}
-		if (d.isAssignableFrom(c)) {
+		if(d.isAssignableFrom(c)) {
 			return type2;
 		}
-		if (c.isInterface() || d.isInterface()) {
+		if(c.isInterface() || d.isInterface()) {
 			return "java/lang/Object";
 		} else {
 			do {
 				c = c.getSuperclass();
-			} while (!c.isAssignableFrom(d));
+			} while(!c.isAssignableFrom(d));
 			return c.getName().replace('.', '/');
 		}
 	}

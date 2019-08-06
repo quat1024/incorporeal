@@ -16,6 +16,7 @@ import quaternary.incorporeal.api.feature.IClientFeatureTwin;
 import quaternary.incorporeal.api.feature.IFeature;
 import quaternary.incorporeal.core.client.ClientHelpers;
 import quaternary.incorporeal.core.client.entityrenderer.RenderEntityNothing;
+import quaternary.incorporeal.core.client.event.BlockHighlightEventHandler;
 import quaternary.incorporeal.feature.decorative.block.DecorativeBlocks;
 import quaternary.incorporeal.feature.decorative.client.tesr.RenderItemSoulCore;
 import quaternary.incorporeal.feature.soulcores.block.SoulCoresBlocks;
@@ -80,6 +81,8 @@ public class SoulCoresFeature implements IFeature {
 				if(!IncorporeticConfig.SoulCore.DEBUG_BLOODCORE_ENTITIES) {
 					RenderingRegistry.registerEntityRenderingHandler(EntityPotionSoulCoreCollector.class, RenderEntityNothing::new);
 				}
+				
+				BlockHighlightEventHandler.ensureRegistered();
 			}
 			
 			@Override

@@ -6,8 +6,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ServerChatEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
@@ -21,9 +21,12 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Mod.EventBusSubscriber
 public class ItemTicketConjurer extends Item implements ILexiconable {
 	private static final Map<Pattern, TileCorporeaIndex.IRegexStacker> patterns = ReflectionHelper.getPrivateValue(TileCorporeaIndex.class, null, "patterns");
+	
+	public static void registerChatEvent() {
+		MinecraftForge.EVENT_BUS.register(ItemTicketConjurer.class);
+	}
 	
 	//Based on code from Botania's TileCorporeaIndex
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -36,7 +39,7 @@ public class ItemTicketConjurer extends Item implements ILexiconable {
 		//Make sure the player is actually holding the portable corporea index item
 		if(player.getHeldItemMainhand().getItem() instanceof ItemTicketConjurer) {
 			thisOrderStack = player.getHeldItemOffhand();
-		} else if (player.getHeldItemOffhand().getItem() instanceof ItemTicketConjurer) {
+		} else if(player.getHeldItemOffhand().getItem() instanceof ItemTicketConjurer) {
 			thisOrderStack = player.getHeldItemMainhand();
 		} else {
 			//They're not holding me, just bail

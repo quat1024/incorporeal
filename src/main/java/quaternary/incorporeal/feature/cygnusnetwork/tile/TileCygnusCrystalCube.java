@@ -9,10 +9,10 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
-import quaternary.incorporeal.feature.cygnusnetwork.block.BlockCygnusCrystalCube;
-import quaternary.incorporeal.feature.cygnusnetwork.IncorporeticCygnusConditions;
-import quaternary.incorporeal.feature.cygnusnetwork.entity.EntityCygnusMasterSpark;
 import quaternary.incorporeal.core.etc.helper.CygnusHelpers;
+import quaternary.incorporeal.feature.cygnusnetwork.IncorporeticCygnusConditions;
+import quaternary.incorporeal.feature.cygnusnetwork.block.BlockCygnusCrystalCube;
+import quaternary.incorporeal.feature.cygnusnetwork.entity.EntityCygnusMasterSpark;
 
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
@@ -65,7 +65,7 @@ public class TileCygnusCrystalCube extends TileCygnusBase implements ITickable {
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		condition = Incorporeal.API.getCygnusStackConditionRegistry().get(
-						new ResourceLocation(nbt.getString("Condition"))
+			new ResourceLocation(nbt.getString("Condition"))
 		);
 		if(condition == null) condition = IncorporeticCygnusConditions.NOTHING;
 	}

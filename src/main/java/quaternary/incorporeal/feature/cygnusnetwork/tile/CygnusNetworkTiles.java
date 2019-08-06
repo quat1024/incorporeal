@@ -3,7 +3,8 @@ package quaternary.incorporeal.feature.cygnusnetwork.tile;
 import quaternary.incorporeal.core.TilesModule;
 
 public final class CygnusNetworkTiles extends TilesModule {
-	private CygnusNetworkTiles() {}
+	private CygnusNetworkTiles() {
+	}
 	
 	public static void registerTiles() {
 		reg(TileCygnusCrystalCube.class, "cygnus_crystal_cube");

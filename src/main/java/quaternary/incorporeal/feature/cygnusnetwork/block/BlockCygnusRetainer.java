@@ -28,7 +28,7 @@ public class BlockCygnusRetainer extends BlockCygnusBase implements IWandable {
 	public boolean onUsedByWand(EntityPlayer player, ItemStack stack, World world, BlockPos pos, EnumFacing facing) {
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile instanceof TileCygnusRetainer) {
-			((TileCygnusRetainer)tile).wand();
+			((TileCygnusRetainer) tile).wand();
 			return true;
 		}
 		
@@ -45,7 +45,7 @@ public class BlockCygnusRetainer extends BlockCygnusBase implements IWandable {
 	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos) {
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile instanceof TileCygnusRetainer) {
-			return ((TileCygnusRetainer)tile).getComparator();
+			return ((TileCygnusRetainer) tile).getComparator();
 		} else return 0;
 	}
 	
@@ -81,7 +81,7 @@ public class BlockCygnusRetainer extends BlockCygnusBase implements IWandable {
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		TileEntity tile = EtcHelpers.getTileEntityThreadsafe(world, pos);
 		if(tile instanceof TileCygnusRetainer) {
-			return state.withProperty(LIT, ((TileCygnusRetainer)tile).hasRetainedObject());
+			return state.withProperty(LIT, ((TileCygnusRetainer) tile).hasRetainedObject());
 		} else return state;
 	}
 }

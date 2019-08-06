@@ -13,14 +13,15 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public final class CygnusHelpers {
-	private CygnusHelpers() {}
+	private CygnusHelpers() {
+	}
 	
 	public static boolean isSparkable(World world, BlockPos pos, boolean master) {
 		if(master) return true;
 		else {
 			IBlockState state = world.getBlockState(pos);
 			if(state.getBlock() instanceof ICygnusSparkable) {
-				return ((ICygnusSparkable)state.getBlock()).acceptsCygnusSpark(world, state, pos);
+				return ((ICygnusSparkable) state.getBlock()).acceptsCygnusSpark(world, state, pos);
 			} else return false; //TODO tile entities too?
 		}
 	}

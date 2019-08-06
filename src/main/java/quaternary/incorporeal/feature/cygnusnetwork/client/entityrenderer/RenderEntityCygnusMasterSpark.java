@@ -5,13 +5,13 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import quaternary.incorporeal.core.client.IncorporeticClientIcons;
 import quaternary.incorporeal.core.client.RenderHelpers;
-import quaternary.incorporeal.core.client.event.IncorporeticClientTickHandler;
+import quaternary.incorporeal.core.etc.helper.EtcHelpers;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusDatatypeHelpers;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusStack;
+import quaternary.incorporeal.feature.cygnusnetwork.client.event.CameraEaseHandler;
+import quaternary.incorporeal.feature.cygnusnetwork.client.event.CorporeticIcons;
 import quaternary.incorporeal.feature.cygnusnetwork.entity.EntityCygnusMasterSpark;
-import quaternary.incorporeal.core.etc.helper.EtcHelpers;
 import vazkii.botania.client.core.handler.MiscellaneousIcons;
 import vazkii.botania.client.render.entity.RenderSparkBase;
 import vazkii.botania.common.item.equipment.bauble.ItemMonocle;
@@ -47,10 +47,10 @@ public class RenderEntityCygnusMasterSpark extends RenderSparkBase<EntityCygnusM
 			FontRenderer font = mc.fontRenderer;
 			
 			GlStateManager.translate(0, 1, 0);
-			GlStateManager.rotate(180 - IncorporeticClientTickHandler.easedYaw, 0, 1, 0);
-			GlStateManager.rotate(-IncorporeticClientTickHandler.easedPitch * 0.85f, 1, 0, 0);
+			GlStateManager.rotate(180 - CameraEaseHandler.easedYaw, 0, 1, 0);
+			GlStateManager.rotate(-CameraEaseHandler.easedPitch * 0.85f, 1, 0, 0);
 			
-			float scale = EtcHelpers.rangeRemap(distanceTo, 5, 25, 1/32f, 1/12f);
+			float scale = EtcHelpers.rangeRemap(distanceTo, 5, 25, 1 / 32f, 1 / 12f);
 			GlStateManager.scale(scale, -scale, scale);
 			
 			GlStateManager.color(255, 255, 255);
@@ -86,7 +86,7 @@ public class RenderEntityCygnusMasterSpark extends RenderSparkBase<EntityCygnusM
 	
 	@Override
 	protected TextureAtlasSprite getBaseIcon(EntityCygnusMasterSpark entity) {
-		return IncorporeticClientIcons.masterCygnusSpark;
+		return CorporeticIcons.masterCygnusSpark;
 	}
 	
 	@Override

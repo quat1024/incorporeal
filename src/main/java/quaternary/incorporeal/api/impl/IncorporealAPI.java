@@ -8,7 +8,8 @@ import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusRegistries;
-import quaternary.incorporeal.feature.skytouching.recipe.IncorporeticSkytouchingRecipes;
+import quaternary.incorporeal.feature.naturaldevices.NaturalDeviceRegistry;
+import quaternary.incorporeal.feature.skytouching.recipe.SkytouchingRecipes;
 import quaternary.incorporeal.feature.skytouching.recipe.RecipeSkytouching;
 
 import java.util.function.Consumer;
@@ -20,7 +21,7 @@ public class IncorporealAPI implements IIncorporealAPI {
 		return 0;
 	}
 	
-	private static final INaturalDeviceRegistry naturalDeviceRegistry = new IncorporealNaturalDeviceRegistry();
+	private static final INaturalDeviceRegistry naturalDeviceRegistry = new NaturalDeviceRegistry();
 	
 	@Override
 	public INaturalDeviceRegistry getNaturalDeviceRegistry() {
@@ -49,11 +50,11 @@ public class IncorporealAPI implements IIncorporealAPI {
 	
 	@Override
 	public void registerSkytouchingRecipe(ItemStack out, ItemStack in, int minY, int maxY, int multiplier) {
-		IncorporeticSkytouchingRecipes.register(new RecipeSkytouching(out, in, minY, maxY, multiplier));
+		SkytouchingRecipes.register(new RecipeSkytouching(out, in, minY, maxY, multiplier));
 	}
 	
 	@Override
 	public void registerSkytouchingRecipe(ItemStack out, ItemStack in) {
-		IncorporeticSkytouchingRecipes.register(new RecipeSkytouching(out, in));
+		SkytouchingRecipes.register(new RecipeSkytouching(out, in));
 	}
 }

@@ -1,4 +1,4 @@
-package quaternary.incorporeal.core.etc;
+package quaternary.incorporeal.feature.cygnusnetwork.etc;
 
 import net.minecraft.block.BlockRedstoneRepeater;
 import net.minecraft.block.state.IBlockState;
@@ -36,7 +36,7 @@ public class LooseRedstoneRepeaterCygnusFunnelable implements ILooseCygnusFunnel
 				@Override
 				public void acceptItemFromCygnus(Object item) {
 					if(item instanceof BigInteger) {
-						int value = ((BigInteger)item).intValue();
+						int value = ((BigInteger) item).intValue();
 						if(value >= 1 && value <= 4) {
 							world.setBlockState(pos, state.withProperty(BlockRedstoneRepeater.DELAY, value));
 						}

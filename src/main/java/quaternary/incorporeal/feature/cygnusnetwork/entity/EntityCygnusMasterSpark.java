@@ -12,10 +12,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
+import quaternary.incorporeal.core.etc.helper.CygnusHelpers;
+import quaternary.incorporeal.feature.cygnusnetwork.etc.CygnusStackDataSerializer;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusStack;
 import quaternary.incorporeal.feature.cygnusnetwork.cap.IncorporeticCygnusCapabilities;
-import quaternary.incorporeal.core.etc.CygnusStackDataSerializer;
-import quaternary.incorporeal.core.etc.helper.CygnusHelpers;
 import quaternary.incorporeal.feature.cygnusnetwork.item.CygnusNetworkItems;
 
 import javax.annotation.Nullable;

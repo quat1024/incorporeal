@@ -33,7 +33,7 @@ public class TileEnderSoulCore extends AbstractTileSoulCore {
 		
 		if(!wasOnline && isOnline) {
 			this.handler = new ManaDrainingInvWrapper(opPlayer.get().getInventoryEnderChest());
-		} else if (wasOnline && !isOnline){
+		} else if(wasOnline && !isOnline) {
 			this.handler = EmptyHandler.INSTANCE;
 		}
 		

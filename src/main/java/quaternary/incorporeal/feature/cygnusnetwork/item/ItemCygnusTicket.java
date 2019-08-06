@@ -12,8 +12,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
-import quaternary.incorporeal.feature.cygnusnetwork.CygnusDatatypeHelpers;
 import quaternary.incorporeal.core.etc.helper.EtcHelpers;
+import quaternary.incorporeal.feature.cygnusnetwork.CygnusDatatypeHelpers;
 import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import javax.annotation.Nullable;

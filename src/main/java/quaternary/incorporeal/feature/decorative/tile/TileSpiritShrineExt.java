@@ -34,12 +34,12 @@ public class TileSpiritShrineExt extends TileMod implements ITickable {
 	private static final int lowerTicks = existTicks + liftTicks;
 	
 	private static final float[][] colors = new float[][] {
-		new float[] { 0F, 0.25F, 1F },
-		new float[] { 1F, 0F, 0.2F },
-		new float[] { 0F, 1F, 0.25F },
-		new float[] { 1F, 1F, 0.25F },
-		new float[] { 1F, 0.25F, 1F },
-		new float[] { 0.25F, 1F, 1F }
+		new float[] {0F, 0.25F, 1F},
+		new float[] {1F, 0F, 0.2F},
+		new float[] {0F, 1F, 0.25F},
+		new float[] {1F, 1F, 0.25F},
+		new float[] {1F, 0.25F, 1F},
+		new float[] {0.25F, 1F, 1F}
 	};
 	
 	//quat edit: sound pitches!

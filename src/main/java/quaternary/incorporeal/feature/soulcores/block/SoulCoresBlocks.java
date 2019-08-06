@@ -3,22 +3,23 @@ package quaternary.incorporeal.feature.soulcores.block;
 import net.minecraft.block.Block;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.core.BlocksModule;
-import quaternary.incorporeal.core.etc.helper.EtcHelpers;
 
 public final class SoulCoresBlocks extends BlocksModule {
-	private SoulCoresBlocks() {}
+	private SoulCoresBlocks() {
+	}
 	
 	public static final class RegistryNames {
-		private RegistryNames() {}
+		private RegistryNames() {
+		}
 		
 		public static final String ENDER_SOUL_CORE = "ender_soul_core";
 		public static final String CORPOREA_SOUL_CORE = "corporea_soul_core";
 		public static final String POTION_SOUL_CORE = "potion_soul_core";
 	}
 	
-	public static BlockEnderSoulCore ENDER_SOUL_CORE = totallyNotNull();
-	public static BlockCorporeaSoulCore CORPOREA_SOUL_CORE = totallyNotNull();
-	public static BlockPotionSoulCore POTION_SOUL_CORE = totallyNotNull();
+	public static BlockEnderSoulCore ENDER_SOUL_CORE = null;
+	public static BlockCorporeaSoulCore CORPOREA_SOUL_CORE = null;
+	public static BlockPotionSoulCore POTION_SOUL_CORE = null;
 	
 	public static void registerBlocks(IForgeRegistry<Block> blocks) {
 		blocks.registerAll(

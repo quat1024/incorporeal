@@ -20,7 +20,7 @@ public class BlockNaturalRepeater extends AbstractBlockNaturalDevice {
 		BlockPos blockpos = pos.offset(enumfacing);
 		int i = world.getRedstonePower(blockpos, enumfacing);
 		
-		if (i >= 15) {
+		if(i >= 15) {
 			return true;
 		} else {
 			IBlockState iblockstate = world.getBlockState(blockpos);
@@ -43,8 +43,8 @@ public class BlockNaturalRepeater extends AbstractBlockNaturalDevice {
 	
 	public void onBlockDestroyedByPlayer(World worldIn, BlockPos pos, IBlockState state) {
 		//Modified paste from redstonediode
-		if (state.getValue(LIT)) {
-			for (EnumFacing enumfacing : EnumFacing.values()) {
+		if(state.getValue(LIT)) {
+			for(EnumFacing enumfacing : EnumFacing.values()) {
 				worldIn.notifyNeighborsOfStateChange(pos.offset(enumfacing), this, false);
 			}
 		}
@@ -59,13 +59,13 @@ public class BlockNaturalRepeater extends AbstractBlockNaturalDevice {
 		if(state.getValue(LIT)) {
 			//Based on copypasta from BlockRedstoneRepeater
 			EnumFacing enumfacing = state.getValue(FACING);
-			double d0 = (double)((float)pos.getX() + 0.5F) + (double)(rand.nextFloat() - 0.5F) * 0.2D;
-			double d1 = (double)((float)pos.getY() + 0.4F) + (double)(rand.nextFloat() - 0.5F) * 0.2D;
-			double d2 = (double)((float)pos.getZ() + 0.5F) + (double)(rand.nextFloat() - 0.5F) * 0.2D;
+			double d0 = (double) ((float) pos.getX() + 0.5F) + (double) (rand.nextFloat() - 0.5F) * 0.2D;
+			double d1 = (double) ((float) pos.getY() + 0.4F) + (double) (rand.nextFloat() - 0.5F) * 0.2D;
+			double d2 = (double) ((float) pos.getZ() + 0.5F) + (double) (rand.nextFloat() - 0.5F) * 0.2D;
 			float f = (rand.nextBoolean() ? -5 : 7) / 16f;
 			
-			double d3 = (double)(f * (float)enumfacing.getXOffset());
-			double d4 = (double)(f * (float)enumfacing.getZOffset());
+			double d3 = (double) (f * (float) enumfacing.getXOffset());
+			double d4 = (double) (f * (float) enumfacing.getZOffset());
 			world.spawnParticle(EnumParticleTypes.REDSTONE, d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
 		}
 	}

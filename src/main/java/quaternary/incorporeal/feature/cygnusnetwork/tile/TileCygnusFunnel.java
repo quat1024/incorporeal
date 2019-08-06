@@ -14,12 +14,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
-import quaternary.incorporeal.feature.cygnusnetwork.block.BlockCygnusFunnel;
+import quaternary.incorporeal.core.etc.helper.CygnusHelpers;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusRegistries;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusStack;
+import quaternary.incorporeal.feature.cygnusnetwork.block.BlockCygnusFunnel;
 import quaternary.incorporeal.feature.cygnusnetwork.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.feature.cygnusnetwork.entity.EntityCygnusMasterSpark;
-import quaternary.incorporeal.core.etc.helper.CygnusHelpers;
 
 import javax.annotation.Nullable;
 import java.util.List;

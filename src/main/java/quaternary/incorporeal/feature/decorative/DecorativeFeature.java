@@ -14,6 +14,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.api.feature.IClientFeatureTwin;
 import quaternary.incorporeal.api.feature.IFeature;
 import quaternary.incorporeal.core.client.ClientHelpers;
+import quaternary.incorporeal.core.client.event.BlockHighlightEventHandler;
 import quaternary.incorporeal.feature.decorative.block.DecorativeBlocks;
 import quaternary.incorporeal.feature.decorative.client.tesr.RenderTileUnstableCube;
 import quaternary.incorporeal.feature.decorative.item.DecorativeItems;
@@ -63,6 +64,11 @@ public class DecorativeFeature implements IFeature {
 	@Override
 	public IClientFeatureTwin client() {
 		return new IClientFeatureTwin() {
+			@Override
+			public void preinit() {
+				BlockHighlightEventHandler.ensureRegistered();
+			}
+			
 			@Override
 			public void models() {
 				ClientHelpers.set16DataValuesPointingAtSameModel(DecorativeItems.UNSTABLE_CUBE);

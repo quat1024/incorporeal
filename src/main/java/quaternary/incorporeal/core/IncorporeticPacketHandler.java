@@ -1,4 +1,4 @@
-package quaternary.incorporeal.core.sortme;
+package quaternary.incorporeal.core;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -11,8 +11,9 @@ import quaternary.incorporeal.feature.corporetics.net.MessageSparkleLine;
 import quaternary.incorporeal.feature.cygnusnetwork.net.MessageScrollItem;
 import quaternary.incorporeal.feature.skytouching.net.MessageSkytouchingEffect;
 
+//TODO split into modules? I don't think it's worth it
 public final class IncorporeticPacketHandler {
-	private IncorporeticPacketHandler () {}
+	private IncorporeticPacketHandler() { }
 	
 	private static SimpleNetworkWrapper NET;
 	

@@ -23,20 +23,11 @@ import vazkii.botania.common.block.ModBlocks;
 import vazkii.botania.common.block.tile.TileCraftCrate;
 import vazkii.botania.common.block.tile.TileOpenCrate;
 
-import javax.annotation.Nonnull;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public final class EtcHelpers {
-	private EtcHelpers() {}
-	
-	@Nonnull
-	@SuppressWarnings({"ConstantConditions", "SameReturnValue"})
-	public static <T> T definitelyIsntNullISwear() {
-		//Used to make IntelliJ shut up about "xxx may be null" inspections.
-		//Thanks, IJ, but they're hit with an ObjectHolder.
-		//If that's not happening we have bigger fish to fry.
-		//(And it sure doesn't justify null checking every single field every time lmao)
-		return null;
+	private EtcHelpers() {
 	}
 	
 	public static float sinDegrees(float degreesIn) {
@@ -48,13 +39,13 @@ public final class EtcHelpers {
 	}
 	
 	public static boolean isOpenCrate(IBlockState state, TileEntity tile) {
-		return state.getBlock() == ModBlocks.openCrate && 
-						state.getValue(BotaniaStateProps.CRATE_VARIANT) == CrateVariant.OPEN &&
-						tile instanceof TileOpenCrate &&
-						!(tile instanceof TileCraftCrate) &&
-						//Wacky hack to work around not being able to extend TileCraftCrate with custom crates in botaniatweaks
-						//I'm allowed to do this since botaniatweaks is my own mod :^)
-						!state.getBlock().getClass().getName().startsWith("quaternary.botania");
+		return state.getBlock() == ModBlocks.openCrate &&
+			state.getValue(BotaniaStateProps.CRATE_VARIANT) == CrateVariant.OPEN &&
+			tile instanceof TileOpenCrate &&
+			!(tile instanceof TileCraftCrate) &&
+			//Wacky hack to work around not being able to extend TileCraftCrate with custom crates in botaniatweaks
+			//I'm allowed to do this since botaniatweaks is my own mod :^)
+			!state.getBlock().getClass().getName().startsWith("quaternary.botania");
 	}
 	
 	public static void sendMessage(EntityPlayer player, String message, TextFormatting color) {
@@ -66,7 +57,7 @@ public final class EtcHelpers {
 	public static TileEntity getTileEntityThreadsafe(IBlockAccess world, BlockPos pos) {
 		//see https://mcforge.readthedocs.io/en/latest/blocks/states/#actual-states
 		if(world instanceof ChunkCache) {
-			return ((ChunkCache)world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK);
+			return ((ChunkCache) world).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK);
 		} else return world.getTileEntity(pos);
 	}
 	
@@ -125,5 +116,12 @@ public final class EtcHelpers {
 		stack.setTagCompound(yeet);
 		
 		return stack;
+	}
+	
+	@SafeVarargs
+	public static <T> void forEach(Consumer<T> action, T... things) {
+		for(T thing : things) {
+			action.accept(thing);
+		}
 	}
 }

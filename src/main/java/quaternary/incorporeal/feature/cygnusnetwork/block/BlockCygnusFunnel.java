@@ -55,7 +55,7 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile instanceof TileCygnusFunnel) {
-			((TileCygnusFunnel)tile).updateArrowStatus(pos, state.getValue(FACING));
+			((TileCygnusFunnel) tile).updateArrowStatus(pos, state.getValue(FACING));
 		}
 	}
 	
@@ -89,7 +89,7 @@ public class BlockCygnusFunnel extends BlockCygnusBase implements ICygnusSparkab
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		TileEntity tile = EtcHelpers.getTileEntityThreadsafe(world, pos);
 		if(tile instanceof TileCygnusFunnel) {
-			TileCygnusFunnel funnel = (TileCygnusFunnel) tile; 
+			TileCygnusFunnel funnel = (TileCygnusFunnel) tile;
 			return state.withProperty(
 				ARROW_LIGHT,
 				ArrowLight.OFF.wrap(funnel.isBackLit(), funnel.isFrontLit())

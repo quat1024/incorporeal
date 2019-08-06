@@ -14,7 +14,7 @@ import quaternary.incorporeal.spookyasm.tweaks.InventoryWrapTweak;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IncorporealTransformer implements IClassTransformer, Opcodes {	
+public class IncorporealTransformer implements IClassTransformer, Opcodes {
 	public static final Logger LOG = LogManager.getLogger("Incorporeal ASM");
 	
 	private static final List<AbstractTweak> allTweaks = new ArrayList<>();

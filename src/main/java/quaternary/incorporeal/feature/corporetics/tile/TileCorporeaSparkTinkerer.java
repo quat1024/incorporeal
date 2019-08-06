@@ -87,7 +87,7 @@ public class TileCorporeaSparkTinkerer extends TileEntity {
 	}
 	
 	@Override
-	public void readFromNBT(NBTTagCompound nbt) {		
+	public void readFromNBT(NBTTagCompound nbt) {
 		myNetwork = EnumDyeColor.byMetadata(MathHelper.clamp(nbt.getInteger("Network"), 0, 15));
 		
 		super.readFromNBT(nbt);

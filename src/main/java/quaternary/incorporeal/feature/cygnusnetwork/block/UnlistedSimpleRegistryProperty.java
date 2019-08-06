@@ -14,9 +14,9 @@ public class UnlistedSimpleRegistryProperty<T> implements IUnlistedProperty<T> {
 		return new UnlistedSimpleRegistryProperty<>(name, tClass, simpleRegistry);
 	}
 	
-	private String name;
-	private Class<T> tClass;
-	private ISimpleRegistry<T> simpleRegistry;
+	private final String name;
+	private final Class<T> tClass;
+	private final ISimpleRegistry<T> simpleRegistry;
 	
 	@Override
 	public String getName() {

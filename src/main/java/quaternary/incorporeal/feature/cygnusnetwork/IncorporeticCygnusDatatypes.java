@@ -9,8 +9,9 @@ import quaternary.incorporeal.feature.cygnusnetwork.types.CygnusCorporeaRequestT
 import quaternary.incorporeal.feature.cygnusnetwork.types.CygnusErrorType;
 import quaternary.incorporeal.feature.cygnusnetwork.types.CygnusStackType;
 
-public class IncorporeticCygnusDatatypes {
-	private IncorporeticCygnusDatatypes() {}
+public final class IncorporeticCygnusDatatypes {
+	private IncorporeticCygnusDatatypes() {
+	}
 	
 	public static void registerCygnusDatatypes() {
 		ISimpleRegistry<ICygnusDatatype<?>> reg = Incorporeal.API.getCygnusDatatypeRegistry();

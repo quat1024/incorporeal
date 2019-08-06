@@ -12,12 +12,13 @@ import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import javax.annotation.Nullable;
 
 public final class IncorporeticCygnusCapabilities {
-	private IncorporeticCygnusCapabilities() {}
+	private IncorporeticCygnusCapabilities() {
+	}
 	
 	@CapabilityInject(ICygnusFunnelable.class)
 	public static Capability<ICygnusFunnelable> FUNNEL_CAP = null;
 	
-	public static void preinit(FMLPreInitializationEvent e) {
+	public static void register(FMLPreInitializationEvent e) {
 		CapabilityManager.INSTANCE.register(ICygnusFunnelable.class, new DummyNBTSerializer<>(), NooneCaresDefaultImplementationOfICygnusFunnelable::new);
 	}
 	

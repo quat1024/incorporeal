@@ -14,7 +14,8 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public final class IncorporeticCygnusActions {
-	private IncorporeticCygnusActions() {}
+	private IncorporeticCygnusActions() {
+	}
 	
 	public static Consumer<ICygnusStack> NOTHING;
 	
@@ -80,10 +81,10 @@ public final class IncorporeticCygnusActions {
 	//Quick helper funcs
 	private static <TOP> void pushIfMatching(Class<TOP> topClass, ICygnusStack stack, Function<TOP, Object> resultFactory) {
 		stack.push(stack.peekMatching(topClass).flatMap(top -> {
-			stack.popDestroy(1);
-			return Optional.of(resultFactory.apply(top));
-		}).orElseGet(() ->
-			new CygnusError(stack.depth() < 1 ? CygnusError.UNDERFLOW : CygnusError.MISMATCH))
+				stack.popDestroy(1);
+				return Optional.of(resultFactory.apply(top));
+			}).orElseGet(() ->
+				new CygnusError(stack.depth() < 1 ? CygnusError.UNDERFLOW : CygnusError.MISMATCH))
 		);
 	}
 	
@@ -93,7 +94,7 @@ public final class IncorporeticCygnusActions {
 				stack.popDestroy(2);
 				return Optional.of(resultFactory.apply(under, top));
 			})
-		).orElseGet(() -> 
+		).orElseGet(() ->
 			new CygnusError(stack.depth() < 2 ? CygnusError.UNDERFLOW : CygnusError.MISMATCH)
 		));
 	}

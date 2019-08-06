@@ -50,9 +50,9 @@ public class CygnusCorporeaRequestType implements ICygnusDatatype<CorporeaReques
 		nbt.setBoolean("Strict", item.checkNBT);
 		nbt.setInteger("Count", item.count);
 		if(item.matcher instanceof ItemStack) {
-			nbt.setTag("ItemStack", ((ItemStack)item.matcher).serializeNBT());
+			nbt.setTag("ItemStack", ((ItemStack) item.matcher).serializeNBT());
 		} else if(item.matcher instanceof String) {
-			nbt.setString("String", (String)item.matcher);
+			nbt.setString("String", (String) item.matcher);
 		} else {
 			throw new IllegalArgumentException("CorporeaRequest containing something not an itemstack or a string?");
 		}
@@ -81,7 +81,7 @@ public class CygnusCorporeaRequestType implements ICygnusDatatype<CorporeaReques
 			buf.writeItemStack((ItemStack) item.matcher);
 		} else if(item.matcher instanceof String) {
 			buf.writeBoolean(false);
-			buf.writeString((String)item.matcher);
+			buf.writeString((String) item.matcher);
 		} else {
 			throw new IllegalArgumentException("CorporeaRequest containing something not an itemstack or a string?");
 		}
@@ -95,7 +95,7 @@ public class CygnusCorporeaRequestType implements ICygnusDatatype<CorporeaReques
 		if(isStack) {
 			try {
 				return new CorporeaRequest(buf.readItemStack(), strict, count);
-			} catch (IOException e) {
+			} catch(IOException e) {
 				Incorporeal.LOGGER.error("Problem deserializing CorporeaRequest from packet, defaulting to empty one ", e);
 				return new CorporeaRequest(ItemStack.EMPTY, false, 0);
 			}

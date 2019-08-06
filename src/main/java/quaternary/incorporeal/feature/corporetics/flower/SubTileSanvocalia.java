@@ -22,9 +22,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import quaternary.incorporeal.IncorporeticConfig;
 import quaternary.incorporeal.core.etc.helper.CorporeaHelper2;
-import quaternary.incorporeal.feature.corporetics.item.ItemCorporeaTicket;
 import quaternary.incorporeal.core.sortme.IncorporeticLexicon;
-import quaternary.incorporeal.core.sortme.IncorporeticPacketHandler;
+import quaternary.incorporeal.core.IncorporeticPacketHandler;
+import quaternary.incorporeal.feature.corporetics.item.ItemCorporeaTicket;
 import quaternary.incorporeal.feature.corporetics.net.MessageSparkleLine;
 import vazkii.botania.api.corporea.CorporeaRequest;
 import vazkii.botania.api.lexicon.ILexiconable;
@@ -44,7 +44,7 @@ import java.util.UUID;
 public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable {
 	@Nullable
 	private UUID owner;
-	private String customName = "Sanvocalia"; 
+	private String customName = "Sanvocalia";
 	private int cooldown;
 	
 	@Override
@@ -73,7 +73,7 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 		
 		EntityItem ticket = nearbyTickets.get(w.rand.nextInt(nearbyTickets.size()));
 		CorporeaRequest ticketsRequest = ItemCorporeaTicket.getRequest(ticket.getItem/*Stack*/());
-		assert ticketsRequest != null; //it already passed the predicate above
+		assert ticketsRequest != null : "null ticket somehow passed predicate";
 		
 		List<TileCorporeaIndex> nearbyIndices = CorporeaHelper2.getNearbyIndicesReflect(w, pos, getRange());
 		
@@ -121,12 +121,12 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 		BlockPos pos = getPos();
 		
 		IncorporeticPacketHandler.sendToAllTracking(
-						new MessageSparkleLine(ticketPos, new Vec3d(pos).add(.5, .5, .5), 12), world, pos
+			new MessageSparkleLine(ticketPos, new Vec3d(pos).add(.5, .5, .5), 12), world, pos
 		);
 		if(indexPositions != null) {
 			for(BlockPos p : indexPositions) {
 				IncorporeticPacketHandler.sendToAllTracking(
-								new MessageSparkleLine(new Vec3d(p).add(.5, .5, .5), ticketPos, 12), world, pos
+					new MessageSparkleLine(new Vec3d(p).add(.5, .5, .5), ticketPos, 12), world, pos
 				);
 			}
 		}
@@ -150,7 +150,8 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 	}
 	
 	public static class Mini extends SubTileSanvocalia {
-		public Mini() {}
+		public Mini() {
+		}
 		
 		@Override
 		public int getRange() {

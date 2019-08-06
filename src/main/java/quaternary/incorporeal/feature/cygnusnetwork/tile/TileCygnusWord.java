@@ -41,7 +41,7 @@ public class TileCygnusWord extends TileCygnusBase {
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		Consumer<ICygnusStack> a = Incorporeal.API.getCygnusStackActionRegistry().get(
-						new ResourceLocation(nbt.getString("Action"))
+			new ResourceLocation(nbt.getString("Action"))
 		);
 		
 		if(a == null) a = IncorporeticCygnusActions.NOTHING;

@@ -58,18 +58,18 @@ public class CygnusBigIntegerType implements ICygnusDatatype<BigInteger> {
 		return new BigInteger(buf.readByteArray(1_000_000)); //Xd
 	}
 	
-	private static final BigInteger topCap    = new BigInteger("+" + StringUtils.repeat('9', 50), 10);
+	private static final BigInteger topCap = new BigInteger("+" + StringUtils.repeat('9', 50), 10);
 	private static final BigInteger bottomCap = new BigInteger("-" + StringUtils.repeat('9', 50), 10);
 	
 	private static final String TOO_SMALL_NUMBER = CygnusError.INVALID_MATH + ".too_small";
-	private static final String TOO_BIG_NUMBER   = CygnusError.INVALID_MATH + ".too_big";
+	private static final String TOO_BIG_NUMBER = CygnusError.INVALID_MATH + ".too_big";
 	
 	@Nullable
 	@Override
 	public Object getError(BigInteger item, ICygnusStack stack) {
 		if(item.compareTo(bottomCap) < 0) {
 			return new CygnusError(CygnusError.INVALID_MATH, TOO_SMALL_NUMBER);
-		} else if (item.compareTo(topCap) > 0) {
+		} else if(item.compareTo(topCap) > 0) {
 			return new CygnusError(CygnusError.INVALID_MATH, TOO_BIG_NUMBER);
 		} else return null;
 	}

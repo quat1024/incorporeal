@@ -16,7 +16,8 @@ import vazkii.botania.common.entity.EntityCorporeaSpark;
 import java.util.List;
 
 public final class Hooks {
-	private Hooks() { }
+	private Hooks() {
+	}
 	
 	@SuppressWarnings("unused") //called through asm bullshit
 	public static IWrappedInventory invWrapHook(InvWithLocation inv, ICorporeaSpark spork, IWrappedInventory wrap) {
@@ -26,8 +27,8 @@ public final class Hooks {
 			TileEntity te = world.getTileEntity(pos);
 			
 			
-			if(te instanceof ICustomWrappedInventory) {				
-				wrap = ((ICustomWrappedInventory)te).wrap(inv, spork);
+			if(te instanceof ICustomWrappedInventory) {
+				wrap = ((ICustomWrappedInventory) te).wrap(inv, spork);
 			}
 		}
 		
@@ -43,7 +44,7 @@ public final class Hooks {
 		allNearby.removeIf(otherSpork -> {
 			BlockPos otherPos;
 			if(otherSpork instanceof EntityCorporeaSpark) {
-				otherPos = ((EntityCorporeaSpark)otherSpork).getPosition();
+				otherPos = ((EntityCorporeaSpark) otherSpork).getPosition();
 			} else {
 				InvWithLocation otherInventory = otherSpork.getSparkInventory();
 				if(otherInventory == null) return true;
@@ -74,7 +75,7 @@ public final class Hooks {
 			BlockPos.MutableBlockPos prevPos = new BlockPos.MutableBlockPos(-1, -1, -1);
 			BlockPos.MutableBlockPos oldPos = new BlockPos.MutableBlockPos(-1, -1, -1);
 			
-			for(int i=0; i < dist * distanceDivider; i++) {
+			for(int i = 0; i < dist * distanceDivider; i++) {
 				prevPos.setPos(searchX, searchY, searchZ);
 				if(!oldPos.equals(prevPos)) {
 					oldPos.setPos(searchX, searchY, searchZ);
@@ -83,7 +84,7 @@ public final class Hooks {
 					IBlockState state = world.getBlockState(searchPos);
 					Block block = state.getBlock();
 					if(block instanceof ICorporeaInhibitor) {
-						boolean blocksCorporea = ((ICorporeaInhibitor)block).shouldBlockCorporea(world, state, searchPos);
+						boolean blocksCorporea = ((ICorporeaInhibitor) block).shouldBlockCorporea(world, state, searchPos);
 						if(blocksCorporea) return true;
 					}
 				}

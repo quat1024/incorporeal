@@ -11,20 +11,30 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.DrawBlockHighlightEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.feature.decorative.block.BlockUnstableCube;
-import quaternary.incorporeal.feature.soulcores.block.AbstractBlockSoulCore;
-import quaternary.incorporeal.feature.soulcores.client.tesr.RenderTileSoulCore;
 import quaternary.incorporeal.feature.decorative.client.tesr.RenderTileUnstableCube;
 import quaternary.incorporeal.feature.decorative.tile.TileUnstableCube;
+import quaternary.incorporeal.feature.soulcores.block.AbstractBlockSoulCore;
+import quaternary.incorporeal.feature.soulcores.client.tesr.RenderTileSoulCore;
 import quaternary.incorporeal.feature.soulcores.tile.AbstractTileSoulCore;
 
-@Mod.EventBusSubscriber(modid = Incorporeal.MODID, value = Side.CLIENT)
+//TODO split into modules? Don't think it's worth it
+//Call ensureRegistered from preinit in all modules using this event,
+//Modules using this class: Decorative, Soulcores
 public final class BlockHighlightEventHandler {
-	private BlockHighlightEventHandler() {}
+	private BlockHighlightEventHandler() {
+	}
+	
+	private static boolean registered = false;
+	
+	public static void ensureRegistered() {
+		if(!registered) {
+			MinecraftForge.EVENT_BUS.register(BlockHighlightEventHandler.class);
+			registered = true;
+		}
+	}
 	
 	private static final AxisAlignedBB UNSTABLE_CUBE_HIGHLIGHT_AABB = new AxisAlignedBB(0.25, 0.25, 0.25, 0.75, 0.75, 0.75).grow(0.002);
 	private static final AxisAlignedBB SOUL_CORE_HIGHLIGHT_AABB = new AxisAlignedBB(0.05, 0.05, 0.05, 0.95, 0.95, 0.95).grow(0.002);
@@ -36,14 +46,19 @@ public final class BlockHighlightEventHandler {
 			BlockPos pos = ray.getBlockPos();
 			World world = e.getPlayer().world;
 			TileEntity tile = world.getTileEntity(pos);
+			
+			if(tile == null) return;
+			
 			Block b = world.getBlockState(pos).getBlock();
 			
 			if(b instanceof BlockUnstableCube && tile instanceof TileUnstableCube) {
+				//Decorative
 				highlight(e, (x, y, z, partial) -> {
 					RenderTileUnstableCube.doTransformations(((TileUnstableCube) tile), partial, x, y, z);
 					RenderGlobal.drawSelectionBoundingBox(UNSTABLE_CUBE_HIGHLIGHT_AABB, 0, 0, 0, 0.4f);
 				});
 			} else if(b instanceof AbstractBlockSoulCore && tile instanceof AbstractTileSoulCore) {
+				//Soulcores
 				highlight(e, (x, y, z, partial) -> {
 					RenderTileSoulCore.performHighlightTransformations((AbstractTileSoulCore) tile, partial, x, y, z);
 					//something...

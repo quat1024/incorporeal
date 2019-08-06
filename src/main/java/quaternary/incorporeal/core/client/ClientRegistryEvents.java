@@ -2,16 +2,20 @@ package quaternary.incorporeal.core.client;
 
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.feature.IClientFeatureTwin;
 import quaternary.incorporeal.IncorporeticFeatures;
+import quaternary.incorporeal.api.feature.IClientFeatureTwin;
 
-@Mod.EventBusSubscriber(modid = Incorporeal.MODID, value = Side.CLIENT)
 public final class ClientRegistryEvents {
-	private ClientRegistryEvents() {}
+	private ClientRegistryEvents() {
+	}
+	
+	public static void preinit() {
+		IncorporeticFeatures.forEach(f -> f.client().preinit());
+		
+		MinecraftForge.EVENT_BUS.register(ClientRegistryEvents.class);
+	}
 	
 	@SubscribeEvent
 	public static void models(ModelRegistryEvent e) {
@@ -31,10 +35,5 @@ public final class ClientRegistryEvents {
 	@SubscribeEvent
 	public static void itemColors(ColorHandlerEvent.Item e) {
 		IncorporeticFeatures.forEach(f -> f.client().itemColors(e));
-		
-	}
-	
-	public static void preinit() {
-		IncorporeticFeatures.forEach(f -> f.client().preinit());
 	}
 }

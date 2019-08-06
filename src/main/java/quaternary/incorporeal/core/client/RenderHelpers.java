@@ -3,7 +3,8 @@ package quaternary.incorporeal.core.client;
 import net.minecraft.client.renderer.OpenGlHelper;
 
 public final class RenderHelpers {
-	private RenderHelpers() {}
+	private RenderHelpers() {
+	}
 	
 	public static void useFullbrightLightmap() {
 		/*

@@ -14,26 +14,32 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
+import quaternary.incorporeal.IncorporeticFeatures;
 import quaternary.incorporeal.api.feature.IClientFeatureTwin;
 import quaternary.incorporeal.api.feature.IFeature;
 import quaternary.incorporeal.core.client.ClientHelpers;
+import quaternary.incorporeal.core.client.event.PostRenderGameOverlayEventHandler;
+import quaternary.incorporeal.feature.cygnusnetwork.etc.CygnusStackDataSerializer;
+import quaternary.incorporeal.feature.cygnusnetwork.etc.LooseRedstoneDustCygnusFunnelable;
+import quaternary.incorporeal.feature.cygnusnetwork.etc.LooseRedstoneRepeaterCygnusFunnelable;
 import quaternary.incorporeal.feature.cygnusnetwork.block.CygnusNetworkBlocks;
+import quaternary.incorporeal.feature.cygnusnetwork.cap.CygnusAttachCapabilitiesEventHandler;
+import quaternary.incorporeal.feature.cygnusnetwork.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.feature.cygnusnetwork.client.entityrenderer.RenderEntityCygnusMasterSpark;
 import quaternary.incorporeal.feature.cygnusnetwork.client.entityrenderer.RenderEntityCygnusRegularSpark;
+import quaternary.incorporeal.feature.cygnusnetwork.client.event.CameraEaseHandler;
+import quaternary.incorporeal.feature.cygnusnetwork.client.event.CorporeticIcons;
+import quaternary.incorporeal.feature.cygnusnetwork.client.event.ScrollEventHandler;
 import quaternary.incorporeal.feature.cygnusnetwork.client.model.CygnusWordModelLoader;
 import quaternary.incorporeal.feature.cygnusnetwork.client.tesr.RenderTileCygnusCrystalCube;
 import quaternary.incorporeal.feature.cygnusnetwork.client.tesr.RenderTileCygnusRetainer;
-import quaternary.incorporeal.feature.cygnusnetwork.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.feature.cygnusnetwork.entity.CygnusNetworkEntities;
 import quaternary.incorporeal.feature.cygnusnetwork.entity.EntityCygnusMasterSpark;
 import quaternary.incorporeal.feature.cygnusnetwork.entity.EntityCygnusRegularSpark;
-import quaternary.incorporeal.core.etc.CygnusStackDataSerializer;
-import quaternary.incorporeal.core.etc.LooseRedstoneDustCygnusFunnelable;
-import quaternary.incorporeal.core.etc.LooseRedstoneRepeaterCygnusFunnelable;
 import quaternary.incorporeal.feature.cygnusnetwork.item.CygnusNetworkItems;
 import quaternary.incorporeal.feature.cygnusnetwork.item.ItemCygnusCard;
+import quaternary.incorporeal.feature.cygnusnetwork.recipe.CygnusSkytouchingRecipes;
 import quaternary.incorporeal.feature.cygnusnetwork.tile.CygnusNetworkTiles;
-import quaternary.incorporeal.feature.skytouching.recipe.IncorporeticSkytouchingRecipes;
 import quaternary.incorporeal.feature.cygnusnetwork.tile.TileCygnusCrystalCube;
 import quaternary.incorporeal.feature.cygnusnetwork.tile.TileCygnusRetainer;
 
@@ -50,20 +56,25 @@ public class CygnusNetworkFeature implements IFeature {
 	
 	@Override
 	public void preinit(FMLPreInitializationEvent e) {
-		IncorporeticCygnusCapabilities.preinit(e);
+		IncorporeticCygnusCapabilities.register(e);
 		IncorporeticCygnusActions.registerCygnusActions();
 		IncorporeticCygnusConditions.registerCygnusConditions();
 		IncorporeticCygnusDatatypes.registerCygnusDatatypes();
-		CygnusStackDataSerializer.preinit(e);
+		CygnusStackDataSerializer.register(e);
 	}
 	
 	@Override
 	public void init(FMLInitializationEvent e) {
 		CygnusRegistries.freezeRegistries();
-		CygnusDatatypeHelpers.init();
-		IncorporeticSkytouchingRecipes.init();
+		CygnusDatatypeHelpers.register();
 		CygnusRegistries.LOOSE_FUNNELABLES.add(new LooseRedstoneDustCygnusFunnelable());
 		CygnusRegistries.LOOSE_FUNNELABLES.add(new LooseRedstoneRepeaterCygnusFunnelable());
+		
+		CygnusAttachCapabilitiesEventHandler.register();
+		
+		if(IncorporeticFeatures.isEnabled(IncorporeticFeatures.SKYTOUCHING)) {
+			CygnusSkytouchingRecipes.register();
+		}
 	}
 	
 	@Override
@@ -95,6 +106,12 @@ public class CygnusNetworkFeature implements IFeature {
 				RenderingRegistry.registerEntityRenderingHandler(EntityCygnusRegularSpark.class, RenderEntityCygnusRegularSpark::new);
 				RenderingRegistry.registerEntityRenderingHandler(EntityCygnusMasterSpark.class, RenderEntityCygnusMasterSpark::new);
 				ModelLoaderRegistry.registerLoader(new CygnusWordModelLoader());
+				
+				CameraEaseHandler.register();
+				ScrollEventHandler.register();
+				CorporeticIcons.register();
+				
+				PostRenderGameOverlayEventHandler.ensureRegistered();
 			}
 			
 			@Override

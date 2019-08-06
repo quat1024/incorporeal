@@ -26,7 +26,7 @@ import vazkii.botania.common.item.ModItems;
 
 import javax.annotation.Nullable;
 
-public class BlockCorporeaSparkTinkerer extends Block implements ILexiconable {	
+public class BlockCorporeaSparkTinkerer extends Block implements ILexiconable {
 	public BlockCorporeaSparkTinkerer() {
 		super(Material.ROCK, MapColor.PURPLE);
 		this.setHardness(3F);
@@ -89,6 +89,7 @@ public class BlockCorporeaSparkTinkerer extends Block implements ILexiconable {
 	
 	//Aabbabababb
 	private static final AxisAlignedBB aabb = new AxisAlignedBB(0d, 0d, 0d, 1d, 0.1875d, 1d);
+	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return aabb;

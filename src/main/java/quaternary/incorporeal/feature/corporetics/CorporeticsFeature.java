@@ -13,14 +13,18 @@ import quaternary.incorporeal.api.feature.IClientFeatureTwin;
 import quaternary.incorporeal.api.feature.IFeature;
 import quaternary.incorporeal.core.client.ClientHelpers;
 import quaternary.incorporeal.core.client.entityrenderer.RenderEntityNothing;
-import quaternary.incorporeal.core.sortme.IncorporeticLexicon;
+import quaternary.incorporeal.core.client.event.PostRenderGameOverlayEventHandler;
+import quaternary.incorporeal.feature.corporetics.block.BlockCorporeaInhibitor;
 import quaternary.incorporeal.feature.corporetics.block.CorporeticsBlocks;
 import quaternary.incorporeal.feature.corporetics.client.tesr.RenderTileCorporeaSparkTinkerer;
 import quaternary.incorporeal.feature.corporetics.entity.CorporeticsEntities;
 import quaternary.incorporeal.feature.corporetics.entity.EntityFracturedSpaceCollector;
+import quaternary.incorporeal.feature.corporetics.event.CorporeaIndexInputHandler;
+import quaternary.incorporeal.feature.corporetics.flower.CorporeticFlowers;
 import quaternary.incorporeal.feature.corporetics.flower.SubTileSanvocalia;
 import quaternary.incorporeal.feature.corporetics.flower.SubTileSweetAlexum;
 import quaternary.incorporeal.feature.corporetics.item.CorporeticsItems;
+import quaternary.incorporeal.feature.corporetics.item.ItemTicketConjurer;
 import quaternary.incorporeal.feature.corporetics.recipe.CorporeticsPetalRecipes;
 import quaternary.incorporeal.feature.corporetics.tile.CorporeticsTiles;
 import quaternary.incorporeal.feature.corporetics.tile.TileCorporeaSparkTinkerer;
@@ -38,7 +42,13 @@ public class CorporeticsFeature implements IFeature {
 	
 	@Override
 	public void init(FMLInitializationEvent e) {
-		IncorporeticLexicon.init(); //TODO delete this from the module
+		//IncorporeticLexicon.init(); //TODO delete this from the module
+		
+		//per-block and item events... maybe break these out into a dedi event class? :thinking:
+		ItemTicketConjurer.registerChatEvent();
+		BlockCorporeaInhibitor.registerTickEvent();
+		
+		CorporeaIndexInputHandler.register();
 	}
 	
 	@Override
@@ -54,6 +64,9 @@ public class CorporeticsFeature implements IFeature {
 	@Override
 	public void items(IForgeRegistry<Item> reg) {
 		CorporeticsItems.registerItems(reg);
+		
+		//I think this is a good spot to register flowers...
+		CorporeticFlowers.register();
 	}
 	
 	@Override
@@ -73,6 +86,8 @@ public class CorporeticsFeature implements IFeature {
 			@Override
 			public void preinit() {
 				RenderingRegistry.registerEntityRenderingHandler(EntityFracturedSpaceCollector.class, RenderEntityNothing::new);
+				
+				PostRenderGameOverlayEventHandler.ensureRegistered();
 			}
 			
 			@Override

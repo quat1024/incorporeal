@@ -7,7 +7,7 @@ import quaternary.incorporeal.core.etc.helper.EtcHelpers;
 
 import java.util.Objects;
 
-public class BlocksModule extends RegistryModule {
+public class BlocksModule {
 	public static <T extends Block> T name(T block, String name) {
 		block.setRegistryName(new ResourceLocation(Incorporeal.MODID, name));
 		block.setTranslationKey(Incorporeal.MODID + "." + name);

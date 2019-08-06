@@ -9,12 +9,14 @@ import vazkii.botania.common.integration.corporea.WrappedInventoryBase;
 import java.util.ArrayList;
 import java.util.List;
 
-/** An IWrappedInventory that completely ignores the item passed in to "getCount" and substitutes its own. Extraction works as normal, so it will return items that do not match the item passed in to getCount! Used in the corporea liar to provide the "spoofing" functionality.
- * 
+/**
+ * An IWrappedInventory that completely ignores the item passed in to "getCount" and substitutes its own. Extraction works as normal, so it will return items that do not match the item passed in to getCount! Used in the corporea liar to provide the "spoofing" functionality.
+ *
  * While it would be useful to extend Botania's WrappedIInventory, its constructor is private.
- * Most of this class is therefore just copied from it. */
+ * Most of this class is therefore just copied from it.
+ */
 //TODO the PR allows extending WrappedIInventory now~
-	//I dont feel like dealing with these messy functions though lmaO
+//I dont feel like dealing with these messy functions though lmaO
 public class LyingWrappedInventory extends WrappedInventoryBase {
 	public LyingWrappedInventory(InvWithLocation inv, ICorporeaSpark spark, List<ItemStack> spoofedStacks) {
 		super(spark);
@@ -36,7 +38,7 @@ public class LyingWrappedInventory extends WrappedInventoryBase {
 	}
 	
 	@Override
-	public List<ItemStack> extractItems(CorporeaRequest request) {	
+	public List<ItemStack> extractItems(CorporeaRequest request) {
 		return doRealRequest(request);
 	}
 	

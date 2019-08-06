@@ -12,7 +12,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -28,7 +28,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.WeakHashMap;
 
-@Mod.EventBusSubscriber
 public class BlockCorporeaInhibitor extends Block implements ICorporeaInhibitor, ILexiconable {
 	public BlockCorporeaInhibitor() {
 		super(Material.ROCK);
@@ -56,6 +55,10 @@ public class BlockCorporeaInhibitor extends Block implements ICorporeaInhibitor,
 	protected static void notifyNearbyCorporeaSparksDeferred(World world, BlockPos pos) {
 		Set<BlockPos> positions = deferredCheckPositions.computeIfAbsent(world, (w) -> new HashSet<>());
 		positions.add(pos);
+	}
+	
+	public static void registerTickEvent() {
+		MinecraftForge.EVENT_BUS.register(BlockCorporeaInhibitor.class);
 	}
 	
 	@SubscribeEvent

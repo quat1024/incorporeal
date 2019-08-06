@@ -7,13 +7,14 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import quaternary.incorporeal.core.sortme.IncorporeticPacketHandler;
+import quaternary.incorporeal.core.IncorporeticPacketHandler;
 import vazkii.botania.common.Botania;
 
 import java.awt.*;
 
 public class MessageSparkleLine implements IncorporeticPacketHandler.IIncorporeticMessage {
-	public MessageSparkleLine() {}
+	public MessageSparkleLine() {
+	}
 	
 	public MessageSparkleLine(Vec3d point1, Vec3d point2, int decay) {
 		this.point1 = point1;

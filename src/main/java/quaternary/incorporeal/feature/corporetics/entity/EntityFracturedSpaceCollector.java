@@ -45,7 +45,7 @@ public class EntityFracturedSpaceCollector extends Entity {
 	
 	private static final double RADIUS = 2;
 	private static final int MAX_AGE = 30;
-	private static final float AGE_SPECIAL_START = MAX_AGE * 3f/4f;
+	private static final float AGE_SPECIAL_START = MAX_AGE * 3f / 4f;
 	private static final int PARTICLE_COUNT = 12;
 	private static final int MANA_COST_PER_ITEM = 500; //TODO balance this?
 	
@@ -62,7 +62,9 @@ public class EntityFracturedSpaceCollector extends Entity {
 	
 	@Override
 	public void onUpdate() {
-		motionX = 0; motionY = 0; motionZ = 0;
+		motionX = 0;
+		motionY = 0;
+		motionZ = 0;
 		super.onUpdate();
 		
 		int age = dataManager.get(DATA_AGE);

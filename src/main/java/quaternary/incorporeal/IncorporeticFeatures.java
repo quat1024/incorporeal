@@ -17,8 +17,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 
-public class IncorporeticFeatures {
-	private IncorporeticFeatures() {}
+public final class IncorporeticFeatures {
+	private IncorporeticFeatures() {
+	}
 	
 	public static final IFeature CORPORETICS = new CorporeticsFeature();
 	
@@ -56,7 +57,7 @@ public class IncorporeticFeatures {
 	static {
 		//noinspection OverlyBroadCatchBlock
 		try {
-			nextFeature:
+				nextFeature:
 			for(Field field : IncorporeticFeatures.class.getDeclaredFields()) {
 				if(field.getType() != IFeature.class) continue;
 				IFeature feature = (IFeature) field.get(null);

@@ -4,22 +4,23 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.core.ItemsModule;
-import quaternary.incorporeal.core.etc.helper.EtcHelpers;
 import quaternary.incorporeal.feature.soulcores.block.SoulCoresBlocks;
 
 public final class SoulCoresItems extends ItemsModule {
-	private SoulCoresItems() {}
+	private SoulCoresItems() {
+	}
 	
 	public static final class RegistryNames {
-		private RegistryNames() {}
+		private RegistryNames() {
+		}
 		
 		public static final String SOUL_CORE_FRAME = "soul_core_frame";
 	}
 	
-	public static Item SOUL_CORE_FRAME = EtcHelpers.definitelyIsntNullISwear();
-	public static ItemBlock ENDER_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
-	public static ItemBlock CORPOREA_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
-	public static ItemBlock POTION_SOUL_CORE = EtcHelpers.definitelyIsntNullISwear();
+	public static Item SOUL_CORE_FRAME = null;
+	public static ItemBlock ENDER_SOUL_CORE = null;
+	public static ItemBlock CORPOREA_SOUL_CORE = null;
+	public static ItemBlock POTION_SOUL_CORE = null;
 	
 	public static void registerItems(IForgeRegistry<Item> items) {
 		items.registerAll(

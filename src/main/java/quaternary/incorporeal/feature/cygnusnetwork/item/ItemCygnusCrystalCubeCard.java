@@ -9,8 +9,8 @@ import java.util.function.Predicate;
 public class ItemCygnusCrystalCubeCard extends ItemCygnusCard<Predicate<ICygnusStack>> {
 	public ItemCygnusCrystalCubeCard() {
 		super(
-						Incorporeal.API.getCygnusStackConditionRegistry(),
-						"Condition",
-						IncorporeticCygnusConditions.NOTHING);
+			Incorporeal.API.getCygnusStackConditionRegistry(),
+			"Condition",
+			IncorporeticCygnusConditions.NOTHING);
 	}
 }

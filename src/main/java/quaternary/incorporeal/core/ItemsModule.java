@@ -6,7 +6,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import quaternary.incorporeal.Incorporeal;
 
-public class ItemsModule extends RegistryModule {
+public class ItemsModule {
 	public static <T extends Item> T name(T item, String name) {
 		item.setRegistryName(new ResourceLocation(Incorporeal.MODID, name));
 		item.setTranslationKey(Incorporeal.MODID + "." + name);

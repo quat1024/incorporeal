@@ -1,16 +1,18 @@
-package quaternary.incorporeal.core.client.event;
+package quaternary.incorporeal.feature.cygnusnetwork.client.event;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import quaternary.incorporeal.Incorporeal;
 
-//TODO don't register this unless the cygnus network is enabled
-@Mod.EventBusSubscriber(modid = Incorporeal.MODID, value = Side.CLIENT)
-public class IncorporeticClientTickHandler {
+public final class CameraEaseHandler {
+	private CameraEaseHandler() {
+	}
+	
+	public static void register() {
+		MinecraftForge.EVENT_BUS.register(CameraEaseHandler.class);
+	}
 	
 	public static float easedYaw = 0;
 	public static float easedPitch = 0;
