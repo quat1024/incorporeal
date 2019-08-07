@@ -23,9 +23,11 @@ public class MessageSparkleLine implements IncorporeticPacketHandler.IIncorporet
 	}
 	
 	public MessageSparkleLine(Vec3i point1, Vec3i point2, int decay) {
-		this.point1 = new Vec3d(point1).add(.5, .5, .5);
-		this.point2 = new Vec3d(point2).add(.5, .5, .5);
-		this.decay = decay;
+		this(new Vec3d(point1).add(.5, .5, .5), new Vec3d(point2).add(.5, .5, .5), decay);
+	}
+	
+	public MessageSparkleLine(Vec3d point1, Vec3i point2, int decay) {
+		this(point1, new Vec3d(point2).add(.5, .5, .5), decay);
 	}
 	
 	private Vec3d point1;

@@ -6,12 +6,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.NoteBlockEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import quaternary.incorporeal.core.etc.helper.DespacitoHelper;
 import quaternary.incorporeal.core.IncorporeticPacketHandler;
+import quaternary.incorporeal.core.etc.helper.DespacitoHelper;
 import quaternary.incorporeal.feature.corporetics.lexicon.CorporeticsLexicon;
 import quaternary.incorporeal.feature.corporetics.net.MessageSparkleLine;
 import vazkii.botania.api.lexicon.ILexiconable;
@@ -41,9 +42,11 @@ public class SubTileSweetAlexum extends SubTileFunctional implements ILexiconabl
 		} else {
 			World world = getWorld();
 			
+			int effectiveTicksBetweenNotes = (getTicksBetweenNotes() / (overgrowth || overgrowthBoost ? 2 : 1));
+			
 			int tick = (int) (world.getTotalWorldTime() - ticksSinceReset - ticksPaused - 1);
-			if(tick < 0 || tick % getTicksBetweenNotes() != 0) return;
-			tick /= getTicksBetweenNotes();
+			if(tick < 0 || tick % effectiveTicksBetweenNotes != 0) return;
+			tick /= effectiveTicksBetweenNotes;
 			
 			//Yeah this code is disgusting, but Chill, it's a meme flower
 			
@@ -81,13 +84,15 @@ public class SubTileSweetAlexum extends SubTileFunctional implements ILexiconabl
 			
 			boolean dirtyMana = false;
 			
+			Vec3d src = world.getBlockState(pos).getOffset(world, pos).add(pos.getX() + .5, pos.getY() + getSparkleHeight(), pos.getZ() + .5);
+			
 			if(flutePos != null) {
 				int[] notes = DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.FLUTE);
 				if(notes.length > 0) {
-					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(pos, flutePos, 1), world, pos);
+					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(src, flutePos, 1), world, pos);
 					
 					for(int note : notes) {
-						world.addBlockEvent(flutePos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.FLUTE.ordinal(), note);
+						world.addBlockEvent(flutePos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.FLUTE.ordinal(), note + getPitchShift());
 						mana -= 10;
 						dirtyMana = true;
 					}
@@ -97,7 +102,7 @@ public class SubTileSweetAlexum extends SubTileFunctional implements ILexiconabl
 			if(snarePos != null) {
 				int[] notes = DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.SNARE);
 				if(notes.length > 0) {
-					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(pos, snarePos, 2), world, pos);
+					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(src, snarePos, 2), world, pos);
 					for(int note : notes) {
 						world.addBlockEvent(snarePos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.SNARE.ordinal(), note);
 						mana -= 10;
@@ -109,7 +114,7 @@ public class SubTileSweetAlexum extends SubTileFunctional implements ILexiconabl
 			if(bassdrumPos != null) {
 				int[] notes = DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.BASSDRUM);
 				if(notes.length > 0) {
-					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(pos, bassdrumPos, 2), world, pos);
+					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(src, bassdrumPos, 2), world, pos);
 					for(int note : notes) {
 						world.addBlockEvent(bassdrumPos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.BASSDRUM.ordinal(), note);
 						mana -= 10;
@@ -121,9 +126,9 @@ public class SubTileSweetAlexum extends SubTileFunctional implements ILexiconabl
 			if(bassguitarPos != null) {
 				int[] notes = DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.BASSGUITAR);
 				if(notes.length > 0) {
-					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(pos, bassguitarPos, 2), world, pos);
+					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(src, bassguitarPos, 2), world, pos);
 					for(int note : notes) {
-						world.addBlockEvent(bassguitarPos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.BASSGUITAR.ordinal(), note);
+						world.addBlockEvent(bassguitarPos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.BASSGUITAR.ordinal(), note + getPitchShift());
 						mana -= 10;
 						dirtyMana = true;
 					}
@@ -176,6 +181,14 @@ public class SubTileSweetAlexum extends SubTileFunctional implements ILexiconabl
 		return 4;
 	}
 	
+	protected int getPitchShift() {
+		return 0;
+	}
+	
+	protected double getSparkleHeight() {
+		return 0.75;
+	}
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public RadiusDescriptor getRadius() {
@@ -185,12 +198,22 @@ public class SubTileSweetAlexum extends SubTileFunctional implements ILexiconabl
 	public static class Mini extends SubTileSweetAlexum {
 		@Override
 		protected int getRange() {
-			return 1;
+			return 2;
 		}
 		
 		@Override
 		protected int getTicksBetweenNotes() {
 			return 3;
+		}
+		
+		@Override
+		protected int getPitchShift() {
+			return 7;
+		}
+		
+		@Override
+		protected double getSparkleHeight() {
+			return 0.6;
 		}
 	}
 	
