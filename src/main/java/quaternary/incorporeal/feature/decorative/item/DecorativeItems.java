@@ -19,7 +19,7 @@ public final class DecorativeItems extends ItemsModule {
 	public static ItemBlock FORGOTTEN_SHRINE = null;
 	public static ItemBlock LOKIW = null;
 	
-	public static void registerItems(IForgeRegistry<Item> items) {
+	public static void register(IForgeRegistry<Item> items) {
 		items.registerAll(
 			UNSTABLE_CUBE = itemBlock(new ItemCloth(DecorativeBlocks.UNSTABLE_CUBE)),
 			RED_STRING_TILE = itemBlock(new ItemBlock(DecorativeBlocks.RED_STRING_TILE)),

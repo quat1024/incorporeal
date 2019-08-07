@@ -17,7 +17,7 @@ public final class SoulCoresRuneRecipes {
 	public static RecipeRuneAltar corporeaSoulCore;
 	public static RecipeRuneAltar potionSoulCore;
 	
-	public static void init() {
+	public static void register() {
 		SoulCoresRuneRecipes.soulCoreFrame = BotaniaAPI.registerRuneAltarRecipe(
 			new ItemStack(SoulCoresItems.SOUL_CORE_FRAME),
 			12000, //tier 3 rune cost

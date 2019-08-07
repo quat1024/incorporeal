@@ -31,7 +31,7 @@ public final class CorporeticsItems extends ItemsModule {
 	public static ItemBlock FRAME_TINKERER = null;
 	public static ItemBlock RED_STRING_LIAR = null;
 	
-	public static void registerItems(IForgeRegistry<Item> items) {
+	public static void register(IForgeRegistry<Item> items) {
 		items.registerAll(
 			TICKET_CONJURER = name(new ItemTicketConjurer(), RegistryNames.TICKET_CONJURER),
 			CORPOREA_TICKET = name(new ItemCorporeaTicket(), RegistryNames.CORPOREA_TICKET),

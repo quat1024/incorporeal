@@ -25,6 +25,7 @@ import quaternary.incorporeal.feature.corporetics.flower.SubTileSanvocalia;
 import quaternary.incorporeal.feature.corporetics.flower.SubTileSweetAlexum;
 import quaternary.incorporeal.feature.corporetics.item.CorporeticsItems;
 import quaternary.incorporeal.feature.corporetics.item.ItemTicketConjurer;
+import quaternary.incorporeal.feature.corporetics.lexicon.CorporeticsLexicon;
 import quaternary.incorporeal.feature.corporetics.recipe.CorporeticsPetalRecipes;
 import quaternary.incorporeal.feature.corporetics.tile.CorporeticsTiles;
 import quaternary.incorporeal.feature.corporetics.tile.TileCorporeaSparkTinkerer;
@@ -37,33 +38,35 @@ public class CorporeticsFeature implements IFeature {
 	
 	@Override
 	public String description() {
-		return "The appetizer and the main course. All sorts of wacky corporea-related doodads and trinkets.";
+		return "The appetizer, and the main course. All sorts of wacky corporea-related doodads and trinkets.";
 	}
 	
 	@Override
 	public void init(FMLInitializationEvent e) {
-		//IncorporeticLexicon.init(); //TODO delete this from the module
-		
 		//per-block and item events... maybe break these out into a dedi event class? :thinking:
 		ItemTicketConjurer.registerChatEvent();
 		BlockCorporeaInhibitor.registerTickEvent();
-		
 		CorporeaIndexInputHandler.register();
 	}
 	
 	@Override
 	public void petalRecipes() {
-		CorporeticsPetalRecipes.init();
+		CorporeticsPetalRecipes.register();
+	}
+	
+	@Override
+	public void lexicon() {
+		CorporeticsLexicon.register();
 	}
 	
 	@Override
 	public void blocks(IForgeRegistry<Block> reg) {
-		CorporeticsBlocks.registerBlocks(reg);
+		CorporeticsBlocks.register(reg);
 	}
 	
 	@Override
 	public void items(IForgeRegistry<Item> reg) {
-		CorporeticsItems.registerItems(reg);
+		CorporeticsItems.register(reg);
 		
 		//I think this is a good spot to register flowers...
 		CorporeticFlowers.register();
@@ -71,12 +74,12 @@ public class CorporeticsFeature implements IFeature {
 	
 	@Override
 	public void entities(IForgeRegistry<EntityEntry> entities) {
-		CorporeticsEntities.registerEntities(entities);
+		CorporeticsEntities.register(entities);
 	}
 	
 	@Override
 	public void tiles() {
-		CorporeticsTiles.registerTiles();
+		CorporeticsTiles.register();
 	}
 	
 	@Override

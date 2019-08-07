@@ -6,7 +6,7 @@ public final class CorporeticsTiles extends TilesModule {
 	private CorporeticsTiles() {
 	}
 	
-	public static void registerTiles() {
+	public static void register() {
 		reg(TileCorporeaSolidifier.class, "solidifier");
 		reg(TileCorporeaSparkTinkerer.class, "corporea_tinkerer");
 		reg(TileRedStringLiar.class, "red_string_liar");

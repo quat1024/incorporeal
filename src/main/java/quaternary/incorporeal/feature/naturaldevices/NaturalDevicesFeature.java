@@ -19,6 +19,7 @@ import quaternary.incorporeal.feature.naturaldevices.block.NaturalDevicesBlocks;
 import quaternary.incorporeal.feature.naturaldevices.etc.DispenserBehaviorRedstoneRoot;
 import quaternary.incorporeal.feature.naturaldevices.event.PlantRedstoneRootEventHandler;
 import quaternary.incorporeal.feature.naturaldevices.item.NaturalDevicesItems;
+import quaternary.incorporeal.feature.naturaldevices.lexicon.NaturalDevicesLexicon;
 import vazkii.botania.common.item.ModItems;
 
 public class NaturalDevicesFeature implements IFeature {
@@ -54,12 +55,17 @@ public class NaturalDevicesFeature implements IFeature {
 	
 	@Override
 	public void blocks(IForgeRegistry<Block> blocks) {
-		NaturalDevicesBlocks.registerBlocks(blocks);
+		NaturalDevicesBlocks.register(blocks);
 	}
 	
 	@Override
 	public void items(IForgeRegistry<Item> items) {
-		NaturalDevicesItems.registerItems(items);
+		NaturalDevicesItems.register(items);
+	}
+	
+	@Override
+	public void lexicon() {
+		NaturalDevicesLexicon.register();
 	}
 	
 	@SideOnly(Side.CLIENT)

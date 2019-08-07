@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.items.ItemHandlerHelper;
-import quaternary.incorporeal.core.sortme.IncorporeticLexicon;
+import quaternary.incorporeal.feature.corporetics.lexicon.CorporeticsLexicon;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaIndex;
@@ -87,6 +87,6 @@ public class ItemTicketConjurer extends Item implements ILexiconable {
 	
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
-		return IncorporeticLexicon.ticketConjurer;
+		return CorporeticsLexicon.ticketConjurer;
 	}
 }

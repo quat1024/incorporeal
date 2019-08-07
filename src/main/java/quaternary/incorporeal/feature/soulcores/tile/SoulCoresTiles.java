@@ -6,7 +6,7 @@ public final class SoulCoresTiles extends TilesModule {
 	private SoulCoresTiles() {
 	}
 	
-	public static void registerTiles() {
+	public static void register() {
 		reg(TileEnderSoulCore.class, "ender_soul_core");
 		reg(TileCorporeaSoulCore.class, "corporea_soul_core");
 		reg(TilePotionSoulCore.class, "potion_soul_core");

@@ -18,7 +18,7 @@ public final class NaturalDevicesBlocks extends BlocksModule {
 	public static BlockNaturalRepeater NATURAL_REPEATER = null;
 	public static BlockNaturalComparator NATURAL_COMPARATOR = null;
 	
-	public static void registerBlocks(IForgeRegistry<Block> blocks) {
+	public static void register(IForgeRegistry<Block> blocks) {
 		blocks.registerAll(
 			REDSTONE_ROOT_CROP = name(new BlockNaturalDeviceCrop(), RegistryNames.REDSTONE_ROOT_CROP),
 			NATURAL_REPEATER = name(new BlockNaturalRepeater(), RegistryNames.NATURAL_REPEATER),

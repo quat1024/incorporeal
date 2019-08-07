@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.api.ICorporeaInhibitor;
 import quaternary.incorporeal.core.etc.helper.CorporeaHelper2;
-import quaternary.incorporeal.core.sortme.IncorporeticLexicon;
+import quaternary.incorporeal.feature.corporetics.lexicon.CorporeticsLexicon;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.common.entity.EntityCorporeaSpark;
@@ -104,6 +104,6 @@ public class BlockCorporeaInhibitor extends Block implements ICorporeaInhibitor,
 	
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
-		return IncorporeticLexicon.corporeaInhibitor;
+		return CorporeticsLexicon.corporeaInhibitor;
 	}
 }

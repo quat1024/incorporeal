@@ -7,7 +7,7 @@ import quaternary.incorporeal.core.SoundsModule;
 public class SoulCoresSounds extends SoundsModule {
 	public static final SoundEvent UNSTABLE = make("unstable");
 	
-	public static void registerSounds(IForgeRegistry<SoundEvent> reg) {
+	public static void register(IForgeRegistry<SoundEvent> reg) {
 		reg.register(UNSTABLE);
 	}
 }

@@ -20,6 +20,7 @@ import quaternary.incorporeal.feature.decorative.block.pieces.BlockSlabPiece;
 import quaternary.incorporeal.feature.decorative.block.pieces.Piece;
 import quaternary.incorporeal.feature.decorative.client.tesr.RenderTileUnstableCube;
 import quaternary.incorporeal.feature.decorative.item.DecorativeItems;
+import quaternary.incorporeal.feature.decorative.lexicon.DecorativeLexicon;
 import quaternary.incorporeal.feature.decorative.recipe.DecorativeRuneRecipes;
 import quaternary.incorporeal.feature.decorative.sound.DecorativeSounds;
 import quaternary.incorporeal.feature.decorative.tile.DecorativeTiles;
@@ -39,27 +40,32 @@ public class DecorativeFeature implements IFeature {
 	
 	@Override
 	public void runeRecipes() {
-		DecorativeRuneRecipes.init();
+		DecorativeRuneRecipes.register();
 	}
 	
 	@Override
 	public void blocks(IForgeRegistry<Block> blocks) {
-		DecorativeBlocks.registerBlocks(blocks);
+		DecorativeBlocks.register(blocks);
 	}
 	
 	@Override
 	public void items(IForgeRegistry<Item> items) {
-		DecorativeItems.registerItems(items);
+		DecorativeItems.register(items);
 	}
 	
 	@Override
 	public void tiles() {
-		DecorativeTiles.registerTiles();
+		DecorativeTiles.register();
 	}
 	
 	@Override
 	public void sounds(IForgeRegistry<SoundEvent> sounds) {
-		DecorativeSounds.registerSounds(sounds);
+		DecorativeSounds.register(sounds);
+	}
+	
+	@Override
+	public void lexicon() {
+		DecorativeLexicon.register();
 	}
 	
 	@SideOnly(Side.CLIENT)

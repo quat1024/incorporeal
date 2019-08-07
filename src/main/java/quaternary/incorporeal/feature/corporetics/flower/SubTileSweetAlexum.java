@@ -11,8 +11,8 @@ import net.minecraftforge.event.world.NoteBlockEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.core.etc.helper.DespacitoHelper;
-import quaternary.incorporeal.core.sortme.IncorporeticLexicon;
 import quaternary.incorporeal.core.IncorporeticPacketHandler;
+import quaternary.incorporeal.feature.corporetics.lexicon.CorporeticsLexicon;
 import quaternary.incorporeal.feature.corporetics.net.MessageSparkleLine;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -196,6 +196,6 @@ public class SubTileSweetAlexum extends SubTileFunctional implements ILexiconabl
 	
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
-		return IncorporeticLexicon.sweetAlexum;
+		return CorporeticsLexicon.sweetAlexum;
 	}
 }

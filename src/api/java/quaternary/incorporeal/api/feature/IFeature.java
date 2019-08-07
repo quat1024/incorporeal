@@ -46,6 +46,7 @@ public interface IFeature {
 	
 	default void petalRecipes() {}
 	default void runeRecipes() {}
+	default void lexicon() {}
 	
 	@SideOnly(Side.CLIENT)
 	default IClientFeatureTwin client() {

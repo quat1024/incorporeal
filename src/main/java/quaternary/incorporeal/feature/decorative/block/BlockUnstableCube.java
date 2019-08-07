@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.core.sortme.IncorporeticLexicon;
+import quaternary.incorporeal.feature.decorative.lexicon.DecorativeLexicon;
 import quaternary.incorporeal.feature.decorative.tile.TileUnstableCube;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -147,6 +147,6 @@ public class BlockUnstableCube extends Block implements ILexiconable {
 	
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos pos, EntityPlayer player, ItemStack lexicon) {
-		return IncorporeticLexicon.unstableCubes;
+		return DecorativeLexicon.unstableCubes;
 	}
 }

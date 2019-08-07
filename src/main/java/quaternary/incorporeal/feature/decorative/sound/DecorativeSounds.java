@@ -7,7 +7,7 @@ import quaternary.incorporeal.core.SoundsModule;
 public class DecorativeSounds extends SoundsModule {
 	public static final SoundEvent SHRINE = make("shrine");
 	
-	public static void registerSounds(IForgeRegistry<SoundEvent> sounds) {
+	public static void register(IForgeRegistry<SoundEvent> sounds) {
 		sounds.register(SHRINE);
 	}
 }

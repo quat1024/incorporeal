@@ -14,7 +14,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import quaternary.incorporeal.core.sortme.IncorporeticLexicon;
+import quaternary.incorporeal.feature.corporetics.lexicon.CorporeticsLexicon;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.common.block.ModBlocks;
@@ -87,6 +87,6 @@ public class BlockCorporeaRetainerDecrementer extends Block implements ILexicona
 	
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
-		return IncorporeticLexicon.corporeaRetainerDecrementer;
+		return CorporeticsLexicon.corporeaRetainerDecrementer;
 	}
 }

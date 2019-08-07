@@ -13,7 +13,7 @@ public final class NaturalDevicesItems extends ItemsModule {
 	public static ItemBlock NATURAL_REPEATER = null;
 	public static ItemBlock NATURAL_COMPARATOR = null;
 	
-	public static void registerItems(IForgeRegistry<Item> items) {
+	public static void register(IForgeRegistry<Item> items) {
 		items.registerAll(
 			NATURAL_REPEATER = itemBlock(new ItemBlock(NaturalDevicesBlocks.NATURAL_REPEATER)),
 			NATURAL_COMPARATOR = itemBlock(new ItemBlock(NaturalDevicesBlocks.NATURAL_COMPARATOR))

@@ -22,7 +22,7 @@ public final class CorporeticsPetalRecipes {
 	public static RecipePetals sanvocalia;
 	public static RecipePetals sweetAlexum;
 	
-	public static void init() {
+	public static void register() {
 		sanvocalia = BotaniaAPI.registerPetalRecipe(ItemBlockSpecialFlower.ofType("sanvocalia"), white, orange, orange, red, runeLust, pixieDust, redstoneRoot);
 		sweetAlexum = BotaniaAPI.registerPetalRecipe(ItemBlockSpecialFlower.ofType("sweet_alexum"), red, orange, yellow, lime, lightBlue, purple, redstoneRoot);
 	}

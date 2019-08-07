@@ -23,7 +23,7 @@ public final class CygnusNetworkBlocks extends BlocksModule {
 	public static BlockCygnusFunnel FUNNEL = null;
 	public static BlockCygnusRetainer RETAINER = null;
 	
-	public static void registerBlocks(IForgeRegistry<Block> blocks) {
+	public static void register(IForgeRegistry<Block> blocks) {
 		blocks.registerAll(
 			WORD = name(new BlockCygnusWord(), RegistryNames.WORD),
 			CRYSTAL_CUBE = name(new BlockCygnusCrystalCube(), RegistryNames.CRYSTAL_CUBE),

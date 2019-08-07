@@ -4,6 +4,7 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import quaternary.incorporeal.api.feature.IFeature;
 import quaternary.incorporeal.feature.compat.crafttweaker.CTSkytouching;
+import quaternary.incorporeal.feature.skytouching.event.WorldTickEventHandler;
 
 public class SkytouchingFeature implements IFeature {
 	@Override
@@ -18,6 +19,8 @@ public class SkytouchingFeature implements IFeature {
 	
 	@Override
 	public void init(FMLInitializationEvent e) {
+		WorldTickEventHandler.register();
+		
 		if(Loader.isModLoaded("crafttweaker")) {
 			CTSkytouching.init();
 		}

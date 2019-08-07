@@ -6,7 +6,7 @@ public final class CygnusNetworkTiles extends TilesModule {
 	private CygnusNetworkTiles() {
 	}
 	
-	public static void registerTiles() {
+	public static void register() {
 		reg(TileCygnusCrystalCube.class, "cygnus_crystal_cube");
 		reg(TileCygnusRetainer.class, "cygnus_retainer");
 		reg(TileCygnusWord.class, "cygnus_word");

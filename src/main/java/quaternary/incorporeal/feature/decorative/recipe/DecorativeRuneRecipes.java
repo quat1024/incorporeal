@@ -12,7 +12,7 @@ public final class DecorativeRuneRecipes {
 	
 	public static RecipeRuneAltar lokiW;
 	
-	public static void init() {
+	public static void register() {
 		lokiW = BotaniaAPI.registerRuneAltarRecipe(new ItemStack(DecorativeItems.LOKIW), 12000, (Object[]) EtcHelpers.fill(
 			new ItemStack[10],
 			(i) -> EtcHelpers.skullOf("Loki270")

@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import quaternary.incorporeal.core.sortme.IncorporeticLexicon;
+import quaternary.incorporeal.feature.corporetics.lexicon.CorporeticsLexicon;
 import quaternary.incorporeal.feature.corporetics.tile.TileRedStringLiar;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -28,6 +28,6 @@ public class BlockRedStringLiar extends BlockRedString implements ILexiconable {
 	
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos pos, EntityPlayer player, ItemStack lexicon) {
-		return IncorporeticLexicon.redStringLiar;
+		return CorporeticsLexicon.redStringLiar;
 	}
 }

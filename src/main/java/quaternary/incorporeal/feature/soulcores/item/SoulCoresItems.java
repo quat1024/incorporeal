@@ -22,7 +22,7 @@ public final class SoulCoresItems extends ItemsModule {
 	public static ItemBlock CORPOREA_SOUL_CORE = null;
 	public static ItemBlock POTION_SOUL_CORE = null;
 	
-	public static void registerItems(IForgeRegistry<Item> items) {
+	public static void register(IForgeRegistry<Item> items) {
 		items.registerAll(
 			SOUL_CORE_FRAME = name(new Item(), RegistryNames.SOUL_CORE_FRAME),
 			ENDER_SOUL_CORE = itemBlock(new ItemBlock(SoulCoresBlocks.ENDER_SOUL_CORE)),

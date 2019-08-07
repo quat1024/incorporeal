@@ -21,7 +21,7 @@ public final class SoulCoresBlocks extends BlocksModule {
 	public static BlockCorporeaSoulCore CORPOREA_SOUL_CORE = null;
 	public static BlockPotionSoulCore POTION_SOUL_CORE = null;
 	
-	public static void registerBlocks(IForgeRegistry<Block> blocks) {
+	public static void register(IForgeRegistry<Block> blocks) {
 		blocks.registerAll(
 			ENDER_SOUL_CORE = name(new BlockEnderSoulCore(), RegistryNames.ENDER_SOUL_CORE),
 			CORPOREA_SOUL_CORE = name(new BlockCorporeaSoulCore(), RegistryNames.CORPOREA_SOUL_CORE),

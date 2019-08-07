@@ -22,9 +22,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import quaternary.incorporeal.IncorporeticConfig;
 import quaternary.incorporeal.core.etc.helper.CorporeaHelper2;
-import quaternary.incorporeal.core.sortme.IncorporeticLexicon;
 import quaternary.incorporeal.core.IncorporeticPacketHandler;
 import quaternary.incorporeal.feature.corporetics.item.ItemCorporeaTicket;
+import quaternary.incorporeal.feature.corporetics.lexicon.CorporeticsLexicon;
 import quaternary.incorporeal.feature.corporetics.net.MessageSparkleLine;
 import vazkii.botania.api.corporea.CorporeaRequest;
 import vazkii.botania.api.lexicon.ILexiconable;
@@ -209,6 +209,6 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 	
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
-		return IncorporeticLexicon.sanvocalia;
+		return CorporeticsLexicon.sanvocalia;
 	}
 }

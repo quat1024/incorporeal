@@ -44,7 +44,7 @@ public final class DecorativeBlocks extends BlocksModule {
 	//holy artifact
 	public static BlockLokiW LOKIW = null;
 	
-	public static void registerBlocks(IForgeRegistry<Block> blocks) {
+	public static void register(IForgeRegistry<Block> blocks) {
 		blocks.registerAll(
 			UNSTABLE_CUBE = name(new BlockUnstableCube(), RegistryNames.UNSTABLE_CUBE),
 			RED_STRING_TILE = name(new BlockRedStringDeco(), RegistryNames.RED_STRING_TILE),

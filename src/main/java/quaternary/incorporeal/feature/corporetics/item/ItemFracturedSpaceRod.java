@@ -20,8 +20,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.core.etc.helper.EtcHelpers;
-import quaternary.incorporeal.core.sortme.IncorporeticLexicon;
 import quaternary.incorporeal.feature.corporetics.entity.EntityFracturedSpaceCollector;
+import quaternary.incorporeal.feature.corporetics.lexicon.CorporeticsLexicon;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.mana.IManaUsingItem;
@@ -132,6 +132,6 @@ public class ItemFracturedSpaceRod extends Item implements IManaUsingItem, ILexi
 	
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
-		return IncorporeticLexicon.fracturedSpace;
+		return CorporeticsLexicon.fracturedSpace;
 	}
 }

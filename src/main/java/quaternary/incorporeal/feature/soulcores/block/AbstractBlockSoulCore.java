@@ -18,7 +18,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import quaternary.incorporeal.core.sortme.IncorporeticLexicon;
+import quaternary.incorporeal.feature.soulcores.lexicon.SoulCoresLexicon;
 import quaternary.incorporeal.feature.soulcores.tile.AbstractTileSoulCore;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -117,6 +117,6 @@ public abstract class AbstractBlockSoulCore extends Block implements ILexiconabl
 	
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
-		return IncorporeticLexicon.soulCores;
+		return SoulCoresLexicon.soulCores;
 	}
 }

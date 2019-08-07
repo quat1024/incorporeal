@@ -31,7 +31,7 @@ public class CygnusNetworkItems extends ItemsModule {
 	public static ItemBlock FUNNEL = null;
 	public static ItemBlock RETAINER = null;
 	
-	public static void registerItems(IForgeRegistry<Item> reg) {
+	public static void register(IForgeRegistry<Item> reg) {
 		reg.registerAll(
 			WORD_CARD = name(new ItemCygnusWordCard(), RegistryNames.WORD_CARD),
 			CRYSTAL_CUBE_CARD = name(new ItemCygnusCrystalCubeCard(), RegistryNames.CRYSTAL_CUBE_CARD),

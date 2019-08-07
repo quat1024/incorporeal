@@ -7,8 +7,10 @@ import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import net.minecraft.item.ItemStack;
-import quaternary.incorporeal.feature.skytouching.recipe.SkytouchingRecipes;
+import quaternary.incorporeal.IncorporeticFeatures;
+import quaternary.incorporeal.api.feature.IFeature;
 import quaternary.incorporeal.feature.skytouching.recipe.RecipeSkytouching;
+import quaternary.incorporeal.feature.skytouching.recipe.SkytouchingRecipes;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
@@ -20,8 +22,7 @@ import java.util.List;
 @ZenRegister
 @ZenClass("mods.incorporeal.Skytouching")
 public final class CTSkytouching {
-	private CTSkytouching() {
-	}
+	private CTSkytouching() { }
 	//zen stuff
 	
 	@ZenMethod
@@ -31,7 +32,7 @@ public final class CTSkytouching {
 	
 	@ZenMethod
 	public static void addRecipe(IItemStack out, IIngredient in, int minY, int maxY, int multiplier) {
-		act(() -> {
+		act(IncorporeticFeatures.SKYTOUCHING, () -> {
 				SkytouchingRecipes.register(new RecipeSkytouchingCT(out, in, minY, maxY, multiplier));
 			},
 			"adding new skytouching recipe:",
@@ -45,7 +46,7 @@ public final class CTSkytouching {
 	
 	@ZenMethod
 	public static void remove(IItemStack removalTarget) {
-		act(() -> {
+		act(IncorporeticFeatures.SKYTOUCHING, () -> {
 			SkytouchingRecipes.removeIf(r -> {
 				for(ItemStack inStack : r.getGenericInputs()) {
 					if(CraftTweakerMC.matches(removalTarget, inStack)) return true;
@@ -58,10 +59,15 @@ public final class CTSkytouching {
 	
 	@ZenMethod
 	public static void removeAll() {
-		act(SkytouchingRecipes::clear, "clearing all skytouching recipes >:D");
+		act(IncorporeticFeatures.SKYTOUCHING, SkytouchingRecipes::clear, "clearing all skytouching recipes >:D");
 	}
 	
-	private static void act(Runnable action, Object... message) {
+	private static void act(IFeature requiredFeature, Runnable action, Object... message) {
+		if(!IncorporeticFeatures.isEnabled(requiredFeature)) {
+			CraftTweakerAPI.logError("Feature " + requiredFeature.name() + " is not enabled in Incorporeal's settings and cannot be used from CraftTweaker!");
+			return;
+		}
+		
 		ACTIONS.add(new IAction() {
 			@Override
 			public void apply() {
@@ -86,6 +92,11 @@ public final class CTSkytouching {
 	public static List<IAction> ACTIONS = new LinkedList<>();
 	
 	public static void init() {
+		if(!IncorporeticFeatures.isEnabled(IncorporeticFeatures.CRAFTTWEAKER_COMPAT)) {
+			CraftTweakerAPI.logError("CraftTweaker compat is disabled in Incorporeal's settings.");
+			return;
+		}
+		
 		try {
 			ACTIONS.forEach(CraftTweakerAPI::apply);
 		} catch(RuntimeException e) {

@@ -27,7 +27,7 @@ public final class CorporeticsBlocks extends BlocksModule {
 	public static BlockFrameTinkerer FRAME_TINKERER = null;
 	public static BlockRedStringLiar RED_STRING_LIAR = null;
 	
-	public static void registerBlocks(IForgeRegistry<Block> blocks) {
+	public static void register(IForgeRegistry<Block> blocks) {
 		blocks.registerAll(
 			CORPOREA_INHIBITOR = name(new BlockCorporeaInhibitor(), RegistryNames.CORPOREA_INHIBITOR),
 			CORPOREA_SOLIDIFIER = name(new BlockCorporeaSolidifier(), RegistryNames.CORPOREA_SOLIDIFIER),

@@ -27,7 +27,6 @@ import quaternary.incorporeal.core.FlowersModule;
 import quaternary.incorporeal.core.IncorporeticPacketHandler;
 import quaternary.incorporeal.core.etc.proxy.ServerProxy;
 import quaternary.incorporeal.core.event.MigrationEvents;
-import quaternary.incorporeal.core.sortme.IncorporeticLexicon;
 import quaternary.incorporeal.feature.corporetics.item.CorporeticsItems;
 
 @Mod(
@@ -88,8 +87,7 @@ public final class Incorporeal {
 		IncorporeticFeatures.forEach(f -> f.init(e));
 		IncorporeticFeatures.forEach(IFeature::petalRecipes);
 		IncorporeticFeatures.forEach(IFeature::runeRecipes);
-		
-		IncorporeticLexicon.init(); //TODO make sure this is the right home
+		IncorporeticFeatures.forEach(IFeature::lexicon);
 	}
 	
 	@Mod.EventHandler

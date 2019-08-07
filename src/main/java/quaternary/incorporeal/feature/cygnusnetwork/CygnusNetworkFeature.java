@@ -79,22 +79,22 @@ public class CygnusNetworkFeature implements IFeature {
 	
 	@Override
 	public void blocks(IForgeRegistry<Block> blocks) {
-		CygnusNetworkBlocks.registerBlocks(blocks);
+		CygnusNetworkBlocks.register(blocks);
 	}
 	
 	@Override
 	public void items(IForgeRegistry<Item> items) {
-		CygnusNetworkItems.registerItems(items);
+		CygnusNetworkItems.register(items);
 	}
 	
 	@Override
 	public void entities(IForgeRegistry<EntityEntry> entities) {
-		CygnusNetworkEntities.registerEntities(entities);
+		CygnusNetworkEntities.register(entities);
 	}
 	
 	@Override
 	public void tiles() {
-		CygnusNetworkTiles.registerTiles();
+		CygnusNetworkTiles.register();
 	}
 	
 	@Override

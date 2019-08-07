@@ -24,6 +24,7 @@ import quaternary.incorporeal.feature.soulcores.client.tesr.RenderTileSoulCore;
 import quaternary.incorporeal.feature.soulcores.entity.EntityPotionSoulCoreCollector;
 import quaternary.incorporeal.feature.soulcores.entity.SoulCoresEntities;
 import quaternary.incorporeal.feature.soulcores.item.SoulCoresItems;
+import quaternary.incorporeal.feature.soulcores.lexicon.SoulCoresLexicon;
 import quaternary.incorporeal.feature.soulcores.recipe.SoulCoresRuneRecipes;
 import quaternary.incorporeal.feature.soulcores.sound.SoulCoresSounds;
 import quaternary.incorporeal.feature.soulcores.tile.SoulCoresTiles;
@@ -44,32 +45,37 @@ public class SoulCoresFeature implements IFeature {
 	
 	@Override
 	public void blocks(IForgeRegistry<Block> blocks) {
-		SoulCoresBlocks.registerBlocks(blocks);
+		SoulCoresBlocks.register(blocks);
 	}
 	
 	@Override
 	public void items(IForgeRegistry<Item> items) {
-		SoulCoresItems.registerItems(items);
+		SoulCoresItems.register(items);
 	}
 	
 	@Override
 	public void entities(IForgeRegistry<EntityEntry> entities) {
-		SoulCoresEntities.registerEntities(entities);
+		SoulCoresEntities.register(entities);
 	}
 	
 	@Override
 	public void tiles() {
-		SoulCoresTiles.registerTiles();
+		SoulCoresTiles.register();
 	}
 	
 	@Override
 	public void sounds(IForgeRegistry<SoundEvent> sounds) {
-		SoulCoresSounds.registerSounds(sounds);
+		SoulCoresSounds.register(sounds);
 	}
 	
 	@Override
 	public void runeRecipes() {
-		SoulCoresRuneRecipes.init();
+		SoulCoresRuneRecipes.register();
+	}
+	
+	@Override
+	public void lexicon() {
+		SoulCoresLexicon.register();
 	}
 	
 	@SideOnly(Side.CLIENT)
