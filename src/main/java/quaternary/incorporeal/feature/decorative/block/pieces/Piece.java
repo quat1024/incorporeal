@@ -48,6 +48,8 @@ public abstract class Piece<B extends Block, I extends Item> {
 			super(block, "wall");
 			
 			wallBlock = new BlockWall(block);
+			Piece.copyProps(block, wallBlock);
+			
 			wallItem = new ItemBlock(wallBlock);
 		}
 		
@@ -71,6 +73,8 @@ public abstract class Piece<B extends Block, I extends Item> {
 			
 			fenceBlock = new BlockFence(mat, color);
 			fenceGateBlock = new BlockFenceGate(BlockPlanks.EnumType.OAK);//todo
+			
+			Piece.copyProps(block, fenceBlock, fenceGateBlock);
 			
 			fenceItem = new ItemBlock(fenceBlock);
 			fenceGateItem = new ItemBlock(fenceGateBlock);
@@ -105,8 +109,8 @@ public abstract class Piece<B extends Block, I extends Item> {
 		public Slab(Block block, Material mat, MapColor color, boolean cutout) {
 			super(block, "slab");
 			
-			singleSlabBlock = new BlockSlabPiece(false, block, mat, color, cutout);
-			doubleSlabBlock = new BlockSlabPiece(true, block, mat, color, cutout);
+			singleSlabBlock = new BlockSlabPiece.Half(block, mat, color, cutout);
+			doubleSlabBlock = new BlockSlabPiece.Double(block, mat, color, cutout);
 			
 			slabItem = new ItemSlab(singleSlabBlock, singleSlabBlock, doubleSlabBlock);
 		}
@@ -152,6 +156,13 @@ public abstract class Piece<B extends Block, I extends Item> {
 		@Override
 		public void forEachItem(Consumer<? super ItemBlock> func) {
 			func.accept(stairItem);
+		}
+	}
+	
+	private static void copyProps(Block src, Block... dst) {
+		for(Block block : dst) {
+			block.setHardness(src.blockHardness);
+			block.setResistance(src.getExplosionResistance(null) * 5 / 3f);
 		}
 	}
 }

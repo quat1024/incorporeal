@@ -7,6 +7,8 @@ import quaternary.incorporeal.core.etc.helper.EtcHelpers;
 import quaternary.incorporeal.feature.decorative.block.pieces.PieceBuilder;
 import quaternary.incorporeal.feature.decorative.block.pieces.PieceManager;
 
+import java.util.function.Consumer;
+
 public final class DecorativeBlocks extends BlocksModule {
 	private DecorativeBlocks() {
 	}
@@ -60,9 +62,13 @@ public final class DecorativeBlocks extends BlocksModule {
 		corporeaTilePieces = new PieceBuilder(CORPOREA_TILE).addStair().addSlab().build();
 		lokiwPieces = new PieceBuilder(LOKIW).addStair().addSlab().addFence().addWall().build();
 		
-		EtcHelpers.forEach((m) -> {
+		forEachPieceManager((m) -> {
 			m.nameBlocks();
 			m.forEachBlock(blocks::register);
-		}, redStringTilePieces, corporeaBrickPieces, corporeaTilePieces, lokiwPieces);
+		});
+	}
+	
+	public static void forEachPieceManager(Consumer<PieceManager> act) {
+		EtcHelpers.forEach(act, redStringTilePieces, corporeaBrickPieces, corporeaTilePieces, lokiwPieces);
 	}
 }

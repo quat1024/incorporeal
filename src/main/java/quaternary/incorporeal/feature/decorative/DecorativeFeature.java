@@ -16,6 +16,8 @@ import quaternary.incorporeal.api.feature.IFeature;
 import quaternary.incorporeal.core.client.ClientHelpers;
 import quaternary.incorporeal.core.client.event.BlockHighlightEventHandler;
 import quaternary.incorporeal.feature.decorative.block.DecorativeBlocks;
+import quaternary.incorporeal.feature.decorative.block.pieces.BlockSlabPiece;
+import quaternary.incorporeal.feature.decorative.block.pieces.Piece;
 import quaternary.incorporeal.feature.decorative.client.tesr.RenderTileUnstableCube;
 import quaternary.incorporeal.feature.decorative.item.DecorativeItems;
 import quaternary.incorporeal.feature.decorative.recipe.DecorativeRuneRecipes;
@@ -79,10 +81,19 @@ public class DecorativeFeature implements IFeature {
 				ClientHelpers.setSimpleModel(DecorativeItems.FORGOTTEN_SHRINE);
 				ClientHelpers.setSimpleModel(DecorativeItems.LOKIW);
 				
-				DecorativeBlocks.corporeaTilePieces.forEachItem(ClientHelpers::setSimpleModel);
-				DecorativeBlocks.redStringTilePieces.forEachItem(ClientHelpers::setSimpleModel);
-				DecorativeBlocks.corporeaBrickPieces.forEachItem(ClientHelpers::setSimpleModel);
-				DecorativeBlocks.lokiwPieces.forEachItem(ClientHelpers::setSimpleModel);
+				DecorativeBlocks.forEachPieceManager(m -> m.forEachItem(ClientHelpers::setSimpleModel));
+			}
+			
+			@Override
+			public void statemappers() {
+				//Dirty hack...
+				DecorativeBlocks.forEachPieceManager(m -> {
+					Piece.Slab slabPiece = m.getPiece("slab");
+					if(slabPiece == null) return;
+					
+					ClientHelpers.setIgnoringStateMapper(slabPiece.singleSlabBlock, BlockSlabPiece.DUMMY_VARIANT);
+					ClientHelpers.setIgnoringStateMapper(slabPiece.doubleSlabBlock, BlockSlabPiece.DUMMY_VARIANT);
+				});
 			}
 			
 			@Override

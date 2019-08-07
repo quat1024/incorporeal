@@ -19,35 +19,37 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Locale;
 
-public class BlockSlabPiece extends BlockSlab {
-	public BlockSlabPiece(boolean isDouble, Block block, Material mat, MapColor color, boolean cutout) {
+public abstract class BlockSlabPiece extends BlockSlab {
+	public BlockSlabPiece(Block block, Material mat, MapColor color, boolean cutout) {
 		super(mat, color);
-		this.isDouble = isDouble;
-		this.fullBlock = block;
+		this.mainBlock = block;
 		this.specialLokiWHacks = cutout;
 		
+		setHardness(block.blockHardness);
+		setResistance(block.getExplosionResistance(null) * 5 / 3f);
+		setSoundType(block.getSoundType());
+		
+		if(!isDouble()) {
+			setDefaultState(getDefaultState().withProperty(HALF, EnumBlockHalf.BOTTOM));
+		}
 		setDefaultState(getDefaultState().withProperty(DUMMY_VARIANT, Variant.DUMMY));
 		
 		if(cutout) {
 			translucent = true;
 			setLightOpacity(0);
 		}
+		
+		this.fullBlock = isDouble();
 	}
 	
 	public static final PropertyEnum<Variant> DUMMY_VARIANT = PropertyEnum.create("variant", Variant.class);
 	
-	private final boolean isDouble;
-	private final Block fullBlock;
-	private final boolean specialLokiWHacks;
+	protected final Block mainBlock;
+	protected final boolean specialLokiWHacks;
 	
 	@Override
 	public String getTranslationKey(int meta) {
-		return fullBlock.getTranslationKey() + ".slab";
-	}
-	
-	@Override
-	public boolean isDouble() {
-		return isDouble;
+		return mainBlock.getTranslationKey() + ".slab";
 	}
 	
 	@Override
@@ -92,6 +94,11 @@ public class BlockSlabPiece extends BlockSlab {
 	}
 	
 	@Override
+	public boolean getUseNeighborBrightness(IBlockState state) {
+		return !isDouble();
+	}
+	
+	@Override
 	protected BlockStateContainer createBlockState() {
 		if(isDouble()) {
 			return new BlockStateContainer(this, DUMMY_VARIANT);
@@ -115,6 +122,28 @@ public class BlockSlabPiece extends BlockSlab {
 			return 0;
 		} else {
 			return state.getValue(BlockSlab.HALF) == EnumBlockHalf.TOP ? 1 : 0;
+		}
+	}
+	
+	public static class Half extends BlockSlabPiece {
+		public Half(Block block, Material mat, MapColor color, boolean cutout) {
+			super(block, mat, color, cutout);
+		}
+		
+		@Override
+		public boolean isDouble() {
+			return false;
+		}
+	}
+	
+	public static class Double extends BlockSlabPiece {
+		public Double(Block block, Material mat, MapColor color, boolean cutout) {
+			super(block, mat, color, cutout);
+		}
+		
+		@Override
+		public boolean isDouble() {
+			return true;
 		}
 	}
 	

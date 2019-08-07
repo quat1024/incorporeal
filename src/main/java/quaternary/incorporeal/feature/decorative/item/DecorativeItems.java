@@ -5,7 +5,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemCloth;
 import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.core.ItemsModule;
-import quaternary.incorporeal.core.etc.helper.EtcHelpers;
 import quaternary.incorporeal.feature.decorative.block.DecorativeBlocks;
 
 public final class DecorativeItems extends ItemsModule {
@@ -32,9 +31,9 @@ public final class DecorativeItems extends ItemsModule {
 		);
 		
 		//probably a better place to home these so i'm not having to borrow from the blocks class...ah well
-		EtcHelpers.forEach((m) -> {
+		DecorativeBlocks.forEachPieceManager((m) -> {
 			m.nameItems();
 			m.forEachItem(items::register);
-		}, DecorativeBlocks.redStringTilePieces, DecorativeBlocks.corporeaBrickPieces, DecorativeBlocks.corporeaTilePieces, DecorativeBlocks.lokiwPieces);
+		});
 	}
 }
