@@ -3,7 +3,6 @@ package quaternary.incorporeal.feature.decorative.block.pieces;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockWall;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -47,7 +46,7 @@ public abstract class Piece<B extends Block, I extends Item> {
 		public Wall(Block block, Material mat, MapColor color, boolean cutout) {
 			super(block, "wall");
 			
-			wallBlock = new BlockWall(block);
+			wallBlock = new BlockWallPiece(block, mat, color, cutout);
 			Piece.copyProps(block, wallBlock);
 			
 			wallItem = new ItemBlock(wallBlock);
@@ -71,8 +70,8 @@ public abstract class Piece<B extends Block, I extends Item> {
 		public Fence(Block block, Material mat, MapColor color, boolean cutout) {
 			super(block, "fence");
 			
-			fenceBlock = new BlockFence(mat, color);
-			fenceGateBlock = new BlockFenceGate(BlockPlanks.EnumType.OAK);//todo
+			fenceBlock = new BlockFencePiece(block, mat, color, cutout);
+			fenceGateBlock = new BlockFenceGatePiece(block, mat, color, cutout);
 			
 			Piece.copyProps(block, fenceBlock, fenceGateBlock);
 			

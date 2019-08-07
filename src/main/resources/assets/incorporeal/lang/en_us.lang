@@ -50,6 +50,12 @@ tile.incorporeal.corporea_deco_stairs.name=Corporea Tile Stairs
 tile.incorporeal.corporea_brick_deco_stairs.name=Corporea Brick Stairs
 tile.incorporeal.lokiw_stairs.name=LokiW Stairs
 
+tile.incorporeal.corporea_brick_deco_wall.name=Corporea Brick Wall
+tile.incorporeal.lokiw_wall.name=LokiW Wall
+
+tile.incorporeal.lokiw_fence.name=LokiW Fence
+tile.incorporeal.lokiw_fence_gate.name=LokiW Fence Gate
+
 tile.incorporeal.unstable_cube.black.name=Black Unstable Cube
 tile.incorporeal.unstable_cube.red.name=Red Unstable Cube
 tile.incorporeal.unstable_cube.green.name=Green Unstable Cube

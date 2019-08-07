@@ -1,6 +1,7 @@
 package quaternary.incorporeal.feature.decorative;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFenceGate;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.EnumDyeColor;
@@ -95,10 +96,15 @@ public class DecorativeFeature implements IFeature {
 				//Dirty hack...
 				DecorativeBlocks.forEachPieceManager(m -> {
 					Piece.Slab slabPiece = m.getPiece("slab");
-					if(slabPiece == null) return;
+					if(slabPiece != null) {
+						ClientHelpers.setIgnoringStateMapper(slabPiece.singleSlabBlock, BlockSlabPiece.DUMMY_VARIANT);
+						ClientHelpers.setIgnoringStateMapper(slabPiece.doubleSlabBlock, BlockSlabPiece.DUMMY_VARIANT);
+					}
 					
-					ClientHelpers.setIgnoringStateMapper(slabPiece.singleSlabBlock, BlockSlabPiece.DUMMY_VARIANT);
-					ClientHelpers.setIgnoringStateMapper(slabPiece.doubleSlabBlock, BlockSlabPiece.DUMMY_VARIANT);
+					Piece.Fence fencePiece = m.getPiece("fence");
+					if(fencePiece != null) {
+						ClientHelpers.setIgnoringStateMapper(fencePiece.fenceGateBlock, BlockFenceGate.POWERED);
+					}
 				});
 			}
 			
