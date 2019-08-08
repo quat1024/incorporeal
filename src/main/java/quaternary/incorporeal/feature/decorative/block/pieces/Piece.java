@@ -140,7 +140,7 @@ public abstract class Piece<B extends Block, I extends Item> {
 		public Stair(Block block, Material mat, MapColor color, boolean cutout) {
 			super(block, "stairs");
 			
-			stairBlock = new BlockStairPiece(block.getDefaultState(), cutout);
+			stairBlock = new BlockStairPiece(block, mat, color, cutout);
 			stairItem = new ItemBlock(stairBlock);
 		}
 		

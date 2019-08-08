@@ -16,8 +16,8 @@ import java.util.List;
 public class BlockRedStringDeco extends Block {
 	public BlockRedStringDeco() {
 		super(Material.ROCK);
-		setHardness(2.0F);
-		setResistance(10.0F);
+		setHardness(2f);
+		setResistance(10f);
 		setSoundType(SoundType.STONE);
 	}
 	

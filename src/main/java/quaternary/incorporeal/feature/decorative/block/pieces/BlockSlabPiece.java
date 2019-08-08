@@ -8,15 +8,19 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Locale;
 
 public abstract class BlockSlabPiece extends BlockSlab {
@@ -123,6 +127,17 @@ public abstract class BlockSlabPiece extends BlockSlab {
 		} else {
 			return state.getValue(BlockSlab.HALF) == EnumBlockHalf.TOP ? 1 : 0;
 		}
+	}
+	
+	@Override
+	public boolean isToolEffective(String type, IBlockState state) {
+		return mainBlock.isToolEffective(type, state);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag mistake) {
+		mainBlock.addInformation(stack, worldIn, tooltip, mistake);
 	}
 	
 	public static class Half extends BlockSlabPiece {

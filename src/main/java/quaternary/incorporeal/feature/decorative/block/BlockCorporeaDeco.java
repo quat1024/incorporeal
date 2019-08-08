@@ -16,7 +16,7 @@ import java.util.List;
 public class BlockCorporeaDeco extends Block {
 	public BlockCorporeaDeco() {
 		super(Material.IRON);
-		setHardness(5.5F);
+		setHardness(3f);
 		setSoundType(SoundType.METAL);
 	}
 	

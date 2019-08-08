@@ -18,10 +18,12 @@ import java.util.List;
 public class BlockLokiW extends Block {
 	public BlockLokiW() {
 		//very holy block
-		super(Material.ROCK);
-		setHardness(2f);
+		super(Material.CLAY);
+		setHardness(3f);
 		setResistance(2f);
 		setSoundType(SoundType.SLIME);
+		
+		setHarvestLevel("shovel", 1);
 	}
 	
 	@Override
@@ -43,6 +45,17 @@ public class BlockLokiW extends Block {
 	@Override
 	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT_MIPPED;
+	}
+	
+	@Override
+	public boolean isToolEffective(String type, IBlockState state) {
+		return type.equals("shovel");
+	}
+	
+	@Nullable
+	@Override
+	public String getHarvestTool(IBlockState state) {
+		return "shovel";
 	}
 	
 	@SideOnly(Side.CLIENT)
