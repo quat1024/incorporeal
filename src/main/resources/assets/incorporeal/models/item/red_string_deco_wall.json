@@ -1,0 +1,6 @@
+{
+	"parent": "block/wall_inventory",
+	"textures": {
+		"wall": "incorporeal:block/decorative/red_string/plain"
+	}
+}

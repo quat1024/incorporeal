@@ -50,6 +50,7 @@ tile.incorporeal.corporea_deco_stairs.name=Corporea Tile Stairs
 tile.incorporeal.corporea_brick_deco_stairs.name=Corporea Brick Stairs
 tile.incorporeal.lokiw_stairs.name=LokiW Stairs
 
+tile.incorporeal.red_string_deco_wall.name=Red String Tile Wall
 tile.incorporeal.corporea_brick_deco_wall.name=Corporea Brick Wall
 tile.incorporeal.lokiw_wall.name=LokiW Wall
 
@@ -193,6 +194,17 @@ botania.page.incorporeal.soulCores.flavor4=Now let me see you &2DANCE&0
 botania.page.incorporeal.soulCores5=The &1Blood Soul Core&0, at the cost of &4Mana&0, injects all potion effects received via &1Splash Potions&0 into the bloodstream of the bound &4Player&0.<br>Since the &4Soul&0 suspended in a &1Soul Core&0 is technically undead, this process will cause the usual effect inversions to occur (instant health will damage the bound &1Player&0, for example.)
 # note | hey guess what it's a song reference yet again
 botania.page.incorporeal.soulCores.flavor5=Pictured as Perfect
+
+botania.entry.incorporeal.elvenDecoration=Elven Decoration
+botania.tagline.incorporeal.elvenDecoration=Stairs, slabs, and stuff
+botania.page.incorporeal.elvenDecoration0=Any &4Corporeticist&0 or &4Red Stringlayer&0 worth their salt keeps a tidy and well-decorated laboratory; what better to use than &1Corporea&0 and &1Red String&0 itself?<br>However, it'd certainly be nice to shave off the magical properties of blocks intended purely for decoration, to avoid oversaturation of the corporetic fields (and, well, server lag)
+botania.page.incorporeal.elvenDecoration.corporea=Corporea Tiles
+botania.page.incorporeal.elvenDecoration.corporeaBrick=Bricks, for throwing at you
+botania.page.incorporeal.elvenDecoration.redString=Red String Tiles
+botania.page.incorporeal.elvenDecoration.redStringFrost=I can see right through you
+botania.page.incorporeal.elvenDecoration.stairs=Have some stairs.
+botania.page.incorporeal.elvenDecoration.slabs=Uhh, have some slabs too.
+botania.page.incorporeal.elvenDecoration.walls=It's just walls. How do I write a tagline for this?
 
 ####OTHER ELVEN THINGIES
 #TODO add an Incorporeal lang key prefix to these if at all possible

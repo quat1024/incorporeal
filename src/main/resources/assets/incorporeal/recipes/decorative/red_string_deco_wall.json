@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "incorporeal:red_string_deco"
+		}
+	},
+	"result": {
+		"item": "incorporeal:red_string_deco_wall",
+		"data": 0,
+		"count": 6
+	}
+}

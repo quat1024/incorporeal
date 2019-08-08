@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "incorporeal:lokiw"
+		}
+	},
+	"result": {
+		"item": "incorporeal:lokiw_wall",
+		"data": 0,
+		"count": 6
+	}
+}

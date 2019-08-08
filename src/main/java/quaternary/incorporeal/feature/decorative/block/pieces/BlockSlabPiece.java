@@ -9,6 +9,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -18,12 +19,15 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import quaternary.incorporeal.feature.decorative.lexicon.DecorativeLexicon;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 
-public abstract class BlockSlabPiece extends BlockSlab {
+public abstract class BlockSlabPiece extends BlockSlab implements ILexiconable {
 	public BlockSlabPiece(Block block, Material mat, MapColor color, boolean cutout) {
 		super(mat, color);
 		this.mainBlock = block;
@@ -169,5 +173,10 @@ public abstract class BlockSlabPiece extends BlockSlab {
 		public String getName() {
 			return name().toLowerCase(Locale.ROOT);
 		}
+	}
+	
+	@Override
+	public LexiconEntry getEntry(World world, BlockPos pos, EntityPlayer player, ItemStack lexicon) {
+		return DecorativeLexicon.elvenDecoration;
 	}
 }

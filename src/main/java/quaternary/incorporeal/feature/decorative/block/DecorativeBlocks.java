@@ -57,7 +57,7 @@ public final class DecorativeBlocks extends BlocksModule {
 			LOKIW = name(new BlockLokiW(), RegistryNames.LOKIW)
 		);
 		
-		redStringTilePieces = new PieceBuilder(RED_STRING_TILE).addStair().addSlab().build();
+		redStringTilePieces = new PieceBuilder(RED_STRING_TILE).addStair().addSlab().addWall().build();
 		corporeaBrickPieces = new PieceBuilder(CORPOREA_BRICKS).addStair().addSlab().addWall().build();
 		corporeaTilePieces = new PieceBuilder(CORPOREA_TILE).addStair().addSlab().build();
 		lokiwPieces = new PieceBuilder(LOKIW).addStair().addSlab().addFence().addWall().build();
