@@ -15,6 +15,7 @@ import quaternary.incorporeal.core.client.ClientHelpers;
 import quaternary.incorporeal.core.client.entityrenderer.RenderEntityNothing;
 import quaternary.incorporeal.core.client.event.PostRenderGameOverlayEventHandler;
 import quaternary.incorporeal.feature.corporetics.block.BlockCorporeaInhibitor;
+import quaternary.incorporeal.feature.corporetics.block.BlockFrameScrew;
 import quaternary.incorporeal.feature.corporetics.block.CorporeticsBlocks;
 import quaternary.incorporeal.feature.corporetics.client.tesr.RenderTileCorporeaSparkTinkerer;
 import quaternary.incorporeal.feature.corporetics.entity.CorporeticsEntities;
@@ -97,6 +98,7 @@ public class CorporeticsFeature implements IFeature {
 			public void models() {
 				//Basic stuff
 				ClientHelpers.setSimpleModel(CorporeticsItems.FRAME_TINKERER);
+				ClientHelpers.setSimpleModel(CorporeticsItems.FRAME_SCREW);
 				ClientHelpers.setSimpleModel(CorporeticsItems.CORPOREA_INHIBITOR);
 				ClientHelpers.setSimpleModel(CorporeticsItems.CORPOREA_SPARK_TINKERER);
 				ClientHelpers.setSimpleModel(CorporeticsItems.CORPOREA_SOLIDIFIER);
@@ -118,6 +120,9 @@ public class CorporeticsFeature implements IFeature {
 				ClientHelpers.setIgnoreAllStateMapper(CorporeticsBlocks.FRAME_TINKERER);
 				ClientHelpers.setIgnoreAllStateMapper(CorporeticsBlocks.CORPOREA_SPARK_TINKERER);
 				ClientHelpers.setIgnoreAllStateMapper(CorporeticsBlocks.CORPOREA_RETAINER_DECREMENTER);
+				
+				ClientHelpers.setIgnoringStateMapper(CorporeticsBlocks.FRAME_SCREW, BlockFrameScrew.POWERED);
+				ClientHelpers.setIgnoringStateMapper(CorporeticsBlocks.FRAME_SCREW_REVERSED, BlockFrameScrew.POWERED);
 			}
 			
 			@Override

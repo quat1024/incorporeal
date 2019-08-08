@@ -30,9 +30,10 @@ import java.util.List;
 public class BlockFrameTinkerer extends Block implements ILexiconable {
 	public BlockFrameTinkerer() {
 		super(Material.WOOD);
-		this.setHardness(2.0F);
-		this.setResistance(5F);
-		this.setSoundType(SoundType.WOOD);
+		setHardness(2.0F);
+		setResistance(5F);
+		setSoundType(SoundType.WOOD);
+		setHarvestLevel("axe", 1);
 		
 		setDefaultState(getDefaultState().withProperty(BotaniaStateProps.POWERED, false));
 	}

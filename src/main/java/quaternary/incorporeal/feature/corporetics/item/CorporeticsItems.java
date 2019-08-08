@@ -29,6 +29,7 @@ public final class CorporeticsItems extends ItemsModule {
 	public static ItemBlock CORPOREA_SPARK_TINKERER = null;
 	public static ItemBlock CORPOREA_RETAINER_DECREMENTER = null;
 	public static ItemBlock FRAME_TINKERER = null;
+	public static ItemBlock FRAME_SCREW = null;
 	public static ItemBlock RED_STRING_LIAR = null;
 	
 	public static void register(IForgeRegistry<Item> items) {
@@ -42,6 +43,7 @@ public final class CorporeticsItems extends ItemsModule {
 			CORPOREA_SPARK_TINKERER = itemBlock(new ItemBlock(CorporeticsBlocks.CORPOREA_SPARK_TINKERER)),
 			CORPOREA_RETAINER_DECREMENTER = itemBlock(new ItemBlock(CorporeticsBlocks.CORPOREA_RETAINER_DECREMENTER)),
 			FRAME_TINKERER = itemBlock(new ItemBlock(CorporeticsBlocks.FRAME_TINKERER)),
+			FRAME_SCREW = itemBlock(new ItemBlock(CorporeticsBlocks.FRAME_SCREW)),
 			RED_STRING_LIAR = itemBlock(new ItemBlock(CorporeticsBlocks.RED_STRING_LIAR))
 		);
 	}
