@@ -18,5 +18,11 @@
 		"E": {
 			"item": "#INGOTELVENELEMENTIUM"
 		}
-	}
+	},
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "corporetics"
+		}
+	]
 }

@@ -17,5 +17,11 @@
 		"F": {
 			"item": "minecraft:item_frame"
 		}
-	}
+	},
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "corporetics"
+		}
+	]
 }

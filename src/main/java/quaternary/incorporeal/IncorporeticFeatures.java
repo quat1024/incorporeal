@@ -13,13 +13,15 @@ import quaternary.incorporeal.feature.skytouching.SkytouchingFeature;
 import quaternary.incorporeal.feature.soulcores.SoulCoresFeature;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
+@SuppressWarnings("unused")
 public final class IncorporeticFeatures {
-	private IncorporeticFeatures() {
-	}
+	private IncorporeticFeatures() {}
 	
 	public static final IFeature CORPORETICS = new CorporeticsFeature();
 	
@@ -35,13 +37,24 @@ public final class IncorporeticFeatures {
 	
 	private static final Set<IFeature> eligibleFeatures = new HashSet<>();
 	private static final Set<IFeature> enabledFeatures = new HashSet<>(); //written to by config system
+	private static final Map<String, IFeature> byName = new HashMap<>();
 	
 	public static boolean isEnabled(IFeature feature) {
 		return enabledFeatures.contains(feature);
 	}
 	
+	public static boolean isEnabled(String name) {
+		IFeature f = byName(name);
+		if(f == null) return false;
+		else return isEnabled(f);
+	}
+	
 	public static void forEach(Consumer<IFeature> action) {
 		enabledFeatures.forEach(action);
+	}
+	
+	public static IFeature byName(String name) {
+		return byName.get(name);
 	}
 	
 	//pkg private
@@ -69,6 +82,7 @@ public final class IncorporeticFeatures {
 				}
 				
 				eligibleFeatures.add(feature);
+				byName.put(feature.name(), feature);
 			}
 		} catch(Exception e) {
 			throw new RuntimeException(e);

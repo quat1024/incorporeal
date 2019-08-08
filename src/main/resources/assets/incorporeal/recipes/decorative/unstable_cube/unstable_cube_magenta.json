@@ -20,5 +20,11 @@
 		"item": "incorporeal:unstable_cube",
 		"data": 2,
 		"count": 2
-	}
+	},
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "decorative"
+		}
+	]
 }

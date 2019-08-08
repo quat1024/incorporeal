@@ -18,5 +18,11 @@
 		"I": {
 			"item": "botania:corporeaindex"
 		}
-	}
+	},
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "corporetics"
+		}
+	]
 }

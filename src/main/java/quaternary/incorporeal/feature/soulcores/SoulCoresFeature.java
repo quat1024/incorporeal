@@ -17,7 +17,6 @@ import quaternary.incorporeal.api.feature.IFeature;
 import quaternary.incorporeal.core.client.ClientHelpers;
 import quaternary.incorporeal.core.client.entityrenderer.RenderEntityNothing;
 import quaternary.incorporeal.core.client.event.BlockHighlightEventHandler;
-import quaternary.incorporeal.feature.decorative.block.DecorativeBlocks;
 import quaternary.incorporeal.feature.decorative.client.tesr.RenderItemSoulCore;
 import quaternary.incorporeal.feature.soulcores.block.SoulCoresBlocks;
 import quaternary.incorporeal.feature.soulcores.client.tesr.RenderTileSoulCore;
@@ -95,7 +94,6 @@ public class SoulCoresFeature implements IFeature {
 			public void statemappers() {
 				ClientHelpers.setIgnoreAllStateMapper(SoulCoresBlocks.ENDER_SOUL_CORE);
 				ClientHelpers.setIgnoreAllStateMapper(SoulCoresBlocks.CORPOREA_SOUL_CORE);
-				ClientHelpers.setIgnoreAllStateMapper(DecorativeBlocks.UNSTABLE_CUBE);
 			}
 			
 			@Override

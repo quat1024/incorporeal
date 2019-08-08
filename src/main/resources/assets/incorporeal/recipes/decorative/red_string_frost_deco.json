@@ -11,5 +11,11 @@
 		{
 			"item": "incorporeal:red_string_deco"
 		}
+	],
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "decorative"
+		}
 	]
 }

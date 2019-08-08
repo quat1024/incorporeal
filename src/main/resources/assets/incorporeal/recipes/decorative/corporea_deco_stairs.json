@@ -13,5 +13,11 @@
 		"#": {
 			"item": "incorporeal:corporea_deco"
 		}
-	}
+	},
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "decorative"
+		}
+	]
 }

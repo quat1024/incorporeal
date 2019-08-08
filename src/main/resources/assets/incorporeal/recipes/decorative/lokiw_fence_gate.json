@@ -15,5 +15,11 @@
 	},
 	"result": {
 		"item": "incorporeal:lokiw_fence_gate"
-	}
+	},
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "decorative"
+		}
+	]
 }

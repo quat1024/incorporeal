@@ -83,5 +83,11 @@
 				"data": 15
 			}
 		]
-	}
+	},
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "corporetics"
+		}
+	]
 }

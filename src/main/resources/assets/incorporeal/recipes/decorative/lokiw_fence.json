@@ -16,5 +16,11 @@
 	"result": {
 		"item": "incorporeal:lokiw_fence",
 		"count": 3
-	}
+	},
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "decorative"
+		}
+	]
 }

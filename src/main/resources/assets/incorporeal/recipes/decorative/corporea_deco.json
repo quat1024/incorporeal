@@ -13,5 +13,11 @@
 			"item": "botania:corporeaspark",
 			"data": 0
 		}
+	],
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "decorative"
+		}
 	]
 }

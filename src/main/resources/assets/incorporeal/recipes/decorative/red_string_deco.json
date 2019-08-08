@@ -12,5 +12,11 @@
 		{
 			"item": "#BREDSTRING"
 		}
+	],
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "decorative"
+		}
 	]
 }

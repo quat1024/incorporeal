@@ -18,5 +18,11 @@
 		"T": {
 			"item": "#DREAMWOODTWIG"
 		}
-	}
+	},
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "corporetics"
+		}
+	]
 }

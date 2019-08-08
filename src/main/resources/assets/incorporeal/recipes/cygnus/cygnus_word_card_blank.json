@@ -12,5 +12,11 @@
 			"item": "botania:manaresource",
 			"data": 11
 		}
+	],
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "cygnusNetwork"
+		}
 	]
 }

@@ -18,5 +18,11 @@
 		"C": {
 			"item": "botania:foresteye"
 		}
-	}
+	},
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "corporetics"
+		}
+	]
 }

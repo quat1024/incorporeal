@@ -1,0 +1,5 @@
+{
+	"conditions": {
+		"feature": "quaternary.incorporeal.core.feature.FeatureConditionFactory"
+	}
+}

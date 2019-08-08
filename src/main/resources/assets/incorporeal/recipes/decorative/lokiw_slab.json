@@ -12,5 +12,11 @@
 		"#": {
 			"item": "incorporeal:lokiw"
 		}
-	}
+	},
+	"conditions": [
+		{
+			"type": "incorporeal:feature",
+			"feature": "decorative"
+		}
+	]
 }

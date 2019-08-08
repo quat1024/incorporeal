@@ -93,6 +93,8 @@ public class DecorativeFeature implements IFeature {
 			
 			@Override
 			public void statemappers() {
+				ClientHelpers.setIgnoreAllStateMapper(DecorativeBlocks.UNSTABLE_CUBE);
+				
 				//Dirty hack...
 				DecorativeBlocks.forEachPieceManager(m -> {
 					Piece.Slab slabPiece = m.getPiece("slab");
