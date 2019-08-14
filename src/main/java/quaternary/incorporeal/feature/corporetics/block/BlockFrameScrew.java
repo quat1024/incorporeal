@@ -49,7 +49,7 @@ public class BlockFrameScrew extends Block implements ILexiconable {
 	
 	@Override
 	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-		return getDefaultState().withProperty(FACING, EnumFacing.getDirectionFromEntityLiving(pos, placer));
+		return getDefaultState().withProperty(FACING, facing.getOpposite());
 	}
 	
 	@Override
