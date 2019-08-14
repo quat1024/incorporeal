@@ -4,8 +4,10 @@ import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.api.feature.IFeature;
 import vazkii.botania.api.lexicon.KnowledgeType;
 import vazkii.botania.api.lexicon.LexiconCategory;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -20,7 +22,7 @@ import vazkii.botania.common.lexicon.page.PageText;
 import javax.annotation.Nullable;
 
 public abstract class LexiconModule {	
-	protected static LexiconEntry craftingEntry(IForgeRegistryEntry subject, LexiconCategory category, KnowledgeType knowledgeType, int pageCount) {
+	protected static LexiconEntry craftingEntry(IFeature feature, IForgeRegistryEntry subject, LexiconCategory category, KnowledgeType knowledgeType, int pageCount) {
 		String name = Incorporeal.MODID + '.' + Preconditions.checkNotNull(subject.getRegistryName()).getPath();
 		ItemStack icon;
 		
@@ -32,7 +34,13 @@ public abstract class LexiconModule {
 			throw new IllegalArgumentException("Can't determine the lexicon page item for " + subject + " if you see this quat is a big stupid");
 		}
 		
-		LexiconPage terminalPage = new PageCraftingRecipe(".flavor", subject.getRegistryName());
+		ResourceLocation unprefixed = subject.getRegistryName();
+		ResourceLocation prefixed = new ResourceLocation(
+			unprefixed.getNamespace(),
+			feature.name() + "/" + unprefixed.getPath()
+		);
+		
+		LexiconPage terminalPage = new PageCraftingRecipe(".flavor", prefixed);
 		
 		return entryWithFinalPage(name, icon, category, knowledgeType, pageCount, terminalPage);
 	}

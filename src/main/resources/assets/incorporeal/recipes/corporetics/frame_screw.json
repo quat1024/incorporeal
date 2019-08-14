@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"SP ",
+		" F ",
+		" PS"
+	],
+	"result": {
+		"item": "incorporeal:frame_screw"
+	},
+	"key": {
+		"F": {
+			"item": "minecraft:item_frame"
+		},
+		"S": {
+			"item": "#INGOTMANASTEEL"
+		},
+		"P": {
+			"item": "botania:pavement",
+			"data": 3
+		}
+	}
+}

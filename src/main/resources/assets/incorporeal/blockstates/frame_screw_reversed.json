@@ -1,0 +1,32 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"all": "incorporeal:block/frame_screw/blue"
+		},
+		"model": "incorporeal:frame_screw"
+	},
+	"variants": {
+		"facing": {
+			"up": {
+				"x": 270
+			},
+			"down": {
+				"x": 90
+			},
+			"north": {
+				"x": 0
+			},
+			"south": {
+				"y": 180
+			},
+			"east": {
+				"y": 90
+			},
+			"west": {
+				"y": 270
+			}
+		},
+		"inventory": [{}]
+	}
+}

@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,12 +20,15 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import quaternary.incorporeal.feature.corporetics.lexicon.CorporeticsLexicon;
+import vazkii.botania.api.lexicon.ILexiconable;
+import vazkii.botania.api.lexicon.LexiconEntry;
 
 import java.util.Random;
 
-public class BlockFrameScrew extends Block {
+public class BlockFrameScrew extends Block implements ILexiconable {
 	public BlockFrameScrew(boolean reversed) {
-		super(Material.CIRCUITS);
+		super(Material.WOOD);
 		this.reversed = reversed;
 		
 		setHardness(2.0F);
@@ -74,20 +78,24 @@ public class BlockFrameScrew extends Block {
 			
 			if(shouldPower) {
 				EnumFacing facing = state.getValue(FACING);
+				BlockPos inFront = pos.offset(facing);
+				BlockPos behind = pos.offset(facing, -1);
 				
-				for(EntityItemFrame frame : world.getEntitiesWithinAABB(EntityItemFrame.class, new AxisAlignedBB(pos.offset(facing)))) {
-					turnItemFrame(frame, reversed);
+				for(EntityItemFrame frame : world.getEntitiesWithinAABB(EntityItemFrame.class, new AxisAlignedBB(inFront))) {
+					turnItemFrame(frame, reversed, facing);
 				}
 				
-				for(EntityItemFrame frame : world.getEntitiesWithinAABB(EntityItemFrame.class, new AxisAlignedBB(pos.offset(facing, -1)))) {
-					turnItemFrame(frame, reversed);
+				for(EntityItemFrame frame : world.getEntitiesWithinAABB(EntityItemFrame.class, new AxisAlignedBB(behind))) {
+					turnItemFrame(frame, !reversed, facing);
 				}
 			}
 		}
 	}
 	
-	private static void turnItemFrame(EntityItemFrame frame, boolean reversed) {
+	private static void turnItemFrame(EntityItemFrame frame, boolean reversed, EnumFacing rodFacing) {
 		if(!frame.getDisplayedItem().isEmpty()) {
+			if(frame.getHorizontalFacing() == rodFacing.getOpposite()) reversed ^= true;
+			
 			int nextRotation = frame.getRotation() + (reversed ? 1 : -1);
 			if(nextRotation == -1) nextRotation = 7;
 			frame.setItemRotation(nextRotation);
@@ -112,8 +120,18 @@ public class BlockFrameScrew extends Block {
 	}
 	
 	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
+	
+	@Override
 	public boolean isFullBlock(IBlockState state) {
 		return false;
+	}
+	
+	@Override
+	public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing face) {
+		return BlockFaceShape.UNDEFINED;
 	}
 	
 	@Override
@@ -147,5 +165,10 @@ public class BlockFrameScrew extends Block {
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, FACING, POWERED);
+	}
+	
+	@Override
+	public LexiconEntry getEntry(World world, BlockPos pos, EntityPlayer player, ItemStack lexicon) {
+		return CorporeticsLexicon.frameScrew;
 	}
 }

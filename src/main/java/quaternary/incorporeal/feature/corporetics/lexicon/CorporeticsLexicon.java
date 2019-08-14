@@ -1,5 +1,7 @@
 package quaternary.incorporeal.feature.corporetics.lexicon;
 
+import quaternary.incorporeal.IncorporeticFeatures;
+import quaternary.incorporeal.api.feature.IFeature;
 import quaternary.incorporeal.core.LexiconModule;
 import quaternary.incorporeal.feature.corporetics.block.CorporeticsBlocks;
 import quaternary.incorporeal.feature.corporetics.item.CorporeticsItems;
@@ -16,6 +18,7 @@ import static vazkii.botania.api.BotaniaAPI.elvenKnowledge;
 public class CorporeticsLexicon extends LexiconModule {
 	//pre-elven
 	public static LexiconEntry frameTinkerer;
+	public static LexiconEntry frameScrew;
 	public static LexiconEntry sweetAlexum;
 	
 	//elven
@@ -31,19 +34,23 @@ public class CorporeticsLexicon extends LexiconModule {
 	public static LexiconEntry redStringLiar;
 	
 	public static void register() {
-		frameTinkerer = craftingEntry(CorporeticsBlocks.FRAME_TINKERER, categoryDevices, basicKnowledge, 1);
+		IFeature f = IncorporeticFeatures.CORPORETICS;
+		
+		frameTinkerer = craftingEntry(f, CorporeticsBlocks.FRAME_TINKERER, categoryDevices, basicKnowledge, 1);
+		frameScrew = craftingEntry(f, CorporeticsBlocks.FRAME_SCREW, categoryDevices, basicKnowledge, 1);
+		
 		sweetAlexum = flowerEntry("sweet_alexum", CorporeticsPetalRecipes.sweetAlexum, categoryFunctionalFlowers, basicKnowledge, 2);
 		
-		fracturedSpace = craftingEntry(CorporeticsItems.FRACTURED_SPACE_ROD, categoryTools, elvenKnowledge, 2);
-		ticketConjurer = craftingEntry(CorporeticsItems.TICKET_CONJURER, categoryEnder, elvenKnowledge, 2);
+		fracturedSpace = craftingEntry(f, CorporeticsItems.FRACTURED_SPACE_ROD, categoryTools, elvenKnowledge, 2);
+		ticketConjurer = craftingEntry(f, CorporeticsItems.TICKET_CONJURER, categoryEnder, elvenKnowledge, 2);
 		
-		corporeaInhibitor = craftingEntry(CorporeticsBlocks.CORPOREA_INHIBITOR, categoryEnder, elvenKnowledge, 1);
-		corporeaSolidifier = craftingEntry(CorporeticsBlocks.CORPOREA_SOLIDIFIER, categoryEnder, elvenKnowledge, 2);
-		corporeaTinkerer = craftingEntry(CorporeticsBlocks.CORPOREA_SPARK_TINKERER, categoryEnder, elvenKnowledge, 2);
-		corporeaRetainerDecrementer = craftingEntry(CorporeticsBlocks.CORPOREA_RETAINER_DECREMENTER, categoryEnder, elvenKnowledge, 2);
+		corporeaInhibitor = craftingEntry(f, CorporeticsBlocks.CORPOREA_INHIBITOR, categoryEnder, elvenKnowledge, 1);
+		corporeaSolidifier = craftingEntry(f, CorporeticsBlocks.CORPOREA_SOLIDIFIER, categoryEnder, elvenKnowledge, 2);
+		corporeaTinkerer = craftingEntry(f, CorporeticsBlocks.CORPOREA_SPARK_TINKERER, categoryEnder, elvenKnowledge, 2);
+		corporeaRetainerDecrementer = craftingEntry(f, CorporeticsBlocks.CORPOREA_RETAINER_DECREMENTER, categoryEnder, elvenKnowledge, 2);
 		
 		sanvocalia = flowerEntry("sanvocalia", CorporeticsPetalRecipes.sanvocalia, categoryFunctionalFlowers, elvenKnowledge, 1);
 		
-		redStringLiar = craftingEntry(CorporeticsBlocks.RED_STRING_LIAR, categoryEnder, elvenKnowledge, 2);
+		redStringLiar = craftingEntry(f, CorporeticsBlocks.RED_STRING_LIAR, categoryEnder, elvenKnowledge, 2);
 	}
 }

@@ -22,6 +22,9 @@ tile.incorporeal.corporea_solidifier.name=Corporea Solidifier
 tile.incorporeal.corporea_spark_tinkerer.name=Corporea Spark Tinkerer
 tile.incorporeal.corporea_retainer_decrementer.name=Corporea Retainer Evaporator
 tile.incorporeal.frame_tinkerer.name=Frame Tinkerer
+tile.incorporeal.frame_screw.name=Frame Screw
+#not sure if this appears ingame at all
+tile.incorporeal.frame_screw_reversed.name=Frame Screw (Reversed)
 
 # Soul Cores
 item.incorporeal.soul_core_frame.name=Soul Core Frame
@@ -111,9 +114,14 @@ incorporeal.category.corporea=Corporea
 
 botania.entry.incorporeal.frame_tinkerer=Frame Tinkerer
 botania.tagline.incorporeal.frame_tinkerer=Swap items in item frames
-botania.page.incorporeal.frame_tinkerer0=The &1Frame Tinkerer&0 is an indispensable tool for any advanced corporeticist. It acts like a &1Spark Tinkerer&0 - drop an item on it, give it a redstone signal, and the item will change places with one in a random nearby &1Item Frame&0.<br>Note that, unlike the &1Spark Tinkerer&0, the &1Frame Tinkerer&0 doesn't have a dedicated location to place items. Just dropping the item on top will suffice.
+botania.page.incorporeal.frame_tinkerer0=The &1Frame Tinkerer&0 is an indispensable tool for any advanced corporeticist. It acts like a &1Spark Tinkerer&0 - drop an item on it, give it a redstone signal, and the item will change places with one in a random nearby &1Item Frame&0. Note that, unlike the &1Spark Tinkerer&0, the &1Frame Tinkerer&0 doesn't have a dedicated inventory to place items. Just dropping the item on top will suffice. They are also pushable with &1Pistons&0.
 # note | UKSRT reference (probably best left as-is)
 botania.page.incorporeal.frame_tinkerer.flavor=Symbiotic Hematophage
+
+botania.entry.incorporeal.frame_screw=Frame Screw
+botania.tagline.incorporeal.frame_screw=Turn items in item frames
+botania.page.incorporeal.frame_screw0=The &1Frame Screw&0 has the ability to rotate the &4Items&0 in &1Item Frames&0. It's a small rod; placing it with either end pointing towards an &1Item Frame&0 and giving it a &4Redstone Signal&0 will cause the item to turn one step. Giving it a gentle tap will make it turn items in the other direction.<br>They are pushable with &1Pistons&0.
+botania.page.incorporeal.frame_screw.flavor=Tokyo shinwa
 
 botania.entry.incorporeal.naturalDevices=Earthen Devices
 botania.tagline.incorporeal.naturalDevices=Repeaters and comparators - just add water
