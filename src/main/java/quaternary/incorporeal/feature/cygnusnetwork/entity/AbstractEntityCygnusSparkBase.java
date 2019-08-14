@@ -41,8 +41,13 @@ public abstract class AbstractEntityCygnusSparkBase extends Entity {
 	
 	public static final int SEARCH_RADIUS = 8;
 	
-	private static final DataParameter<Byte> TINT = EntityDataManager.createKey(AbstractEntityCygnusSparkBase.class, DataSerializers.BYTE);
-	private static final DataParameter<Boolean> PHANTOM = EntityDataManager.createKey(AbstractEntityCygnusSparkBase.class, DataSerializers.BOOLEAN);
+	public static void createDataParameters() {
+		TINT = EntityDataManager.createKey(AbstractEntityCygnusSparkBase.class, DataSerializers.BYTE);
+		PHANTOM = EntityDataManager.createKey(AbstractEntityCygnusSparkBase.class, DataSerializers.BOOLEAN);
+	}
+	
+	protected static DataParameter<Byte> TINT;
+	protected static DataParameter<Boolean> PHANTOM;
 	
 	public AbstractEntityCygnusSparkBase(World world) {
 		super(world);

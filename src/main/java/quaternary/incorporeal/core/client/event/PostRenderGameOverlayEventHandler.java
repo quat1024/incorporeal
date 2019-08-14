@@ -49,6 +49,11 @@ public final class PostRenderGameOverlayEventHandler {
 		}
 	}
 	
+	public static void initCygnusOverlayItems() {
+		cygnusCrystalCubeCardStack = new ItemStack(CygnusNetworkItems.CRYSTAL_CUBE_CARD);
+		cygnusWordCardStack = new ItemStack(CygnusNetworkItems.WORD_CARD);
+	}
+	
 	@SubscribeEvent
 	public static void onDrawScreen(RenderGameOverlayEvent.Post e) {
 		if(e.getType() == RenderGameOverlayEvent.ElementType.ALL) {
@@ -114,7 +119,7 @@ public final class PostRenderGameOverlayEventHandler {
 		mc.fontRenderer.drawStringWithShadow(txt2, x + 20, y + 24, 0xFFFFFF);
 	}
 	
-	private static final ItemStack cygnusCrystalCubeCardStack = new ItemStack(CygnusNetworkItems.CRYSTAL_CUBE_CARD);
+	private static ItemStack cygnusCrystalCubeCardStack;
 	
 	private static void drawCygnusCrystalCubeOverlay(ScaledResolution res, TileCygnusCrystalCube tile) {
 		//copy paste from HudHander of course
@@ -191,7 +196,7 @@ public final class PostRenderGameOverlayEventHandler {
 		profiler.endSection();
 	}
 	
-	private static final ItemStack cygnusWordCardStack = new ItemStack(CygnusNetworkItems.WORD_CARD);
+	private static ItemStack cygnusWordCardStack;
 	
 	private static void drawCygnusWordOverlay(ScaledResolution res, TileCygnusWord tile) {
 		//copy paste from HudHander of course

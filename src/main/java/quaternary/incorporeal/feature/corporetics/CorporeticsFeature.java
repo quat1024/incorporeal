@@ -44,6 +44,8 @@ public class CorporeticsFeature implements IFeature {
 	
 	@Override
 	public void init(FMLInitializationEvent e) {
+		EntityFracturedSpaceCollector.createDataParamaters();
+		
 		//per-block and item events... maybe break these out into a dedi event class? :thinking:
 		ItemTicketConjurer.registerChatEvent();
 		BlockCorporeaInhibitor.registerTickEvent();

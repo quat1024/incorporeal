@@ -19,9 +19,6 @@ import quaternary.incorporeal.api.feature.IClientFeatureTwin;
 import quaternary.incorporeal.api.feature.IFeature;
 import quaternary.incorporeal.core.client.ClientHelpers;
 import quaternary.incorporeal.core.client.event.PostRenderGameOverlayEventHandler;
-import quaternary.incorporeal.feature.cygnusnetwork.etc.CygnusStackDataSerializer;
-import quaternary.incorporeal.feature.cygnusnetwork.etc.LooseRedstoneDustCygnusFunnelable;
-import quaternary.incorporeal.feature.cygnusnetwork.etc.LooseRedstoneRepeaterCygnusFunnelable;
 import quaternary.incorporeal.feature.cygnusnetwork.block.CygnusNetworkBlocks;
 import quaternary.incorporeal.feature.cygnusnetwork.cap.CygnusAttachCapabilitiesEventHandler;
 import quaternary.incorporeal.feature.cygnusnetwork.cap.IncorporeticCygnusCapabilities;
@@ -33,9 +30,13 @@ import quaternary.incorporeal.feature.cygnusnetwork.client.event.ScrollEventHand
 import quaternary.incorporeal.feature.cygnusnetwork.client.model.CygnusWordModelLoader;
 import quaternary.incorporeal.feature.cygnusnetwork.client.tesr.RenderTileCygnusCrystalCube;
 import quaternary.incorporeal.feature.cygnusnetwork.client.tesr.RenderTileCygnusRetainer;
+import quaternary.incorporeal.feature.cygnusnetwork.entity.AbstractEntityCygnusSparkBase;
 import quaternary.incorporeal.feature.cygnusnetwork.entity.CygnusNetworkEntities;
 import quaternary.incorporeal.feature.cygnusnetwork.entity.EntityCygnusMasterSpark;
 import quaternary.incorporeal.feature.cygnusnetwork.entity.EntityCygnusRegularSpark;
+import quaternary.incorporeal.feature.cygnusnetwork.etc.CygnusStackDataSerializer;
+import quaternary.incorporeal.feature.cygnusnetwork.etc.LooseRedstoneDustCygnusFunnelable;
+import quaternary.incorporeal.feature.cygnusnetwork.etc.LooseRedstoneRepeaterCygnusFunnelable;
 import quaternary.incorporeal.feature.cygnusnetwork.item.CygnusNetworkItems;
 import quaternary.incorporeal.feature.cygnusnetwork.item.ItemCygnusCard;
 import quaternary.incorporeal.feature.cygnusnetwork.recipe.CygnusSkytouchingRecipes;
@@ -56,15 +57,20 @@ public class CygnusNetworkFeature implements IFeature {
 	
 	@Override
 	public void preinit(FMLPreInitializationEvent e) {
+		CygnusStackDataSerializer.register(e);
+		
 		IncorporeticCygnusCapabilities.register(e);
 		IncorporeticCygnusActions.registerCygnusActions();
 		IncorporeticCygnusConditions.registerCygnusConditions();
 		IncorporeticCygnusDatatypes.registerCygnusDatatypes();
-		CygnusStackDataSerializer.register(e);
 	}
 	
 	@Override
 	public void init(FMLInitializationEvent e) {
+		//ASAP
+		AbstractEntityCygnusSparkBase.createDataParameters();
+		EntityCygnusMasterSpark.createDataParameters();
+		
 		CygnusRegistries.freezeRegistries();
 		CygnusDatatypeHelpers.register();
 		CygnusRegistries.LOOSE_FUNNELABLES.add(new LooseRedstoneDustCygnusFunnelable());
@@ -127,6 +133,9 @@ public class CygnusNetworkFeature implements IFeature {
 				
 				setCygnusCardMeshDefinition(CygnusNetworkItems.WORD_CARD, "word_card");
 				setCygnusCardMeshDefinition(CygnusNetworkItems.CRYSTAL_CUBE_CARD, "crystal_cube_card");
+				
+				//Good a time as any
+				PostRenderGameOverlayEventHandler.initCygnusOverlayItems();
 			}
 			
 			@Override

@@ -40,7 +40,12 @@ public class EntityFracturedSpaceCollector extends Entity {
 	}
 	
 	private BlockPos cratePos = BlockPos.ORIGIN;
-	private static final DataParameter<Integer> DATA_AGE = EntityDataManager.createKey(EntityFracturedSpaceCollector.class, DataSerializers.VARINT);
+	
+	public static void createDataParamaters() {
+		DATA_AGE = EntityDataManager.createKey(EntityFracturedSpaceCollector.class, DataSerializers.VARINT);
+	}
+	
+	private static DataParameter<Integer> DATA_AGE;
 	private UUID ownerUUID;
 	
 	private static final double RADIUS = 2;

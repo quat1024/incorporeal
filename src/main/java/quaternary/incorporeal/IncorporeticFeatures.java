@@ -13,10 +13,12 @@ import quaternary.incorporeal.feature.skytouching.SkytouchingFeature;
 import quaternary.incorporeal.feature.soulcores.SoulCoresFeature;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Consumer;
 
 @SuppressWarnings("unused")
@@ -35,8 +37,8 @@ public final class IncorporeticFeatures {
 	public static final IFeature JEI_COMPAT = new JeiCompatFeature();
 	public static final IFeature CRAFTTWEAKER_COMPAT = new CrafttweakerCompatFeature();
 	
-	private static final Set<IFeature> eligibleFeatures = new HashSet<>();
-	private static final Set<IFeature> enabledFeatures = new HashSet<>(); //written to by config system
+	private static final ArrayList<IFeature> eligibleFeatures = new ArrayList<>();
+	private static final ArrayList<IFeature> enabledFeatures = new ArrayList<>(); //written to by config system
 	private static final Map<String, IFeature> byName = new HashMap<>();
 	
 	public static boolean isEnabled(IFeature feature) {
@@ -70,8 +72,12 @@ public final class IncorporeticFeatures {
 	static {
 		//noinspection OverlyBroadCatchBlock
 		try {
+			Field[] fields = IncorporeticFeatures.class.getDeclaredFields();
+			List<Field> fieldList = Arrays.asList(fields);
+			fieldList.sort(Comparator.comparing(Field::getName));
+			
 				nextFeature:
-			for(Field field : IncorporeticFeatures.class.getDeclaredFields()) {
+			for(Field field : fieldList) {
 				if(field.getType() != IFeature.class) continue;
 				IFeature feature = (IFeature) field.get(null);
 				
