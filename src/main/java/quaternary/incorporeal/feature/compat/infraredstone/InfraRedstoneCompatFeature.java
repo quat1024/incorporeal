@@ -4,6 +4,9 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import quaternary.incorporeal.api.feature.IFeature;
 
+import java.util.Collection;
+import java.util.Collections;
+
 public class InfraRedstoneCompatFeature implements IFeature {
 	@Override
 	public String name() {
@@ -18,6 +21,11 @@ public class InfraRedstoneCompatFeature implements IFeature {
 	@Override
 	public String subcategory() {
 		return "compat";
+	}
+	
+	@Override
+	public Collection<String> requiredModIDs() {
+		return Collections.singletonList("infraredstone");
 	}
 	
 	@Override

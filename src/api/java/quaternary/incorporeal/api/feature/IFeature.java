@@ -3,6 +3,7 @@ package quaternary.incorporeal.api.feature;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -32,6 +33,10 @@ public interface IFeature {
 	
 	default Collection<String> requiredModIDs() {
 		return Collections.emptyList();
+	}
+	
+	default boolean hasSatisfiedDependencies() {
+		return requiredModIDs().stream().allMatch(Loader::isModLoaded);
 	}
 	
 	default void preinit(FMLPreInitializationEvent e) {}

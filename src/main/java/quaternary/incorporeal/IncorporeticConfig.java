@@ -43,6 +43,7 @@ public final class IncorporeticConfig {
 		}
 		
 		readConfig();
+		config.save();
 	}
 	
 	private static void readConfig() {
@@ -65,10 +66,12 @@ public final class IncorporeticConfig {
 				description += oof.toString();
 			}
 			
-			boolean isEnabled = config.get(category, name, true, description).setRequiresMcRestart(true).getBoolean();
+			boolean isEnabled = config.get(category, name, f.enabledByDefault(), description).setRequiresMcRestart(true).getBoolean();
 			
-			if(isEnabled) IncorporeticFeatures.enableFeature(f);
+			if(isEnabled && f.hasSatisfiedDependencies()) IncorporeticFeatures.enableFeature(f);
 		});
+		
+		config.setCategoryComment("features", "Enable and disable Incorporeal modules here!");
 		
 		Sanvocalia.EVERYONE_HEARS_MESSAGES = config.getBoolean("everyoneHearsMessages", IncorporeticFeatures.CORPORETICS.name(), true, "Easter egg spoiler: when the Sanvocalia isn't near any corporea indices but receives a corporea ticket, it will just dump the corporea request into chat, to reference the all-too-often occurrence of players accidentally standing too far away from their corporea indexes in multiplayer and telling everyone \"5 stone\".\n\nIf this is false, only the person who placed the Sanvocalia will see these messages.");
 		
