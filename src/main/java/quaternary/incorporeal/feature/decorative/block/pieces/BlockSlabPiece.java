@@ -31,7 +31,7 @@ public abstract class BlockSlabPiece extends BlockSlab implements ILexiconable {
 	public BlockSlabPiece(Block block, Material mat, MapColor color, boolean cutout) {
 		super(mat, color);
 		this.mainBlock = block;
-		this.specialLokiWHacks = cutout;
+		this.cutout = cutout;
 		
 		setHardness(block.blockHardness);
 		setResistance(block.getExplosionResistance(null) * 5 / 3f);
@@ -52,8 +52,8 @@ public abstract class BlockSlabPiece extends BlockSlab implements ILexiconable {
 	
 	public static final PropertyEnum<Variant> DUMMY_VARIANT = PropertyEnum.create("variant", Variant.class);
 	
-	protected final Block mainBlock;
-	protected final boolean specialLokiWHacks;
+	public final Block mainBlock;
+	public final boolean cutout;
 	
 	@Override
 	public String getTranslationKey(int meta) {
@@ -73,31 +73,31 @@ public abstract class BlockSlabPiece extends BlockSlab implements ILexiconable {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BlockRenderLayer getRenderLayer() {
-		if(specialLokiWHacks) return BlockRenderLayer.CUTOUT_MIPPED;
+		if(cutout) return BlockRenderLayer.CUTOUT_MIPPED;
 		else return super.getRenderLayer();
 	}
 	
 	@Override
 	public boolean isFullBlock(IBlockState state) {
-		if(specialLokiWHacks) return false;
+		if(cutout) return false;
 		else return super.isFullBlock(state);
 	}
 	
 	@Override
 	public boolean isFullCube(IBlockState state) {
-		if(specialLokiWHacks) return false;
+		if(cutout) return false;
 		else return super.isFullCube(state);
 	}
 	
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
-		if(specialLokiWHacks) return false;
+		if(cutout) return false;
 		else return super.isOpaqueCube(state);
 	}
 	
 	@Override
 	public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
-		if(specialLokiWHacks) return false;
+		if(cutout) return false;
 		else return super.doesSideBlockRendering(state, world, pos, face);
 	}
 	
