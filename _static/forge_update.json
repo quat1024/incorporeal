@@ -1,6 +1,7 @@
 {
 	"homepage": "https://github.com/quat1024/incorporeal/releases",
 	"1.12.2": {
+		"1.2.3": "Fix crash with Tool Progression and other mods that need to grab the harvest tool of the decorative piece blocks",
 		"1.2.2": "Fix crash lol again",
 		"1.2.1": "Fix crash lol",
 		"1.2.0": "Internal reorganizations, and a new Frame Screw item!",
