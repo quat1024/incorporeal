@@ -2,12 +2,15 @@ package quaternary.incorporeal.feature.cygnusnetwork;
 
 import net.minecraft.util.ResourceLocation;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.ISimpleRegistry;
+import quaternary.incorporeal.api.cygnus.ICygnusAction;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.core.etc.helper.CorporeaHelper2;
 import vazkii.botania.api.corporea.CorporeaRequest;
+import vazkii.botania.api.lexicon.LexiconPage;
+import vazkii.botania.common.lexicon.page.PageText;
 
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -17,47 +20,45 @@ public final class IncorporeticCygnusActions {
 	private IncorporeticCygnusActions() {
 	}
 	
-	public static Consumer<ICygnusStack> NOTHING;
+	public static ICygnusAction NOTHING;
 	
 	public static void registerCygnusActions() {
-		ISimpleRegistry<Consumer<ICygnusStack>> reg = Incorporeal.API.getCygnusStackActionRegistry();
-		
 		NOTHING = stack -> {};
-		reg.register(new ResourceLocation(Incorporeal.MODID, "nothing"), NOTHING);
+		register("nothing", NOTHING);
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "duplicate"), stack -> {
+		registerWithLexicon("duplicate", stack -> {
 			stack.push(stack.peek().orElseGet(() -> new CygnusError(CygnusError.UNDERFLOW)));
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "number_add"), stack -> {
+		registerWithLexicon("number_add", stack -> {
 			pushIfMatching(BigInteger.class, BigInteger.class, stack, BigInteger::add);
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "number_subtract"), stack -> {
+		registerWithLexicon("number_subtract", stack -> {
 			pushIfMatching(BigInteger.class, BigInteger.class, stack, BigInteger::subtract);
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "number_multiply"), stack -> {
+		registerWithLexicon("number_multiply", stack -> {
 			pushIfMatching(BigInteger.class, BigInteger.class, stack, BigInteger::multiply);
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "number_divide"), stack -> {
+		registerWithLexicon("number_divide", stack -> {
 			pushIfMatching(BigInteger.class, BigInteger.class, stack, (under, top) -> {
 				return top.equals(BigInteger.ZERO) ? new CygnusError(CygnusError.INVALID_MATH, CygnusError.INVALID_MATH + ".divide_by_0") : under.divide(top);
 			});
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "number_remainder"), stack -> {
+		registerWithLexicon("number_remainder", stack -> {
 			pushIfMatching(BigInteger.class, BigInteger.class, stack, (under, top) -> {
 				return top.equals(BigInteger.ZERO) ? new CygnusError(CygnusError.INVALID_MATH, CygnusError.INVALID_MATH + ".divide_by_0") : under.remainder(top);
 			});
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "request_get_count"), stack -> {
+		registerWithLexicon("request_get_count", stack -> {
 			pushIfMatching(CorporeaRequest.class, stack, req -> BigInteger.valueOf(req.count));
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "request_set_count"), stack -> {
+		registerWithLexicon("request_set_count", stack -> {
 			pushIfMatching(CorporeaRequest.class, BigInteger.class, stack, (req, cnt) -> {
 				CorporeaRequest copy = CorporeaHelper2.copyCorporeaRequest(req);
 				copy.count = cnt.intValue();
@@ -65,17 +66,35 @@ public final class IncorporeticCygnusActions {
 			});
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "request_set_item"), stack -> {
+		registerWithLexicon("request_set_item", stack -> {
 			pushIfMatching(CorporeaRequest.class, CorporeaRequest.class, stack, (donor, acceptor) -> {
 				return new CorporeaRequest(donor.matcher, donor.checkNBT, acceptor.count);
 			});
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "stack_get_depth"), stack -> {
+		registerWithLexicon("stack_get_depth", stack -> {
 			pushIfMatching(CygnusStack.class, stack, stackstack -> {
 				return BigInteger.valueOf(stackstack.depth());
 			});
 		});
+	}
+	
+	private static void registerWithLexicon(String name, Consumer<ICygnusStack> cons) {
+		register(name, new ICygnusAction() {
+			@Override
+			public void accept(ICygnusStack stack) {
+				cons.accept(stack);
+			}
+			
+			@Override
+			public void document(List<LexiconPage> pages) {
+				pages.add(new PageText("botania.page.incorporeal.cygnus_word.action." + name));
+			}
+		});
+	}
+	
+	private static void register(String name, ICygnusAction action) {
+		Incorporeal.API.getCygnusStackActionRegistry().register(new ResourceLocation(Incorporeal.MODID, name), action);
 	}
 	
 	//Quick helper funcs

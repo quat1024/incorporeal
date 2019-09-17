@@ -8,12 +8,10 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
-import quaternary.incorporeal.api.cygnus.ICygnusStack;
+import quaternary.incorporeal.api.cygnus.ICygnusCondition;
 import quaternary.incorporeal.feature.cygnusnetwork.item.CygnusNetworkItems;
 import quaternary.incorporeal.feature.cygnusnetwork.tile.TileCygnusCrystalCube;
 import vazkii.botania.client.core.handler.ClientTickHandler;
-
-import java.util.function.Predicate;
 
 public class RenderTileCygnusCrystalCube extends TileEntitySpecialRenderer<TileCygnusCrystalCube> {
 	//HUGE portions copied from RenderTileCorporeaCrystalCube, understandably since they are similar, lol
@@ -38,14 +36,14 @@ public class RenderTileCygnusCrystalCube extends TileEntitySpecialRenderer<TileC
 			
 			entity.age = ClientTickHandler.ticksInGame;
 			
-			Predicate<ICygnusStack> cond = cube.getCondition();
+			ICygnusCondition cond = cube.getCondition();
 			CygnusNetworkItems.CRYSTAL_CUBE_CARD.set(stack, cond);
 			
 			entity.setItem(stack);
 		}
 		
 		double time = ClientTickHandler.ticksInGame + partialTicks;
-		double worldTicks = cube == null || cube.getWorld() == null ? 0 : time;
+		//double worldTicks = cube == null || cube.getWorld() == null ? 0 : time;
 		
 		Minecraft mc = Minecraft.getMinecraft();
 		

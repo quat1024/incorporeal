@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.model.BakedModelWrapper;
 import net.minecraftforge.common.property.IExtendedBlockState;
+import quaternary.incorporeal.api.cygnus.ICygnusAction;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.feature.cygnusnetwork.block.BlockCygnusWord;
 
@@ -16,7 +17,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 public class CygnusWordBakedModel extends BakedModelWrapper<IBakedModel> {
-	public CygnusWordBakedModel(Map<Consumer<ICygnusStack>, IBakedModel> actionBakedModels) {
+	public CygnusWordBakedModel(Map<ICygnusAction, IBakedModel> actionBakedModels) {
 		//Pass one of these models to super
 		//bakedmodelwrapper takes care of e.g. particle textures and whatever
 		//I can assume they're all the same, i don't really care
@@ -25,7 +26,7 @@ public class CygnusWordBakedModel extends BakedModelWrapper<IBakedModel> {
 		this.actionBakedModels = actionBakedModels;
 	}
 	
-	private final Map<Consumer<ICygnusStack>, IBakedModel> actionBakedModels;
+	private final Map<ICygnusAction, IBakedModel> actionBakedModels;
 	
 	@Override
 	public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand) {

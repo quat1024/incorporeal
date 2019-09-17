@@ -1,5 +1,7 @@
 package quaternary.incorporeal.api.cygnus;
 
+import quaternary.incorporeal.api.IDocumentableComponent;
+
 import javax.annotation.Nullable;
 
 /**
@@ -11,7 +13,7 @@ import javax.annotation.Nullable;
  * @since 1.1
  * @author quaternary
  */
-public interface ICygnusFunnelable {
+public interface ICygnusFunnelable extends IDocumentableComponent {
 	/**
 	 * @return whether or not this can have Cygnus data pulled from it
 	 */

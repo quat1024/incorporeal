@@ -8,20 +8,19 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.cygnus.ICygnusStack;
+import quaternary.incorporeal.api.cygnus.ICygnusCondition;
 import quaternary.incorporeal.core.etc.helper.CygnusHelpers;
 import quaternary.incorporeal.feature.cygnusnetwork.IncorporeticCygnusConditions;
 import quaternary.incorporeal.feature.cygnusnetwork.block.BlockCygnusCrystalCube;
 import quaternary.incorporeal.feature.cygnusnetwork.entity.EntityCygnusMasterSpark;
 
 import javax.annotation.Nullable;
-import java.util.function.Predicate;
 
 public class TileCygnusCrystalCube extends TileCygnusBase implements ITickable {
 	private boolean enabled;
 	private long lastUpdate = 0;
 	
-	private Predicate<ICygnusStack> condition = IncorporeticCygnusConditions.NOTHING;
+	private ICygnusCondition condition = IncorporeticCygnusConditions.NOTHING;
 	
 	@Override
 	public void update() {
@@ -41,11 +40,11 @@ public class TileCygnusCrystalCube extends TileCygnusBase implements ITickable {
 		}
 	}
 	
-	public Predicate<ICygnusStack> getCondition() {
+	public ICygnusCondition getCondition() {
 		return condition;
 	}
 	
-	public void setCondition(Predicate<ICygnusStack> condition) {
+	public void setCondition(ICygnusCondition condition) {
 		this.condition = condition;
 		markDirty();
 	}

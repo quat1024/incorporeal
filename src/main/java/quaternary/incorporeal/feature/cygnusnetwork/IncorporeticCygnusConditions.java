@@ -2,10 +2,13 @@ package quaternary.incorporeal.feature.cygnusnetwork;
 
 import net.minecraft.util.ResourceLocation;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.ISimpleRegistry;
+import quaternary.incorporeal.api.cygnus.ICygnusCondition;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
+import vazkii.botania.api.lexicon.LexiconPage;
+import vazkii.botania.common.lexicon.page.PageText;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -13,18 +16,16 @@ public final class IncorporeticCygnusConditions {
 	private IncorporeticCygnusConditions() {
 	}
 	
-	public static Predicate<ICygnusStack> NOTHING;
+	public static ICygnusCondition NOTHING;
 	
 	public static void registerCygnusConditions() {
-		ISimpleRegistry<Predicate<ICygnusStack>> reg = Incorporeal.API.getCygnusStackConditionRegistry();
-		
 		NOTHING = stack -> false;
-		reg.register(new ResourceLocation(Incorporeal.MODID, "nothing"), NOTHING);
+		register("nothing", NOTHING);
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "empty_stack"), ICygnusStack::isEmpty);
-		reg.register(new ResourceLocation(Incorporeal.MODID, "full_stack"), ICygnusStack::isFull);
+		registerWithLexicon("empty_stack", ICygnusStack::isEmpty);
+		registerWithLexicon("full_stack", ICygnusStack::isFull);
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "equal_value"), stack -> {
+		registerWithLexicon("equal_value", stack -> {
 			Optional<?> top = stack.peek(0);
 			Optional<?> under = stack.peek(1);
 			if(top.isPresent() && under.isPresent()) {
@@ -38,7 +39,7 @@ public final class IncorporeticCygnusConditions {
 			return false;
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "equal_type"), stack -> {
+		registerWithLexicon("equal_type", stack -> {
 			Optional<?> top = stack.peek(0);
 			Optional<?> under = stack.peek(1);
 			if(top.isPresent() && under.isPresent()) {
@@ -46,17 +47,35 @@ public final class IncorporeticCygnusConditions {
 			} else return false;
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "less_than"), stack -> {
+		registerWithLexicon("less_than", stack -> {
 			return compareTopTwo(stack) < 0;
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "greater_than"), stack -> {
+		registerWithLexicon("greater_than", stack -> {
 			return compareTopTwo(stack) > 0;
 		});
 		
-		reg.register(new ResourceLocation(Incorporeal.MODID, "errored"), stack -> {
+		registerWithLexicon("errored", stack -> {
 			return stack.peekMatching(CygnusError.class).isPresent();
 		});
+	}
+	
+	private static void registerWithLexicon(String name, Predicate<ICygnusStack> cond) {
+		register(name, new ICygnusCondition() {
+			@Override
+			public boolean test(ICygnusStack stack) {
+				return cond.test(stack);
+			}
+			
+			@Override
+			public void document(List<LexiconPage> pages) {
+				pages.add(new PageText("botania.page.incorporeal.cygnus_crystal_cube.condition." + name));
+			}
+		});
+	}
+	
+	private static void register(String name, ICygnusCondition action) {
+		Incorporeal.API.getCygnusStackConditionRegistry().register(new ResourceLocation(Incorporeal.MODID, name), action);
 	}
 	
 	private static int compareTopTwo(ICygnusStack stack) {

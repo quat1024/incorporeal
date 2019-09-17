@@ -39,6 +39,7 @@ import quaternary.incorporeal.feature.cygnusnetwork.etc.LooseRedstoneDustCygnusF
 import quaternary.incorporeal.feature.cygnusnetwork.etc.LooseRedstoneRepeaterCygnusFunnelable;
 import quaternary.incorporeal.feature.cygnusnetwork.item.CygnusNetworkItems;
 import quaternary.incorporeal.feature.cygnusnetwork.item.ItemCygnusCard;
+import quaternary.incorporeal.feature.cygnusnetwork.lexicon.CygnusNetworkLexicon;
 import quaternary.incorporeal.feature.cygnusnetwork.recipe.CygnusSkytouchingRecipes;
 import quaternary.incorporeal.feature.cygnusnetwork.tile.CygnusNetworkTiles;
 import quaternary.incorporeal.feature.cygnusnetwork.tile.TileCygnusCrystalCube;
@@ -101,6 +102,11 @@ public class CygnusNetworkFeature implements IFeature {
 	@Override
 	public void tiles() {
 		CygnusNetworkTiles.register();
+	}
+	
+	@Override
+	public void lexicon() {
+		CygnusNetworkLexicon.register();
 	}
 	
 	@Override

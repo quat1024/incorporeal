@@ -14,6 +14,7 @@ apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: "com.wynprice.cursemaven"
 
 version = "1.2.3"
+ext.apiVersion = 2 
 group = "quaternary.incorporeal"
 archivesBaseName = "incorporeal"
 
@@ -74,23 +75,24 @@ dependencies {
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2768"
-    runDir = "run"
-    
-    mappings = "stable_39"
-    
-    useDepAts = true
-    makeObfSourceJar = false
-    
-    if(project.hasProperty("mc_uuid")) {
-        clientRunArgs += ["--uuid", project.mc_uuid]
-    }
-    
-    if(project.hasProperty("mc_username")) {
-        clientRunArgs += ["--username", project.mc_username]
-    }
-    
-    replace "GRADLE:VERSION", project.version
+	version = "1.12.2-14.23.5.2768"
+	runDir = "run"
+
+	mappings = "stable_39"
+
+	useDepAts = true
+	makeObfSourceJar = false
+
+	if (project.hasProperty("mc_uuid")) {
+		clientRunArgs += ["--uuid", project.mc_uuid]
+	}
+
+	if (project.hasProperty("mc_username")) {
+		clientRunArgs += ["--username", project.mc_username]
+	}
+
+	replace "GRADLE:VERSION", project.version
+	replace "GRADLE:API-VERSION", project.apiVersion
 }
 
 processResources {

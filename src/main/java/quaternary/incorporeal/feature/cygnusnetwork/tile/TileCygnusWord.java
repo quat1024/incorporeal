@@ -6,24 +6,24 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.ResourceLocation;
 import quaternary.incorporeal.Incorporeal;
+import quaternary.incorporeal.api.cygnus.ICygnusAction;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.feature.cygnusnetwork.IncorporeticCygnusActions;
 
 import javax.annotation.Nullable;
-import java.util.function.Consumer;
 
 public class TileCygnusWord extends TileCygnusBase {
-	private Consumer<ICygnusStack> action = IncorporeticCygnusActions.NOTHING;
+	private ICygnusAction action = IncorporeticCygnusActions.NOTHING;
 	
 	public void accept(ICygnusStack stack) {
 		action.accept(stack);
 	}
 	
-	public Consumer<ICygnusStack> getAction() {
+	public ICygnusAction getAction() {
 		return action;
 	}
 	
-	public void setAction(Consumer<ICygnusStack> action) {
+	public void setAction(ICygnusAction action) {
 		this.action = action;
 		
 		if(world != null && world.isRemote) {
@@ -40,7 +40,7 @@ public class TileCygnusWord extends TileCygnusBase {
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		Consumer<ICygnusStack> a = Incorporeal.API.getCygnusStackActionRegistry().get(
+		ICygnusAction a = Incorporeal.API.getCygnusStackActionRegistry().get(
 			new ResourceLocation(nbt.getString("Action"))
 		);
 		

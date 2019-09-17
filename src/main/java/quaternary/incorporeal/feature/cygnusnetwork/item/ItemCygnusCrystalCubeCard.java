@@ -1,12 +1,10 @@
 package quaternary.incorporeal.feature.cygnusnetwork.item;
 
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.cygnus.ICygnusStack;
+import quaternary.incorporeal.api.cygnus.ICygnusCondition;
 import quaternary.incorporeal.feature.cygnusnetwork.IncorporeticCygnusConditions;
 
-import java.util.function.Predicate;
-
-public class ItemCygnusCrystalCubeCard extends ItemCygnusCard<Predicate<ICygnusStack>> {
+public class ItemCygnusCrystalCubeCard extends ItemCygnusCard<ICygnusCondition> {
 	public ItemCygnusCrystalCubeCard() {
 		super(
 			Incorporeal.API.getCygnusStackConditionRegistry(),

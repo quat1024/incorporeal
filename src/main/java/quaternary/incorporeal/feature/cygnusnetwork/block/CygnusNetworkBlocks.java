@@ -5,12 +5,10 @@ import net.minecraftforge.registries.IForgeRegistry;
 import quaternary.incorporeal.core.BlocksModule;
 
 public final class CygnusNetworkBlocks extends BlocksModule {
-	private CygnusNetworkBlocks() {
-	}
+	private CygnusNetworkBlocks() { }
 	
 	public static final class RegistryNames {
-		private RegistryNames() {
-		}
+		private RegistryNames() { }
 		
 		public static final String WORD = "cygnus_word";
 		public static final String CRYSTAL_CUBE = "cygnus_crystal_cube";

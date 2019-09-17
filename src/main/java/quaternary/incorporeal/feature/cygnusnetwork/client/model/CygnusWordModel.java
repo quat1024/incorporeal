@@ -9,14 +9,13 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.IModelState;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.ISimpleRegistry;
-import quaternary.incorporeal.api.cygnus.ICygnusStack;
+import quaternary.incorporeal.api.cygnus.ICygnusAction;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class CygnusWordModel implements IModel {
@@ -25,8 +24,8 @@ public class CygnusWordModel implements IModel {
 	}
 	
 	private static Set<ResourceLocation> actionResources;
-	private static Map<Consumer<ICygnusStack>, IModel> actionModels;
-	private static Map<Consumer<ICygnusStack>, IBakedModel> actionBakedModels;
+	private static Map<ICygnusAction, IModel> actionModels;
+	private static Map<ICygnusAction, IBakedModel> actionBakedModels;
 	
 	@Override
 	public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter) {
@@ -48,9 +47,9 @@ public class CygnusWordModel implements IModel {
 			actionResources = new HashSet<>();
 			actionModels = new HashMap<>();
 			
-			ISimpleRegistry<Consumer<ICygnusStack>> actions = Incorporeal.API.getCygnusStackActionRegistry();
+			ISimpleRegistry<ICygnusAction> actions = Incorporeal.API.getCygnusStackActionRegistry();
 			
-			for(Map.Entry<ResourceLocation, Consumer<ICygnusStack>> entry : actions.backingMap().entrySet()) {
+			for(Map.Entry<ResourceLocation, ICygnusAction> entry : actions.backingMap().entrySet()) {
 				ResourceLocation actionName = entry.getKey();
 				ResourceLocation actionModelLocation = new ResourceLocation(
 					actionName.getNamespace(),

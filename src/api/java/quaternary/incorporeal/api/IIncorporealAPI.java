@@ -1,12 +1,10 @@
 package quaternary.incorporeal.api;
 
 import net.minecraft.item.ItemStack;
+import quaternary.incorporeal.api.cygnus.ICygnusAction;
+import quaternary.incorporeal.api.cygnus.ICygnusCondition;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
-import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
-
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 
 /**
  * Incorporeal's API.
@@ -37,13 +35,15 @@ public interface IIncorporealAPI {
 	
 	/**
 	 * @return A registry of Cygnus actions; things that can transform a Cygnus stack.
+	 * Note: Method signature changed in 1.2.4 (api version 2) in a non-backwards compatible way.
 	 */
-	ISimpleRegistry<Consumer<ICygnusStack>> getCygnusStackActionRegistry();
+	ISimpleRegistry<ICygnusAction> getCygnusStackActionRegistry();
 	
 	/**
 	 * @return A registry of Cygnus conditions; things that tell a true-false piece of information about a Cygnus stack.
+	 * Note: Method signature changed in 1.2.4 (api version 2) in a non-backwards compatible way.
 	 */
-	ISimpleRegistry<Predicate<ICygnusStack>> getCygnusStackConditionRegistry();
+	ISimpleRegistry<ICygnusCondition> getCygnusStackConditionRegistry();
 	
 	/**
 	 * Register a loose cygnus funnelable.

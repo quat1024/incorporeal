@@ -51,6 +51,11 @@ public class SimpleRegistry<T> implements ISimpleRegistry<T> {
 	}
 	
 	@Override
+	public Iterator<T> iterator() {
+		return valuesOrdered.iterator();
+	}
+	
+	@Override
 	public T next(T cur) {
 		if(cur == null) return valuesOrdered.get(0);
 		

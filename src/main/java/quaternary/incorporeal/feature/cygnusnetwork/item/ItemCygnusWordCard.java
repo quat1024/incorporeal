@@ -1,12 +1,10 @@
 package quaternary.incorporeal.feature.cygnusnetwork.item;
 
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.cygnus.ICygnusStack;
+import quaternary.incorporeal.api.cygnus.ICygnusAction;
 import quaternary.incorporeal.feature.cygnusnetwork.IncorporeticCygnusActions;
 
-import java.util.function.Consumer;
-
-public class ItemCygnusWordCard extends ItemCygnusCard<Consumer<ICygnusStack>> {
+public class ItemCygnusWordCard extends ItemCygnusCard<ICygnusAction> {
 	public ItemCygnusWordCard() {
 		super(
 			Incorporeal.API.getCygnusStackActionRegistry(),

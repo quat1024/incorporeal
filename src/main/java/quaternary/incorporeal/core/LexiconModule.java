@@ -24,15 +24,7 @@ import javax.annotation.Nullable;
 public abstract class LexiconModule {	
 	protected static LexiconEntry craftingEntry(IFeature feature, IForgeRegistryEntry subject, LexiconCategory category, KnowledgeType knowledgeType, int pageCount) {
 		String name = Incorporeal.MODID + '.' + Preconditions.checkNotNull(subject.getRegistryName()).getPath();
-		ItemStack icon;
-		
-		if(subject instanceof Block) {
-			icon = new ItemStack((Block) subject);
-		} else if(subject instanceof Item) {
-			icon = new ItemStack((Item) subject);
-		} else {
-			throw new IllegalArgumentException("Can't determine the lexicon page item for " + subject + " if you see this quat is a big stupid");
-		}
+		ItemStack icon = toIcon(subject);
 		
 		ResourceLocation unprefixed = subject.getRegistryName();
 		ResourceLocation prefixed = new ResourceLocation(
@@ -43,6 +35,16 @@ public abstract class LexiconModule {
 		LexiconPage terminalPage = new PageCraftingRecipe(".flavor", prefixed);
 		
 		return entryWithFinalPage(name, icon, category, knowledgeType, pageCount, terminalPage);
+	}
+	
+	protected static ItemStack toIcon(IForgeRegistryEntry<?> subject) {
+		if(subject instanceof Block) {
+			return new ItemStack((Block) subject);
+		} else if(subject instanceof Item) {
+			return new ItemStack((Item) subject);
+		} else {
+			throw new IllegalArgumentException("Can't determine the lexicon page item for " + subject + " if you see this quat is a big stupid");
+		}
 	}
 	
 	protected static LexiconEntry flowerEntry(String flowerName, RecipePetals craftingRecipe, LexiconCategory category, KnowledgeType knowledgeType, int pageCount) {

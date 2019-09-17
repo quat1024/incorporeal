@@ -20,7 +20,7 @@ import java.util.Set;
  * @since 1.1
  * @author quaternary
  */
-public interface ISimpleRegistry<T> {
+public interface ISimpleRegistry<T> extends Iterable<T> {
 	/**
 	 * @throws IllegalStateException if this registry is frozen (call this in your mod's preinit, after Incorporeal gets a turn!)
 	 */

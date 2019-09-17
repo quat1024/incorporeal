@@ -13,8 +13,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
+import quaternary.incorporeal.api.cygnus.ICygnusAction;
 import quaternary.incorporeal.api.cygnus.ICygnusSparkable;
-import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.core.IncorporeticStateProps;
 import quaternary.incorporeal.core.etc.helper.CygnusHelpers;
 import quaternary.incorporeal.feature.cygnusnetwork.entity.EntityCygnusMasterSpark;
@@ -23,7 +23,6 @@ import quaternary.incorporeal.feature.cygnusnetwork.tile.TileCygnusWord;
 import vazkii.botania.api.state.BotaniaStateProps;
 
 import javax.annotation.Nullable;
-import java.util.function.Consumer;
 
 public class BlockCygnusWord extends BlockCygnusBase implements ICygnusSparkable {
 	public BlockCygnusWord() {
@@ -36,7 +35,7 @@ public class BlockCygnusWord extends BlockCygnusBase implements ICygnusSparkable
 	}
 	
 	public static final PropertyBool POWERED = BotaniaStateProps.POWERED;
-	public static final UnlistedSimpleRegistryProperty<Consumer<ICygnusStack>> UNLISTED_ACTION = IncorporeticStateProps.UNLISTED_ACTION;
+	public static final UnlistedSimpleRegistryProperty<ICygnusAction> UNLISTED_ACTION = IncorporeticStateProps.UNLISTED_ACTION;
 	
 	@Override
 	public boolean acceptsCygnusSpark(World world, IBlockState state, BlockPos pos) {

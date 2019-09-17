@@ -4,6 +4,8 @@ import net.minecraft.item.ItemStack;
 import quaternary.incorporeal.api.IIncorporealAPI;
 import quaternary.incorporeal.api.INaturalDeviceRegistry;
 import quaternary.incorporeal.api.ISimpleRegistry;
+import quaternary.incorporeal.api.cygnus.ICygnusAction;
+import quaternary.incorporeal.api.cygnus.ICygnusCondition;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
@@ -18,7 +20,7 @@ import java.util.function.Predicate;
 public class IncorporealAPI implements IIncorporealAPI {
 	@Override
 	public int apiVersion() {
-		return 0;
+		return 2;
 	}
 	
 	private static final INaturalDeviceRegistry naturalDeviceRegistry = new NaturalDeviceRegistry();
@@ -34,12 +36,12 @@ public class IncorporealAPI implements IIncorporealAPI {
 	}
 	
 	@Override
-	public ISimpleRegistry<Consumer<ICygnusStack>> getCygnusStackActionRegistry() {
+	public ISimpleRegistry<ICygnusAction> getCygnusStackActionRegistry() {
 		return CygnusRegistries.ACTIONS;
 	}
 	
 	@Override
-	public ISimpleRegistry<Predicate<ICygnusStack>> getCygnusStackConditionRegistry() {
+	public ISimpleRegistry<ICygnusCondition> getCygnusStackConditionRegistry() {
 		return CygnusRegistries.CONDITIONS;
 	}
 	
