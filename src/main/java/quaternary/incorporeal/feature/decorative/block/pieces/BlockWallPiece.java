@@ -30,6 +30,7 @@ public class BlockWallPiece extends BlockWall implements ILexiconable {
 		
 		setHardness(block.blockHardness);
 		setResistance(block.getExplosionResistance(null) * 5f / 3f); //why mojang
+		setHarvestLevel(block.getHarvestTool(block.getDefaultState()), block.getHarvestLevel(block.getDefaultState()));
 		
 		actualMaterial = mat;
 		actualMapColor = color;
@@ -65,11 +66,6 @@ public class BlockWallPiece extends BlockWall implements ILexiconable {
 		if(tab == Incorporeal.TAB) {
 			items.add(new ItemStack(this));
 		}
-	}
-	
-	@Override
-	public boolean isToolEffective(String type, IBlockState state) {
-		return mainBlock.isToolEffective(type, state);
 	}
 	
 	@Override

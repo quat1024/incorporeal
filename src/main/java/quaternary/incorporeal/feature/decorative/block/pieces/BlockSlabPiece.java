@@ -36,6 +36,7 @@ public abstract class BlockSlabPiece extends BlockSlab implements ILexiconable {
 		setHardness(block.blockHardness);
 		setResistance(block.getExplosionResistance(null) * 5 / 3f);
 		setSoundType(block.getSoundType());
+		setHarvestLevel(block.getHarvestTool(block.getDefaultState()), block.getHarvestLevel(block.getDefaultState()));
 		
 		if(!isDouble()) {
 			setDefaultState(getDefaultState().withProperty(HALF, EnumBlockHalf.BOTTOM));
@@ -131,11 +132,6 @@ public abstract class BlockSlabPiece extends BlockSlab implements ILexiconable {
 		} else {
 			return state.getValue(BlockSlab.HALF) == EnumBlockHalf.TOP ? 1 : 0;
 		}
-	}
-	
-	@Override
-	public boolean isToolEffective(String type, IBlockState state) {
-		return mainBlock.isToolEffective(type, state);
 	}
 	
 	@SideOnly(Side.CLIENT)

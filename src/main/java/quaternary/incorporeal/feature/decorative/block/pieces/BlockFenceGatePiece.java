@@ -5,7 +5,6 @@ import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -28,6 +27,7 @@ public class BlockFenceGatePiece extends BlockFenceGate implements ILexiconable 
 		this.mainBlock = block;
 		
 		setSoundType(block.getSoundType());
+		setHarvestLevel(block.getHarvestTool(block.getDefaultState()), block.getHarvestLevel(block.getDefaultState()));
 	}
 	
 	private final Block mainBlock;
@@ -37,11 +37,6 @@ public class BlockFenceGatePiece extends BlockFenceGate implements ILexiconable 
 	@Override
 	public BlockRenderLayer getRenderLayer() {
 		return cutout ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
-	}
-	
-	@Override
-	public boolean isToolEffective(String type, IBlockState state) {
-		return mainBlock.isToolEffective(type, state);
 	}
 	
 	@SideOnly(Side.CLIENT)

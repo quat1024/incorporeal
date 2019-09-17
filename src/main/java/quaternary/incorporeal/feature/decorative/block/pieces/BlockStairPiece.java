@@ -31,6 +31,8 @@ public class BlockStairPiece extends BlockStairs implements ILexiconable {
 			translucent = true;
 			setLightOpacity(0);
 		}
+		
+		setHarvestLevel(block.getHarvestTool(block.getDefaultState()), block.getHarvestLevel(block.getDefaultState()));
 	}
 	
 	private final Block mainBlock;
@@ -65,11 +67,6 @@ public class BlockStairPiece extends BlockStairs implements ILexiconable {
 	public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
 		if(cutout) return false;
 		else return super.doesSideBlockRendering(state, world, pos, face);
-	}
-	
-	@Override
-	public boolean isToolEffective(String type, IBlockState state) {
-		return mainBlock.isToolEffective(type, state);
 	}
 	
 	@SideOnly(Side.CLIENT)
