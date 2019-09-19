@@ -53,6 +53,10 @@ public abstract class LexiconModule {
 		return entryWithFinalPage(flowerName, icon, category, knowledgeType, pageCount, finalPage);
 	}
 	
+	protected static LexiconEntry justTextEntry(String name, ItemStack icon, LexiconCategory category, KnowledgeType knowledgeType, int pageCount) {
+		return entryWithFinalPage(Incorporeal.MODID + '.' + name, icon, category, knowledgeType, pageCount, null);
+	}
+	
 	protected static LexiconEntry entryWithFinalPage(String name, ItemStack icon, LexiconCategory category, KnowledgeType knowledgeType, int pageCount, @Nullable LexiconPage finalPage) {
 		LexiconEntry entry = new CompatLexiconEntry(name, category, Incorporeal.NAME);
 		for(int i = 0; i < pageCount; i++) {

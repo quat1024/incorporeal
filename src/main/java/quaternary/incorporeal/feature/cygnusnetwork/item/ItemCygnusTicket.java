@@ -28,8 +28,7 @@ public class ItemCygnusTicket extends Item {
 	
 	private static final String TAG_CYGNUS_DATA = "CygnusItem";
 	
-	public void setCygnusItem(ItemStack stack, Object o) {
-		clearCygnusItem(stack);
+	public static void setCygnusItem(ItemStack stack, Object o) {
 		if(o != null) {
 			NBTTagCompound cygnusData = new NBTTagCompound();
 			CygnusDatatypeHelpers.writeToNBT(cygnusData, o);
@@ -37,15 +36,15 @@ public class ItemCygnusTicket extends Item {
 		}
 	}
 	
-	public boolean hasCygnusItem(ItemStack stack) {
+	public static boolean hasCygnusItem(ItemStack stack) {
 		return stack.hasTagCompound() && stack.getTagCompound().hasKey(TAG_CYGNUS_DATA);
 	}
 	
-	public Object getCygnusItem(ItemStack stack) {
+	public static Object getCygnusItem(ItemStack stack) {
 		return CygnusDatatypeHelpers.readFromNBT(stack.getTagCompound().getCompoundTag(TAG_CYGNUS_DATA));
 	}
 	
-	public void clearCygnusItem(ItemStack stack) {
+	public static void clearCygnusItem(ItemStack stack) {
 		if(hasCygnusItem(stack)) {
 			stack.getTagCompound().removeTag(TAG_CYGNUS_DATA);
 		}

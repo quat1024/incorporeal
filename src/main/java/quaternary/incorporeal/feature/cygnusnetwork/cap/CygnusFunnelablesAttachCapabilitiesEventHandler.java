@@ -1,8 +1,11 @@
 package quaternary.incorporeal.feature.cygnusnetwork.cap;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityItemFrame;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -14,9 +17,12 @@ import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.core.etc.LazyGenericCapabilityProvider;
 import quaternary.incorporeal.core.etc.helper.CorporeaHelper2;
+import quaternary.incorporeal.feature.cygnusnetwork.item.CygnusNetworkItems;
 import quaternary.incorporeal.feature.cygnusnetwork.item.ItemCygnusTicket;
+import quaternary.incorporeal.feature.cygnusnetwork.lexicon.PageFunnelable;
 import vazkii.botania.api.corporea.CorporeaRequest;
 import vazkii.botania.api.corporea.ICorporeaRequestor;
+import vazkii.botania.common.block.ModBlocks;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaBase;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaCrystalCube;
 import vazkii.botania.common.block.tile.corporea.TileCorporeaFunnel;
@@ -25,12 +31,55 @@ import vazkii.botania.common.block.tile.corporea.TileCorporeaRetainer;
 
 import javax.annotation.Nullable;
 
-public final class CygnusAttachCapabilitiesEventHandler {
-	private CygnusAttachCapabilitiesEventHandler() {
-	}
+//Is this class name long enough?
+public final class CygnusFunnelablesAttachCapabilitiesEventHandler {
+	private CygnusFunnelablesAttachCapabilitiesEventHandler() {}
 	
 	public static void register() {
-		MinecraftForge.EVENT_BUS.register(CygnusAttachCapabilitiesEventHandler.class);
+		MinecraftForge.EVENT_BUS.register(CygnusFunnelablesAttachCapabilitiesEventHandler.class);
+	}
+	
+	public static void document() {
+		Incorporeal.API.documentCygnusFunnelable(pages -> {
+			pages.addAll(ImmutableList.of(
+				new PageFunnelable(
+					new ItemStack(ModBlocks.corporeaRetainer),
+					"incorporeal:textures/lexicon/funnel/retainer.png",
+					"botania.page.incorporeal.cygnus_funnel.retainer"
+				),
+				new PageFunnelable(
+					new ItemStack(ModBlocks.corporeaCrystalCube),
+					"incorporeal:textures/lexicon/funnel/crystal_cube.png",
+					"botania.page.incorporeal.cygnus_funnel.crystal_cube"
+				),
+				new PageFunnelable(
+					new ItemStack(ModBlocks.corporeaFunnel),
+					"incorporeal:textures/lexicon/funnel/funnel.png",
+					"botania.page.incorporeal.cygnus_funnel.funnel"
+				),
+				new PageFunnelable(
+					new ItemStack(ModBlocks.corporeaIndex),
+					"incorporeal:textures/lexicon/funnel/index.png",
+					"botania.page.incorporeal.cygnus_funnel.index"
+				),
+				new PageFunnelable(
+					new ItemStack(Blocks.FLOWER_POT),
+					"botania.page.incorporeal.cygnus_funnel.item_entity.heading",
+					"incorporeal:textures/lexicon/funnel/item_entity.png",
+					"botania.page.incorporeal.cygnus_funnel.item_entity"
+				),
+				new PageFunnelable(
+					new ItemStack(Items.PAPER),
+					"incorporeal:textures/lexicon/funnel/paper.png",
+					"botania.page.incorporeal.cygnus_funnel.paper"
+				),
+				new PageFunnelable(
+					new ItemStack(CygnusNetworkItems.CYGNUS_TICKET),
+					"incorporeal:textures/lexicon/funnel/ticket.png",
+					"botania.page.incorporeal.cygnus_funnel.ticket"
+				)
+			));
+		});
 	}
 	
 	public static final ResourceLocation FUNNEL_HANDLER = new ResourceLocation(Incorporeal.MODID, "cygnus_funnel_handler");
@@ -182,43 +231,40 @@ public final class CygnusAttachCapabilitiesEventHandler {
 		
 		protected abstract void setStack(ItemStack stack);
 		
-		private ItemCygnusTicket asTicket() {
-			//returning the casted item and nullchecking, is a lot less typing and get-this-get-thatting
-			Item i = getStack().getItem();
-			if(i instanceof ItemCygnusTicket) return (ItemCygnusTicket) i;
-			else return null;
-		}
-		
 		@Override
 		public boolean canGiveCygnusItem() {
-			ItemCygnusTicket ticket = asTicket();
+			ItemStack stack = getStack();
 			
-			if(ticket != null) {
-				return ticket.hasCygnusItem(getStack());
+			if(stack.getItem() == CygnusNetworkItems.CYGNUS_TICKET) {
+				//it's a ticket with a request
+				return ItemCygnusTicket.hasCygnusItem(stack);
 			} else {
-				return !getStack().isEmpty();
+				//it's some other item
+				return !stack.isEmpty();
 			}
 		}
 		
 		@Override
 		public boolean canAcceptCygnusItem() {
-			//can only accept items if it's a ticket to be written to
-			return asTicket() != null;
+			//can only accept items if it's a ticket to be overwritten or a paper
+			Item item = getStack().getItem();
+			return item == Items.PAPER || item == CygnusNetworkItems.CYGNUS_TICKET;
 		}
 		
 		@Nullable
 		@Override
 		public Object giveItemToCygnus() {
 			ItemStack stack = getStack();
-			ItemCygnusTicket ticket = asTicket();
 			
-			if(ticket != null) {
-				//already checked has in canGive, so this should be a-ok
-				Object ret = ticket.getCygnusItem(stack);
-				ticket.clearCygnusItem(stack);
-				return ret;
+			if(stack.getItem() instanceof ItemCygnusTicket) {
+				//get the item from the ticket
+				Object returnedItem = ItemCygnusTicket.getCygnusItem(stack);
+				//clear the ticket
+				setStack(new ItemStack(Items.PAPER, stack.getCount()));
+				//return the item
+				return returnedItem;
 			} else {
-				//it's not a ticket, so submit the item as a corporea request
+				//it's not a ticket, so submit whatever it is as a corporea request
 				ItemStack stackCopy = stack.copy();
 				int count = stackCopy.getCount();
 				stackCopy.setCount(1);
@@ -228,11 +274,12 @@ public final class CygnusAttachCapabilitiesEventHandler {
 		
 		@Override
 		public void acceptItemFromCygnus(Object item) {
-			ItemCygnusTicket ticket = asTicket();
-			if(ticket != null) {
-				ItemStack ticketStack = getStack();
-				ticket.setCygnusItem(ticketStack, item);
-				setStack(ticketStack);
+			ItemStack stack = getStack();
+			
+			if(item == Items.PAPER || item instanceof ItemCygnusTicket) {
+				ItemStack newStack = new ItemStack(CygnusNetworkItems.CYGNUS_TICKET, stack.getCount());
+				ItemCygnusTicket.setCygnusItem(newStack, item);
+				setStack(newStack);
 			}
 		}
 	}

@@ -5,6 +5,10 @@ import quaternary.incorporeal.api.cygnus.ICygnusAction;
 import quaternary.incorporeal.api.cygnus.ICygnusCondition;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
+import vazkii.botania.api.lexicon.LexiconPage;
+
+import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Incorporeal's API.
@@ -44,6 +48,14 @@ public interface IIncorporealAPI {
 	 * Note: Method signature changed in 1.2.4 (api version 2) in a non-backwards compatible way.
 	 */
 	ISimpleRegistry<ICygnusCondition> getCygnusStackConditionRegistry();
+	
+	/**
+	 * Cygus Actions, conditions, and loose funnelables use a registry, so when documenting them in their respective Lexica Botania entries I can simply read off the registry. However, regular Cygnus funnelables use capabilities and are not centrally registered, so I don't know what documentation pages to add to the entry. Rectify that here.
+	 * 
+	 * @param doc the action (probably an append) to the list of lexicon pages listed in the Cygnus Funnel lexicon entry
+	 * @since 1.2.4 
+	 */
+	void documentCygnusFunnelable(Consumer<List<LexiconPage>> doc);
 	
 	/**
 	 * Register a loose cygnus funnelable.

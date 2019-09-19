@@ -109,6 +109,7 @@ tile.botania:flower.sweet_alexum_chibi.name=Sweet Alexum Petite
 ###############################Lexicon!!!
 
 incorporeal.category.corporea=Corporea
+incorporeal.category.cygnus=Cygnus
 
 ########PRE-ELVEN
 
@@ -228,6 +229,28 @@ botania.page.incorporeal.red_string_liar0=Turns out, there was more to &4Red Str
 botania.page.incorporeal.red_string_liar1=Extracting items from the linked inventory works normally. Since the &4Corporea Network&0 believes the inventory to be full of whatever is in the item frames, what is requested may not match what is received. This does not duplicate items.<br>Note that the &1Red String Liar&0 should have the &1Corporea Spark&0 attached, instead of the linked inventory.
 # song reference - "tang pong" by Mass Kaneko - probably best untranslated
 botania.page.incorporeal.red_string_liar.flavor=tang pong
+
+####CYGNUS
+botania.entry.incorporeal.cygnus_basics=Cygnus Basics
+botania.tagline.incorporeal.cygnus_basics=How's all this stuff work?
+botania.page.incorporeal.cygnus_basics0=The &4Cygnus Network&0 is a method of storing and manipulating abstract pieces of information in the world, known as &4Cygnus data&0. It works using a &4stack&0 data structure - various &4Cygnus-aligned blocks and items&0 can push data onto the stack, pop data off of it, make decisions based off of the top items, and so on.
+botania.page.incorporeal.cygnus_basics1=&4Cygnus Networks&0 are created by placing &1Cygnus Sparks&0. The &4Stack&0 "lives" on the &1Master Cygnus Spark&0; placing other &1Cygnus Sparks&0 will extend the influence of the &4network&0 to those areas, allowing additional &4Cygnus-aligned blocks&0 to join the network, view, and manipulate the same &4stack&0.
+botania.page.incorporeal.cygnus_basics2=The &4Cygnus Network&0 is essentially a more abstracted form of the &4Corporea Network&0 - it works on pieces of &4data&0 that can be freely copied and modified at will, instead of needing to be backed by the motion of real &4items&0. If "&364 diamond blocks&0" is a piece of data on a &4stack&0, it does not imply anything about real items - you're only talking &oabout&0 64 diamond blocks.
+botania.page.incorporeal.cygnus_basics3=A &4stack&0 data structure is like a list, but only the &4top&0 items of the list can be accessed. &4Pushing&0 data onto the stack puts it above the &4top&0 of the stack and it becomes the new &4top&0. &4Popping&0 data from the stack removes it from the stack; whatever was below becomes the new &4top&0. There's no way to push or pop data from the &4middle&0 or &4bottom&0 of the stack, besides moving whatever's above it &4out of the way&0 first.
+botania.page.incorporeal.cygnus_basics4=&4Cygnus-aligned things&0 can manipulate the stack. The &1Funnel&0 can copy real-world signals as &4data&0 onto the stack or interpret data on the stack as &4real-world signals&0. &1Words&0 perform &4functions&0 on the stack, and &1Crystal Cubes&0 test &4conditions&0 against the stack. &1Retainers&0 and &1Tickets&0 store data off-stack in the forms of &4blocks&0 and &4items&0. See their respective &1Lexica Botania&0 entries for more information.
+
+botania.entry.incorporeal.master_cygnus_spark=Cygnus Sparks
+botania.tagline.incorporeal.master_cygnus_spark=Data on the stack
+botania.page.incorporeal.master_cygnus_spark0=Placing a &1Master Cygnus Spark&0 defines the center of a &4Cygnus network&0. It is home to a &4Cygnus Stack&0: a collection of up to sixteen units of &4Cygnus data&0. &1Master Cygnus Sparks&0 can be placed anywhere, and the contents of the &4stack&0 will display above it. Wearing a &1Manaseer Monocle&0 will cause the stack's contents to show through walls!
+botania.page.incorporeal.master_cygnus_spark1=Regular &1Cygnus Sparks&0, when placed within eight blocks of a &1Master Cygnus Spark&0, will connect to it. &1Cygnus Sparks&0 also link to other &1Cygnus Sparks&0; much like a &4Corporea Network&0, you can extend the reach of a &4Cygnus Network&0 endlessly. All &1Cygnus Sparks&0 on the same &4Cygnus Network&0 provide access to the same &4Cygnus Stack&0.
+botania.page.incorporeal.master_cygnus_spark2=Use a &1Wand of the Forest&0 to display the uplink a &1Cygnus Spark&0 has with its master spark - it could hop through multiple intermediary sparks. Use it while &4sneaking&0 will remove the spark, possibly breaking some connections.<br>Much like &1Corporea Sparks&0, you can also color &1Cygnus Sparks&0 with &1floral powder&0, separating them into up to sixteen channels.
+
+botania.entry.incorporeal.cygnus_funnel=Cygnus Funnel
+botania.tagline.incorporeal.cygnus_funnel=Move data point-to-point
+botania.page.incorporeal.cygnus_funnel0=The &1Cygnus Funnel&0, when given a redstone signal, performs a &4funnel action&0: it moves &4Cygnus data&0 from a &4source&0 to a &4sink&0. Normally, the &4source&0 is whatever is against the back of the arrow, and the &4sink&0 is whatever is against the tip. Each end of the arrow lights up when it is placed against a valid &4source&0 or &4sink&0. A list of &4sources&0 and &4sinks&0 is available at the end of this entry.
+botania.page.incorporeal.cygnus_funnel1=If the &1Cygnus Funnel&0 has a &1Cygnus Spark&0 placed on it, only one end of the &4funnel action&0 needs to be adjacent to it. The other end of the action is completed by the &4Stack&0 associated with the &4Cygnus Network&0's &1Master Cygnus Spark&0 - when acting as a &4data source&0 it will &4pop&0 data off of the &4Stack&0, and when &4sinking data&0 it will &4push&0. (The associated end of the arrow does not light up when the &4funnel action&0 is completed like this.)
+botania.page.incorporeal.cygnus_funnel2=Generally, when &4sourcing&0 data from the world, the &1Cygnus Funnel&0 is non-destructive - it will source a &4copy&0 of whatever it sees. However, when &4sourcing&0 from another &4Cygnus&0-aligned source such as a &1Cygnus Retainer&0 or &1Corporea Retainer&0, the data is destroyed after being sourced.
+
 
 # Cygnus
 

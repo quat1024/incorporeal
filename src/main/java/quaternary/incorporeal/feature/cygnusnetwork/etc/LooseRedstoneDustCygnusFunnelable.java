@@ -3,14 +3,19 @@ package quaternary.incorporeal.feature.cygnusnetwork.etc;
 import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
+import quaternary.incorporeal.feature.cygnusnetwork.lexicon.PageFunnelable;
+import vazkii.botania.api.lexicon.LexiconPage;
 
 import javax.annotation.Nullable;
 import java.math.BigInteger;
+import java.util.List;
 
 //BlockCygnusFunnel hardcodes this response when asked about redstone dust.
 //It's not my block to add an interface on to, and ASM is way overkill.
@@ -21,6 +26,15 @@ public class LooseRedstoneDustCygnusFunnelable implements ILooseCygnusFunnelable
 		if(state.getBlock() == Blocks.REDSTONE_WIRE) {
 			return forLevel(state.getValue(BlockRedstoneWire.POWER));
 		} else return null;
+	}
+	
+	@Override
+	public void document(List<LexiconPage> pages) {
+		pages.add(new PageFunnelable(
+			new ItemStack(Items.REDSTONE),
+			"incorporeal:textures/lexicon/funnel/redstone_dust.png",
+			"botania.page.incorporeal.cygnus_funnel.redstone_dust"
+		));
 	}
 	
 	//a Cache

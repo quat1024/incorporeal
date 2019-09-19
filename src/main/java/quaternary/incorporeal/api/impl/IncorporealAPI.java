@@ -7,15 +7,16 @@ import quaternary.incorporeal.api.ISimpleRegistry;
 import quaternary.incorporeal.api.cygnus.ICygnusAction;
 import quaternary.incorporeal.api.cygnus.ICygnusCondition;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
-import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusRegistries;
+import quaternary.incorporeal.feature.cygnusnetwork.lexicon.CygnusNetworkLexicon;
 import quaternary.incorporeal.feature.naturaldevices.NaturalDeviceRegistry;
-import quaternary.incorporeal.feature.skytouching.recipe.SkytouchingRecipes;
 import quaternary.incorporeal.feature.skytouching.recipe.RecipeSkytouching;
+import quaternary.incorporeal.feature.skytouching.recipe.SkytouchingRecipes;
+import vazkii.botania.api.lexicon.LexiconPage;
 
+import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Predicate;
 
 public class IncorporealAPI implements IIncorporealAPI {
 	@Override
@@ -43,6 +44,11 @@ public class IncorporealAPI implements IIncorporealAPI {
 	@Override
 	public ISimpleRegistry<ICygnusCondition> getCygnusStackConditionRegistry() {
 		return CygnusRegistries.CONDITIONS;
+	}
+	
+	@Override
+	public void documentCygnusFunnelable(Consumer<List<LexiconPage>> doc) {
+		CygnusNetworkLexicon.FUNNELABLE_DOCUMENTERS.add(doc);
 	}
 	
 	@Override

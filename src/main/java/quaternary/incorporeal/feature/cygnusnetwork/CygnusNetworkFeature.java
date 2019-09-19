@@ -20,7 +20,7 @@ import quaternary.incorporeal.api.feature.IFeature;
 import quaternary.incorporeal.core.client.ClientHelpers;
 import quaternary.incorporeal.core.client.event.PostRenderGameOverlayEventHandler;
 import quaternary.incorporeal.feature.cygnusnetwork.block.CygnusNetworkBlocks;
-import quaternary.incorporeal.feature.cygnusnetwork.cap.CygnusAttachCapabilitiesEventHandler;
+import quaternary.incorporeal.feature.cygnusnetwork.cap.CygnusFunnelablesAttachCapabilitiesEventHandler;
 import quaternary.incorporeal.feature.cygnusnetwork.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.feature.cygnusnetwork.client.entityrenderer.RenderEntityCygnusMasterSpark;
 import quaternary.incorporeal.feature.cygnusnetwork.client.entityrenderer.RenderEntityCygnusRegularSpark;
@@ -77,7 +77,7 @@ public class CygnusNetworkFeature implements IFeature {
 		CygnusRegistries.LOOSE_FUNNELABLES.add(new LooseRedstoneDustCygnusFunnelable());
 		CygnusRegistries.LOOSE_FUNNELABLES.add(new LooseRedstoneRepeaterCygnusFunnelable());
 		
-		CygnusAttachCapabilitiesEventHandler.register();
+		CygnusFunnelablesAttachCapabilitiesEventHandler.register();
 		
 		if(IncorporeticFeatures.isEnabled(IncorporeticFeatures.SKYTOUCHING)) {
 			CygnusSkytouchingRecipes.register();
@@ -106,6 +106,7 @@ public class CygnusNetworkFeature implements IFeature {
 	
 	@Override
 	public void lexicon() {
+		CygnusFunnelablesAttachCapabilitiesEventHandler.document();
 		CygnusNetworkLexicon.register();
 	}
 	

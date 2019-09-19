@@ -11,22 +11,24 @@ import quaternary.incorporeal.feature.cygnusnetwork.CygnusRegistries;
 import quaternary.incorporeal.feature.cygnusnetwork.block.CygnusNetworkBlocks;
 import quaternary.incorporeal.feature.cygnusnetwork.item.CygnusNetworkItems;
 import quaternary.incorporeal.feature.cygnusnetwork.recipe.CygnusSkytouchingRecipes;
+import quaternary.incorporeal.feature.skytouching.lexicon.PageSkytouching;
 import vazkii.botania.api.BotaniaAPI;
 import vazkii.botania.api.lexicon.KnowledgeType;
 import vazkii.botania.api.lexicon.LexiconCategory;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.lexicon.LexiconPage;
-import vazkii.botania.common.lexicon.page.PageText;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class CygnusNetworkLexicon extends LexiconModule {
 	public static LexiconCategory category;
 	public static KnowledgeType knowledge;
+	public static final List<Consumer<List<LexiconPage>>> FUNNELABLE_DOCUMENTERS = new ArrayList<>();
 	
-	public static LexiconEntry MASTER_CYGNUS_SPARK;
-	public static LexiconEntry CYGNUS_SPARK;
+	public static LexiconEntry CYGNUS_BASICS;
+	public static LexiconEntry CYGNUS_SPARKS;
 	
 	public static LexiconEntry CYGNUS_FUNNEL;
 	public static LexiconEntry CYGNUS_TICKET;
@@ -41,36 +43,47 @@ public class CygnusNetworkLexicon extends LexiconModule {
 		}.setIcon(new ResourceLocation(Incorporeal.MODID, "TODO"));
 		BotaniaAPI.addCategory(category);
 		
-		knowledge = BotaniaAPI.registerKnowledgeType("incorporeal.cygnus", TextFormatting.RED, false);
+		knowledge = BotaniaAPI.registerKnowledgeType("incorporeal.cygnus", TextFormatting.DARK_AQUA, false);
 		
 		///
 		
-		MASTER_CYGNUS_SPARK = skytouchingEntry(CygnusNetworkItems.MASTER_CYGNUS_SPARK, CygnusSkytouchingRecipes.masterCygnusSpark, category, knowledge, 4);
+		CYGNUS_BASICS = justTextEntry("cygnus_basics", ItemStack.EMPTY, category, knowledge, 5).setPriority();
 		
-		CYGNUS_SPARK = skytouchingEntry(CygnusNetworkItems.CYGNUS_SPARK, CygnusSkytouchingRecipes.cygnusSpark, category, knowledge, 4);
+		CYGNUS_SPARKS = skytouchingEntry(CygnusNetworkItems.MASTER_CYGNUS_SPARK, CygnusSkytouchingRecipes.masterCygnusSpark, category, knowledge, 3);
+		CYGNUS_SPARKS.setLexiconPages(new PageSkytouching("asdfghjkl", CygnusSkytouchingRecipes.cygnusSpark));
+		CYGNUS_SPARKS.addExtraDisplayedRecipe(new ItemStack(CygnusNetworkItems.CYGNUS_SPARK));
 		
-		CYGNUS_FUNNEL = skytouchingEntry(CygnusNetworkBlocks.FUNNEL, CygnusSkytouchingRecipes.cygnusFunnel, category, knowledge, 5);
+		CYGNUS_FUNNEL = skytouchingEntry(CygnusNetworkBlocks.FUNNEL, CygnusSkytouchingRecipes.cygnusFunnel, category, knowledge, 3);
 		
 		//TODO: *remove* this crafting recipe, make it use a funnelable and you just shove data onto a sheet of paper
 		//CYGNUS_TICKET
 		
 		CYGNUS_WORD = skytouchingEntry(CygnusNetworkBlocks.WORD, CygnusSkytouchingRecipes.cygnusWord, category, knowledge, 3);
+		
+		CYGNUS_CRYSTAL_CUBE = skytouchingEntry(CygnusNetworkBlocks.CRYSTAL_CUBE, CygnusSkytouchingRecipes.cygnusCrystalCube, category, knowledge, 3);
+		
+		CYGNUS_RETAINER = skytouchingEntry(CygnusNetworkBlocks.RETAINER, CygnusSkytouchingRecipes.cygnusRetainer, category, knowledge, 2);
+		
+		///
+		
 		List<LexiconPage> pages = new ArrayList<>();
+		FUNNELABLE_DOCUMENTERS.forEach(d -> d.accept(pages));
+		CygnusRegistries.LOOSE_FUNNELABLES.forEach(l -> l.document(pages));
+		pages.forEach(CYGNUS_FUNNEL::addPage);
+		
+		pages.clear();
 		CygnusRegistries.ACTIONS.forEach(a -> a.document(pages));
 		pages.forEach(CYGNUS_WORD::addPage);
 		
-		CYGNUS_CRYSTAL_CUBE = skytouchingEntry(CygnusNetworkBlocks.CRYSTAL_CUBE, CygnusSkytouchingRecipes.cygnusCrystalCube, category, knowledge, 3);
 		pages.clear();
 		CygnusRegistries.CONDITIONS.forEach(c -> c.document(pages));
 		pages.forEach(CYGNUS_CRYSTAL_CUBE::addPage);
-		
-		CYGNUS_RETAINER = skytouchingEntry(CygnusNetworkBlocks.RETAINER, CygnusSkytouchingRecipes.cygnusRetainer, category, knowledge, 2);
 	}
 	
 	protected static LexiconEntry skytouchingEntry(IForgeRegistryEntry<?> subject, IRecipeSkytouching recipe, LexiconCategory category, KnowledgeType knowledge, int pageCount) {
 		ItemStack icon = toIcon(subject);
 		String name = icon.getItem().getRegistryName().toString().replace(':', '.'); //fuckin fight me!
-		LexiconPage finalPage = new PageText("TODO recipeSkytouching page");
+		LexiconPage finalPage = new PageSkytouching("TODO recipeSkytouching page", recipe);
 		return entryWithFinalPage(name, icon, category, knowledge, pageCount, finalPage);
 	}
 }

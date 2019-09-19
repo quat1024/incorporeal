@@ -38,6 +38,6 @@ public class ItemCygnusSpark extends Item implements ILexiconable {
 	
 	@Override
 	public LexiconEntry getEntry(World world, BlockPos pos, EntityPlayer player, ItemStack lexicon) {
-		return isMaster ? CygnusNetworkLexicon.MASTER_CYGNUS_SPARK : CygnusNetworkLexicon.CYGNUS_SPARK;
+		return CygnusNetworkLexicon.CYGNUS_SPARKS;
 	}
 }

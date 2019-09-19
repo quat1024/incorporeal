@@ -17,7 +17,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.core.etc.LazyGenericCapabilityProvider;
-import quaternary.incorporeal.feature.cygnusnetwork.cap.CygnusAttachCapabilitiesEventHandler;
+import quaternary.incorporeal.feature.cygnusnetwork.cap.CygnusFunnelablesAttachCapabilitiesEventHandler;
 import quaternary.incorporeal.feature.cygnusnetwork.cap.IncorporeticCygnusCapabilities;
 
 import javax.annotation.Nonnull;
@@ -30,7 +30,7 @@ public final class InRedAttachCapabilitiesEventHandler {
 	
 	public static final Capability<IInfraRedstone> INFRA_READABLE_CAP = InfraRedstone.CAPABILITY_IR;
 	
-	private static final ResourceLocation FUNNEL_HANDLER = CygnusAttachCapabilitiesEventHandler.FUNNEL_HANDLER;
+	private static final ResourceLocation FUNNEL_HANDLER = CygnusFunnelablesAttachCapabilitiesEventHandler.FUNNEL_HANDLER;
 	private static final ResourceLocation INRED_CABLE_HANDLER = new ResourceLocation("incorporeal", "inred_compat_cable");
 	private static final ResourceLocation CATCHALL_FUNNEL_HANDLER = new ResourceLocation("incorporeal", "catchall_funnel_handler");
 	
