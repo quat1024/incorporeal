@@ -1,7 +1,7 @@
 package quaternary.incorporeal.feature.cygnusnetwork.lexicon;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.item.ItemStack;
@@ -53,7 +53,8 @@ public class PageFunnelable extends PageRecipe {
 			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			GlStateManager.color(1F, 1F, 1F, 1F);
 			//move it down compared to original
-			((GuiScreen) gui).drawTexturedModalRect(gui.getLeft(), gui.getTop() + 40, 0, 0, gui.getWidth(), gui.getHeight());
+			Gui.drawModalRectWithCustomSizedTexture(gui.getLeft() + 15, gui.getTop() + 38, 0, 0, 128, 128, 128, 128);
+			//((GuiScreen) gui).drawTexturedModalRect(gui.getLeft() + 15, gui.getTop() + 38, 0, 0, 128, 128);
 			GlStateManager.disableBlend();
 		}
 		

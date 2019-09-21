@@ -83,7 +83,7 @@ public class CygnusNetworkLexicon extends LexiconModule {
 	protected static LexiconEntry skytouchingEntry(IForgeRegistryEntry<?> subject, IRecipeSkytouching recipe, LexiconCategory category, KnowledgeType knowledge, int pageCount) {
 		ItemStack icon = toIcon(subject);
 		String name = icon.getItem().getRegistryName().toString().replace(':', '.'); //fuckin fight me!
-		LexiconPage finalPage = new PageSkytouching("TODO recipeSkytouching page", recipe);
+		LexiconPage finalPage = new PageSkytouching(".flavor", recipe);
 		return entryWithFinalPage(name, icon, category, knowledge, pageCount, finalPage);
 	}
 }

@@ -250,6 +250,9 @@ botania.tagline.incorporeal.cygnus_funnel=Move data point-to-point
 botania.page.incorporeal.cygnus_funnel0=The &1Cygnus Funnel&0, when given a redstone signal, performs a &4funnel action&0: it moves &4Cygnus data&0 from a &4source&0 to a &4sink&0. Normally, the &4source&0 is whatever is against the back of the arrow, and the &4sink&0 is whatever is against the tip. Each end of the arrow lights up when it is placed against a valid &4source&0 or &4sink&0. A list of &4sources&0 and &4sinks&0 is available at the end of this entry.
 botania.page.incorporeal.cygnus_funnel1=If the &1Cygnus Funnel&0 has a &1Cygnus Spark&0 placed on it, only one end of the &4funnel action&0 needs to be adjacent to it. The other end of the action is completed by the &4Stack&0 associated with the &4Cygnus Network&0's &1Master Cygnus Spark&0 - when acting as a &4data source&0 it will &4pop&0 data off of the &4Stack&0, and when &4sinking data&0 it will &4push&0. (The associated end of the arrow does not light up when the &4funnel action&0 is completed like this.)
 botania.page.incorporeal.cygnus_funnel2=Generally, when &4sourcing&0 data from the world, the &1Cygnus Funnel&0 is non-destructive - it will source a &4copy&0 of whatever it sees. However, when &4sourcing&0 from another &4Cygnus&0-aligned source such as a &1Cygnus Retainer&0 or &1Corporea Retainer&0, the data is destroyed after being sourced.
+# 745 sticky
+botania.page.incorporeal.cygnus_funnel.flavor=Already broke, and it's only 7:45 in the morning
+botania.page.incorporeal.cygnus_funnel.retainer=&4Sourcing&0 from a &1Corporea Retainer&0 returns the retained request. &4Sinking&0 into a &1Corporea Retainer&0 injects a new request with the same position.
 
 
 # Cygnus
