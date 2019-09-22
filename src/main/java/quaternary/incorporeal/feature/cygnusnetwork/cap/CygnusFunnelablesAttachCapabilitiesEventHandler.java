@@ -63,6 +63,11 @@ public final class CygnusFunnelablesAttachCapabilitiesEventHandler {
 					"botania.page.incorporeal.cygnus_funnel.index"
 				),
 				new PageFunnelable(
+					new ItemStack(CygnusNetworkItems.MASTER_CYGNUS_SPARK),
+					"incorporeal:textures/lexicon/funnel/master_cygnus_spark.png",
+					"botania.page.incorporeal.cygnus_funnel.master_cygnus_spark"
+				),
+				new PageFunnelable(
 					new ItemStack(Blocks.FLOWER_POT),
 					"botania.page.incorporeal.cygnus_funnel.item_entity.heading",
 					"incorporeal:textures/lexicon/funnel/item_entity.png",

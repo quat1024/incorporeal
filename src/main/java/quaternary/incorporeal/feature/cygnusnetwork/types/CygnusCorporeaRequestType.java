@@ -12,6 +12,8 @@ import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.core.etc.helper.CorporeaHelper2;
 import vazkii.botania.api.corporea.CorporeaHelper;
 import vazkii.botania.api.corporea.CorporeaRequest;
+import vazkii.botania.api.lexicon.LexiconPage;
+import vazkii.botania.common.lexicon.page.PageText;
 
 import java.io.IOException;
 import java.util.List;
@@ -140,5 +142,10 @@ public class CygnusCorporeaRequestType implements ICygnusDatatype<CorporeaReques
 	public int toComparator(CorporeaRequest item) {
 		int x = CorporeaHelper.signalStrengthForRequestSize(item.count);
 		return x == 0 ? 1 : x;
+	}
+	
+	@Override
+	public void document(List<LexiconPage> pages) {
+		pages.add(new PageText("botania.page.incorporeal.cygnus_types.corporea_request"));
 	}
 }

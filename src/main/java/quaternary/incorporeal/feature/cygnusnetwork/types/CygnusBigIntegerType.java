@@ -8,9 +8,12 @@ import org.apache.commons.lang3.StringUtils;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusError;
+import vazkii.botania.api.lexicon.LexiconPage;
+import vazkii.botania.common.lexicon.page.PageText;
 
 import javax.annotation.Nullable;
 import java.math.BigInteger;
+import java.util.List;
 
 public class CygnusBigIntegerType implements ICygnusDatatype<BigInteger> {
 	@Override
@@ -91,5 +94,10 @@ public class CygnusBigIntegerType implements ICygnusDatatype<BigInteger> {
 		if(item.compareTo(BigInteger.ONE) < 0) return 1;
 		if(item.compareTo(FIFTEEN) > 0) return 15;
 		else return item.intValue();
+	}
+	
+	@Override
+	public void document(List<LexiconPage> pages) {
+		pages.add(new PageText("botania.page.incorporeal.cygnus_types.biginteger"));
 	}
 }

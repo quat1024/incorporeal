@@ -5,6 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import quaternary.incorporeal.api.IDocumentableComponent;
 import quaternary.incorporeal.api.IIncorporealAPI;
 
 import javax.annotation.Nullable;
@@ -16,11 +17,12 @@ import java.util.List;
  * as well as a few miscellaneous functions relating to gameplay.
  * 
  * @see IIncorporealAPI#getCygnusDatatypeRegistry()
+ * @see IDocumentableComponent
  *
  * @author quaternary
  * @since 1.1
  */
-public interface ICygnusDatatype<T> {
+public interface ICygnusDatatype<T> extends IDocumentableComponent {
 	/**
 	 * @return The class that this Cygnus serializer is in charge of.
 	 */

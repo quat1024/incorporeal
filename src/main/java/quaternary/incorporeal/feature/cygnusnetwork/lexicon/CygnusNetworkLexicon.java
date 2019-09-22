@@ -28,10 +28,10 @@ public class CygnusNetworkLexicon extends LexiconModule {
 	public static final List<Consumer<List<LexiconPage>>> FUNNELABLE_DOCUMENTERS = new ArrayList<>();
 	
 	public static LexiconEntry CYGNUS_BASICS;
-	public static LexiconEntry CYGNUS_SPARKS;
+	public static LexiconEntry CYGNUS_TYPES;
 	
+	public static LexiconEntry CYGNUS_SPARKS;
 	public static LexiconEntry CYGNUS_FUNNEL;
-	public static LexiconEntry CYGNUS_TICKET;
 	
 	public static LexiconEntry CYGNUS_WORD;
 	public static LexiconEntry CYGNUS_CRYSTAL_CUBE;
@@ -48,6 +48,7 @@ public class CygnusNetworkLexicon extends LexiconModule {
 		///
 		
 		CYGNUS_BASICS = justTextEntry("cygnus_basics", ItemStack.EMPTY, category, knowledge, 5).setPriority();
+		CYGNUS_TYPES = justTextEntry("cygnus_types", ItemStack.EMPTY, category, knowledge, 1).setPriority();
 		
 		CYGNUS_SPARKS = skytouchingEntry(CygnusNetworkItems.MASTER_CYGNUS_SPARK, CygnusSkytouchingRecipes.masterCygnusSpark, category, knowledge, 3);
 		CYGNUS_SPARKS.setLexiconPages(new PageSkytouching("asdfghjkl", CygnusSkytouchingRecipes.cygnusSpark));
@@ -55,18 +56,19 @@ public class CygnusNetworkLexicon extends LexiconModule {
 		
 		CYGNUS_FUNNEL = skytouchingEntry(CygnusNetworkBlocks.FUNNEL, CygnusSkytouchingRecipes.cygnusFunnel, category, knowledge, 3);
 		
-		//TODO: *remove* this crafting recipe, make it use a funnelable and you just shove data onto a sheet of paper
-		//CYGNUS_TICKET
-		
 		CYGNUS_WORD = skytouchingEntry(CygnusNetworkBlocks.WORD, CygnusSkytouchingRecipes.cygnusWord, category, knowledge, 3);
 		
 		CYGNUS_CRYSTAL_CUBE = skytouchingEntry(CygnusNetworkBlocks.CRYSTAL_CUBE, CygnusSkytouchingRecipes.cygnusCrystalCube, category, knowledge, 3);
 		
-		CYGNUS_RETAINER = skytouchingEntry(CygnusNetworkBlocks.RETAINER, CygnusSkytouchingRecipes.cygnusRetainer, category, knowledge, 2);
+		CYGNUS_RETAINER = skytouchingEntry(CygnusNetworkBlocks.RETAINER, CygnusSkytouchingRecipes.cygnusRetainer, category, knowledge, 3);
 		
 		///
 		
 		List<LexiconPage> pages = new ArrayList<>();
+		CygnusRegistries.DATATYPES.forEach(t -> t.document(pages));
+		pages.forEach(CYGNUS_TYPES::addPage);
+		
+		pages.clear();
 		FUNNELABLE_DOCUMENTERS.forEach(d -> d.accept(pages));
 		CygnusRegistries.LOOSE_FUNNELABLES.forEach(l -> l.document(pages));
 		pages.forEach(CYGNUS_FUNNEL::addPage);

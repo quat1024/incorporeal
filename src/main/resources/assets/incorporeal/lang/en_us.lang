@@ -239,6 +239,14 @@ botania.page.incorporeal.cygnus_basics2=The &4Cygnus Network&0 is essentially a 
 botania.page.incorporeal.cygnus_basics3=A &4stack&0 data structure is like a list, but only the &4top&0 items of the list can be accessed. &4Pushing&0 data onto the stack puts it above the &4top&0 of the stack and it becomes the new &4top&0. &4Popping&0 data from the stack removes it from the stack; whatever was below becomes the new &4top&0. There's no way to push or pop data from the &4middle&0 or &4bottom&0 of the stack, besides moving whatever's above it &4out of the way&0 first.
 botania.page.incorporeal.cygnus_basics4=&4Cygnus-aligned things&0 can manipulate the stack. The &1Funnel&0 can copy real-world signals as &4data&0 onto the stack or interpret data on the stack as &4real-world signals&0. &1Words&0 perform &4functions&0 on the stack, and &1Crystal Cubes&0 test &4conditions&0 against the stack. &1Retainers&0 and &1Tickets&0 store data off-stack in the forms of &4blocks&0 and &4items&0. See their respective &1Lexica Botania&0 entries for more information.
 
+botania.entry.incorporeal.cygnus_types=Cygnus Datatypes
+botania.tagline.incorporeal.cygnus_types=What can you put on the stack?
+botania.page.incorporeal.cygnus_types0=There are a few different &4types&0 of data that can be put on the &4stack&0 associated with a &1Master Cygnus Spark&0. Some actions make sense on all &4types&0 of data (like &1Cygnus Word: Duplicate&0 or injecting into a &1Cygnus Retainer&0), but most actions are only defined for one &4type&0. Trying to perform a typed action while the top of the &4stack&0 contains data of the wrong &4type&0 will push a &3Type mismatch&0 error onto the &4stack&0.
+botania.page.incorporeal.cygnus_types.biginteger=The &3Integer&0 datatype represents a positive or negative whole number. Many &1Cygnus Words&0 are available to add, subtract, and multiply these numbers. The number can be up to 50 digits long (not counting the minus sign, if any) - actions which produce a number larger than that will instead produce an &3Invalid math operation&0 error.
+botania.page.incorporeal.cygnus_types.corporea_request=The &3Corporea Request&0 datatype represents a request for items from a &4Corporea Network&0. It is a bundle of a &4matcher&0 (the name or identity of the item being requested) and a numeric count. The &3Corporea Request&0 datatype is able to express "identity" style requests from &1Corporea Funnels&0, as well as "by name" requests from &1Corporea Indices&0.
+botania.page.incorporeal.cygnus_types.error=The &3Error&0 datatype represents some computation error. Generally, these are pushed instead of the result of a computation when the action was not successful. Trying to add two non-numbers pushes a &3Type mismatch&0, trying to duplicate the top item of an empty &4stack&0 pushes a &3Stack underflow&0, dividing by zero pushes an &3Invalid math operation&0, and so on.
+botania.page.incorporeal.cygnus_types.stack=The &3Cygnus Stack&0 datatype represents another Cygnus &4stack&0, packaged as a single item. These can be packaged and unpackaged by &4sourcing&0 from or &4sinking&0 into a &1Cygnus Master Spark&0 with a &1Cygnus Funnel&0.
+
 botania.entry.incorporeal.master_cygnus_spark=Cygnus Sparks
 botania.tagline.incorporeal.master_cygnus_spark=Data on the stack
 botania.page.incorporeal.master_cygnus_spark0=Placing a &1Master Cygnus Spark&0 defines the center of a &4Cygnus network&0. It is home to a &4Cygnus Stack&0: a collection of up to sixteen units of &4Cygnus data&0. &1Master Cygnus Sparks&0 can be placed anywhere, and the contents of the &4stack&0 will display above it. Wearing a &1Manaseer Monocle&0 will cause the stack's contents to show through walls!
@@ -252,8 +260,17 @@ botania.page.incorporeal.cygnus_funnel1=If the &1Cygnus Funnel&0 has a &1Cygnus 
 botania.page.incorporeal.cygnus_funnel2=Generally, when &4sourcing&0 data from the world, the &1Cygnus Funnel&0 is non-destructive - it will source a &4copy&0 of whatever it sees. However, when &4sourcing&0 from another &4Cygnus&0-aligned source such as a &1Cygnus Retainer&0 or &1Corporea Retainer&0, the data is destroyed after being sourced.
 # 745 sticky
 botania.page.incorporeal.cygnus_funnel.flavor=Already broke, and it's only 7:45 in the morning
-botania.page.incorporeal.cygnus_funnel.retainer=&4Sourcing&0 from a &1Corporea Retainer&0 returns the retained request. &4Sinking&0 into a &1Corporea Retainer&0 injects a new request with the same position.
-
+botania.page.incorporeal.cygnus_funnel.retainer=&4Sourcing&0 from a &1Corporea Retainer&0 returns the retained &3Corporea Request&0. &4Sinking&0 a &3request&0 injects it, keeping the position.
+botania.page.incorporeal.cygnus_funnel.crystal_cube=&4Sourcing&0 from a &1Corporea Crystal Cube&0 returns a &3Corporea Request&0 for the displayed item and count. &4Sinking&0 a &3request&0 sets the item (not the count).
+botania.page.incorporeal.cygnus_funnel.funnel=&4Sinking&0 a &3Corporea Request&0 into a &1Corporea Funnel&0 makes it perform the request.
+botania.page.incorporeal.cygnus_funnel.index=&4Sinking&0 a &3Corporea Request&0 into a &1Corporea Index&0 makes it perform the request.
+botania.page.incorporeal.cygnus_funnel.master_cygnus_spark=&4Sourcing&0 from a &1Master Cygnus Spark&0 packages up its &4stack&0 into a &3Stack&0. &4Sinking&0 a &3stack&0 pushes it all on. 
+botania.page.incorporeal.cygnus_funnel.item_entity.heading=Dropped Items
+botania.page.incorporeal.cygnus_funnel.item_entity=&4Sourcing&0 from any &1dropped items&0 returns a &3Corporea Request&0 for them, with count.
+botania.page.incorporeal.cygnus_funnel.paper=&4Sinking&0 &3any data at all&0 into &1Paper&0 stores the data as a &1Cygnus Ticket&0.
+botania.page.incorporeal.cygnus_funnel.ticket=&4Sourcing&0 from a &1Corporea Ticket&0 returns the stored &3data&0 and clears the ticket. &4Sinking&0 &3anything at all&0 overwrites the data.
+botania.page.incorporeal.cygnus_funnel.repeater=&4Sourcing&0 from a &1Redstone Repeater&0 returns a &3number&0 between 1 and 4 representing the delay on the repeater. &4Sinking&0 a &3number&0 between 1 and 4 sets the delay.
+botania.page.incorporeal.cygnus_funnel.redstone_dust=&4Sourcing&0 from &1Redstone Dust&0 returns a &3number&0 between 0 and 15 representing its power level.
 
 # Cygnus
 

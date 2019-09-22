@@ -8,6 +8,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusDatatypeHelpers;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusStack;
+import vazkii.botania.api.lexicon.LexiconPage;
+import vazkii.botania.common.lexicon.page.PageText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,5 +112,10 @@ public class CygnusStackType implements ICygnusDatatype<CygnusStack> {
 	@Override
 	public int toComparator(CygnusStack item) {
 		return MathHelper.clamp(item.depth(), 1, 15);
+	}
+	
+	@Override
+	public void document(List<LexiconPage> pages) {
+		pages.add(new PageText("botania.page.incorporeal.cygnus_types.stack"));
 	}
 }

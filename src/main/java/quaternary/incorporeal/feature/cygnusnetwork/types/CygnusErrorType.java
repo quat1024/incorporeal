@@ -11,6 +11,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusError;
+import vazkii.botania.api.lexicon.LexiconPage;
+import vazkii.botania.common.lexicon.page.PageText;
 
 import java.util.Arrays;
 import java.util.List;
@@ -85,5 +87,10 @@ public class CygnusErrorType implements ICygnusDatatype<CygnusError> {
 	@Override
 	public boolean areEqual(CygnusError item1, CygnusError item2) {
 		return item1.errorTranslationKey.equals(item2.errorTranslationKey) && Arrays.deepEquals(item1.errorFormat, item2.errorFormat);
+	}
+	
+	@Override
+	public void document(List<LexiconPage> pages) {
+		pages.add(new PageText("botania.page.incorporeal.cygnus_types.error"));
 	}
 }
