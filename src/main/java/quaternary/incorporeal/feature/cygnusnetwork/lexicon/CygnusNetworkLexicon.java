@@ -36,6 +36,7 @@ public class CygnusNetworkLexicon extends LexiconModule {
 	public static LexiconEntry CYGNUS_WORD;
 	public static LexiconEntry CYGNUS_CRYSTAL_CUBE;
 	public static LexiconEntry CYGNUS_RETAINER;
+	public static LexiconEntry CYGNUS_TICKET;
 	
 	public static void register() {
 		category = new LexiconCategory("incorporeal.category.cygnus") {
@@ -61,7 +62,9 @@ public class CygnusNetworkLexicon extends LexiconModule {
 		
 		CYGNUS_CRYSTAL_CUBE = skytouchingEntry(CygnusNetworkBlocks.CRYSTAL_CUBE, CygnusSkytouchingRecipes.cygnusCrystalCube, category, knowledge, 2);
 		
-		CYGNUS_RETAINER = skytouchingEntry(CygnusNetworkBlocks.RETAINER, CygnusSkytouchingRecipes.cygnusRetainer, category, knowledge, 2);
+		CYGNUS_RETAINER = skytouchingEntry(CygnusNetworkBlocks.RETAINER, CygnusSkytouchingRecipes.cygnusRetainer, category, knowledge, 3);
+		
+		CYGNUS_TICKET = justTextEntry("cygnus_ticket", new ItemStack(CygnusNetworkItems.CYGNUS_TICKET), category, knowledge, 2);
 		
 		///
 		

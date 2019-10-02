@@ -311,8 +311,13 @@ botania.entry.incorporeal.cygnus_retainer=Cygnus Retainer
 botania.tagline.incorporeal.cygnus_retainer=Store one piece of data off-stack
 botania.page.incorporeal.cygnus_retainer0=The &1Cygnus Retainer&0 is a block-form storage slot for a single piece of &4data&0. Any piece of &4data&0 that can be placed on a &4stack&0 can also be injected into a &1Cygnus Retainer&0, using a &1Cygnus Funnel&0. Re-injecting data into a full &1Cygnus Retainer&0 will delete whatever was there; injecting into a &1funnel&0 with a &1Mana Void&0 underneath will delete the data as well.
 botania.page.incorporeal.cygnus_retainer1=The &1Cygnus Retainer&0 has unusual comparator support - it will always output 0 if it is empty, and at least 1 if it is full, but the exact value often depends on exactly what data is retained. &3Numbers&0 report their value (clamped to a 1-15 range), &3corporea requests&0 report their magnitude (again, clamped), &3stacks&0 report the height of the stack.
-botania.page.incorporeal.cygnus_retainer2=One use for the &1Cygnus Retainer&0 is to reorder data on top of the &4stack&0 - there are no &4swap&0 or &4rotate&0 &1Cygnus Words&0, for example, but by offloading data onto an array of &1Cygnus Retainers&0 and loading it back on in a different order, you can produce the same effect.
+botania.page.incorporeal.cygnus_retainer2=One use for the &1Cygnus Retainer&0 is to reorder data on top of the &4stack&0 - there are no &4swap&0 or &4rotate&0 &1Cygnus Words&0, for example, but by offloading data onto an array of &1Cygnus Retainers&0 and loading it back on in a different order, you can produce the same effect.<br>Using a &1Wand of the Forest&0 on a &1Retainer&0 clears it.
 botania.page.incorporeal.cygnus_retainer.flavor=Already broke, and it's only 7:45 in the morning
+
+botania.entry.incorporeal.cygnus_ticket=Cygnus Ticket
+botania.tagline.incorporeal.cygnus_ticket=Portable Cygnus data
+botania.page.incorporeal.cygnus_ticket0=The &1Cygnus Ticket&0 is an item-form storage slot for a single piece of &4data&0. Any piece of &4data&0 that can be placed on a &4stack&0 can also be injected into a &1Cygnus Ticket&0, using a &1Cygnus Funnel&0. Re-injecting data into a full &1Cygnus Ticket&0 will delete whatever was there. It's very much like a &1Cygnus Retainer&0 - but in an item form.
+botania.page.incorporeal.cygnus_ticket1=Sneak-using a filled &1Ticket&0 will clear it, using an empty &1ticket&0 on a &1Cygnus Retainer&0 will copy the data from the retainer onto the ticket, and using a fill &1ticket&0 on a &1retainer&0 will copy the data the other way, from the ticket onto the retainer.<br>Read the &1Cygnus Funnel&0 entry for more information about how to obtain these tickets.
 
 # Cygnus
 
