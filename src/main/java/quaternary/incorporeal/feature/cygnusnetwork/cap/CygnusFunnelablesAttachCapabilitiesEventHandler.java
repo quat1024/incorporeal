@@ -146,11 +146,7 @@ public final class CygnusFunnelablesAttachCapabilitiesEventHandler {
 		@Nullable
 		@Override
 		public Object giveItemToCygnus() {
-			CorporeaRequest request = CorporeaHelper2.getCorporeaRequestInRetainer(retainer);
-			if(request != null) {
-				CorporeaHelper2.clearRetainer(retainer);
-				return request;
-			} else return null;
+			return CorporeaHelper2.getCorporeaRequestInRetainer(retainer);
 		}
 		
 		@Override
@@ -253,13 +249,8 @@ public final class CygnusFunnelablesAttachCapabilitiesEventHandler {
 		public Object giveItemToCygnus() {
 			ItemStack stack = getStack();
 			
-			if(stack.getItem() instanceof ItemCygnusTicket) {
-				//get the item from the ticket
-				Object returnedItem = ItemCygnusTicket.getCygnusItem(stack);
-				//clear the ticket
-				setStack(new ItemStack(Items.PAPER, stack.getCount()));
-				//return the item
-				return returnedItem;
+			if(stack.getItem() instanceof ItemCygnusTicket && ItemCygnusTicket.hasCygnusItem(stack)) {
+				return ItemCygnusTicket.getCygnusItem(stack);
 			} else {
 				//it's not a ticket, so submit whatever it is as a corporea request
 				ItemStack stackCopy = stack.copy();

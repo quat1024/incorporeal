@@ -9,6 +9,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusDatatypeHelpers;
 import quaternary.incorporeal.feature.cygnusnetwork.cap.IncorporeticCygnusCapabilities;
+import vazkii.botania.common.block.ModBlocks;
 
 import javax.annotation.Nullable;
 
@@ -30,20 +31,16 @@ public class TileCygnusRetainer extends TileCygnusBase implements ICygnusFunnela
 	@Nullable
 	@Override
 	public Object giveItemToCygnus() {
-		Object ret = retained;
-		retained = null;
-		comparator = 0;
-		
-		updateStuff();
-		
-		return ret;
+		return retained;
 	}
 	
 	@Override
 	public void acceptItemFromCygnus(Object item) {
-		retained = item;
-		
-		if(item != null) {
+		if(item == null || world.getBlockState(pos.down()).getBlock() == ModBlocks.manaVoid) {
+			retained = null;
+			comparator = 0;
+		} else {
+			retained = item;
 			comparator = CygnusDatatypeHelpers.forClass(item.getClass()).toComparatorUnchecked(item);
 		}
 		
@@ -59,8 +56,7 @@ public class TileCygnusRetainer extends TileCygnusBase implements ICygnusFunnela
 	}
 	
 	public void wand() {
-		retained = null;
-		updateStuff();
+		acceptItemFromCygnus(null);
 	}
 	
 	public boolean hasRetainedObject() {
