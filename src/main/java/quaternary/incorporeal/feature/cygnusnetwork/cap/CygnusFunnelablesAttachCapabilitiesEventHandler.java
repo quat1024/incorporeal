@@ -272,8 +272,9 @@ public final class CygnusFunnelablesAttachCapabilitiesEventHandler {
 		@Override
 		public void acceptItemFromCygnus(Object item) {
 			ItemStack stack = getStack();
+			Item stackItem = stack.getItem();
 			
-			if(item == Items.PAPER || item instanceof ItemCygnusTicket) {
+			if(stackItem == Items.PAPER || stackItem instanceof ItemCygnusTicket) {
 				ItemStack newStack = new ItemStack(CygnusNetworkItems.CYGNUS_TICKET, stack.getCount());
 				ItemCygnusTicket.setCygnusItem(newStack, item);
 				setStack(newStack);
