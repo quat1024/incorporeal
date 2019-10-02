@@ -18,11 +18,12 @@ public class SimpleRegistry<T> implements ISimpleRegistry<T> {
 	private boolean frozen = false;
 	
 	@Override
-	public void register(ResourceLocation name, T item) {
+	public T register(ResourceLocation name, T item) {
 		if(frozen) throw new IllegalStateException("Too late, this registry is frozen");
 		
 		registry.put(name, item);
 		valuesOrdered.add(item);
+		return item;
 	}
 	
 	@Override

@@ -16,6 +16,7 @@ public class TileCygnusWord extends TileCygnusBase {
 	private ICygnusAction action = IncorporeticCygnusActions.NOTHING;
 	
 	public void accept(ICygnusStack stack) {
+		if(stack == null) return;
 		action.accept(stack);
 	}
 	

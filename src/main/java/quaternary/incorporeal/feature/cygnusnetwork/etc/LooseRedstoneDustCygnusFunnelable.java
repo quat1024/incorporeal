@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
-import quaternary.incorporeal.feature.cygnusnetwork.lexicon.PageFunnelable;
+import quaternary.incorporeal.feature.cygnusnetwork.lexicon.PageHeadingIcon;
 import vazkii.botania.api.lexicon.LexiconPage;
 
 import javax.annotation.Nullable;
@@ -30,9 +30,8 @@ public class LooseRedstoneDustCygnusFunnelable implements ILooseCygnusFunnelable
 	
 	@Override
 	public void document(List<LexiconPage> pages) {
-		pages.add(new PageFunnelable(
+		pages.add(new PageHeadingIcon(
 			new ItemStack(Items.REDSTONE),
-			"incorporeal:textures/lexicon/funnel/redstone_dust.png",
 			"botania.page.incorporeal.cygnus_funnel.redstone_dust"
 		));
 	}

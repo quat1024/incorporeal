@@ -9,6 +9,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusCondition;
+import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.core.etc.helper.CygnusHelpers;
 import quaternary.incorporeal.feature.cygnusnetwork.IncorporeticCygnusConditions;
 import quaternary.incorporeal.feature.cygnusnetwork.block.BlockCygnusCrystalCube;
@@ -28,14 +29,20 @@ public class TileCygnusCrystalCube extends TileCygnusBase implements ITickable {
 		
 		EntityCygnusMasterSpark master = CygnusHelpers.getMasterSparkForSparkAt(world, pos);
 		if(master != null) {
-			boolean wasEnabled = enabled;
-			enabled = condition.test(master.getCygnusStack());
-			if(enabled != wasEnabled) {
-				IBlockState s = world.getBlockState(pos);
-				Block b = s.getBlock();
-				if(!(b instanceof BlockCygnusCrystalCube)) return;
+			ICygnusStack masterStack = master.getCygnusStack();
+			if(masterStack != null) {
 				
-				world.updateComparatorOutputLevel(pos, b);
+				boolean wasEnabled = enabled;
+				enabled = condition.test(masterStack);
+				
+				if(enabled != wasEnabled) {
+					IBlockState s = world.getBlockState(pos);
+					Block b = s.getBlock();
+					if(!(b instanceof BlockCygnusCrystalCube)) return;
+					
+					world.updateComparatorOutputLevel(pos, b);
+				}
+				
 			}
 		}
 	}

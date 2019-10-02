@@ -252,14 +252,17 @@ botania.tagline.incorporeal.master_cygnus_spark=Data on the stack
 botania.page.incorporeal.master_cygnus_spark0=Placing a &1Master Cygnus Spark&0 defines the center of a &4Cygnus network&0. It is home to a &4Cygnus Stack&0: a collection of up to sixteen units of &4Cygnus data&0. &1Master Cygnus Sparks&0 can be placed anywhere, and the contents of the &4stack&0 will display above it. Wearing a &1Manaseer Monocle&0 will cause the stack's contents to show through walls!
 botania.page.incorporeal.master_cygnus_spark1=Regular &1Cygnus Sparks&0, when placed within eight blocks of a &1Master Cygnus Spark&0, will connect to it. &1Cygnus Sparks&0 also link to other &1Cygnus Sparks&0; much like a &4Corporea Network&0, you can extend the reach of a &4Cygnus Network&0 endlessly. All &1Cygnus Sparks&0 on the same &4Cygnus Network&0 provide access to the same &4Cygnus Stack&0.
 botania.page.incorporeal.master_cygnus_spark2=Use a &1Wand of the Forest&0 to display the uplink a &1Cygnus Spark&0 has with its master spark - it could hop through multiple intermediary sparks. Use it while &4sneaking&0 will remove the spark, possibly breaking some connections.<br>Much like &1Corporea Sparks&0, you can also color &1Cygnus Sparks&0 with &1floral powder&0, separating them into up to sixteen channels.
+botania.page.incorporeal.master_cygnus_spark.flavor=My boy's got his own ringtone
+botania.page.incorporeal.master_cygnus_spark.flavor2=It's the only one I know, it's the only one I know
 
 botania.entry.incorporeal.cygnus_funnel=Cygnus Funnel
 botania.tagline.incorporeal.cygnus_funnel=Move data point-to-point
 botania.page.incorporeal.cygnus_funnel0=The &1Cygnus Funnel&0, when given a redstone signal, performs a &4funnel action&0: it moves &4Cygnus data&0 from a &4source&0 to a &4sink&0. Normally, the &4source&0 is whatever is against the back of the arrow, and the &4sink&0 is whatever is against the tip. Each end of the arrow lights up when it is placed against a valid &4source&0 or &4sink&0. A list of &4sources&0 and &4sinks&0 is available at the end of this entry.
 botania.page.incorporeal.cygnus_funnel1=If the &1Cygnus Funnel&0 has a &1Cygnus Spark&0 placed on it, only one end of the &4funnel action&0 needs to be adjacent to it. The other end of the action is completed by the &4Stack&0 associated with the &4Cygnus Network&0's &1Master Cygnus Spark&0 - when acting as a &4data source&0 it will &4pop&0 data off of the &4Stack&0, and when &4sinking data&0 it will &4push&0. (The associated end of the arrow does not light up when the &4funnel action&0 is completed like this.)
-botania.page.incorporeal.cygnus_funnel2=Generally, when &4sourcing&0 data from the world, the &1Cygnus Funnel&0 is non-destructive - it will source a &4copy&0 of whatever it sees. However, when &4sourcing&0 from another &4Cygnus&0-aligned source such as a &1Cygnus Retainer&0 or &1Corporea Retainer&0, the data is destroyed after being sourced.
+botania.page.incorporeal.cygnus_funnel2=&4Funnel actions&0 are usually non-destructive, meaning that &4souring&0 data from something will source a copy of it, and will not touch the original. (TODO NYI)
+
 # 745 sticky
-botania.page.incorporeal.cygnus_funnel.flavor=Already broke, and it's only 7:45 in the morning
+botania.page.incorporeal.cygnus_funnel.flavor=Do it all, do it all, I swear I can do it all
 botania.page.incorporeal.cygnus_funnel.retainer=&4Sourcing&0 from a &1Corporea Retainer&0 returns the retained &3Corporea Request&0. &4Sinking&0 a &3request&0 injects it, keeping the position.
 botania.page.incorporeal.cygnus_funnel.crystal_cube=&4Sourcing&0 from a &1Corporea Crystal Cube&0 returns a &3Corporea Request&0 for the displayed item and count. &4Sinking&0 a &3request&0 sets the item (not the count).
 botania.page.incorporeal.cygnus_funnel.funnel=&4Sinking&0 a &3Corporea Request&0 into a &1Corporea Funnel&0 makes it perform the request.
@@ -271,6 +274,45 @@ botania.page.incorporeal.cygnus_funnel.paper=&4Sinking&0 &3any data at all&0 int
 botania.page.incorporeal.cygnus_funnel.ticket=&4Sourcing&0 from a &1Corporea Ticket&0 returns the stored &3data&0 and clears the ticket. &4Sinking&0 &3anything at all&0 overwrites the data.
 botania.page.incorporeal.cygnus_funnel.repeater=&4Sourcing&0 from a &1Redstone Repeater&0 returns a &3number&0 between 1 and 4 representing the delay on the repeater. &4Sinking&0 a &3number&0 between 1 and 4 sets the delay.
 botania.page.incorporeal.cygnus_funnel.redstone_dust=&4Sourcing&0 from &1Redstone Dust&0 returns a &3number&0 between 0 and 15 representing its power level.
+
+botania.entry.incorporeal.cygnus_word=Cygnus Words
+botania.tagline.incorporeal.cygnus_word=Actions on the stack
+botania.page.incorporeal.cygnus_word0=&1Cygnus Words&0 perform some action to the items on top of a &4stack&0. They are used similar to a &1Cygnus Crystal Cube&0 - place them down, attach them to a &4Cygnus Network&0 by placing a &1Cygnus Spark&0 on top, and program them with a &1Cygnus Word Pattern&0.
+botania.page.incorporeal.cygnus_word1=&1Cygnus Word Patterns&0 are not consumed when programming the &1Cygnus Word&0, and you can reprogram a &1Word&0 as many times as you like. The empty &1Word Pattern&0 is the only craftable one; the rest can be obtained by scrolling through them.<br>A list of &1Cygnus Word Patterns&0 and their effects is at the end of this entry.
+botania.page.incorporeal.cygnus_word2=When an action does not make sense for the current state of the &4stack&0, usually an &3Error&0 is pushed instead. You can detect this with a &1Cygnus Crystal Cube&0 listening to the &3Errored&0 condition, but it's usually best to avoid pushing errors altogether if you can. All actions push a &3Stack underflow&0 if the stack doesn't contain enough items, or &3Type mismatch&0 if the items are not of the correct type.
+botania.page.incorporeal.cygnus_word.flavor=Take my hand, crush it up
+botania.page.incorporeal.cygnus_word.action.nothing=Does nothing whatsoever. This is the state &1Cygnus Words&0 come in when you place them.
+botania.page.incorporeal.cygnus_word.action.duplicate=Pops the top item off of the &4stack&0, then pushes it back on twice, duplicating it. Works on any datatype and never pushes an error, unless the &4stack&0 is empty, in which case it pushes a &3Stack underflow&0.
+botania.page.incorporeal.cygnus_word.action.number_add=Pops the top two items off of the &4stack&0 and pushes their sum. Instead, pushes an &3Invalid math operation: Too big&0 or &3Too small&0 if the value is larger or smaller than the maximum number.
+botania.page.incorporeal.cygnus_word.action.number_subtract=Pops the top two items off of the &4stack&0 and pushes the top item minus the second item. Instead, pushes an &3Invalid math operation: Too big&0 or &3Too small&0 if the value is larger or smaller than the maximum number.
+botania.page.incorporeal.cygnus_word.action.number_multiply=Works the same as addition, but pushes their product instead! All the same possible errors apply.
+botania.page.incorporeal.cygnus_word.action.number_divide=Works the same as subtraction, but pushes their quotient instead! All the same possible errors apply, with the additional requirement that the second number must not be 0 lest an &3Invalid math operation: Divide by zero&0 is pushed.
+botania.page.incorporeal.cygnus_word.action.number_remainder=Works the same as division, but computes the remainder of the first number divided by the second number, instead of the quotient. This operation is sometimes called "mod" or "modulus", and the second number still cannot be zero.
+botania.page.incorporeal.cygnus_word.action.request_get_count=Pops a &3Corporea Request&0 off the top of the &4stack&0, and pushes a &3Number&0 representing its size (i.e. it turns &35 white wool&0 into just &35&0).
+botania.page.incorporeal.cygnus_word.action.request_set_count=Pops a &3Number&0 off the top of the &4stack&0, then pops a &3Corporea Request&0, and pushes a new &3Corporea Request&0 with its count set to the value of the &3Number&0 (i.e. it turns a &4stack&0 with the number &35&0 at the head and the request &31 white wool&0 below it into a &4stack&0 with &35 white wool&0 at the head).
+botania.page.incorporeal.cygnus_word.action.request_set_item=Pops two &3Corporea Requests&0 off the top, then pushes a new &3Corporea Request&0 where the item is set from the request on the top and the count is set from the request on the bottom (i.e. it turns a stack with the request &35 white wool&0 at the head and the request &364 diamond block&0 below it into a stack with &364 white wool&0 at the head).
+botania.page.incorporeal.cygnus_word.action.stack_get_depth=Pops a &3Stack&0 off the &4stack&0 and pushes a &3Number&0 representing its depth.<br>(Recall that &3Stack&0 datatypes can be siphoned off of &1Master Cygnus Sparks&0 with a &1Cygnus Funnel&0, and manipulated as items!)
+
+botania.entry.incorporeal.cygnus_crystal_cube=Cygnus Crystal Cubes
+botania.tagline.incorporeal.cygnus_crystal_cube=Predicates on the stack
+botania.page.incorporeal.cygnus_crystal_cube0=&1Cygnus Crystal Cubes&0 test some condition against a &4stack&0. They are used similar to a &1Cygnus Word&0 - place them down, attach them to a &4Cygnus Network&0 by placing a &1Cygnus Spark&0 on top, and program them with a &1Cygnus Crystal Cube Pattern&0. The result of the condition can be viewed with a &1Comparator&0 - 15 if true, 0 if false.
+botania.page.incorporeal.cygnus_crystal_cube1=&1Cygnus Crystal Cube Patterns&0 are not consumed when programming the &1Crystal Cube&0, and you can reprogram a &1Crystal Cube&0 as many times as you like. The empty &1Crystal Cube Pattern&0 is the only craftable one; the rest can be obtained by scrolling through them.<br>A list of &1Crystal Cube Patterns&0 and their effects is at the end of this entry.
+botania.page.incorporeal.cygnus_crystal_cube.flavor=I felt the compression
+botania.page.incorporeal.cygnus_crystal_cube.condition.nothing=Always returns &3False&0 no matter what is going on on the &4Stack&0. This is the state &1Cygnus Crystal Cubes&0 come in when you place them.
+botania.page.incorporeal.cygnus_crystal_cube.condition.empty_stack=&3True&0 if the &4stack&0 contains no elements. &3False&0 otherwise.
+botania.page.incorporeal.cygnus_crystal_cube.condition.full_stack=&3True&0 if the &4stack&0 contains sixteen elements (pushing another item onto the stack would delete the bottommost element). &3False&0 otherwise.
+botania.page.incorporeal.cygnus_crystal_cube.condition.equal_value=&3True&0 if the top two items on the &4stack&0 have the same value, for some sense of that word dependent on the types of them. &3False&0 if the items are different or if the items have different types.
+botania.page.incorporeal.cygnus_crystal_cube.condition.equal_type=&3True&0 if the top two items on the &4stack&0 have the same type. &3False&0 otherwise.
+botania.page.incorporeal.cygnus_crystal_cube.condition.less_than=&3True&0 if the top item on the &4stack&0 is smaller than the item underneath it. &3False&0 otherwise, including cases where the top two items are not comparable.
+botania.page.incorporeal.cygnus_crystal_cube.condition.greater_than=&3True&0 if the top item on the &4stack&0 is larger than the item underneath it. &3False&0 otherwise, including cases where the top two items are not comparable.
+botania.page.incorporeal.cygnus_crystal_cube.condition.errored=&3True&0 if the top item on the &4stack&0 has the &3Error&0 type. &3False&0 otherwise.
+
+botania.entry.incorporeal.cygnus_retainer=Cygnus Retainer
+botania.tagline.incorporeal.cygnus_retainer=Store one piece of data off-stack
+botania.page.incorporeal.cygnus_retainer0=The &1Cygnus Retainer&0 is a block-form storage slot for a single piece of &4data&0. Any piece of &4data&0 that can be placed on a &4stack&0 can also be injected into a &1Cygnus Retainer&0, using a &1Cygnus Funnel&0. Re-injecting data into a full &1Cygnus Retainer&0 will delete whatever was there; injecting into a &1funnel&0 with a &1Mana Void&0 underneath will delete the data as well (TODO NYI)
+botania.page.incorporeal.cygnus_retainer1=The &1Cygnus Retainer&0 has unusual comparator support - it will always output 0 if it is empty, and at least 1 if it is full, but the exact value often depends on exactly what data is retained. &3Numbers&0 report their value (clamped to a 1-15 range), &3corporea requests&0 report their magnitude (again, clamped), &3stacks&0 report the height of the stack.
+botania.page.incorporeal.cygnus_retainer2=One use for the &1Cygnus Retainer&0 is to reorder data on top of the &4stack&0 - there are no &4swap&0 or &4rotate&0 &1Cygnus Words&0, for example, but by offloading data onto an array of &1Cygnus Retainers&0 and loading it back on in a different order, you can produce the same effect.
+botania.page.incorporeal.cygnus_retainer.flavor=Already broke, and it's only 7:45 in the morning
 
 # Cygnus
 
@@ -292,12 +334,10 @@ incorporeal.cygnus.action.number_subtract=Difference
 incorporeal.cygnus.action.number_multiply=Product
 incorporeal.cygnus.action.number_divide=Quotient
 incorporeal.cygnus.action.number_remainder=Remainder
-# This is a "getter"
-incorporeal.cygnus.action.request_get_count=Report Request Magnitude
-# And this is a "setter".
-incorporeal.cygnus.action.request_set_count=Overlay Request Magnitude
-incorporeal.cygnus.action.request_set_item=Overlay Request Item
-incorporeal.cygnus.action.stack_get_depth=Report Stack Depth
+incorporeal.cygnus.action.request_get_count=Get Request Magnitude
+incorporeal.cygnus.action.request_set_count=Set Request Magnitude
+incorporeal.cygnus.action.request_set_item=Set Request Item
+incorporeal.cygnus.action.stack_get_depth=Get Stack Depth
 
 incorporeal.cygnus.condition.nothing=Nothing
 incorporeal.cygnus.condition.empty_stack=Empty Stack

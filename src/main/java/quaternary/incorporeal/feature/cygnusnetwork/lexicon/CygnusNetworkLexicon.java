@@ -40,7 +40,7 @@ public class CygnusNetworkLexicon extends LexiconModule {
 	public static void register() {
 		category = new LexiconCategory("incorporeal.category.cygnus") {
 			//TODO update botania to the one that lets you hide categories lmao
-		}.setIcon(new ResourceLocation(Incorporeal.MODID, "TODO"));
+		}.setIcon(new ResourceLocation(Incorporeal.MODID, "textures/lexicon/categories/cygnus.png"));
 		BotaniaAPI.addCategory(category);
 		
 		knowledge = BotaniaAPI.registerKnowledgeType("incorporeal.cygnus", TextFormatting.DARK_AQUA, false);
@@ -51,33 +51,39 @@ public class CygnusNetworkLexicon extends LexiconModule {
 		CYGNUS_TYPES = justTextEntry("cygnus_types", ItemStack.EMPTY, category, knowledge, 1).setPriority();
 		
 		CYGNUS_SPARKS = skytouchingEntry(CygnusNetworkItems.MASTER_CYGNUS_SPARK, CygnusSkytouchingRecipes.masterCygnusSpark, category, knowledge, 3);
-		CYGNUS_SPARKS.setLexiconPages(new PageSkytouching("asdfghjkl", CygnusSkytouchingRecipes.cygnusSpark));
+		CYGNUS_SPARKS.setLexiconPages(new PageSkytouching(".flavor2", CygnusSkytouchingRecipes.cygnusSpark));
 		CYGNUS_SPARKS.addExtraDisplayedRecipe(new ItemStack(CygnusNetworkItems.CYGNUS_SPARK));
 		
 		CYGNUS_FUNNEL = skytouchingEntry(CygnusNetworkBlocks.FUNNEL, CygnusSkytouchingRecipes.cygnusFunnel, category, knowledge, 3);
 		
 		CYGNUS_WORD = skytouchingEntry(CygnusNetworkBlocks.WORD, CygnusSkytouchingRecipes.cygnusWord, category, knowledge, 3);
 		
-		CYGNUS_CRYSTAL_CUBE = skytouchingEntry(CygnusNetworkBlocks.CRYSTAL_CUBE, CygnusSkytouchingRecipes.cygnusCrystalCube, category, knowledge, 3);
 		
-		CYGNUS_RETAINER = skytouchingEntry(CygnusNetworkBlocks.RETAINER, CygnusSkytouchingRecipes.cygnusRetainer, category, knowledge, 3);
+		CYGNUS_CRYSTAL_CUBE = skytouchingEntry(CygnusNetworkBlocks.CRYSTAL_CUBE, CygnusSkytouchingRecipes.cygnusCrystalCube, category, knowledge, 2);
+		
+		CYGNUS_RETAINER = skytouchingEntry(CygnusNetworkBlocks.RETAINER, CygnusSkytouchingRecipes.cygnusRetainer, category, knowledge, 2);
 		
 		///
 		
 		List<LexiconPage> pages = new ArrayList<>();
+		
+		//datatypes
 		CygnusRegistries.DATATYPES.forEach(t -> t.document(pages));
 		pages.forEach(CYGNUS_TYPES::addPage);
-		
 		pages.clear();
+		
+		//funnelables
 		FUNNELABLE_DOCUMENTERS.forEach(d -> d.accept(pages));
 		CygnusRegistries.LOOSE_FUNNELABLES.forEach(l -> l.document(pages));
 		pages.forEach(CYGNUS_FUNNEL::addPage);
-		
 		pages.clear();
+		
+		//actions (words)
 		CygnusRegistries.ACTIONS.forEach(a -> a.document(pages));
 		pages.forEach(CYGNUS_WORD::addPage);
-		
 		pages.clear();
+		
+		//conditions (crystal cubes)
 		CygnusRegistries.CONDITIONS.forEach(c -> c.document(pages));
 		pages.forEach(CYGNUS_CRYSTAL_CUBE::addPage);
 	}

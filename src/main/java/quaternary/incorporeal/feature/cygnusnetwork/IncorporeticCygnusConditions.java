@@ -5,8 +5,9 @@ import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusCondition;
 import quaternary.incorporeal.api.cygnus.ICygnusDatatype;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
+import quaternary.incorporeal.feature.cygnusnetwork.item.CygnusNetworkItems;
+import quaternary.incorporeal.feature.cygnusnetwork.lexicon.PageHeadingIcon;
 import vazkii.botania.api.lexicon.LexiconPage;
-import vazkii.botania.common.lexicon.page.PageText;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,8 +20,7 @@ public final class IncorporeticCygnusConditions {
 	public static ICygnusCondition NOTHING;
 	
 	public static void registerCygnusConditions() {
-		NOTHING = stack -> false;
-		register("nothing", NOTHING);
+		NOTHING = registerWithLexicon("nothing", stack -> false);
 		
 		registerWithLexicon("empty_stack", ICygnusStack::isEmpty);
 		registerWithLexicon("full_stack", ICygnusStack::isFull);
@@ -60,8 +60,8 @@ public final class IncorporeticCygnusConditions {
 		});
 	}
 	
-	private static void registerWithLexicon(String name, Predicate<ICygnusStack> cond) {
-		register(name, new ICygnusCondition() {
+	private static ICygnusCondition registerWithLexicon(String name, Predicate<ICygnusStack> cond) {
+		return register(name, new ICygnusCondition() {
 			@Override
 			public boolean test(ICygnusStack stack) {
 				return cond.test(stack);
@@ -69,13 +69,17 @@ public final class IncorporeticCygnusConditions {
 			
 			@Override
 			public void document(List<LexiconPage> pages) {
-				pages.add(new PageText("botania.page.incorporeal.cygnus_crystal_cube.condition." + name));
+				pages.add(new PageHeadingIcon(
+					CygnusNetworkItems.CRYSTAL_CUBE_CARD.setTo(this),
+					CygnusNetworkItems.CRYSTAL_CUBE_CARD.langKeyForValue(this),
+					"botania.page.incorporeal.cygnus_crystal_cube.condition." + name
+				));
 			}
 		});
 	}
 	
-	private static void register(String name, ICygnusCondition action) {
-		Incorporeal.API.getCygnusStackConditionRegistry().register(new ResourceLocation(Incorporeal.MODID, name), action);
+	private static ICygnusCondition register(String name, ICygnusCondition action) {
+		return Incorporeal.API.getCygnusStackConditionRegistry().register(new ResourceLocation(Incorporeal.MODID, name), action);
 	}
 	
 	private static int compareTopTwo(ICygnusStack stack) {

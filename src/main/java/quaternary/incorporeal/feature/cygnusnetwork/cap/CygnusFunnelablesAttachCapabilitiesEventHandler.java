@@ -19,7 +19,7 @@ import quaternary.incorporeal.core.etc.LazyGenericCapabilityProvider;
 import quaternary.incorporeal.core.etc.helper.CorporeaHelper2;
 import quaternary.incorporeal.feature.cygnusnetwork.item.CygnusNetworkItems;
 import quaternary.incorporeal.feature.cygnusnetwork.item.ItemCygnusTicket;
-import quaternary.incorporeal.feature.cygnusnetwork.lexicon.PageFunnelable;
+import quaternary.incorporeal.feature.cygnusnetwork.lexicon.PageHeadingIcon;
 import vazkii.botania.api.corporea.CorporeaRequest;
 import vazkii.botania.api.corporea.ICorporeaRequestor;
 import vazkii.botania.common.block.ModBlocks;
@@ -42,45 +42,37 @@ public final class CygnusFunnelablesAttachCapabilitiesEventHandler {
 	public static void document() {
 		Incorporeal.API.documentCygnusFunnelable(pages -> {
 			pages.addAll(ImmutableList.of(
-				new PageFunnelable(
+				new PageHeadingIcon(
 					new ItemStack(ModBlocks.corporeaRetainer),
-					"incorporeal:textures/lexicon/funnel/retainer.png",
 					"botania.page.incorporeal.cygnus_funnel.retainer"
 				),
-				new PageFunnelable(
+				new PageHeadingIcon(
 					new ItemStack(ModBlocks.corporeaCrystalCube),
-					"incorporeal:textures/lexicon/funnel/crystal_cube.png",
 					"botania.page.incorporeal.cygnus_funnel.crystal_cube"
 				),
-				new PageFunnelable(
+				new PageHeadingIcon(
 					new ItemStack(ModBlocks.corporeaFunnel),
-					"incorporeal:textures/lexicon/funnel/funnel.png",
 					"botania.page.incorporeal.cygnus_funnel.funnel"
 				),
-				new PageFunnelable(
+				new PageHeadingIcon(
 					new ItemStack(ModBlocks.corporeaIndex),
-					"incorporeal:textures/lexicon/funnel/index.png",
 					"botania.page.incorporeal.cygnus_funnel.index"
 				),
-				new PageFunnelable(
+				new PageHeadingIcon(
 					new ItemStack(CygnusNetworkItems.MASTER_CYGNUS_SPARK),
-					"incorporeal:textures/lexicon/funnel/master_cygnus_spark.png",
 					"botania.page.incorporeal.cygnus_funnel.master_cygnus_spark"
 				),
-				new PageFunnelable(
+				new PageHeadingIcon(
 					new ItemStack(Blocks.FLOWER_POT),
 					"botania.page.incorporeal.cygnus_funnel.item_entity.heading",
-					"incorporeal:textures/lexicon/funnel/item_entity.png",
 					"botania.page.incorporeal.cygnus_funnel.item_entity"
 				),
-				new PageFunnelable(
+				new PageHeadingIcon(
 					new ItemStack(Items.PAPER),
-					"incorporeal:textures/lexicon/funnel/paper.png",
 					"botania.page.incorporeal.cygnus_funnel.paper"
 				),
-				new PageFunnelable(
+				new PageHeadingIcon(
 					new ItemStack(CygnusNetworkItems.CYGNUS_TICKET),
-					"incorporeal:textures/lexicon/funnel/ticket.png",
 					"botania.page.incorporeal.cygnus_funnel.ticket"
 				)
 			));

@@ -5,9 +5,10 @@ import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusAction;
 import quaternary.incorporeal.api.cygnus.ICygnusStack;
 import quaternary.incorporeal.core.etc.helper.CorporeaHelper2;
+import quaternary.incorporeal.feature.cygnusnetwork.item.CygnusNetworkItems;
+import quaternary.incorporeal.feature.cygnusnetwork.lexicon.PageHeadingIcon;
 import vazkii.botania.api.corporea.CorporeaRequest;
 import vazkii.botania.api.lexicon.LexiconPage;
-import vazkii.botania.common.lexicon.page.PageText;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -23,8 +24,7 @@ public final class IncorporeticCygnusActions {
 	public static ICygnusAction NOTHING;
 	
 	public static void registerCygnusActions() {
-		NOTHING = stack -> {};
-		register("nothing", NOTHING);
+		NOTHING = registerWithLexicon("nothing", stack -> {});
 		
 		registerWithLexicon("duplicate", stack -> {
 			stack.push(stack.peek().orElseGet(() -> new CygnusError(CygnusError.UNDERFLOW)));
@@ -79,8 +79,8 @@ public final class IncorporeticCygnusActions {
 		});
 	}
 	
-	private static void registerWithLexicon(String name, Consumer<ICygnusStack> cons) {
-		register(name, new ICygnusAction() {
+	private static ICygnusAction registerWithLexicon(String name, Consumer<ICygnusStack> cons) {
+		return register(name, new ICygnusAction() {
 			@Override
 			public void accept(ICygnusStack stack) {
 				cons.accept(stack);
@@ -88,13 +88,17 @@ public final class IncorporeticCygnusActions {
 			
 			@Override
 			public void document(List<LexiconPage> pages) {
-				pages.add(new PageText("botania.page.incorporeal.cygnus_word.action." + name));
+				pages.add(new PageHeadingIcon(
+					CygnusNetworkItems.WORD_CARD.setTo(this),
+					CygnusNetworkItems.WORD_CARD.langKeyForValue(this),
+					"botania.page.incorporeal.cygnus_word.action." + name
+				));
 			}
 		});
 	}
 	
-	private static void register(String name, ICygnusAction action) {
-		Incorporeal.API.getCygnusStackActionRegistry().register(new ResourceLocation(Incorporeal.MODID, name), action);
+	private static ICygnusAction register(String name, ICygnusAction action) {
+		return Incorporeal.API.getCygnusStackActionRegistry().register(new ResourceLocation(Incorporeal.MODID, name), action);
 	}
 	
 	//Quick helper funcs

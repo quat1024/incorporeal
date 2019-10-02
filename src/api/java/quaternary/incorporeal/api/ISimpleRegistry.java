@@ -24,7 +24,7 @@ public interface ISimpleRegistry<T> extends Iterable<T> {
 	/**
 	 * @throws IllegalStateException if this registry is frozen (call this in your mod's preinit, after Incorporeal gets a turn!)
 	 */
-	void register(ResourceLocation name, T item);
+	T register(ResourceLocation name, T item);
 	T get(ResourceLocation name);
 	ResourceLocation nameOf(T item);
 	Set<ResourceLocation> allKeys();

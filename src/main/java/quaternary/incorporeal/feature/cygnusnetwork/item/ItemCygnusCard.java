@@ -53,6 +53,7 @@ public abstract class ItemCygnusCard<T> extends Item implements IScrollableItem 
 	
 	public String langKeyForValue(ItemStack stack) {
 		ResourceLocation thingName = readValueName(stack);
+		if(thingName == null) thingName = registry.nameOf(defaultValue);
 		
 		return thingName.getNamespace() + ".cygnus." + tagNameLower + "." + thingName.getPath();
 	}
@@ -60,6 +61,18 @@ public abstract class ItemCygnusCard<T> extends Item implements IScrollableItem 
 	public ItemStack set(ItemStack stack, T thing) {
 		ItemNBTHelper.setString(stack, tagName, registry.nameOf(thing).toString());
 		return stack;
+	}
+	
+	//Shorthand?
+	public ItemStack setTo(T thing) {
+		return set(new ItemStack(this), thing);
+	}
+	
+	//HACK: This really should not be here... should just go in the registry
+	//I use it in lexicon pages though...
+	public String langKeyForValue(T thing) {
+		ResourceLocation thingName = registry.nameOf(thing);
+		return thingName.getNamespace() + ".cygnus." + tagNameLower + "." + thingName.getPath();
 	}
 	
 	@Override
