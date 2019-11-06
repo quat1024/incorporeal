@@ -13,7 +13,7 @@ buildscript {
 apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: "com.wynprice.cursemaven"
 
-version = "1.2.3.1"
+version = "1.2.4"
 ext.apiVersion = 3
 group = "quaternary.incorporeal"
 archivesBaseName = "incorporeal"

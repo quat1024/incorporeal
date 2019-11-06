@@ -1,10 +1,11 @@
 {
 	"homepage": "https://github.com/quat1024/incorporeal/releases",
 	"promos": {
-		"1.12.2-latest": "1.2.3.1",
-		"1.12.2-recommended": "1.2.3"
+		"1.12.2-latest": "1.2.4",
+		"1.12.2-recommended": "1.2.4"
 	},
 	"1.12.2": {
+		"1.2.4": "Unstable cubes are now weirder, Skytouching documentation which actually lets you unlock the cygnus stuff, Sweet Alexums are now tick-accellerable (kill me please)",
 		"1.2.3.1": "Cygnus, finally, is documented. As well as some Cygnus usability tweaks and changes. Alpha quality.",
 		"1.2.3": "Fix crash with Tool Progression and other mods that need to grab the harvest tool of the decorative piece blocks",
 		"1.2.2": "Fix crash lol again",
