@@ -1,9 +1,14 @@
 package quaternary.incorporeal.feature.skytouching.recipe;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import quaternary.incorporeal.api.recipe.IRecipeSkytouching;
+import quaternary.incorporeal.feature.skytouching.lexicon.SkytouchingLexicon;
+import vazkii.botania.api.BotaniaAPI;
+import vazkii.botania.api.lexicon.ILexicon;
+import vazkii.botania.common.item.ModItems;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +21,45 @@ public final class SkytouchingRecipes {
 	public static List<IRecipeSkytouching> ALL = new LinkedList<>();
 	
 	public static int LOWEST_SKYTOUCH_Y = Integer.MAX_VALUE;
+	
+	public static IRecipeSkytouching bookUpgrade;
+	
+	public static void registerBookUpgrade() {
+		ItemStack stupidBook = new ItemStack(ModItems.lexicon);
+		ItemStack smartBook = stupidBook.copy();
+		((ILexicon) ModItems.lexicon).unlockKnowledge(smartBook, SkytouchingLexicon.knowledge);
+		
+		bookUpgrade = register(new RecipeSkytouching(
+			smartBook,
+			stupidBook
+		) {
+			@Override
+			public boolean matches(EntityItem ent) {
+				if(!super.matches(ent)) return false;
+				
+				ItemStack stack = ent.getItem/*Stack*/();
+				Item item = stack.getItem();
+				if(item instanceof ILexicon) {
+					ILexicon lexyBoy = (ILexicon) item;
+					return !lexyBoy.isKnowledgeUnlocked(stack, SkytouchingLexicon.knowledge) && lexyBoy.isKnowledgeUnlocked(stack, BotaniaAPI.elvenKnowledge);
+				} else return false;
+			}
+			
+			@Override
+			public List<ItemStack> getOutputs(EntityItem ent) {
+				List<ItemStack> stacks = super.getOutputs(ent);
+				
+				for(ItemStack stack : stacks) {
+					Item item = stack.getItem();
+					if(item instanceof ILexicon) {
+						((ILexicon) item).unlockKnowledge(stack, SkytouchingLexicon.knowledge);
+					}
+				}
+				
+				return stacks;
+			}
+		});
+	}
 	
 	public static IRecipeSkytouching register(IRecipeSkytouching r) {
 		ALL.add(r);

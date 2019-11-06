@@ -64,6 +64,8 @@ public class CygnusNetworkFeature implements IFeature {
 		IncorporeticCygnusActions.registerCygnusActions();
 		IncorporeticCygnusConditions.registerCygnusConditions();
 		IncorporeticCygnusDatatypes.registerCygnusDatatypes();
+		
+		CygnusNetworkLexicon.earlyRegister(); //get the category and knowledge types in early
 	}
 	
 	@Override

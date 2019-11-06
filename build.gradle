@@ -6,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
-        classpath "com.wynprice.cursemaven:CurseMaven:1.2.2"
+        classpath "com.wynprice.cursemaven:CurseMaven:2.1.1"
     }
 }
 
@@ -59,7 +59,7 @@ dependencies {
     //bubbles
     deobfCompile "com.azanor.baubles:Baubles:1.12-1.5.2"
     //botania
-    deobfCompile "vazkii.botania:Botania:r1.10-361.50"
+    deobfCompile "curse.maven:Botania:2782181"
     
     //(soft dep) infraredstone (from curse maven)
     deobfCompile "infraredstone:InfraRedstone:1.2.1"

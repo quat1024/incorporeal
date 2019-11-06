@@ -111,6 +111,8 @@ tile.botania:flower.sweet_alexum_chibi.name=Sweet Alexum Petite
 incorporeal.category.corporea=Corporea
 incorporeal.category.cygnus=Cygnus
 
+botania.knowledge.incorporeal.skytouch=&3Sky&7 Knowledge
+
 ########PRE-ELVEN
 
 botania.entry.incorporeal.frame_tinkerer=Frame Tinkerer
@@ -229,6 +231,11 @@ botania.page.incorporeal.red_string_liar0=Turns out, there was more to &4Red Str
 botania.page.incorporeal.red_string_liar1=Extracting items from the linked inventory works normally. Since the &4Corporea Network&0 believes the inventory to be full of whatever is in the item frames, what is requested may not match what is received. This does not duplicate items.<br>Note that the &1Red String Liar&0 should have the &1Corporea Spark&0 attached, instead of the linked inventory.
 # song reference - "tang pong" by Mass Kaneko - probably best untranslated
 botania.page.incorporeal.red_string_liar.flavor=tang pong
+
+botania.entry.incorporeal.skytouch_hint=Skytouching
+botania.tagline.incorporeal.skytouch_hint=What's the sky say?
+botania.page.incorporeal.skytouch_hint0=Legend has it that blah blah &8blah blah&0 &7blah blah.&0<br>If you throw certain stuff above the height limit, it'll craft into other stuff. The higher it goes above the height limit, the more bonus output you'll get. This is called &4Skytouching&0. Try it with your &1Lexica Botania&0. Flavor text is hard and I'm tired.
+botania.page.incorporeal.skytouch_hint.flavor=GOLDEN RULE &8(hold shift over these!)&0
 
 ####CYGNUS
 botania.entry.incorporeal.cygnus_basics=Cygnus Basics

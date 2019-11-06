@@ -2,18 +2,16 @@ package quaternary.incorporeal.feature.cygnusnetwork.lexicon;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 import quaternary.incorporeal.Incorporeal;
-import quaternary.incorporeal.api.recipe.IRecipeSkytouching;
 import quaternary.incorporeal.core.LexiconModule;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusRegistries;
 import quaternary.incorporeal.feature.cygnusnetwork.block.CygnusNetworkBlocks;
 import quaternary.incorporeal.feature.cygnusnetwork.item.CygnusNetworkItems;
 import quaternary.incorporeal.feature.cygnusnetwork.recipe.CygnusSkytouchingRecipes;
 import quaternary.incorporeal.feature.skytouching.lexicon.PageSkytouching;
+import quaternary.incorporeal.feature.skytouching.lexicon.SkytouchingLexicon;
 import vazkii.botania.api.BotaniaAPI;
-import vazkii.botania.api.lexicon.KnowledgeType;
+import vazkii.botania.api.lexicon.ILexicon;
 import vazkii.botania.api.lexicon.LexiconCategory;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.lexicon.LexiconPage;
@@ -24,7 +22,6 @@ import java.util.function.Consumer;
 
 public class CygnusNetworkLexicon extends LexiconModule {
 	public static LexiconCategory category;
-	public static KnowledgeType knowledge;
 	public static final List<Consumer<List<LexiconPage>>> FUNNELABLE_DOCUMENTERS = new ArrayList<>();
 	
 	public static LexiconEntry CYGNUS_BASICS;
@@ -38,33 +35,35 @@ public class CygnusNetworkLexicon extends LexiconModule {
 	public static LexiconEntry CYGNUS_RETAINER;
 	public static LexiconEntry CYGNUS_TICKET;
 	
-	public static void register() {
+	public static void earlyRegister() {
 		category = new LexiconCategory("incorporeal.category.cygnus") {
-			//TODO update botania to the one that lets you hide categories lmao
-		}.setIcon(new ResourceLocation(Incorporeal.MODID, "textures/lexicon/categories/cygnus.png"));
+			@Override
+			public boolean isVisible(ItemStack stack) {
+				//Are u happy HUBRY
+				return ((ILexicon) stack.getItem()).isKnowledgeUnlocked(stack, SkytouchingLexicon.knowledge);
+			}
+		}.setIcon(new ResourceLocation(Incorporeal.MODID, "textures/lexicon/categories/cygnus.png")).setPriority(1);
 		BotaniaAPI.addCategory(category);
+	}
+	
+	public static void register() {
+		CYGNUS_BASICS = justTextEntry("cygnus_basics", ItemStack.EMPTY, category, SkytouchingLexicon.knowledge, 5).setPriority();
+		CYGNUS_TYPES = justTextEntry("cygnus_types", ItemStack.EMPTY, category, SkytouchingLexicon.knowledge, 1).setPriority();
 		
-		knowledge = BotaniaAPI.registerKnowledgeType("incorporeal.cygnus", TextFormatting.DARK_AQUA, false);
-		
-		///
-		
-		CYGNUS_BASICS = justTextEntry("cygnus_basics", ItemStack.EMPTY, category, knowledge, 5).setPriority();
-		CYGNUS_TYPES = justTextEntry("cygnus_types", ItemStack.EMPTY, category, knowledge, 1).setPriority();
-		
-		CYGNUS_SPARKS = skytouchingEntry(CygnusNetworkItems.MASTER_CYGNUS_SPARK, CygnusSkytouchingRecipes.masterCygnusSpark, category, knowledge, 3);
+		CYGNUS_SPARKS = skytouchingEntry(CygnusNetworkItems.MASTER_CYGNUS_SPARK, CygnusSkytouchingRecipes.masterCygnusSpark, category, SkytouchingLexicon.knowledge, 3);
 		CYGNUS_SPARKS.setLexiconPages(new PageSkytouching(".flavor2", CygnusSkytouchingRecipes.cygnusSpark));
 		CYGNUS_SPARKS.addExtraDisplayedRecipe(new ItemStack(CygnusNetworkItems.CYGNUS_SPARK));
 		
-		CYGNUS_FUNNEL = skytouchingEntry(CygnusNetworkBlocks.FUNNEL, CygnusSkytouchingRecipes.cygnusFunnel, category, knowledge, 3);
+		CYGNUS_FUNNEL = skytouchingEntry(CygnusNetworkBlocks.FUNNEL, CygnusSkytouchingRecipes.cygnusFunnel, category, SkytouchingLexicon.knowledge, 3);
 		
-		CYGNUS_WORD = skytouchingEntry(CygnusNetworkBlocks.WORD, CygnusSkytouchingRecipes.cygnusWord, category, knowledge, 3);
+		CYGNUS_WORD = skytouchingEntry(CygnusNetworkBlocks.WORD, CygnusSkytouchingRecipes.cygnusWord, category, SkytouchingLexicon.knowledge, 3);
 		
 		
-		CYGNUS_CRYSTAL_CUBE = skytouchingEntry(CygnusNetworkBlocks.CRYSTAL_CUBE, CygnusSkytouchingRecipes.cygnusCrystalCube, category, knowledge, 2);
+		CYGNUS_CRYSTAL_CUBE = skytouchingEntry(CygnusNetworkBlocks.CRYSTAL_CUBE, CygnusSkytouchingRecipes.cygnusCrystalCube, category, SkytouchingLexicon.knowledge, 2);
 		
-		CYGNUS_RETAINER = skytouchingEntry(CygnusNetworkBlocks.RETAINER, CygnusSkytouchingRecipes.cygnusRetainer, category, knowledge, 3);
+		CYGNUS_RETAINER = skytouchingEntry(CygnusNetworkBlocks.RETAINER, CygnusSkytouchingRecipes.cygnusRetainer, category, SkytouchingLexicon.knowledge, 3);
 		
-		CYGNUS_TICKET = justTextEntry("cygnus_ticket", new ItemStack(CygnusNetworkItems.CYGNUS_TICKET), category, knowledge, 2);
+		CYGNUS_TICKET = justTextEntry("cygnus_ticket", new ItemStack(CygnusNetworkItems.CYGNUS_TICKET), category, SkytouchingLexicon.knowledge, 2);
 		
 		///
 		
@@ -89,12 +88,5 @@ public class CygnusNetworkLexicon extends LexiconModule {
 		//conditions (crystal cubes)
 		CygnusRegistries.CONDITIONS.forEach(c -> c.document(pages));
 		pages.forEach(CYGNUS_CRYSTAL_CUBE::addPage);
-	}
-	
-	protected static LexiconEntry skytouchingEntry(IForgeRegistryEntry<?> subject, IRecipeSkytouching recipe, LexiconCategory category, KnowledgeType knowledge, int pageCount) {
-		ItemStack icon = toIcon(subject);
-		String name = icon.getItem().getRegistryName().toString().replace(':', '.'); //fuckin fight me!
-		LexiconPage finalPage = new PageSkytouching(".flavor", recipe);
-		return entryWithFinalPage(name, icon, category, knowledge, pageCount, finalPage);
 	}
 }

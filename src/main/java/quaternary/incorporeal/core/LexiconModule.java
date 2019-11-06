@@ -8,6 +8,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.feature.IFeature;
+import quaternary.incorporeal.api.recipe.IRecipeSkytouching;
+import quaternary.incorporeal.feature.skytouching.lexicon.PageSkytouching;
 import vazkii.botania.api.lexicon.KnowledgeType;
 import vazkii.botania.api.lexicon.LexiconCategory;
 import vazkii.botania.api.lexicon.LexiconEntry;
@@ -72,5 +74,12 @@ public abstract class LexiconModule {
 		entry.setKnowledgeType(knowledgeType);
 		
 		return entry;
+	}
+	
+	protected static LexiconEntry skytouchingEntry(IForgeRegistryEntry<?> subject, IRecipeSkytouching recipe, LexiconCategory category, KnowledgeType knowledge, int pageCount) {
+		ItemStack icon = toIcon(subject);
+		String name = icon.getItem().getRegistryName().toString().replace(':', '.'); //fuckin fight me!
+		LexiconPage finalPage = new PageSkytouching(".flavor", recipe);
+		return entryWithFinalPage(name, icon, category, knowledge, pageCount, finalPage);
 	}
 }

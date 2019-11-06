@@ -18,6 +18,8 @@ public final class CygnusSkytouchingRecipes {
 	public static IRecipeSkytouching cygnusRetainer;
 	public static IRecipeSkytouching cygnusCrystalCube;
 	
+	public static IRecipeSkytouching bookUpgrade;
+	
 	public static void register() {
 		cygnusSpark = SkytouchingRecipes.register(
 			CygnusNetworkItems.CYGNUS_SPARK,
@@ -44,5 +46,7 @@ public final class CygnusSkytouchingRecipes {
 		cygnusCrystalCube = SkytouchingRecipes.register(
 			CygnusNetworkItems.CRYSTAL_CUBE, ModBlocks.corporeaCrystalCube
 		);
+		
+		
 	}
 }

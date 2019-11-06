@@ -44,6 +44,9 @@ public class RecipeSkytouching implements IRecipeSkytouching {
 	}
 	
 	@Override
+	//MASSIVE TODO: Rewrite this stuff when im not drowsy from sleep medicine...
+	//Break the item -> item logic, the height bonus logic, and the splitting across entities logic
+	//into 3 separate areas.
 	public List<ItemStack> getOutputs(EntityItem ent) {
 		//calculate the height bonus
 		double bonus = EtcHelpers.rangeRemap(ent.posY, minY, maxY, 1, multiplier);
