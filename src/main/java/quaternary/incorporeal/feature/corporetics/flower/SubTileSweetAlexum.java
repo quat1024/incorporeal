@@ -1,6 +1,5 @@
 package quaternary.incorporeal.feature.corporetics.flower;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -22,33 +21,29 @@ import vazkii.botania.api.subtile.SubTileFunctional;
 
 //based on real life "sweet alyssum" flower. This is so sad, Alexa play Despacito.
 public class SubTileSweetAlexum extends SubTileFunctional implements ILexiconable {
-	private int ticksPaused = 0;
-	private int ticksSinceReset = 0;
-	
-	@Override
-	public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
-		ticksSinceReset = (int) world.getTotalWorldTime();
-	}
+	private int clock = -1;
 	
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if(getWorld().isRemote) return; //TODO: It sounds like garbage on mp
+		
+		if(getWorld().isRemote) return; //TODO: It sounds like garbage on mp because of lag
+		                                //Actually it's kinda funny tho
 		
 		if(redstoneSignal == 15) {
-			resetTime();
+			clock = 0;
 		} else if(redstoneSignal > 0 || mana < 100) {
-			ticksPaused++;
+			//Ok boomer
 		} else {
+			clock++;
+			
 			World world = getWorld();
+			int ticksBetween = (getTicksBetweenNotes() / (overgrowth || overgrowthBoost ? 2 : 1));
+			if(ticksBetween == 0) ticksBetween = 1;
 			
-			int effectiveTicksBetweenNotes = (getTicksBetweenNotes() / (overgrowth || overgrowthBoost ? 2 : 1));
-			
-			int tick = (int) (world.getTotalWorldTime() - ticksSinceReset - ticksPaused - 1);
-			if(tick < 0 || tick % effectiveTicksBetweenNotes != 0) return;
-			tick /= effectiveTicksBetweenNotes;
-			
-			//Yeah this code is disgusting, but Chill, it's a meme flower
+			int tick = clock;
+			if(tick < 0 || tick % ticksBetween != 0) return;
+			tick /= ticksBetween;
 			
 			BlockPos flutePos = null;
 			BlockPos snarePos = null;
@@ -82,61 +77,33 @@ public class SubTileSweetAlexum extends SubTileFunctional implements ILexiconabl
 				}
 			}
 			
+			Vec3d particleSrc = world.getBlockState(pos).getOffset(world, pos).add(pos.getX() + .5, pos.getY() + getSparkleHeight(), pos.getZ() + .5);
+			
 			boolean dirtyMana = false;
 			
-			Vec3d src = world.getBlockState(pos).getOffset(world, pos).add(pos.getX() + .5, pos.getY() + getSparkleHeight(), pos.getZ() + .5);
-			
-			if(flutePos != null) {
-				int[] notes = DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.FLUTE);
-				if(notes.length > 0) {
-					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(src, flutePos, 1), world, pos);
-					
-					for(int note : notes) {
-						world.addBlockEvent(flutePos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.FLUTE.ordinal(), note + getPitchShift());
-						mana -= 10;
-						dirtyMana = true;
-					}
-				}
-			}
-			
-			if(snarePos != null) {
-				int[] notes = DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.SNARE);
-				if(notes.length > 0) {
-					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(src, snarePos, 2), world, pos);
-					for(int note : notes) {
-						world.addBlockEvent(snarePos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.SNARE.ordinal(), note);
-						mana -= 10;
-						dirtyMana = true;
-					}
-				}
-			}
-			
-			if(bassdrumPos != null) {
-				int[] notes = DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.BASSDRUM);
-				if(notes.length > 0) {
-					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(src, bassdrumPos, 2), world, pos);
-					for(int note : notes) {
-						world.addBlockEvent(bassdrumPos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.BASSDRUM.ordinal(), note);
-						mana -= 10;
-						dirtyMana = true;
-					}
-				}
-			}
-			
-			if(bassguitarPos != null) {
-				int[] notes = DespacitoHelper.getNotesForTick(tick, NoteBlockEvent.Instrument.BASSGUITAR);
-				if(notes.length > 0) {
-					IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(src, bassguitarPos, 2), world, pos);
-					for(int note : notes) {
-						world.addBlockEvent(bassguitarPos, Blocks.NOTEBLOCK, NoteBlockEvent.Instrument.BASSGUITAR.ordinal(), note + getPitchShift());
-						mana -= 10;
-						dirtyMana = true;
-					}
-				}
-			}
+			dirtyMana |= doIt(world, pos, tick, particleSrc, flutePos, NoteBlockEvent.Instrument.FLUTE);
+			dirtyMana |= doIt(world, pos, tick, particleSrc, snarePos, NoteBlockEvent.Instrument.SNARE);
+			dirtyMana |= doIt(world, pos, tick, particleSrc, bassdrumPos, NoteBlockEvent.Instrument.BASSDRUM);
+			dirtyMana |= doIt(world, pos, tick, particleSrc, bassguitarPos, NoteBlockEvent.Instrument.BASSGUITAR);
 			
 			if(dirtyMana) sync();
 		}
+	}
+	
+	private boolean doIt(World world, BlockPos pos, int tick, Vec3d particleSrc, BlockPos noteblockPos, NoteBlockEvent.Instrument inst) {
+		if(noteblockPos == null) return false;
+		
+		int[] notes = DespacitoHelper.getNotesForTick(tick, inst);
+		if(notes.length > 0) {
+			IncorporeticPacketHandler.sendToAllTracking(new MessageSparkleLine(particleSrc, noteblockPos, 2), world, pos);
+			for(int note : notes) {
+				world.addBlockEvent(noteblockPos, Blocks.NOTEBLOCK, inst.ordinal(), note + getPitchShift());
+				mana -= 10;
+			}
+			return true;
+		}
+		
+		return false;
 	}
 	
 	@Override
@@ -154,23 +121,16 @@ public class SubTileSweetAlexum extends SubTileFunctional implements ILexiconabl
 		return 0xBB4422;
 	}
 	
-	private void resetTime() {
-		ticksSinceReset = (int) getWorld().getTotalWorldTime();
-		ticksPaused = 0;
-	}
-	
 	@Override
 	public void writeToPacketNBT(NBTTagCompound cmp) {
-		cmp.setInteger("LastResetTicks", ticksSinceReset);
-		cmp.setInteger("PausedTicks", ticksPaused);
+		cmp.setInteger("Clock", clock);
 		super.writeToPacketNBT(cmp);
 	}
 	
 	@Override
 	public void readFromPacketNBT(NBTTagCompound cmp) {
 		super.readFromPacketNBT(cmp);
-		ticksSinceReset = cmp.getInteger("LastResetTicks");
-		ticksPaused = cmp.getInteger("PausedTicks");
+		clock = cmp.getInteger("Clock");
 	}
 	
 	protected int getRange() {
