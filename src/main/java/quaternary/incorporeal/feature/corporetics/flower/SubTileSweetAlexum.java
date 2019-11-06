@@ -31,7 +31,7 @@ public class SubTileSweetAlexum extends SubTileFunctional implements ILexiconabl
 		                                //Actually it's kinda funny tho
 		
 		if(redstoneSignal == 15) {
-			clock = 0;
+			clock = -1;
 		} else if(redstoneSignal > 0 || mana < 100) {
 			//Ok boomer
 		} else {
