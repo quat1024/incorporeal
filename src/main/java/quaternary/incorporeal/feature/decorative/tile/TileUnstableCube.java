@@ -7,7 +7,9 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import quaternary.incorporeal.core.etc.helper.EtcHelpers;
 import quaternary.incorporeal.feature.decorative.block.BlockUnstableCube;
 import quaternary.incorporeal.feature.soulcores.sound.SoulCoresSounds;
 import vazkii.botania.api.state.BotaniaStateProps;
@@ -19,8 +21,12 @@ import javax.annotation.Nullable;
 public class TileUnstableCube extends TileEntity implements ITickable {
 	public float rotationAngle;
 	public float rotationSpeed;
+	public float bump;
+	public float bumpDecay = 0.8f;
 	
 	private long nextLightningTick = 0;
+	
+	private int power;
 	
 	private final float[] basePitches = new float[] {
 		1f,
@@ -49,6 +55,14 @@ public class TileUnstableCube extends TileEntity implements ITickable {
 		rotationAngle %= 360f;
 		if(rotationSpeed > 1f) rotationSpeed *= 0.96;
 		
+		bump *= bumpDecay;
+		
+		int newPower = MathHelper.clamp(MathHelper.floor(EtcHelpers.rangeRemap(rotationSpeed, 0, 90, 0, 15)), 0, 15); 
+		if(power != newPower) {
+			power = newPower;
+			world.notifyNeighborsOfStateChange(pos, getBlockType(), true);
+		}
+		
 		if(world.isRemote) {
 			if(world.getTotalWorldTime() >= nextLightningTick) {
 				//Yeah yeah i could cache this whatever
@@ -69,10 +83,11 @@ public class TileUnstableCube extends TileEntity implements ITickable {
 					nextLightningTick = world.getTotalWorldTime() + world.rand.nextInt(60) + 50;
 				}
 				
-				float volume = rotationSpeed > 1.1 ? rotationSpeed / 200f : 0.06f;
+				float volume = rotationSpeed > 1.1 ? rotationSpeed / 170f : 0.1f;
 				if(volume > 0.7f) volume = 0.7f;
 				float basePitch = basePitches[state.getValue(BotaniaStateProps.COLOR).getMetadata()];
-				float pitch = basePitch + (rotationSpeed / 800f);
+				float pitch = basePitch + (rotationSpeed / 600f);
+				if(rotationSpeed > 83) pitch += 0.1;
 				
 				world.playSound(pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, SoulCoresSounds.UNSTABLE, SoundCategory.BLOCKS, volume, pitch, false);
 			}
@@ -82,8 +97,13 @@ public class TileUnstableCube extends TileEntity implements ITickable {
 	public void punch() {
 		rotationSpeed += 15;
 		if(rotationSpeed > 200) rotationSpeed = 200;
+		bump = 1;
 		nextLightningTick = world.getTotalWorldTime();
 		world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 3);
+	}
+	
+	public int getPower() {
+		return power;
 	}
 	
 	@Nullable
@@ -109,6 +129,7 @@ public class TileUnstableCube extends TileEntity implements ITickable {
 	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		nbt.setFloat("RotationAngle", rotationAngle);
 		nbt.setFloat("RotationSpeed", rotationSpeed);
+		nbt.setFloat("Bump", bump);
 		nbt.setLong("NextLightingTick", nextLightningTick);
 		return super.writeToNBT(nbt);
 	}
@@ -118,6 +139,7 @@ public class TileUnstableCube extends TileEntity implements ITickable {
 		super.readFromNBT(nbt);
 		rotationAngle = nbt.getFloat("RotationAngle");
 		rotationSpeed = nbt.getFloat("RotationSpeed");
+		bump = nbt.getFloat("Bump");
 		nextLightningTick = nbt.getLong("NextLightningTick");
 	}
 }

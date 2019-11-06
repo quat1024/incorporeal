@@ -8,6 +8,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -28,10 +29,11 @@ import quaternary.incorporeal.feature.decorative.tile.TileUnstableCube;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.state.BotaniaStateProps;
+import vazkii.botania.api.wand.IWandable;
 
 import javax.annotation.Nullable;
 
-public class BlockUnstableCube extends Block implements ILexiconable {
+public class BlockUnstableCube extends Block implements ILexiconable, IWandable {
 	public BlockUnstableCube() {
 		super(Material.IRON);
 		setHardness(5);
@@ -61,11 +63,34 @@ public class BlockUnstableCube extends Block implements ILexiconable {
 		return true;
 	}
 	
+	@Override
+	public boolean onUsedByWand(EntityPlayer entityPlayer, ItemStack itemStack, World world, BlockPos pos, EnumFacing enumFacing) {
+		if(!world.isRemote) punch(world, pos);
+		return true;
+	}
+	
 	private static void punch(World world, BlockPos pos) {
 		TileEntity tile = world.getTileEntity(pos);
 		if(tile instanceof TileUnstableCube) {
 			((TileUnstableCube) tile).punch();
 		}
+	}
+	
+	@Override
+	public int getWeakPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+		return getStrongPower(state, world, pos, side);
+	}
+	
+	@Override
+	public int getStrongPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+		//Goofy special-case: always return 0 of the block is a dispenser
+		//This lets you dispense as often as you want without waiting for unpowering
+		if(world.getBlockState(pos.offset(side.getOpposite())).getBlock() == Blocks.DISPENSER) return 0;
+		
+		TileEntity tile = world.getTileEntity(pos);
+		if(tile instanceof TileUnstableCube) {
+			return ((TileUnstableCube) tile).getPower();
+		} else return 0;
 	}
 	
 	@Override

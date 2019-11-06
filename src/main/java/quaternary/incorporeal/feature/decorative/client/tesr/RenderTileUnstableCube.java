@@ -42,21 +42,26 @@ public class RenderTileUnstableCube extends TileEntitySpecialRenderer<TileUnstab
 		float ticks = ClientTickHandler.ticksInGame + partialTicks;
 		
 		float predictedTileAngle = te.rotationAngle + (te.rotationSpeed * partialTicks);
+		float predictedBump = te.bump * EtcHelpers.rangeRemap(partialTicks, 0, 1, te.bump, te.bump * te.bumpDecay);
 		
 		int hash = MathHelper.hash(MathHelper.hash(te.getPos().hashCode())) % 50000;
+		int flip = (hash % 2 == 0) ? 1 : -1;
 		
 		GlStateManager.translate(x + .5, y + .5, z + .5);
-		GlStateManager.rotate((predictedTileAngle + hash) % 360, 0, 1, 0);
+		GlStateManager.rotate((flip * predictedTileAngle + hash) % 360, 0, 1, 0);
 		
 		float wobble = ticks + hash;
 		float wobbleSin = EtcHelpers.sinDegrees(wobble);
 		float wobbleCos = EtcHelpers.cosDegrees(wobble);
-		float wobbleAmountDegrees = 15;
-		GlStateManager.rotate((float) Math.sin(hash + ticks * 0.02) * 40, 1, 0, 1);
+		float wobbleAmountDegrees = 15 * flip;
+		GlStateManager.rotate((float) Math.sin(hash + ticks * 0.02) * 40 * flip, 1, 0, 1);
 		GlStateManager.rotate(wobbleCos * wobbleAmountDegrees, 1, 0, 0);
 		GlStateManager.rotate(wobbleSin * wobbleAmountDegrees, 1, 0, 0);
 		GlStateManager.rotate(-wobbleSin * wobbleAmountDegrees, 0, 0, 1);
 		GlStateManager.rotate(-wobbleCos * wobbleAmountDegrees, 0, 0, 1);
+		
+		float upscale = (predictedBump * 0.7f) + 1;
+		GlStateManager.scale(upscale, upscale, upscale);
 		
 		GlStateManager.translate(-.5, -.5, -.5);
 	}
