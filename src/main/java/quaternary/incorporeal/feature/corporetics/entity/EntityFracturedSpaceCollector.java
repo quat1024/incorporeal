@@ -51,8 +51,8 @@ public class EntityFracturedSpaceCollector extends Entity {
 	private static final double RADIUS = 2;
 	private static final int MAX_AGE = 30;
 	private static final float AGE_SPECIAL_START = MAX_AGE * 3f / 4f;
-	private static final int PARTICLE_COUNT = 12;
 	private static final int MANA_COST_PER_ITEM = 500; //TODO balance this?
+	private static final ItemStack TOOL_STACK = new ItemStack(CorporeticsItems.FRACTURED_SPACE_ROD);
 	
 	@Override
 	protected void entityInit() {
@@ -77,32 +77,7 @@ public class EntityFracturedSpaceCollector extends Entity {
 		dataManager.set(DATA_AGE, age);
 		
 		if(world.isRemote && age <= MAX_AGE) {
-			double ageFraction = age / (double) MAX_AGE;
-			//double radiusMult = 4 * (ageFraction - ageFraction * ageFraction); //simple and cute easing function
-			double radiusMult = 1.6 * (ageFraction - Math.pow(ageFraction, 7)); //less simple but cuter easing function
-			double particleAngle = age / 25d;
-			double height = radiusMult / 2;
-			
-			for(int i = 0; i < PARTICLE_COUNT; i++, particleAngle += (2 * Math.PI) / PARTICLE_COUNT) {
-				double x = Math.cos(particleAngle) * RADIUS * radiusMult;
-				double z = Math.sin(particleAngle) * RADIUS * radiusMult;
-				
-				float size = (float) (1 + ageFraction * 5 * Math.random());
-				
-				Botania.proxy.sparkleFX(posX + x, posY + height, posZ + z, 0.9f, 0.15f, 0.1f, size, 5);
-			}
-			
-			double x = Math.cos(Math.random() * Math.PI * 2) * RADIUS * radiusMult;
-			double z = Math.cos(Math.random() * Math.PI * 2) * RADIUS * radiusMult;
-			
-			Botania.proxy.wispFX(posX + x, posY - 0.5 + height, posZ + z, 1f, .5f, 0f, .3f, -.3f, 0.5f);
-			
-			if(age >= MAX_AGE - 2) {
-				world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, posX, posY, posZ, 0, 0, 0);
-				for(int i = 0; i < 5; i++) {
-					Botania.proxy.wispFX(posX, posY, posZ, 0.9f, 0.45f, 0.05f, 2f, -.1f, 0.1f);
-				}
-			}
+			doSparkles(age);
 		} else {
 			if(age > AGE_SPECIAL_START) {
 				AxisAlignedBB aabb = new AxisAlignedBB(posX - RADIUS, posY - 1, posZ - RADIUS, posX + RADIUS, posY + 1, posZ + RADIUS);
@@ -141,30 +116,20 @@ public class EntityFracturedSpaceCollector extends Entity {
 					IBlockState state = world.getBlockState(cratePos);
 					TileEntity tile = world.getTileEntity(cratePos);
 					
-					if(tile != null && EtcHelpers.isOpenCrate(state, tile)) {
-						TileOpenCrate crate = (TileOpenCrate) tile;
-						if(crate.canEject()) {
-							//This is kinda weird but let's emulate the way the open crate itself looks for redstone
-							boolean redstone = false;
-							for(EnumFacing whichWay : EnumFacing.values()) {
-								if(world.getRedstonePower(cratePos.offset(whichWay), whichWay) != 0) {
-									redstone = true;
-									break;
-								}
-							}
-							
-							ItemStack toolStack = new ItemStack(CorporeticsItems.FRACTURED_SPACE_ROD);
-							
-							//Crates only have 1 slot inventory so I have to manually dump the items one by one
-							for(EntityItem ent : nearbyItemEnts) {
-								ItemStack stack = ent.getItem/*Stack*/();
+					if(tile != null && EtcHelpers.isOpenCrate(state, tile) && ((TileOpenCrate) tile).canEject()) {
+						boolean redstone = isCratePowered(world, cratePos);
+						
+						//delete all the items and emit them from the crate
+						for (EntityItem ent : nearbyItemEnts) {
+							ItemStack stack = ent.getItem/*Stack*/();
+							int count = stack.getCount();
+							int cost = count * MANA_COST_PER_ITEM;
+							if (ManaItemHandler.requestManaExact(TOOL_STACK, player, cost, false)) {
+								//(item stacks aren't sorted by size so don't break on a failed mana extraction)
+								ManaItemHandler.requestManaExact(TOOL_STACK, player, cost, true);
 								
-								int costForThisStack = MANA_COST_PER_ITEM * stack.getCount();
-								if(ManaItemHandler.requestManaExact(toolStack, player, costForThisStack, false)) {
-									ManaItemHandler.requestManaExact(toolStack, player, costForThisStack, true);
-									crate.eject(stack, redstone);
-									ent.setDead();
-								}
+								fakeCrateEject(world, cratePos, redstone, stack);
+								ent.setDead();
 							}
 						}
 					}
@@ -174,6 +139,68 @@ public class EntityFracturedSpaceCollector extends Entity {
 				}
 			}
 		}
+	}
+	
+	private static final int PARTICLE_COUNT = 12;
+	
+	private void doSparkles(int age) {
+		double ageFraction = age / (double) MAX_AGE;
+		//double radiusMult = 4 * (ageFraction - ageFraction * ageFraction); //simple and cute easing function
+		double radiusMult = 1.6 * (ageFraction - Math.pow(ageFraction, 7)); //less simple but cuter easing function
+		double particleAngle = age / 25d;
+		double height = radiusMult / 2;
+		
+		for(int i = 0; i < PARTICLE_COUNT; i++, particleAngle += (2 * Math.PI) / PARTICLE_COUNT) {
+			double x = Math.cos(particleAngle) * RADIUS * radiusMult;
+			double z = Math.sin(particleAngle) * RADIUS * radiusMult;
+			
+			float size = (float) (1 + ageFraction * 5 * Math.random());
+			
+			Botania.proxy.sparkleFX(posX + x, posY + height, posZ + z, 0.9f, 0.15f, 0.1f, size, 5);
+		}
+		
+		double x = Math.cos(Math.random() * Math.PI * 2) * RADIUS * radiusMult;
+		double z = Math.cos(Math.random() * Math.PI * 2) * RADIUS * radiusMult;
+		
+		Botania.proxy.wispFX(posX + x, posY - 0.5 + height, posZ + z, 1f, .5f, 0f, .3f, -.3f, 0.5f);
+		
+		if(age >= MAX_AGE - 2) {
+			world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, posX, posY, posZ, 0, 0, 0);
+			for(int i = 0; i < 5; i++) {
+				Botania.proxy.wispFX(posX, posY, posZ, 0.9f, 0.45f, 0.05f, 2f, -.1f, 0.1f);
+			}
+		}
+	}
+	
+	private static boolean isCratePowered(World world, BlockPos pos) {
+		//Uses the exact same logic open crates do to check if they're powered!
+		for(EnumFacing whichWay : EnumFacing.values()) {
+			if(world.getRedstonePower(pos.offset(whichWay), whichWay) != 0) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private static void fakeCrateEject(World world, BlockPos pos, boolean redstone, ItemStack stack) {
+		//mostly a copy of the open crate ejection logic
+		//but doesn't touch the buffered item in the crate, if there is any 
+		EntityItem newEnt = new EntityItem(
+			world,
+			pos.getX() + 0.5,
+			pos.getY() - 0.5,
+			pos.getZ() + 0.5,
+			stack
+		);
+		
+		newEnt.motionX = 0;
+		newEnt.motionY = 0;
+		newEnt.motionZ = 0;
+		
+		if(redstone) newEnt.age = -200;
+		
+		world.spawnEntity(newEnt);
 	}
 	
 	@Override

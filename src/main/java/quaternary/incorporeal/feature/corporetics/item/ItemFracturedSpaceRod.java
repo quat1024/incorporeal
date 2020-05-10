@@ -1,6 +1,5 @@
 package quaternary.incorporeal.feature.corporetics.item;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,10 +24,7 @@ import quaternary.incorporeal.feature.corporetics.lexicon.CorporeticsLexicon;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.api.mana.IManaUsingItem;
-import vazkii.botania.api.state.BotaniaStateProps;
-import vazkii.botania.api.state.enums.CrateVariant;
 import vazkii.botania.api.wand.ICoordBoundItem;
-import vazkii.botania.common.block.BlockOpenCrate;
 import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import javax.annotation.Nullable;
@@ -46,9 +42,9 @@ public class ItemFracturedSpaceRod extends Item implements IManaUsingItem, ILexi
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack heldStack = player.getHeldItem(hand);
 		IBlockState hitState = world.getBlockState(pos);
-		Block hitBlock = hitState.getBlock();
+		TileEntity hitTile = world.getTileEntity(pos);
 		
-		if(hitBlock instanceof BlockOpenCrate && hitState.getValue(BotaniaStateProps.CRATE_VARIANT) == CrateVariant.OPEN) {
+		if(EtcHelpers.isOpenCrate(hitState, hitTile)) {
 			//Clicked a crate.
 			//Remember this position.
 			ItemNBTHelper.setCompound(heldStack, CRATE_POS_KEY, NBTUtil.createPosTag(pos));

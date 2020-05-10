@@ -39,13 +39,11 @@ public final class EtcHelpers {
 	}
 	
 	public static boolean isOpenCrate(IBlockState state, TileEntity tile) {
+		//May have false-positives with things like custom crafty crates
+		//I'd rather underconstrain than overconstrain, though
 		return state.getBlock() == ModBlocks.openCrate &&
 			state.getValue(BotaniaStateProps.CRATE_VARIANT) == CrateVariant.OPEN &&
-			tile instanceof TileOpenCrate &&
-			!(tile instanceof TileCraftCrate) &&
-			//Wacky hack to work around not being able to extend TileCraftCrate with custom crates in botaniatweaks
-			//I'm allowed to do this since botaniatweaks is my own mod :^)
-			!state.getBlock().getClass().getName().startsWith("quaternary.botania");
+			tile instanceof TileOpenCrate;
 	}
 	
 	public static void sendMessage(EntityPlayer player, String message, TextFormatting color) {
