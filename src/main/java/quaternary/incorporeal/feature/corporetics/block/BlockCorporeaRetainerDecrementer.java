@@ -15,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import quaternary.incorporeal.feature.corporetics.lexicon.CorporeticsLexicon;
+import vazkii.botania.api.corporea.CorporeaHelper;
 import vazkii.botania.api.lexicon.ILexiconable;
 import vazkii.botania.api.lexicon.LexiconEntry;
 import vazkii.botania.common.block.ModBlocks;
@@ -59,8 +60,10 @@ public class BlockCorporeaRetainerDecrementer extends Block implements ILexicona
 						retainerCount--;
 						if(retainerCount > 0) {
 							ReflectionHelper.setPrivateValue(TileCorporeaRetainer.class, retainer, retainerCount, "requestCount");
+							ReflectionHelper.setPrivateValue(TileCorporeaRetainer.class, retainer, CorporeaHelper.signalStrengthForRequestSize(retainerCount),"compValue");
 						} else {
 							ReflectionHelper.setPrivateValue(TileCorporeaRetainer.class, retainer, false, "pendingRequest");
+							ReflectionHelper.setPrivateValue(TileCorporeaRetainer.class, retainer, 0,"compValue");
 						}
 						
 						world.updateComparatorOutputLevel(pos.offset(horiz), ModBlocks.corporeaRetainer);
