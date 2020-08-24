@@ -63,7 +63,7 @@ public class SubTileSanvocalia extends SubTileFunctional implements ILexiconable
 		
 		AxisAlignedBB itemDetectionBox = new AxisAlignedBB(pos.add(-getRange(), 0, -getRange()), pos.add(getRange() + 1, 1, getRange() + 1));
 		List<EntityItem> nearbyTickets = w.getEntitiesWithinAABB(EntityItem.class, itemDetectionBox, (ent) -> {
-			if(ent == null) return false;
+			if(ent == null || ent.isDead) return false;
 			
 			ItemStack stack = ent.getItem/*Stack*/();
 			return ItemCorporeaTicket.hasRequest(stack);
