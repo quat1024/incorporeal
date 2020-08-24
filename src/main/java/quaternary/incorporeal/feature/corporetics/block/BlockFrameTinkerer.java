@@ -65,7 +65,7 @@ public class BlockFrameTinkerer extends Block implements ILexiconable {
 				EntityItem ent = null;
 				ItemStack inWorldStack = null;
 				
-				List<EntityItem> itemEnts = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(pos));
+				List<EntityItem> itemEnts = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(pos), e -> e != null && !e.isDead);
 				
 				if(itemEnts.isEmpty()) {
 					inWorldStack = ItemStack.EMPTY;
@@ -86,7 +86,7 @@ public class BlockFrameTinkerer extends Block implements ILexiconable {
 				//Todo 1.13, keep in mind new item frame location possibilities.
 				List<EntityItemFrame> nearbyFrames = new ArrayList<>(2);
 				for(EnumFacing horiz : EnumFacing.HORIZONTALS) {
-					nearbyFrames.addAll(world.getEntitiesWithinAABB(EntityItemFrame.class, new AxisAlignedBB(pos.offset(horiz)))); //4 cardinal directions
+					nearbyFrames.addAll(world.getEntitiesWithinAABB(EntityItemFrame.class, new AxisAlignedBB(pos.offset(horiz)), e -> e != null && !e.isDead)); //4 cardinal directions
 				}
 				if(nearbyFrames.isEmpty()) return;
 				EntityItemFrame frame = nearbyFrames.get(world.rand.nextInt(nearbyFrames.size()));
