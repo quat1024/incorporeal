@@ -82,7 +82,7 @@ public class EntityFracturedSpaceCollector extends Entity {
 			if(age > AGE_SPECIAL_START) {
 				AxisAlignedBB aabb = new AxisAlignedBB(posX - RADIUS, posY - 1, posZ - RADIUS, posX + RADIUS, posY + 1, posZ + RADIUS);
 				List<EntityItem> nearbyItemEnts = world.getEntitiesWithinAABB(EntityItem.class, aabb, (ent) -> {
-					return ent != null && MathHelper.pointDistancePlane(ent.posX, ent.posZ, posX, posZ) <= RADIUS;
+					return ent != null && !ent.isDead && MathHelper.pointDistancePlane(ent.posX, ent.posZ, posX, posZ) <= RADIUS;
 				});
 				
 				//Succ into the wormhole
