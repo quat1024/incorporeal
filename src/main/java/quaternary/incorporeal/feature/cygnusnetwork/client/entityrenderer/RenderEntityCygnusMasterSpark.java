@@ -68,7 +68,7 @@ public class RenderEntityCygnusMasterSpark extends RenderSparkBase<EntityCygnusM
 			int alpha = ((int) EtcHelpers.rangeRemap(distanceTo, 20, 40, 255, 3)) & 0xFF;
 			int textColor = 0xFFFFFF | (alpha << 24);
 			
-			for(int i = 0; i < stack.depth(); i++) {
+			for(int i = stack.depth() - 1; i >= 0; i--) {
 				stack.peek(i).ifPresent(o -> {
 					String toDraw = CygnusDatatypeHelpers.forClass(o.getClass()).toStringUnchecked(o);
 					font.drawString(toDraw, -font.getStringWidth(toDraw) / 2, 0, textColor);
