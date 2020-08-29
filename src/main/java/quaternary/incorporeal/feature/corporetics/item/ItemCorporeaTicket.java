@@ -76,8 +76,16 @@ public class ItemCorporeaTicket extends Item implements ILexiconable {
 	public LexiconEntry getEntry(World world, BlockPos blockPos, EntityPlayer entityPlayer, ItemStack itemStack) {
 		return CorporeticsLexicon.corporeaSolidifier;
 	}
-	
 	public static boolean hasRequest(ItemStack stack) {
 		return getRequest(stack) != null;
 	}
+
+	public static boolean hasCygnusItem(ItemStack stack) {
+		return hasRequest(stack);
+	}
+
+	public static Object getCygnusItem(ItemStack stack) {
+		return getRequest(stack);
+	}
+
 }
