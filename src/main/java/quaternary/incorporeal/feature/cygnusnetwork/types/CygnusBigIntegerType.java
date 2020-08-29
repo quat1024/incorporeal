@@ -86,7 +86,12 @@ public class CygnusBigIntegerType implements ICygnusDatatype<BigInteger> {
 	public int compare(BigInteger item1, BigInteger item2) {
 		return item1.compareTo(item2);
 	}
-	
+
+	@Override
+	public boolean canCompare() {
+		return true;
+	}
+
 	private static final BigInteger FIFTEEN = BigInteger.valueOf(15);
 	
 	@Override
