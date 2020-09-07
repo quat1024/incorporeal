@@ -36,7 +36,7 @@ public class CygnusCorporeaRequestType implements ICygnusDatatype<CorporeaReques
 		if(thing.matcher instanceof ItemStack) {
 			b.append(TextFormatting.AQUA);
 		} else {
-			b.append(TextFormatting.ITALIC);
+			b.append(TextFormatting.DARK_PURPLE);
 		}
 		
 		b.append("\"");

@@ -17,6 +17,8 @@ import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.core.etc.LazyGenericCapabilityProvider;
 import quaternary.incorporeal.core.etc.helper.CorporeaHelper2;
+import quaternary.incorporeal.feature.corporetics.item.CorporeticsItems;
+import quaternary.incorporeal.feature.corporetics.item.ItemCorporeaTicket;
 import quaternary.incorporeal.feature.cygnusnetwork.item.CygnusNetworkItems;
 import quaternary.incorporeal.feature.cygnusnetwork.item.ItemCygnusTicket;
 import quaternary.incorporeal.feature.cygnusnetwork.lexicon.PageHeadingIcon;
@@ -231,7 +233,11 @@ public final class CygnusFunnelablesAttachCapabilitiesEventHandler {
 			if(stack.getItem() == CygnusNetworkItems.CYGNUS_TICKET) {
 				//it's a ticket with a request
 				return ItemCygnusTicket.hasCygnusItem(stack);
-			} else {
+			}
+			else if (stack.getItem() == CorporeticsItems.CORPOREA_TICKET) {
+				return ItemCorporeaTicket.hasCygnusItem(stack);
+			}
+			else{
 				//it's some other item
 				return !stack.isEmpty();
 			}
@@ -251,7 +257,10 @@ public final class CygnusFunnelablesAttachCapabilitiesEventHandler {
 			
 			if(stack.getItem() instanceof ItemCygnusTicket && ItemCygnusTicket.hasCygnusItem(stack)) {
 				return ItemCygnusTicket.getCygnusItem(stack);
-			} else {
+			} else if (stack.getItem() instanceof ItemCorporeaTicket && ItemCorporeaTicket.hasCygnusItem(stack)) {
+				return ItemCorporeaTicket.getCygnusItem(stack);
+			}
+			else {
 				//it's not a ticket, so submit whatever it is as a corporea request
 				ItemStack stackCopy = stack.copy();
 				int count = stackCopy.getCount();
@@ -273,16 +282,18 @@ public final class CygnusFunnelablesAttachCapabilitiesEventHandler {
 		}
 	}
 	
-	private static final class ItemEntityFunnelable extends AbstractItemStackFunnelable {
+	public static final class ItemEntityFunnelable extends AbstractItemStackFunnelable {
 		public ItemEntityFunnelable(EntityItem ent) {
 			this.ent = ent;
+			is = ent.getItem().copy();
 		}
-		
-		private final EntityItem ent;
+
+		private ItemStack is;
+		private EntityItem ent;
 		
 		@Override
 		protected ItemStack getStack() {
-			return ent.getItem/*Stack*/();
+			return is;
 		}
 		
 		@Override

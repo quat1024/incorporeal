@@ -3,6 +3,8 @@ package quaternary.incorporeal.feature.cygnusnetwork.tile;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -12,12 +14,14 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import quaternary.incorporeal.Incorporeal;
 import quaternary.incorporeal.api.cygnus.ICygnusFunnelable;
 import quaternary.incorporeal.api.cygnus.ILooseCygnusFunnelable;
 import quaternary.incorporeal.core.etc.helper.CygnusHelpers;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusRegistries;
 import quaternary.incorporeal.feature.cygnusnetwork.CygnusStack;
 import quaternary.incorporeal.feature.cygnusnetwork.block.BlockCygnusFunnel;
+import quaternary.incorporeal.feature.cygnusnetwork.cap.CygnusFunnelablesAttachCapabilitiesEventHandler;
 import quaternary.incorporeal.feature.cygnusnetwork.cap.IncorporeticCygnusCapabilities;
 import quaternary.incorporeal.feature.cygnusnetwork.entity.EntityCygnusMasterSpark;
 
@@ -163,14 +167,40 @@ public class TileCygnusFunnel extends TileEntity implements ITickable {
 		}
 		
 		//Is it an entity capability?
+		EntityItem itemRes = null;
+		int orcount = 0;
+		int count = 0;
 		List<Entity> entities = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos));
 		for(Entity e : entities) {
 			//try face
 			ICygnusFunnelable capMaybe = e.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, face);
-			if(capMaybe != null) return capMaybe;
+			if(capMaybe != null) {
+				if (!(e instanceof EntityItem))
+					return capMaybe;
+			}
+
 			//try null
 			capMaybe = e.getCapability(IncorporeticCygnusCapabilities.FUNNEL_CAP, null);
-			if(capMaybe != null) return capMaybe;
+			if (capMaybe != null) {
+				if (!(e instanceof EntityItem)) {
+					return capMaybe;
+				} else {
+					ItemStack is = ((EntityItem) e).getItem();
+					if (itemRes == null) {
+						itemRes = (EntityItem) e;
+						orcount = is.getCount();
+					}
+					else if (itemRes.getItem().getItem().getRegistryName() == is.getItem().getRegistryName()) {
+						count += is.getCount();
+					}
+				}
+			}
+		}
+		if (itemRes != null) {
+			itemRes.getItem().setCount(orcount + count);
+			ICygnusFunnelable cap = new CygnusFunnelablesAttachCapabilitiesEventHandler.ItemEntityFunnelable(itemRes);  //manual instantiation is essential
+			itemRes.getItem().setCount(orcount);
+			return cap;
 		}
 		
 		//Maybe it's a loose funnelable? (last resort)

@@ -101,11 +101,14 @@ public class CygnusStackType implements ICygnusDatatype<CygnusStack> {
 	public String toString(CygnusStack item) {
 		//lol
 		StringBuilder b = new StringBuilder();
-		b.append("Stack ").append(item.depth());
+		b.append("Stack(").append(item.depth());
+		b.append(") [");
 		for(int i = 0; i < item.depth(); i++) {
-			b.append(' ');
-			item.peek(i).ifPresent(b::append);
+			item.peek(i).ifPresent((o) -> b.append(CygnusDatatypeHelpers.forClass(o.getClass()).toStringUnchecked(o)));
+			b.append(", ");
 		}
+		b.delete(b.length()-2, b.length());
+		b.append("]");
 		return b.toString();
 	}
 	
