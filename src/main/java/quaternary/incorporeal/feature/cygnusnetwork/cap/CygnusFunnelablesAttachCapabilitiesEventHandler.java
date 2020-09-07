@@ -282,16 +282,18 @@ public final class CygnusFunnelablesAttachCapabilitiesEventHandler {
 		}
 	}
 	
-	private static final class ItemEntityFunnelable extends AbstractItemStackFunnelable {
+	public static final class ItemEntityFunnelable extends AbstractItemStackFunnelable {
 		public ItemEntityFunnelable(EntityItem ent) {
 			this.ent = ent;
+			is = ent.getItem().copy();
 		}
-		
-		private final EntityItem ent;
+
+		private ItemStack is;
+		private EntityItem ent;
 		
 		@Override
 		protected ItemStack getStack() {
-			return ent.getItem/*Stack*/();
+			return is;
 		}
 		
 		@Override
